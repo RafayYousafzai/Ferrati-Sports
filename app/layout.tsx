@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import Appbar from "@/components/navbar";
 import { Cormorant_Upright, Open_Sans } from "next/font/google";
+import Footer from "@/components/Footer";
 
 const cormorant_upright = Cormorant_Upright({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
           <div className="relative flex flex-col min-h-screen">
             <Appbar />
             <main className="flex-grow">{children}</main>
+            <Footer />
           </div>
         </Providers>
       </body>

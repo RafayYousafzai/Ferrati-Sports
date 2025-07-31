@@ -4,6 +4,7 @@ import JoinOurCommunity from "@/components/JoinOurCommunity";
 import Header from "@/components/Header";
 import Explore from "@/components/Explore/Explore";
 import About from "@/components/About";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       />
       <Explore />
       <About />
+      <Testimonials />
     </>
   );
 }

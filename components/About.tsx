@@ -114,7 +114,7 @@ const About = () => {
                       className="object-cover"
                       quality={100}
                       priority
-                      alt=""
+                      alt={item.title}
                     />
                   </div>
                 </div>

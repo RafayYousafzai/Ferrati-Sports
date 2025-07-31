@@ -17,7 +17,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <motion.div
-      className="text-center my-20"
+      className="text-center mt-16"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -35,7 +35,7 @@ export default function Header({
       </motion.div>
 
       <motion.h2
-        className="text-4xl md:text-6xl font-black text-black mb-6 leading-tight"
+        className="text-3xl md:text-4xl font-black text-black mb-6 leading-tight"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -58,7 +58,7 @@ export default function Header({
       </motion.h2>
 
       <motion.p
-        className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4"
+        className="text-lg md:text-xl text-gray-600  mx-auto leading-relaxed px-[10%]"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

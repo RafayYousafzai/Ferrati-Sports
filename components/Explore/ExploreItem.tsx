@@ -21,7 +21,7 @@ const ExploreItem = ({ itemCSS, icon, text }: PropsType) => {
             alt=""
           />
         </div> */}
-        <h3 className="text-2xl xl:text-4xl font-primary font-bold mb-4">
+        <h3 className="text-2xl xl:text-2xl font-primary font-bold mb-4">
           {text.title}
         </h3>
         <p className="max-w-[400px] text-lg">{text.description}</p>
