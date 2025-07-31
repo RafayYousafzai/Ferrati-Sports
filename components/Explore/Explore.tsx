@@ -3,8 +3,8 @@ import ExploreItem from "./ExploreItem";
 
 // Define the type for explore item data
 interface ExploreItemData {
-  itemCSS: string;
-  icon: string;
+  itemCSS: "xl:text-right xl:items-end" | "xl:text-left items-start";
+  icon: `${string}.svg`;
   text: {
     title: string;
     description: string;

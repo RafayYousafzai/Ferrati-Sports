@@ -41,7 +41,7 @@ export const SkeletonProblemTwo = () => {
       transition: {
         duration: 0.5,
         repeat: Number.POSITIVE_INFINITY,
-        repeatType: "reverse",
+        repeatType: "reverse" as const,
       },
     },
   };
@@ -88,7 +88,7 @@ export const SkeletonProblemFour = () => {
       transition: {
         duration: 1,
         repeat: Number.POSITIVE_INFINITY,
-        repeatType: "reverse",
+        repeatType: "reverse" as "reverse",
       },
     },
   };
@@ -113,7 +113,7 @@ export const SkeletonProblemFive = () => {
       transition: {
         duration: 0.2,
         repeat: Number.POSITIVE_INFINITY,
-        repeatType: "reverse",
+        repeatType: "reverse" as "reverse",
       },
     },
   };

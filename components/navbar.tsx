@@ -164,7 +164,16 @@ export default function Appbar() {
             ) || navigationConfig.centerDropdowns.find((n) => n.title === item);
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href={navItem?.href || "#"}>
+              <Link
+                className="w-full"
+                href={
+                  navItem &&
+                  "href" in navItem &&
+                  typeof navItem.href === "string"
+                    ? navItem.href
+                    : "#"
+                }
+              >
                 {item}
               </Link>
             </NavbarMenuItem>
