@@ -6,6 +6,8 @@ import Explore from "@/components/Explore/Explore";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import BentoGridAboutUs from "@/components/BentoGridAboutUs";
+import WhyChooseUs from "@/components/why-choose-us";
+import OurApproach from "@/components/our-approach";
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
       {/* <div className="block md:hidden">
         <BentoGridAboutUs />
       </div> */}
+      <WhyChooseUs />
+      <OurApproach />
       <BentoGridAboutUs />
 
       <About />
