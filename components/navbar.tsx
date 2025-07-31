@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Navbar,
   NavbarBrand,
@@ -10,7 +9,7 @@ import {
   NavbarMenuToggle,
 } from "@heroui/navbar";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
 import Badge from "./Badge";
@@ -99,21 +98,47 @@ const navigationConfig: NavigationConfig = {
 
 export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // State to track scroll position
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the user has scrolled past 100vh (viewport height)
+      const offset = window.scrollY;
+      if (offset > window.innerHeight) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    // Add scroll event listener when component mounts
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Empty dependency array ensures this runs once on mount
+
+  // Dynamically apply classes based on scroll state
+  const navbarClasses = `dark transition-all duration-300 ${
+    scrolled
+      ? "bg-black fixed top-0 w-full z-50" // Fixed and black when scrolled
+      : "bg-black md:bg-transparent md:fixed" // Original classes when not scrolled
+  }`;
 
   return (
-    <Navbar className="dark  fixed " onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      className={navbarClasses} // Apply dynamic classes
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
         <NavbarBrand>
-          <Badge containerStyles="  xl:flex w-[160px] h-[180px]" />
+          <Badge containerStyles="xl:flex w-[160px] h-[180px]" />
         </NavbarBrand>
       </NavbarContent>
-
       {/* Left-aligned navigation */}
-      <NavbarContent justify="start" className="hidden sm:flex gap-4">
+      <NavbarContent justify="start" className="hidden sm:flex gap-4 light">
         {navigationConfig.leftNav.map((item) => (
           <NavbarItem key={item.href}>
             <Link href={item.href} className="text-white">
@@ -130,7 +155,6 @@ export default function Appbar() {
           </NavbarItem>
         ))}
       </NavbarContent>
-
       {/* Mobile Menu */}
       <NavbarMenu>
         {navigationConfig.mobileNav.map((item, index) => {
@@ -138,7 +162,6 @@ export default function Appbar() {
             [...navigationConfig.leftNav, ...navigationConfig.rightNav].find(
               (n) => n.title === item
             ) || navigationConfig.centerDropdowns.find((n) => n.title === item);
-
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link className="w-full" href={navItem?.href || "#"}>
@@ -148,13 +171,16 @@ export default function Appbar() {
           );
         })}
       </NavbarMenu>
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        className="sm:hidden text-white"
+      />
     </Navbar>
   );
 }
 
 function MenuContent() {
   const [active, setActive] = useState<string | null>(null);
-
   return (
     <Menu setActive={setActive}>
       {navigationConfig.centerDropdowns.map((group) => (

@@ -9,13 +9,6 @@ import { Button } from "@heroui/button";
 
 const data = [
   {
-    imgSrc: "https://ferratisports.com/items/attimgs/8a0c8o3a7f.jpg",
-
-    title: "Sports Wear",
-    description:
-      "Trusted by global brands, we deliver premium sportswear manufacturing with advanced fabrics and precision craftsmanship. Our scalable production ensures consistent quality in moisture-wicking, durable sports apparel—perfect for retailers and wholesalers demanding excellence and reliability.",
-  },
-  {
     imgSrc: "https://ferratisports.com/items/attimgs/0g9o6x2i7k.jpg",
 
     title: "Active Wear",
@@ -35,6 +28,13 @@ const data = [
     title: "Motorbike Gear",
     description:
       "Safety meets quality in our motorbike gear manufacturing. We deliver certified, durable jackets, gloves, and Jeans with precision engineering—trusted by brands and wholesalers who prioritize rider protection and premium craftsmanship.",
+  },
+  {
+    imgSrc: "https://ferratisports.com/items/attimgs/8a0c8o3a7f.jpg",
+
+    title: "Sports Wear",
+    description:
+      "Trusted by global brands, we deliver premium sportswear manufacturing with advanced fabrics and precision craftsmanship. Our scalable production ensures consistent quality in moisture-wicking, durable sports apparel—perfect for retailers.",
   },
 ];
 
@@ -97,11 +97,11 @@ const About = () => {
                         <Separator />
                       </div>
                       {/* description */}
-                      <p className="leading-relaxed text-white mb-16 px-8 xl:px-2s">
+                      <p className="leading-relaxed text-white mb-6 px-2 md:px-8 xl:px-2s">
                         {item.description}
                       </p>
                       {/* btn */}
-                      <Button className="btn text-white bg-[#d74913]">
+                      <Button className="  text-white bg-[#d74913]">
                         See more
                       </Button>
                     </div>

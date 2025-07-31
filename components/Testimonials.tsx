@@ -37,7 +37,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="h-[60vh] xl:h-[70vh]">
+    <section className="h-[60vh] xl:h-[70vh] mt-12">
       <div className="container mx-auto h-full flex items-center">
         <Swiper
           navigation={true}
@@ -49,7 +49,7 @@ const Testimonials = () => {
               <div className="flex justify-center h-full xl:pt-14">
                 <div className="max-w-[60%] text-black">
                   <Quote className="text-6xl text-black mb-12 mx-auto" />
-                  <p className="text-2xl font-secondary text-center mb-8">
+                  <p className="md:text-2xl text-lg font-secondary text-center mb-8">
                     {person.message}
                   </p>
                   <div className="text-center">

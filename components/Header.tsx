@@ -10,14 +10,14 @@ interface HeaderProps {
 }
 
 export default function Header({
-  badge = "Our Achievements",
-  title = "Numbers That",
-  highlightedTitle = "Inspire",
-  subtitle = "Join thousands of satisfied customers who trust our platform to deliver exceptional results every single day.",
+  badge,
+  title,
+  highlightedTitle,
+  subtitle,
 }: HeaderProps) {
   return (
     <motion.div
-      className="text-center mt-16"
+      className="text-center mt-16 mx-2"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

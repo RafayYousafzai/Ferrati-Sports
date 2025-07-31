@@ -12,7 +12,9 @@ type PropsType = {
 const ExploreItem = ({ itemCSS, icon, text }: PropsType) => {
   return (
     <div className="relative flex items-start">
-      <div className={`xl:max-w-[420px] xl:flex xl:flex-col ${itemCSS}`}>
+      <div
+        className={`xl:max-w-[420px] xl:flex xl:flex-col ${itemCSS} px-[10%]`}
+      >
         {/* <div className="mb-6 flex justify-center items-center">
           <Image
             src={`/assets/explore/icons/${icon}`}

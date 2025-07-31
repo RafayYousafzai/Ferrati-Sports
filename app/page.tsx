@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Explore from "@/components/Explore/Explore";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
+import BentoGridAboutUs from "@/components/BentoGridAboutUs";
 
 export default function Home() {
   return (
@@ -18,7 +19,14 @@ export default function Home() {
         highlightedTitle="traditional manufacturing"
         subtitle="we believe in doing things differently. While traditional manufacturers stick to outdated processes, we push the boundaries of what’s possible. We offer customized solutions, quick turnarounds, and unmatched flexibility, ensuring that your designs are brought to life exactly the way you envision."
       />
-      <Explore />
+      <div className="hidden md:block">
+        <Explore />
+      </div>
+      {/* <div className="block md:hidden">
+        <BentoGridAboutUs />
+      </div> */}
+      <BentoGridAboutUs />
+
       <About />
       <Testimonials />
     </>

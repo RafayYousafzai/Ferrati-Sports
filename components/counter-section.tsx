@@ -1,5 +1,4 @@
 "use client";
-
 import { type ReactNode, useEffect, useRef } from "react";
 import {
   motion,
@@ -8,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Users, Trophy, Download, Star, TrendingUp, Award } from "lucide-react";
+import { Trophy, Star, TrendingUp } from "lucide-react";
 
 interface CounterItemProps {
   icon: ReactNode;
@@ -29,7 +28,6 @@ function AnimatedCounter({
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { stiffness: 100, damping: 30 });
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const display = useTransform(springValue, (current) =>
     Math.round(current).toLocaleString()
   );
@@ -78,20 +76,19 @@ function CounterItem({
         whileHover={{ rotate: 5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        {/* Floating background circle */}
+        {/* Floating background circle - simplified animation */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-yellow-400/20 rounded-full"
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.05, 1], // Slightly less dramatic scale
+            opacity: [0.3, 0.5, 0.3], // Slightly less dramatic opacity
           }}
           transition={{
-            duration: 3,
+            duration: 4, // Increased duration for smoother, less frequent change
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         />
-
         {/* Main icon container */}
         <motion.div
           className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-2xl shadow-2xl"
@@ -109,27 +106,24 @@ function CounterItem({
           >
             {icon}
           </motion.div>
-
-          {/* Animated ring */}
+          {/* Animated ring - simplified animation */}
           <motion.div
             className="absolute inset-0 rounded-2xl border-2 border-white/30"
             animate={{
-              scale: [1, 1.2, 1],
+              scale: [1, 1.1, 1], // Slightly less dramatic scale
               opacity: [0.5, 0, 0.5],
             }}
             transition={{
-              duration: 2,
+              duration: 3, // Increased duration
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeOut",
             }}
           />
         </motion.div>
       </motion.div>
-
       <div className="relative">
         {/* Counter number */}
         <AnimatedCounter value={value} suffix={suffix} />
-
         {/* Label */}
         <motion.div
           className="text-neutral-300 font-semibold text-xl tracking-wide uppercase"
@@ -140,7 +134,6 @@ function CounterItem({
         >
           {label}
         </motion.div>
-
         {/* Decorative line */}
         <motion.div
           className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mt-4 rounded-full"
@@ -155,11 +148,13 @@ function CounterItem({
   );
 }
 
-// Floating particles component (unchanged, but included for context)
+// Floating particles component - optimized
 function FloatingParticles() {
+  // Reduced number of particles for better performance
+  const numParticles = 8;
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(15)].map((_, i) => (
+      {[...Array(numParticles)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-white/20 rounded-full"
@@ -168,12 +163,11 @@ function FloatingParticles() {
             top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [-20, -100, -20],
-            x: [-10, 10, -10],
-            opacity: [0, 1, 0],
+            y: [-20, 20], // Simpler vertical movement
+            opacity: [0, 1, 0], // Simple fade in/out
           }}
           transition={{
-            duration: 4 + Math.random() * 4,
+            duration: 6 + Math.random() * 4, // Longer duration
             repeat: Number.POSITIVE_INFINITY,
             delay: Math.random() * 5,
             ease: "easeInOut",
@@ -205,41 +199,37 @@ export default function CounterSection() {
       suffix: "%",
     },
   ];
-
   return (
     <section className="relative h-auto py-24 bg-black overflow-hidden">
-      {/* Animated background elements */}
+      {/* Animated background elements - optimized */}
       <div className="absolute inset-0">
-        {/* Gradient orbs */}
+        {/* Gradient orbs - reduced blur and simplified animations */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/40 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/40 rounded-full blur-xl" // Reduced blur
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
+            opacity: [0.3, 0.6, 0.3], // Only opacity animation
           }}
           transition={{
-            duration: 8,
+            duration: 10, // Longer duration
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-400/20 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-400/20 rounded-full blur-xl" // Reduced blur
           animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.6, 0.3, 0.6],
+            opacity: [0.6, 0.3, 0.6], // Only opacity animation
           }}
           transition={{
-            duration: 10,
+            duration: 12, // Longer duration
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-400/10 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-400/10 rounded-full blur-xl" // Reduced blur
           animate={{
-            rotate: 360,
-            scale: [1, 1.1, 1],
+            rotate: 360, // Keep rotation
           }}
           transition={{
             rotate: {
@@ -247,18 +237,11 @@ export default function CounterSection() {
               repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             },
-            scale: {
-              duration: 12,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            },
           }}
         />
       </div>
-
       {/* Floating particles */}
       <FloatingParticles />
-
       {/* Grid pattern overlay */}
       <div
         className="absolute inset-0 opacity-30"
@@ -267,7 +250,6 @@ export default function CounterSection() {
           backgroundSize: "50px 50px",
         }}
       />
-
       <div className="relative container mx-auto px-6 lg:px-8">
         {/* Counters Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-7xl mx-auto">
