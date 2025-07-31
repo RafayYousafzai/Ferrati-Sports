@@ -52,7 +52,7 @@ export default function RootLayout({
           open_sans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col min-h-screen">
             <Appbar />
             <main className="flex-grow">{children}</main>

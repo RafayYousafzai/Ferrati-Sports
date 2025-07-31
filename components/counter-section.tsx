@@ -132,7 +132,7 @@ function CounterItem({
 
         {/* Label */}
         <motion.div
-          className="text-gray-700 font-bold text-xl tracking-wide uppercase"
+          className="text-neutral-300 font-semibold text-xl tracking-wide uppercase"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -155,7 +155,7 @@ function CounterItem({
   );
 }
 
-// Floating particles component
+// Floating particles component (unchanged, but included for context)
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -207,7 +207,7 @@ export default function CounterSection() {
   ];
 
   return (
-    <section className="relative h-auto py-24 bg-white  overflow-hidden">
+    <section className="relative h-auto py-24 bg-black overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         {/* Gradient orbs */}

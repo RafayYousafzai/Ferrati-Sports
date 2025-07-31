@@ -100,7 +100,7 @@ const Hero = () => {
   return (
     <section className="h-[80vh] xl:h-screen relative text-white overflow-hidden">
       {/* overlay */}
-      <div className="bg-hero_overlay absolute w-full h-full z-10 bg-black/[0.80]" />
+      <div className="bg-hero_overlay absolute w-full h-full z-10 bg-black/[0.70]" />
 
       {/* Image slider */}
       <div className="absolute top-0 left-0 w-full h-full">
@@ -123,7 +123,7 @@ const Hero = () => {
       </div>
 
       {/* Navigation arrows */}
-      <motion.button
+      {/* <motion.button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-40 bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors backdrop-blur-sm"
         aria-label="Previous slide"
@@ -141,7 +141,7 @@ const Hero = () => {
         whileTap={{ scale: 0.95 }}
       >
         <ChevronRight className="w-6 h-6" />
-      </motion.button>
+      </motion.button> */}
 
       {/* Slide indicators */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-40 flex space-x-2">
@@ -180,7 +180,7 @@ const Hero = () => {
               className="flex flex-col items-center"
             >
               <Badge containerStyles="hidden xl:flex xl:w-[180px] xl:h-[180px]" />
-              <h1 className=" font-[Cormorant_Upright] text-8xl text-[#d74913]">
+              <h1 className=" font-[Cormorant_Upright] text-5xl md:text-8xl text-[#d74913]">
                 {currentSlideData.title}
               </h1>
             </motion.div>

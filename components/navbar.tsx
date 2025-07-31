@@ -101,14 +101,14 @@ export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar className="dark fixed " onMenuOpenChange={setIsMenuOpen}>
+    <Navbar className="dark  fixed " onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Badge containerStyles="  xl:flex w-[180px] h-[180px]" />
+          <Badge containerStyles="  xl:flex w-[160px] h-[180px]" />
         </NavbarBrand>
       </NavbarContent>
 
