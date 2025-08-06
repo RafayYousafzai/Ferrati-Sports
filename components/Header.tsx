@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Separator from "./Separator";
 
 interface HeaderProps {
   badge?: string;
@@ -10,14 +11,14 @@ interface HeaderProps {
 }
 
 export default function Header({
-  badge,
+  badge = "Ferrati",
   title,
   highlightedTitle,
   subtitle,
 }: HeaderProps) {
   return (
     <motion.div
-      className="text-center mt-16 mx-2"
+      className="text-center my-16 mx-2"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -35,7 +36,7 @@ export default function Header({
       </motion.div>
 
       <motion.h2
-        className="text-3xl md:text-4xl font-black text-black mb-6 leading-tight"
+        className="text-4xl md:text-6xl font-bold text-black mb-6 leading-tight"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -43,7 +44,7 @@ export default function Header({
       >
         {title}{" "}
         <motion.span
-          className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"
+          className="bg-orange-500 bg-clip-text text-transparent"
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
@@ -56,9 +57,9 @@ export default function Header({
           {highlightedTitle}
         </motion.span>
       </motion.h2>
-
+      <Separator bg="accent" />
       <motion.p
-        className="text-lg md:text-xl text-gray-600  mx-auto leading-relaxed px-[10%]"
+        className="text-lg md:text-2xl text-gray-600  mx-auto leading-relaxed px-[10%]"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

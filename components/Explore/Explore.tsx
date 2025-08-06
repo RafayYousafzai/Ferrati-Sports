@@ -75,11 +75,11 @@ const Explore = () => {
   ];
 
   return (
-    <section className="py-12 xl:py-0 xl:h-[90vh]  mb-4 overflow-none">
+    <section className="py-12 xl:py-0 xl:h-[90vh]  mb-4 overflow-none bg-slate-50">
       <div className="container mx-auto xl:w-full xl:h-full flex xl:justify-center xl:items-center">
         <div className="w-full flex flex-col lg:flex-row gap-12 xl:gap-20">
           {/* Left Column */}
-          <div className="flex-1 flex flex-col justify-around items-end text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0">
+          <div className="flex-1 flex flex-col justify-around items-end text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0 bg-white">
             {leftColumnItems.map((item, index) => (
               <ExploreItem
                 key={`left-${index}`}
@@ -107,7 +107,7 @@ const Explore = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex-1 flex flex-col justify-around text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0">
+          <div className="flex-1 flex flex-col justify-around text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0 bg-white">
             {rightColumnItems.map((item, index) => (
               <ExploreItem
                 key={`right-${index}`}

@@ -42,7 +42,7 @@ const Testimonials = () => {
         <Swiper
           navigation={true}
           modules={[Navigation]}
-          className="h-[400px] [--swiper-navigation-color:#d74913]"
+          className="h-[400px] [--swiper-navigation-color:#000]"
         >
           {testimonials.map((person, index) => (
             <SwiperSlide key={index} className="w-full h-full ">

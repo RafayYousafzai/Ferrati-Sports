@@ -85,6 +85,8 @@ const navigationConfig: NavigationConfig = {
   rightNav: [
     { title: "Blogs", href: "/blogs" },
     { title: "Contact Us", href: "/contact" },
+    { title: "Request Quote", href: "/request-quote" },
+    { title: "Calculate Price", href: "/calculate-price" },
   ],
   mobileNav: [
     "Home",

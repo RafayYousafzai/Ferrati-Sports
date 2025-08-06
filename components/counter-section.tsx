@@ -43,10 +43,10 @@ function AnimatedCounter({
       ref={ref}
       className="text-5xl md:text-6xl font-black text-white mb-3 tracking-tight"
     >
-      <motion.span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
+      <motion.span className="bg-white bg-clip-text text-transparent">
         {display}
       </motion.span>
-      <span className="text-yellow-300">{suffix}</span>
+      <span className="text-white">{suffix}</span>
     </motion.div>
   );
 }
@@ -78,7 +78,7 @@ function CounterItem({
       >
         {/* Floating background circle - simplified animation */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-yellow-400/20 rounded-full"
+          className="absolute inset-0  rounded-full"
           animate={{
             scale: [1, 1.05, 1], // Slightly less dramatic scale
             opacity: [0.3, 0.5, 0.3], // Slightly less dramatic opacity
@@ -91,7 +91,7 @@ function CounterItem({
         />
         {/* Main icon container */}
         <motion.div
-          className="relative inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-2xl shadow-2xl"
+          className="relative inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-2xl"
           whileHover={{
             scale: 1.1,
             rotate: 3,
@@ -100,7 +100,7 @@ function CounterItem({
           transition={{ type: "spring", stiffness: 300 }}
         >
           <motion.div
-            className="text-white text-3xl"
+            className="text-orange-500 text-3xl"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -126,7 +126,7 @@ function CounterItem({
         <AnimatedCounter value={value} suffix={suffix} />
         {/* Label */}
         <motion.div
-          className="text-neutral-300 font-semibold text-xl tracking-wide uppercase"
+          className="text-white font-semibold text-xl tracking-wide uppercase"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -136,7 +136,7 @@ function CounterItem({
         </motion.div>
         {/* Decorative line */}
         <motion.div
-          className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mt-4 rounded-full"
+          className="w-16 h-1 bg-orange-400 mx-auto mt-4 rounded-full"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -181,26 +181,26 @@ function FloatingParticles() {
 export default function CounterSection() {
   const counters = [
     {
-      icon: <Trophy />,
+      icon: <Trophy className="size-10" />,
       value: 50,
       label: "Happy Clients",
       suffix: "+",
     },
     {
-      icon: <Star />,
+      icon: <Star className="size-10" />,
       value: 10,
       label: "Years of Working Experience",
       suffix: "%",
     },
     {
-      icon: <TrendingUp />,
+      icon: <TrendingUp className="size-10" />,
       value: 100,
       label: "Met 100% of Deadlines",
       suffix: "%",
     },
   ];
   return (
-    <section className="relative h-auto py-24 bg-black overflow-hidden">
+    <section className="relative h-auto py-24 bg-orange-500 overflow-hidden">
       {/* Animated background elements - optimized */}
       <div className="absolute inset-0">
         {/* Gradient orbs - reduced blur and simplified animations */}
