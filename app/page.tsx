@@ -9,9 +9,10 @@ import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import JoinOurCommunity from "@/components/custom-ui/join-our-community";
 import Testimonials from "@/components/layout/testimonials";
-import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
 import NewsletterSection from "@/components/layout/newsletter-section";
+import { cookies } from "next/headers";
+import { createClient } from "@/lib/supabase/server";
 
 // Example usage with sample data
 const WhyChooseUsCards = [
@@ -122,7 +123,12 @@ const sampleVideos = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore: any = await cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data: fabrics } = await supabase.from("fabrics").select("*");
+
   return (
     <>
       <Hero />

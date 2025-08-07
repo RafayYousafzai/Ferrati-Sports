@@ -5,6 +5,7 @@ export default function Card({
   title = "title",
   description = "description",
   image = "https://heroui.com/images/album-cover.png",
+  children,
 }) {
   return (
     <div className="m-5">
@@ -26,6 +27,7 @@ export default function Card({
           <p className="text-gray-600 text-lg leading-relaxed">{description}</p>
         </div>
       </Link>
+      <div>{children}</div>
     </div>
   );
 }

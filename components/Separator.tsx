@@ -1,11 +1,19 @@
 import Image from "next/image";
 
-const Separator = ({ bg = "white" }: { bg?: "accent" | "white" }) => {
+const Separator = ({
+  bg = "white",
+  className,
+}: {
+  bg?: "accent" | "white";
+  className?: string;
+}) => {
   const imgSrc =
-    bg === "accent" ? "/assets/separator-accent.svg" : "/assets/separator-white.svg";
+    bg === "accent"
+      ? "/assets/separator-accent.svg"
+      : "/assets/separator-white.svg";
 
   return (
-    <div className="relative w-[168px] h-[26px] mx-auto">
+    <div className={`relative w-[168px] h-[26px] mx-auto ${className}`}>
       <Image src={imgSrc} fill alt="" />
     </div>
   );

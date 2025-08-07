@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/layout/navbar/navbar-menu.jsx",
-    "components/counter-section.jsx"
+    "components/counter-section.jsx",
+    "app/admin/manage-fabrics/page.jsx"
   ],
   "exclude": ["node_modules"]
 }
