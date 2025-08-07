@@ -1,14 +1,14 @@
 import CounterSection from "@/components/layout/counter-section";
-import Hero from "@/components/layout/Hero";
-import JoinOurCommunity from "@/components/custom-ui/JoinOurCommunity";
-import Header from "@/components/custom-ui/Header";
 import Explore from "@/components/Explore/Explore";
 import CategoriesCarousal from "@/components/layout/categories-carousal";
-import Testimonials from "@/components/layout/Testimonials";
-import BentoGridAboutUs from "@/components/layout/BentoGridAboutUs";
+import BentoGridAboutUs from "@/components/layout/bento-grid-about-us";
 import ServiceCards from "@/components/service-cards";
 import Solutions from "@/components/layout/solutions";
 import VideoShowcase from "@/components/layout/video-showcase.tsx";
+import Hero from "@/components/layout/hero";
+import Header from "@/components/custom-ui/header";
+import JoinOurCommunity from "@/components/custom-ui/join-our-community";
+import Testimonials from "@/components/layout/testimonials";
 
 // Example usage with sample data
 const WhyChooseUsCards = [

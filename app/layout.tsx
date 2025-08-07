@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import Appbar from "@/components/layout/navbar/navbar";
 import { Cormorant_Upright, Open_Sans } from "next/font/google";
-import Footer from "@/components/layout/Footer";
+import Footer from "@/components/layout/footer";
 
 const cormorant_upright = Cormorant_Upright({
   subsets: ["latin"],

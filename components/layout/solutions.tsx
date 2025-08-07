@@ -1,6 +1,6 @@
 import { BarChart3, Sprout, Rocket, Diamond, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import Header from "../custom-ui/Header";
+import Header from "../custom-ui/header";
 
 interface ServiceItem {
   name: string;
