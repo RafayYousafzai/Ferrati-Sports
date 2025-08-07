@@ -46,60 +46,53 @@ const WhyChooseUsCards = [
   },
 ];
 
-// Sample data matching the image
-const sampleSolutions = [
+const materials = [
   {
     id: "1",
-    title: "Data & Analytics",
-    icon: "analytics",
+    title: "Comfort & Feel",
+    icon: "comfort",
+    href: "/fabrics/comfort",
     services: [
-      { name: "Data Analytics & Insights" },
-      { name: "Dashboard Development" },
-      { name: "Conversion Rate Optimization" },
-      { name: "User Experience" },
-      { name: "Front End Development" },
-      { name: "Ad Operations" },
+      { name: "Soft and breathable fabrics like Cotton and French Terry" },
+      { name: "Ideal for t-shirts, hoodies, and casual wear" },
+      { name: "Warm and cozy options like Cotton Fleece" },
+      { name: "Gentle against the skin" },
     ],
   },
   {
     id: "2",
-    title: "Earned Media",
-    icon: "earned",
+    title: "Durability & Performance",
+    icon: "durability",
+    href: "/fabrics/durability",
     services: [
-      { name: "AI Search Optimization" },
-      { name: "Search Engine Optimization" },
-      { name: "App Store Optimization" },
-      { name: "Content Marketing" },
-      { name: "Digital PR" },
-      { name: "Influencer Marketing" },
-      { name: "Organic Social Media" },
-      { name: "Email Marketing" },
+      { name: "Durable fabrics like Polyester and Softshell" },
+      { name: "Perfect for activewear and jackets" },
+      { name: "Moisture-wicking and water-resistant options" },
+      { name: "Lightweight and long-lasting" },
     ],
   },
   {
     id: "3",
-    title: "Paid Media",
-    icon: "paid",
+    title: "Printability & Customization",
+    icon: "printability",
+    href: "/fabrics/printability",
     services: [
-      { name: "Media Strategy & Planning" },
-      { name: "Paid Search" },
-      { name: "Paid Social" },
-      { name: "Programmatic & Display" },
-      { name: "Marketplaces" },
-      { name: "Streaming" },
+      { name: "Fabrics like Cotton Blend and Scuba for printing" },
+      { name: "Supports screen printing, sublimation, and embroidery" },
+      { name: "Great for bold designs and logos" },
+      { name: "Versatile for custom apparel" },
     ],
   },
   {
     id: "4",
-    title: "Creative",
-    icon: "creative",
+    title: "Luxury & Style",
+    icon: "luxury",
+    href: "/fabrics/luxury",
     services: [
-      { name: "Performance Creative" },
-      { name: "Branding" },
-      { name: "Content Production" },
-      { name: "Website Design" },
-      { name: "Graphic & Motion Design" },
-      { name: "Audio Production" },
+      { name: "Premium fabrics like Leather and Polar Fleece" },
+      { name: "Ideal for stylish jackets and accessories" },
+      { name: "Rich textures and unique aesthetics" },
+      { name: "Elevates brand appeal" },
     ],
   },
 ];
@@ -139,7 +132,7 @@ export default async function Home() {
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
       />
-      <ServiceCards cards={WhyChooseUsCards} />;
+      <ServiceCards cards={WhyChooseUsCards as any} />;
       <Header
         title="The New Standard in "
         highlightedTitle="Production"
@@ -151,7 +144,7 @@ export default async function Home() {
       <div className="block md:hidden">
         <BentoGridAboutUs />
       </div>
-      <Solutions cards={sampleSolutions} />
+      <Solutions cards={materials as any} />
       <Header
         badge="OUR APPROACH"
         title="Sell without "
@@ -172,7 +165,7 @@ export default async function Home() {
         variant="white"
       />
       <Testimonials />
-      <NewsletterSection />
+      <NewsletterSection headline={""} description={""} />
     </>
   );
 }

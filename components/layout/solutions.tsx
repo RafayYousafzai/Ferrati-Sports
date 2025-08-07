@@ -11,6 +11,7 @@ interface SolutionCard {
   title: string;
   icon: "analytics" | "earned" | "paid" | "creative";
   services: ServiceItem[];
+  href?: string;
 }
 
 interface SolutionsProps {
@@ -39,7 +40,7 @@ export default function Solutions({ cards }: SolutionsProps) {
           theme="dark"
           badge="SOLUTIONS"
           title="A results oriented "
-          highlightedTitle="digital agency."
+          highlightedTitle="Materials."
           subtitle="We're specialists, not generalists. We were built to provide deep
             expertise in digital channels that are extremely complex, and
             changing daily. We offer integrated solutions with unique services
@@ -49,7 +50,7 @@ export default function Solutions({ cards }: SolutionsProps) {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {cards.map((card) => {
-            const IconComponent = iconMap[card.icon];
+            // const IconComponent = iconMap[card.icon];
 
             return (
               <Card
@@ -62,10 +63,10 @@ export default function Solutions({ cards }: SolutionsProps) {
                     <div className="relative inline-block">
                       <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"></div>
                       <div className="relative bg-white p-2">
-                        <IconComponent
+                        {/* <IconComponent
                           className="w-8 h-8 text-gray-700"
                           strokeWidth={1.5}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>

@@ -35,15 +35,15 @@ type NavigationConfig = {
   mobileNav: string[];
 };
 
-// EDIT THIS CONFIGURATION TO UPDATE ALL PAGES
 const navigationConfig: NavigationConfig = {
   leftNav: [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
+    { title: "Fabrics", href: "/fabrics" },
   ],
   centerDropdowns: [
     {
-      title: "Our Services",
+      title: "Services",
       items: [
         { title: "Printing", href: "/printing" },
         { title: "Sublimation", href: "/sublimation" },
@@ -52,7 +52,15 @@ const navigationConfig: NavigationConfig = {
       ],
     },
     {
-      title: "Our Products",
+      title: "About",
+      items: [
+        { title: "About us", href: "/about-us" },
+        { title: "Return Policy", href: "/return-policy" },
+        { title: "Our Process", href: "/our-process" },
+      ],
+    },
+    {
+      title: "Products",
       isProductGrid: true,
       items: [
         {
@@ -85,49 +93,44 @@ const navigationConfig: NavigationConfig = {
   rightNav: [
     { title: "Blogs", href: "/blogs" },
     { title: "Contact Us", href: "/contact" },
-    { title: "Request Quote", href: "/request-quote" },
     { title: "Calculate Price", href: "/calculate-price" },
+    { title: "Request Quote", href: "/request-quote" },
   ],
   mobileNav: [
     "Home",
     "About",
+    "Fabrics",
     "Our Services",
     "Our Products",
+    "More",
     "Blogs",
     "Contact Us",
+    "Request Quote",
+    "Calculate Price",
   ],
 };
 
 export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // State to track scroll position
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if the user has scrolled past 100vh (viewport height)
-      const offset = window.scrollY;
-      if (offset > window.innerHeight) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > window.innerHeight);
     };
 
-    // Add scroll event listener when component mounts
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    // Clean up the event listener when component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // Empty dependency array ensures this runs once on mount
-
-  // Dynamically apply classes based on scroll state
-  const navbarClasses = `dark transition-all duration-300 bg-black`;
+  const navbarClasses = `transition-all duration-300 ${
+    scrolled ? "bg-black/90 backdrop-blur-sm" : "bg-black"
+  }`;
 
   return (
     <Navbar
-      className={navbarClasses} // Apply dynamic classes
+      className={navbarClasses}
+      maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
@@ -135,42 +138,48 @@ export default function Appbar() {
           <Badge containerStyles="xl:flex w-[160px] h-[180px]" />
         </NavbarBrand>
       </NavbarContent>
-      {/* Left-aligned navigation */}
-      <NavbarContent justify="start" className="hidden sm:flex gap-4 light">
+
+      <NavbarContent justify="end" className="hidden sm:flex gap-4">
         {navigationConfig.leftNav.map((item) => (
           <NavbarItem key={item.href}>
-            <Link href={item.href} className="text-white">
-              {item.title}
-            </Link>
-          </NavbarItem>
-        ))}
-        <MenuContent />
-        {navigationConfig.rightNav.map((item) => (
-          <NavbarItem key={item.href}>
-            <Link href={item.href} className="text-white">
+            <Link href={item.href} className="text-white hover:text-gray-300">
               {item.title}
             </Link>
           </NavbarItem>
         ))}
       </NavbarContent>
-      {/* Mobile Menu */}
-      <NavbarMenu>
+      <MenuContent />
+
+      <NavbarContent justify="end" className="hidden sm:flex gap-4 -ml-4">
+        {navigationConfig.rightNav.map((item) => (
+          <NavbarItem key={item.href}>
+            <Link
+              href={item.href}
+              className={`text-white hover:text-gray-300 ${
+                item.title === "Request Quote" ? "font-bold text-primary" : ""
+              }`}
+            >
+              {item.title}
+            </Link>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+
+      <NavbarMenu className="bg-black/95">
         {navigationConfig.mobileNav.map((item, index) => {
-          const navItem =
-            [...navigationConfig.leftNav, ...navigationConfig.rightNav].find(
-              (n) => n.title === item
-            ) || navigationConfig.centerDropdowns.find((n) => n.title === item);
+          const allItems = [
+            ...navigationConfig.leftNav,
+            ...navigationConfig.rightNav,
+            ...navigationConfig.centerDropdowns.flatMap((group) => group.items),
+          ];
+          const navItem = allItems.find((n) => n.title === item);
+
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                className="w-full"
-                href={
-                  navItem &&
-                  "href" in navItem &&
-                  typeof navItem.href === "string"
-                    ? navItem.href
-                    : "#"
-                }
+                href={navItem?.href || "#"}
+                className="w-full text-white hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item}
               </Link>
@@ -178,6 +187,7 @@ export default function Appbar() {
           );
         })}
       </NavbarMenu>
+
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         className="sm:hidden text-white"
@@ -188,6 +198,7 @@ export default function Appbar() {
 
 function MenuContent() {
   const [active, setActive] = useState<string | null>(null);
+
   return (
     <Menu setActive={setActive}>
       {navigationConfig.centerDropdowns.map((group) => (
