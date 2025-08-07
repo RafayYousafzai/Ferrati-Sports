@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Separator from "./Separator";
+import Separator from "../Separator";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/button";
 

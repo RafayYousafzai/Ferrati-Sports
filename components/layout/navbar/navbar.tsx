@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
-import Badge from "./Badge";
+import Badge from "../../Badge";
 
 // Type definitions
 type NavItem = {

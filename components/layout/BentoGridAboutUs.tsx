@@ -1,17 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
 import {
   SkeletonProblemOne,
-  SkeletonProblemTwo,
-  SkeletonProblemThree,
-  SkeletonProblemFour,
-  SkeletonProblemFive,
-  SkeletonSolutionOne,
-  SkeletonSolutionTwo,
   SkeletonSolutionThree,
-  SkeletonSolutionFour,
 } from "@/components/skeletons";
+import { BentoGrid, BentoGridItem } from "./bento-grid";
 
 export default function BentoGridAboutUs() {
   return (

@@ -2,8 +2,8 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Badge from "./Badge";
-import Separator from "./Separator";
+import Badge from "../Badge";
+import Separator from "../Separator";
 import Image from "next/image";
 import { Button } from "@heroui/button";
 
@@ -38,7 +38,7 @@ const data = [
   },
 ];
 
-const About = () => {
+const CategoriesCarousal = () => {
   const scrollableSectionRef = useRef<HTMLDivElement>(null);
   const scrollTriggerRef = useRef<HTMLDivElement>(null);
 
@@ -127,4 +127,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default CategoriesCarousal;

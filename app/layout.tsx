@@ -4,9 +4,9 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
-import Appbar from "@/components/navbar";
+import Appbar from "@/components/layout/navbar/navbar";
 import { Cormorant_Upright, Open_Sans } from "next/font/google";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 
 const cormorant_upright = Cormorant_Upright({
   subsets: ["latin"],

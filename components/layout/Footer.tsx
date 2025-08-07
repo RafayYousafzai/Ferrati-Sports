@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaYoutube, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
-import Badge from "./Badge";
+import Badge from "../Badge";
 
 const links = [
   { href: "/", name: "Home" },

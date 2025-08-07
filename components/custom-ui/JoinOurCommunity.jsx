@@ -1,11 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { AnimatedTooltip } from "./animated-tooltip";
+import { AnimatedTooltip } from "../animated-tooltip";
 
 export default function JoinOurCommunity() {
   return (
-    <div className="text-center mt-24">
+    <div className="text-center my-24">
       <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-lg px-8 py-4 rounded-2xl border border-white/20 shadow-2xl">
         <div className="flex flex-row items-center justify-center mr-5">
           <AnimatedTooltip items={people} />

@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/navbar-menu.jsx",
+    "components/layout/navbar/navbar-menu.jsx",
     "components/counter-section.jsx"
   ],
   "exclude": ["node_modules"]

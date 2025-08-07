@@ -1,13 +1,14 @@
-import CounterSection from "@/components/counter-section";
-import Hero from "@/components/Hero";
-import JoinOurCommunity from "@/components/JoinOurCommunity";
-import Header from "@/components/Header";
+import CounterSection from "@/components/layout/counter-section";
+import Hero from "@/components/layout/Hero";
+import JoinOurCommunity from "@/components/custom-ui/JoinOurCommunity";
+import Header from "@/components/custom-ui/Header";
 import Explore from "@/components/Explore/Explore";
-import About from "@/components/About";
-import Testimonials from "@/components/Testimonials";
-import BentoGridAboutUs from "@/components/BentoGridAboutUs";
-import OurApproach from "@/components/our-approach";
+import CategoriesCarousal from "@/components/layout/categories-carousal";
+import Testimonials from "@/components/layout/Testimonials";
+import BentoGridAboutUs from "@/components/layout/BentoGridAboutUs";
 import ServiceCards from "@/components/service-cards";
+import Solutions from "@/components/layout/solutions";
+import VideoShowcase from "@/components/layout/video-showcase.tsx";
 
 // Example usage with sample data
 const WhyChooseUsCards = [
@@ -41,11 +42,95 @@ const WhyChooseUsCards = [
   },
 ];
 
+// Sample data matching the image
+const sampleSolutions = [
+  {
+    id: "1",
+    title: "Data & Analytics",
+    icon: "analytics",
+    services: [
+      { name: "Data Analytics & Insights" },
+      { name: "Dashboard Development" },
+      { name: "Conversion Rate Optimization" },
+      { name: "User Experience" },
+      { name: "Front End Development" },
+      { name: "Ad Operations" },
+    ],
+  },
+  {
+    id: "2",
+    title: "Earned Media",
+    icon: "earned",
+    services: [
+      { name: "AI Search Optimization" },
+      { name: "Search Engine Optimization" },
+      { name: "App Store Optimization" },
+      { name: "Content Marketing" },
+      { name: "Digital PR" },
+      { name: "Influencer Marketing" },
+      { name: "Organic Social Media" },
+      { name: "Email Marketing" },
+    ],
+  },
+  {
+    id: "3",
+    title: "Paid Media",
+    icon: "paid",
+    services: [
+      { name: "Media Strategy & Planning" },
+      { name: "Paid Search" },
+      { name: "Paid Social" },
+      { name: "Programmatic & Display" },
+      { name: "Marketplaces" },
+      { name: "Streaming" },
+    ],
+  },
+  {
+    id: "4",
+    title: "Creative",
+    icon: "creative",
+    services: [
+      { name: "Performance Creative" },
+      { name: "Branding" },
+      { name: "Content Production" },
+      { name: "Website Design" },
+      { name: "Graphic & Motion Design" },
+      { name: "Audio Production" },
+    ],
+  },
+];
+
+const sampleVideos = [
+  {
+    id: "creative-storytelling",
+    title: "Creative Marketing Campaign",
+    description:
+      "An innovative approach to digital storytelling that captures audience attention and drives engagement through compelling visual narratives.",
+    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Creative",
+  },
+  {
+    id: "digital-execution",
+    title: "Marketing Analytics Dashboard",
+    description:
+      "A comprehensive look at how data-driven insights power modern marketing strategies and deliver measurable results.",
+    youtubeId: "jNQXAC9IVRw", // Replace with actual YouTube video ID
+    category: "Technical",
+  },
+];
+
 export default function Home() {
   return (
     <>
       <Hero />
       <CounterSection />
+      <Header
+        badge="Ferrati"
+        title="Why "
+        highlightedTitle="Choose Us"
+        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
+      />
+      <ServiceCards cards={WhyChooseUsCards} />;
       <Header
         title="The New Standard in "
         highlightedTitle="Production"
@@ -57,15 +142,16 @@ export default function Home() {
       <div className="block md:hidden">
         <BentoGridAboutUs />
       </div>
+      <Solutions cards={sampleSolutions} />
       <Header
-        badge="Ferrati"
-        title="Why "
-        highlightedTitle="Choose Us"
-        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
+        badge="OUR APPROACH"
+        title="Sell without "
+        highlightedTitle="Selling"
+        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
       />
-      <ServiceCards cards={WhyChooseUsCards} />;
-      <OurApproach />
-      <About />
+      <VideoShowcase videos={sampleVideos} />
+      <JoinOurCommunity />
+      <CategoriesCarousal />
       <Testimonials />
     </>
   );
