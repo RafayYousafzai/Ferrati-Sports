@@ -38,7 +38,6 @@ type NavigationConfig = {
 const navigationConfig: NavigationConfig = {
   leftNav: [
     { title: "Home", href: "/" },
-    { title: "About", href: "/about" },
     { title: "Fabrics", href: "/fabrics" },
   ],
   centerDropdowns: [
@@ -51,14 +50,7 @@ const navigationConfig: NavigationConfig = {
         { title: "Stitching", href: "/stitching" },
       ],
     },
-    {
-      title: "About",
-      items: [
-        { title: "About us", href: "/about-us" },
-        { title: "Return Policy", href: "/return-policy" },
-        { title: "Our Process", href: "/our-process" },
-      ],
-    },
+
     {
       title: "Products",
       isProductGrid: true,
@@ -87,6 +79,14 @@ const navigationConfig: NavigationConfig = {
           image: "https://ferratisports.com/items/attimgs/8o1k4v0m0x.jpg",
           description: "Durable gear for bikers.",
         },
+      ],
+    },
+    {
+      title: "About",
+      items: [
+        { title: "About us", href: "/about-us" },
+        { title: "Return Policy", href: "/return-policy" },
+        { title: "Our Process", href: "/our-process" },
       ],
     },
   ],

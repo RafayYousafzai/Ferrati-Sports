@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <>
       <Appbar />
-      {children}
+      <div className="min-h-screen">{children}</div>
       <Footer />
     </>
   );

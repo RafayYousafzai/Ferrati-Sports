@@ -9,6 +9,7 @@ interface HeaderProps {
   highlightedTitle?: string;
   subtitle?: string;
   theme?: "light" | "dark";
+  leftAlign?: boolean;
 }
 
 export default function Header({
@@ -17,6 +18,7 @@ export default function Header({
   title,
   highlightedTitle,
   subtitle,
+  leftAlign = false,
 }: HeaderProps) {
   // Define color classes based on theme
   const textColor = theme === "dark" ? "text-white" : "text-black";
@@ -29,14 +31,17 @@ export default function Header({
 
   return (
     <motion.div
-      className={`text-center my-16 mx-2 ${textColor}`}
+      className={`
+        my-16 mx-2 ${textColor}
+        ${leftAlign ? "text-left ml-[5%] md:ml-[2%]" : "text-center"}
+      `}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: [0.25, 0.25, 0, 1] }}
     >
       <motion.div
-        className="inline-block mb-4"
+        className={leftAlign ? "block" : "inline-block mb-4"}
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -57,7 +62,7 @@ export default function Header({
       >
         {title}{" "}
         <motion.span
-          className={`bg-clip-text  ${theme === "dark" ? "text-white" : "text-orange-500"}`}
+          className={`bg-clip-text ${theme === "dark" ? "text-white" : "text-orange-500"}`}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
@@ -74,7 +79,10 @@ export default function Header({
       <Separator bg={theme === "dark" ? "white" : "accent"} />
 
       <motion.p
-        className={`text-lg md:text-2xl mx-auto leading-relaxed px-[10%] ${subtitleColor}`}
+        className={`
+          text-lg md:text-2xl leading-relaxed ${subtitleColor}
+          ${leftAlign ? "pr-[10%]" : "mx-auto px-[10%]"}
+        `}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

@@ -6,10 +6,11 @@ export default function Card({
   description,
   image = "https://heroui.com/images/album-cover.png",
   children,
+  href = "#",
 }) {
   return (
     <div style={{ padding: 5 }}>
-      <Link href="#">
+      <Link href={href}>
         {/* YouTube Video Embed */}
         <Image
           isZoomed

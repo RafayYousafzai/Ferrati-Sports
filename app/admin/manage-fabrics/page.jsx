@@ -292,7 +292,12 @@ export default function AdminPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {fabrics.map((fabric) => (
-          <Card key={fabric.id} image={fabric.image_url} title={fabric.title}>
+          <Card
+            key={fabric.id}
+            image={fabric.image_url}
+            title={fabric.title}
+            href={`/fabrics/${fabric.id}`}
+          >
             <div
               className="text-sm text-default-500 line-clamp-3"
               dangerouslySetInnerHTML={{ __html: fabric.description }}

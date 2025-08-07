@@ -13,6 +13,7 @@ import ProductDetails from "@/components/layout/product-details";
 import NewsletterSection from "@/components/layout/newsletter-section";
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import Card from "@/components/custom-ui/card";
 
 // Example usage with sample data
 const WhyChooseUsCards = [
@@ -120,8 +121,10 @@ export default async function Home() {
   const cookieStore: any = await cookies();
   const supabase = createClient(cookieStore);
 
-  const { data: fabrics } = await supabase.from("fabrics").select("*");
-
+  const { data: relatedFabrics } = await supabase
+    .from("fabrics")
+    .select("*")
+    .limit(3);
   return (
     <>
       <Hero />
@@ -135,7 +138,7 @@ export default async function Home() {
       <ServiceCards cards={WhyChooseUsCards as any} />;
       <Header
         title="The New Standard in "
-        highlightedTitle="Production"
+        highlightedTitle="Business"
         subtitle="We believe in doing things differently. While traditional manufacturers stick to outdated processes, we push the boundaries of what’s possible. We offer customized solutions, quick turnarounds, and unmatched flexibility, ensuring that your designs are brought to life exactly the way you envision."
       />
       <div className="hidden md:block">
@@ -164,6 +167,31 @@ export default async function Home() {
         image={"https://heroui.com/images/album-cover.png"}
         variant="white"
       />
+      <Header
+        badge="Ferrati"
+        title="Explore more "
+        highlightedTitle="fabrics"
+        subtitle="Discover our premium materials tailored for your needs."
+      />
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+        {relatedFabrics?.map((item) => (
+          <div key={item.id}>
+            <Card
+              description={undefined}
+              title={item.title}
+              image={item.image_url}
+              href={`/fabrics/${item.id}`}
+            >
+              <div
+                className="text-sm text-default-500 line-clamp-3"
+                dangerouslySetInnerHTML={{
+                  __html: item.description,
+                }}
+              />
+            </Card>
+          </div>
+        ))}
+      </div>
       <Testimonials />
       <NewsletterSection headline={""} description={""} />
     </>

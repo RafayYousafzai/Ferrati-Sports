@@ -57,8 +57,8 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
+        <SidebarBody className="justify-between gap-10 ">
+          <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto fixed">
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
@@ -67,6 +67,7 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
           </div>
           <div>
             <SidebarLink
+              className="fixed bottom-4"
               link={{
                 label: "Manu Arora",
                 href: "#",
