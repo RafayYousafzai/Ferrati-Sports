@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Navbar,
   NavbarBrand,
@@ -13,6 +14,7 @@ import { useState, useEffect } from "react";
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
 import Badge from "../../Badge";
+import { createClient } from "@/lib/supabase/client";
 
 // Type definitions
 type NavItem = {
@@ -35,84 +37,45 @@ type NavigationConfig = {
   mobileNav: string[];
 };
 
-const navigationConfig: NavigationConfig = {
-  leftNav: [
-    { title: "Home", href: "/" },
-    { title: "Fabrics", href: "/fabrics" },
-  ],
-  centerDropdowns: [
-    {
-      title: "Services",
-      items: [
-        { title: "Printing", href: "/printing" },
-        { title: "Sublimation", href: "/sublimation" },
-        { title: "Embroidery", href: "/embroidery" },
-        { title: "Stitching", href: "/stitching" },
-      ],
-    },
-
-    {
-      title: "Products",
-      isProductGrid: true,
-      items: [
-        {
-          title: "Sports Wear",
-          href: "/sports-wear",
-          image: "https://ferratisports.com/items/attimgs/8a0c8o3a7f.jpg",
-          description: "High-performance sportswear for athletes.",
-        },
-        {
-          title: "Active Wear",
-          href: "/active-wear",
-          image: "https://ferratisports.com/items/attimgs/0g9o6x2i7k.jpg",
-          description: "Comfortable wear for workouts.",
-        },
-        {
-          title: "Casual Wear",
-          href: "/casual-wear",
-          image: "https://ferratisports.com/items/attimgs/5f2g0f2r2h.jpg",
-          description: "Trendy everyday clothing.",
-        },
-        {
-          title: "Motorbike Gear",
-          href: "/bike-gear",
-          image: "https://ferratisports.com/items/attimgs/8o1k4v0m0x.jpg",
-          description: "Durable gear for bikers.",
-        },
-      ],
-    },
-    {
-      title: "About",
-      items: [
-        { title: "About us", href: "/about-us" },
-        { title: "Return Policy", href: "/return-policy" },
-        { title: "Our Process", href: "/our-process" },
-      ],
-    },
-  ],
-  rightNav: [
-    { title: "Blogs", href: "/blogs" },
-    { title: "Contact Us", href: "/contact" },
-    { title: "Calculate Price", href: "/calculate-price" },
-    { title: "Request Quote", href: "/request-quote" },
-  ],
-  mobileNav: [
-    "Home",
-    "About",
-    "Fabrics",
-    "Our Services",
-    "Our Products",
-    "More",
-    "Blogs",
-    "Contact Us",
-    "Request Quote",
-    "Calculate Price",
-  ],
-};
+interface Category {
+  id: string;
+  title: string;
+  description: string;
+  image_url: string;
+  created_at: string;
+}
 
 export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const supabase = createClient();
+
+  // Fetch categories from database
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("categories")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(4); // Only fetch 4 categories
+
+        if (error) throw error;
+        setCategories(data || []);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        // Fallback to static data if database fetch fails
+        setCategories([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,6 +85,67 @@ export default function Appbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Convert categories to navigation items
+  const categoryNavItems: NavItem[] = categories.map((category) => ({
+    title: category.title,
+    href: `/categories/${category.id}`,
+    description: `${category.description.substring(0, 50)}...`,
+    image: category.image_url || "/placeholder.svg?height=200&width=200",
+  }));
+
+  const navigationConfig: NavigationConfig = {
+    leftNav: [
+      { title: "Home", href: "/" },
+      { title: "Fabrics", href: "/fabrics" },
+    ],
+    centerDropdowns: [
+      {
+        title: "Services",
+        items: [
+          { title: "Printing", href: "/printing" },
+          { title: "Sublimation", href: "/sublimation" },
+          { title: "Embroidery", href: "/embroidery" },
+          { title: "Stitching", href: "/stitching" },
+        ],
+      },
+      {
+        title: "Products",
+        isProductGrid: true,
+        items: loading
+          ? categoryNavItems.length > 0
+            ? categoryNavItems
+            : []
+          : categoryNavItems,
+      },
+      {
+        title: "About",
+        items: [
+          { title: "About us", href: "/about-us" },
+          { title: "Return Policy", href: "/return-policy" },
+          { title: "Our Process", href: "/our-process" },
+        ],
+      },
+    ],
+    rightNav: [
+      { title: "Blogs", href: "/blogs" },
+      { title: "Contact Us", href: "/contact" },
+      { title: "Calculate Price", href: "/calculate-price" },
+      { title: "Request Quote", href: "/request-quote" },
+    ],
+    mobileNav: [
+      "Home",
+      "About",
+      "Fabrics",
+      "Our Services",
+      "Our Products",
+      "More",
+      "Blogs",
+      "Contact Us",
+      "Request Quote",
+      "Calculate Price",
+    ],
+  };
 
   const navbarClasses = `transition-all duration-300 ${
     scrolled ? "bg-black/90 backdrop-blur-sm" : "bg-black"
@@ -148,7 +172,8 @@ export default function Appbar() {
           </NavbarItem>
         ))}
       </NavbarContent>
-      <MenuContent />
+
+      <MenuContent navigationConfig={navigationConfig} />
 
       <NavbarContent justify="end" className="hidden sm:flex gap-4 -ml-4">
         {navigationConfig.rightNav.map((item) => (
@@ -173,7 +198,6 @@ export default function Appbar() {
             ...navigationConfig.centerDropdowns.flatMap((group) => group.items),
           ];
           const navItem = allItems.find((n) => n.title === item);
-
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
@@ -196,7 +220,11 @@ export default function Appbar() {
   );
 }
 
-function MenuContent() {
+function MenuContent({
+  navigationConfig,
+}: {
+  navigationConfig: NavigationConfig;
+}) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
@@ -215,7 +243,10 @@ function MenuContent() {
                   key={item.href}
                   title={item.title}
                   href={item.href}
-                  src={item.image || ""}
+                  src={
+                    item.image ||
+                    "/placeholder.svg?height=200&width=200&query=product"
+                  }
                   description={item.description || ""}
                 />
               ))}
