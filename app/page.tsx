@@ -10,6 +10,8 @@ import Header from "@/components/custom-ui/header";
 import JoinOurCommunity from "@/components/custom-ui/join-our-community";
 import Testimonials from "@/components/layout/testimonials";
 import Card from "@/components/custom-ui/card";
+import ProductDetails from "@/components/layout/product-details";
+import NewsletterSection from "@/components/layout/newsletter-section";
 
 // Example usage with sample data
 const WhyChooseUsCards = [
@@ -153,7 +155,18 @@ export default function Home() {
       <VideoShowcase videos={sampleVideos} />
       <JoinOurCommunity />
       <CategoriesCarousal />
+      <ProductDetails
+        sectionTitle="OPPORTUNITIES"
+        headline="Build your career with innovative leaders."
+        description={[
+          "We believe in fostering talent and creating opportunities for growth. Our team is passionate about digital innovation and committed to delivering exceptional results for our clients.",
+        ]}
+        buttonText="View positions"
+        image={"https://heroui.com/images/album-cover.png"}
+        variant="white"
+      />
       <Testimonials />
+      <NewsletterSection />
     </>
   );
 }

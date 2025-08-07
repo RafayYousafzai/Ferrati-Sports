@@ -37,7 +37,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="h-[60vh] xl:h-[70vh] mt-12">
+    <section className="h-[60vh] xl:h-[70vh]">
       <div className="container mx-auto h-full flex items-center">
         <Swiper
           navigation={true}

@@ -107,7 +107,7 @@ const Explore = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex-1 flex flex-col justify-around text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0 bg-white">
+          <div className="border-t-5 border-t-orange-400 flex-1 flex flex-col justify-around text-center xl:text-left gap-12 xl:gap-0 max-w-[400px] mx-auto xl:max-w-none xl:mx-0 bg-white">
             {rightColumnItems.map((item, index) => (
               <ExploreItem
                 key={`right-${index}`}
