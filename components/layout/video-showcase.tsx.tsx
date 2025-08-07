@@ -36,7 +36,7 @@ export default function VideoShowcase({
             >
               {/* Category Label - positioned above left video */}
               {index === 0 && video.category && (
-                <div className="text-center lg:text-left mb-4 animate-fade-in">
+                <div className="text-left lg:text-left mb-4 animate-fade-in">
                   <span className="text-orange-600 font-semibold text-base tracking-wide">
                     <span className="text-orange-600 font-extrabold">
                       Creative
@@ -66,7 +66,7 @@ export default function VideoShowcase({
               </div>
 
               {/* Video Title and Description */}
-              <div className="text-center lg:text-left space-y-2 animate-fade-in delay-200">
+              <div className="text-left lg:text-left space-y-2 animate-fade-in delay-200">
                 <h3 className="text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors duration-300">
                   {video.title}
                 </h3>
@@ -77,7 +77,7 @@ export default function VideoShowcase({
 
               {/* Category Label - positioned below right video */}
               {index === 1 && video.category && (
-                <div className="text-center lg:text-left animate-fade-in delay-300">
+                <div className="text-left lg:text-left animate-fade-in delay-300">
                   <span className="text-gray-700 font-semibold text-base tracking-wide">
                     Flawless{" "}
                     <span className="text-orange-600 font-extrabold">

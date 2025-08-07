@@ -4,7 +4,7 @@ import {
   SkeletonProblemOne,
   SkeletonSolutionThree,
 } from "@/components/skeletons";
-import { BentoGrid, BentoGridItem } from "./bento-grid";
+import { BentoGrid, BentoGridItem } from "../custom-ui/bento-grid";
 
 export default function BentoGridAboutUs() {
   return (

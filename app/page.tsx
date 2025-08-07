@@ -9,6 +9,7 @@ import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import JoinOurCommunity from "@/components/custom-ui/join-our-community";
 import Testimonials from "@/components/layout/testimonials";
+import Card from "@/components/custom-ui/card";
 
 // Example usage with sample data
 const WhyChooseUsCards = [
