@@ -377,7 +377,7 @@ export default function CategoriesPage() {
             Add Category
           </Button>
           <Button
-            color="secondary"
+            className="text-black"
             variant="bordered"
             startContent={<Package size={18} />}
             onPress={openAddProduct}
@@ -512,12 +512,12 @@ export default function CategoriesPage() {
                                   "/placeholder.svg"
                                 }
                                 alt={product.title}
-                                className="w-full h-40 object-cover"
+                                className="object-cover"
                                 radius="lg"
                               />
                             </CardHeader>
                             <CardBody className="px-3 py-3">
-                              <div className="flex items-start justify-between mb-2">
+                              <div className="flex items-start justify-between mb-2 mt-auto">
                                 <h4 className="text-sm font-semibold text-foreground truncate">
                                   {product.title}
                                 </h4>

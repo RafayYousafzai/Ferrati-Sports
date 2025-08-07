@@ -1,12 +1,8 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
-import { Card, CardHeader, CardBody } from "@heroui/card";
-import { Image } from "@heroui/image";
-import { Chip } from "@heroui/chip";
-import { Spinner } from "@heroui/spinner";
+import Card from "@/components/custom-ui/card";
+import Header from "@/components/custom-ui/header";
+import ProductDetails from "@/components/layout/product-details";
+import { createClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
 
 interface Category {
   id: string;
@@ -25,59 +21,32 @@ interface Product {
   created_at: string;
 }
 
-export default function CategoryPage() {
-  const params = useParams();
-  const categoryId = params.id as string;
+export default async function CategoryPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const categoryId = params.id;
 
-  const [category, setCategory] = useState<Category | null>(null);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
 
-  const supabase = createClient();
+  const { data: category, error: categoryError } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("id", categoryId)
+    .single();
 
-  useEffect(() => {
-    const fetchCategoryAndProducts = async () => {
-      try {
-        // Fetch category details
-        const { data: categoryData, error: categoryError } = await supabase
-          .from("categories")
-          .select("*")
-          .eq("id", categoryId)
-          .single();
+  if (categoryError) throw categoryError;
 
-        if (categoryError) throw categoryError;
-        setCategory(categoryData);
+  // Fetch products in this category
+  const { data: products, error: productsError } = await supabase
+    .from("products")
+    .select("*")
+    .eq("category_id", categoryId)
+    .order("created_at", { ascending: false });
 
-        // Fetch products in this category
-        const { data: productsData, error: productsError } = await supabase
-          .from("products")
-          .select("*")
-          .eq("category_id", categoryId)
-          .order("created_at", { ascending: false });
-
-        if (productsError) throw productsError;
-        setProducts(productsData || []);
-      } catch (error) {
-        console.error("Error fetching category data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (categoryId) {
-      fetchCategoryAndProducts();
-    }
-  }, [categoryId]);
-
-  if (loading) {
-    return (
-      <div className="container mx-auto p-6">
-        <div className="flex items-center justify-center h-64">
-          <Spinner size="lg" />
-        </div>
-      </div>
-    );
-  }
+  if (productsError) throw productsError;
 
   if (!category) {
     return (
@@ -92,81 +61,77 @@ export default function CategoryPage() {
     );
   }
 
+  const { data: relatedFabrics } = await supabase
+    .from("fabrics")
+    .select("*")
+    .limit(6);
+
   return (
-    <div className="container mx-auto p-6 max-w-7xl">
-      {/* Category Header */}
-      <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          <div className="w-full md:w-1/3">
-            <Image
-              src={
-                category.image_url ||
-                "/placeholder.svg?height=300&width=400&query=category"
-              }
-              alt={category.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
-          </div>
-          <div className="w-full md:w-2/3">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
-              {category.title}
-            </h1>
-            <p className="text-default-600 text-lg mb-4">
-              {category.description}
-            </p>
-            <Chip color="secondary" variant="flat">
-              {products.length} products available
-            </Chip>
-          </div>
-        </div>
-      </div>
+    <div className="">
+      <ProductDetails
+        key={category.id}
+        // sectionTitle={new Date(product.created_at).toLocaleDateString()}
+        headline={category.title}
+        description={[category.description]}
+        buttonText={products.length + " " + "Products Available"}
+        image={category.image_url}
+        variant="orange"
+      />
+
+      <Header
+        badge="Ferrati"
+        title={"Explore more in "}
+        highlightedTitle={category.title}
+        subtitle={"All the products in this category"}
+        leftAlign={false}
+      />
 
       {/* Products Grid */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-6">
-          Products in {category.title}
-        </h2>
+      <h2 className="text-2xl font-semibold mb-6"></h2>
 
-        {products.length === 0 ? (
-          <div className="text-center py-16">
-            <h3 className="text-xl font-semibold mb-2">No products yet</h3>
-            <p className="text-default-500">
-              Products will be added to this category soon.
-            </p>
+      {products.length === 0 ? (
+        <div className="text-center py-16">
+          <h3 className="text-xl font-semibold mb-2">No products yet</h3>
+          <p className="text-default-500">
+            Products will be added to this category soon.
+          </p>
+        </div>
+      ) : (
+        products.map((product, index) => (
+          <ProductDetails
+            key={product.id}
+            sectionTitle={new Date(product.created_at).toLocaleDateString()}
+            headline={product.title}
+            description={[product.description]}
+            buttonText="View positions"
+            image={product.image_url}
+            variant="white"
+            reversed={index % 2 === 0} // Alternates between true and false
+          />
+        ))
+      )}
+
+      <Header badge="Ferrati" title="Explore our " highlightedTitle="fabrics" />
+
+      {/* Related Fabrics Grid */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+        {relatedFabrics?.map((item) => (
+          <div key={item.id}>
+            <Card
+              description={undefined}
+              title={item.title}
+              image={item.image_url}
+              href={`/fabrics/${item.id}`}
+            >
+              <div
+                className="text-sm text-default-500 line-clamp-3"
+                dangerouslySetInnerHTML={{
+                  __html: item.description,
+                }}
+              />
+            </Card>
           </div>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => (
-              <Card
-                key={product.id}
-                className="w-full hover:shadow-lg transition-shadow"
-              >
-                <CardHeader className="p-0">
-                  <Image
-                    src={
-                      product.image_url ||
-                      "/placeholder.svg?height=200&width=200&query=product"
-                    }
-                    alt={product.title}
-                    className="w-full h-48 object-cover"
-                    radius="lg"
-                  />
-                </CardHeader>
-                <CardBody className="px-4 py-4">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {product.title}
-                  </h3>
-                  <p className="text-default-500 text-sm line-clamp-3">
-                    {product.description}
-                  </p>
-                  <Chip variant="bordered" size="sm" className="mt-3">
-                    {new Date(product.created_at).toLocaleDateString()}
-                  </Chip>
-                </CardBody>
-              </Card>
-            ))}
-          </div>
-        )}
+        ))}
       </div>
     </div>
   );

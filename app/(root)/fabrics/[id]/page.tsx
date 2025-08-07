@@ -69,7 +69,7 @@ export default async function FabricPage({
         sectionTitle="OPPORTUNITIES"
         headline={fabric.title}
         description={[
-          `${fabric.description.substring(0, 400).replace(/<[^>]*>/g, "")}...`,
+          `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,
         ]}
         image={fabric.image_url}
         variant="white"
