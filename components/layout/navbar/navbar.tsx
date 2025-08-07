@@ -123,11 +123,7 @@ export default function Appbar() {
   }, []); // Empty dependency array ensures this runs once on mount
 
   // Dynamically apply classes based on scroll state
-  const navbarClasses = `dark transition-all duration-300 ${
-    scrolled
-      ? "bg-black fixed top-0 w-full z-50" // Fixed and black when scrolled
-      : "bg-black md:bg-transparent md:fixed" // Original classes when not scrolled
-  }`;
+  const navbarClasses = `dark transition-all duration-300 bg-black`;
 
   return (
     <Navbar

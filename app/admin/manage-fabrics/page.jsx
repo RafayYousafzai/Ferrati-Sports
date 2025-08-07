@@ -5,12 +5,12 @@ import { Trash2, Edit, Plus, Upload, Image as ImageIcon } from "lucide-react";
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor";
 import { createClient } from "@/lib/supabase/client";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/modal";
-import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Chip } from "@heroui/chip";
-import { Button } from "@heroui/button";
+import { Button, ButtonGroup } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import Separator from "@/components/Separator";
+import Card from "@/components/custom-ui/card";
 
 export default function AdminPage() {
   const editorRef = useRef(null);
@@ -249,7 +249,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="flex items-center justify-between mb-6 mx-auto p-6">
         <div>
           <h1 className="text-3xl font-bold">Fabric Management</h1>
@@ -274,17 +274,17 @@ export default function AdminPage() {
         onOpenChange={setIsAddModalOpen}
         size="full"
       >
-        <ModalContent>
+        <ModalContent className="h-full">
           {(onClose) => (
             <>
-              <ModalHeader>
-                <h2>Add New Fabric</h2>
-              </ModalHeader>
-              <ModalBody>
-                <ScrollShadow className="w-full min-h-[150vh]">
+              <ScrollShadow className="w-full h-full">
+                <ModalHeader>
+                  <h2>Add New Fabric</h2>
+                </ModalHeader>
+                <ModalBody>
                   <FabricForm />
-                </ScrollShadow>
-              </ModalBody>
+                </ModalBody>
+              </ScrollShadow>
             </>
           )}
         </ModalContent>
@@ -292,50 +292,34 @@ export default function AdminPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {fabrics.map((fabric) => (
-          <Card key={fabric.id} className="">
-            <div className="aspect-square relative">
-              <img
-                src={
-                  fabric.image_url ||
-                  "/placeholder.svg?height=300&width=300&query=fabric"
-                }
-                alt={fabric.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <h3 className="truncate text-lg font-semibold">
-                  {fabric.title}
-                </h3>
-                <div className="flex gap-1">
-                  <Button
-                    isIconOnly
-                    variant="light"
-                    onPress={() => handleEdit(fabric)}
-                  >
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    isIconOnly
-                    variant="light"
-                    color="danger"
-                    onPress={() => handleDelete(fabric.id)}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <div
-                className="text-sm text-default-500 line-clamp-3"
-                dangerouslySetInnerHTML={{ __html: fabric.description }}
-              />
-              <Chip variant="flat" color="secondary" className="mt-2">
+          <Card key={fabric.id} image={fabric.image_url} title={fabric.title}>
+            <div
+              className="text-sm text-default-500 line-clamp-3"
+              dangerouslySetInnerHTML={{ __html: fabric.description }}
+            />
+
+            <div className="flex gap-1">
+              <Chip variant="solid" color="primary" className="mt-1">
                 {new Date(fabric.created_at).toLocaleDateString()}
               </Chip>
-            </CardBody>
+              <ButtonGroup className="ml-auto">
+                <Button
+                  isIconOnly
+                  variant="light"
+                  onPress={() => handleEdit(fabric)}
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  color="danger"
+                  onPress={() => handleDelete(fabric.id)}
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </ButtonGroup>
+            </div>
           </Card>
         ))}
       </div>
@@ -365,17 +349,17 @@ export default function AdminPage() {
         onOpenChange={setIsEditModalOpen}
         size="full"
       >
-        <ModalContent>
+        <ModalContent className="h-full">
           {(onClose) => (
             <>
-              <ModalHeader>
-                <h2>Edit Fabric</h2>
-              </ModalHeader>
-              <ModalBody>
-                <ScrollShadow className="w-full  h-[150vh]">
+              <ScrollShadow className="w-full h-full">
+                <ModalHeader>
+                  <h2>Edit Fabric</h2>
+                </ModalHeader>
+                <ModalBody>
                   <FabricForm />
-                </ScrollShadow>
-              </ModalBody>
+                </ModalBody>
+              </ScrollShadow>
             </>
           )}
         </ModalContent>

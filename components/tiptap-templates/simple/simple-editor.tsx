@@ -1,7 +1,7 @@
 "use client";
 
 import "@/styles/_variables.scss";
-import "@/styles/_keyframe-animations.scss";
+// import "@/styles/_keyframe-animations.scss";
 
 import * as React from "react";
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react";
