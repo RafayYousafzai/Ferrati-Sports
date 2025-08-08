@@ -1,36 +1,9 @@
-import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 import Header from "@/components/custom-ui/header";
 import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
-
-// Generate metadata for SEO
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-
-  const { data: fabric } = await supabase
-    .from("fabrics")
-    .select("*")
-    .eq("id", params.id)
-    .single();
-
-  return {
-    title: `${fabric?.title || "Fabric"} | Ascension International`,
-    description: fabric?.description
-      ? `${fabric.description.substring(0, 150).replace(/<[^>]*>/g, "")}...`
-      : "Discover premium fabrics for your brand.",
-    openGraph: {
-      images: [fabric?.image_url || "/default-fabric.jpg"],
-    },
-  };
-}
 
 // Main page component
 export default async function FabricPage({
