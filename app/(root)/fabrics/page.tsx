@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 import Card from "@/components/custom-ui/card";
@@ -9,11 +8,6 @@ const title = "Choose the Most Suitable Fabrics for  ";
 const highlightedTitle = "Your Brand";
 const subtitle =
   "At Ascension International, discover the perfect fabric for your brand or clothing collection. Explore the advantages and disadvantages of each material, uncover the story behind its name, and understand its true identity. Learn how the fabric feels against the skin—whether it’s soft, textured, warm, or cool—and what it’s like to wear in real life. Find out which fabric is ideal for creating blank t-shirts, vintage hoodies, stylish jackets, or comfortable tracksuits. This comprehensive fabric guide covers everything from GSM, texture, available colors, care instructions, to its compatibility with different printing techniques—helping you make informed, confident choices for your clothing brand";
-
-export const metadata: Metadata = {
-  title: title + " " + highlightedTitle,
-  description: subtitle,
-};
 
 export default async function page() {
   const cookieStore: any = await cookies();
