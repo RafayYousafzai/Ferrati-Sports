@@ -65,6 +65,17 @@ export default function ProductModal({
                 setProductForm({ ...productForm, title: e.target.value })
               }
             />
+            <Input
+              isRequired
+              type="number"
+              label="Price"
+              placeholder="Enter product price"
+              value={productForm.price}
+              variant="bordered"
+              onChange={(e) =>
+                setProductForm({ ...productForm, price: e.target.value })
+              }
+            />
             <Textarea
               label="Description"
               minRows={3}

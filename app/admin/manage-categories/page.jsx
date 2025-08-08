@@ -41,6 +41,7 @@ export default function CategoriesPage() {
   });
   const [productForm, setProductForm] = useState({
     title: "",
+    price: "",
     description: "",
     image_url: "",
     category_id: "",
@@ -113,7 +114,7 @@ export default function CategoriesPage() {
 
   // Form Resets
   const resetCategoryForm = () => {
-    setCategoryForm({ title: "", description: "", image_url: "" });
+    setCategoryForm({ title: "", price: "", description: "", image_url: "" });
     setCategoryImageFile(null);
     setCategoryImagePreview("");
     setEditingCategory(null);
@@ -122,6 +123,7 @@ export default function CategoriesPage() {
   const resetProductForm = () => {
     setProductForm({
       title: "",
+      price: "",
       description: "",
       image_url: "",
       category_id: "",

@@ -84,9 +84,14 @@ export default function ProductList({
                         </Button>
                       </div>
                     </div>
-                    <p className="text-default-500 text-xs line-clamp-2">
+                    <p className="text-default-500 text-md line-clamp-2 mb-3">
                       {product.description}
                     </p>
+                    {product?.price && (
+                      <Chip size="sm" color="danger">
+                        Price {product?.price}
+                      </Chip>
+                    )}
                   </CardBody>
                 </Card>
               ))}

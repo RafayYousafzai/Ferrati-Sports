@@ -8,14 +8,14 @@ const interestOptions = [
   { key: "client", label: "Becoming a client" },
   { key: "career", label: "A career at Ferrati" },
   { key: "rfp", label: "RFP participation" },
-  { key: "media", label: "Press or media inquiry" },
+  { key: "media", label: "Process inquiry" },
   { key: "partnership", label: "Partnership opportunities" },
   { key: "other", label: "Other" },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg
@@ -62,11 +62,11 @@ export default function ContactPage() {
           <p className="text-orange-500 font-semibold text-sm tracking-wider uppercase mb-4">
             CONTACT
           </p>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-black mb-6">
             You made it!
           </h1>
           <div className="w-16 h-1 bg-orange-500 mx-auto mb-8"></div>
-          <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto">
             Looking to build your brand or elevate your career?
           </p>
         </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
               <Input
                 type="tel"
                 placeholder=""
-                defaultValue="+"
+                defaultValue="+92"
                 variant="flat"
                 size="lg"
                 classNames={{
