@@ -17,6 +17,7 @@ interface VideoShowcaseProps {
 function extractYouTubeId(url: string): string {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
+
   return match && match[2].length === 11 ? match[2] : url;
 }
 
@@ -50,19 +51,19 @@ export default function VideoShowcase({
               <div className="relative group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
                 <div className="relative aspect-video bg-black">
                   <iframe
+                    allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    className="w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
                     src={`https://www.youtube.com/embed/${extractYouTubeId(video.youtubeId)}?rel=0&modestbranding=1&showinfo=0`}
                     title={video.title}
-                    className="w-full h-full transition-transform duration-300 group-hover:scale-105"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
                   />
                   {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Gradient Border Effect */}
-                <div className="absolute -inset-px bg-gradient-to-r from-orange-600/30 to-red-600/30 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                <div className="absolute -inset-px bg-gradient-to-r from-orange-600/30 to-red-600/30 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
               </div>
 
               {/* Video Title and Description */}
@@ -93,7 +94,7 @@ export default function VideoShowcase({
       </div>
 
       {/* Tailwind Animation Keyframes */}
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -129,7 +130,7 @@ export default function VideoShowcase({
         .delay-300 {
           animation-delay: 0.3s;
         }
-      `}</style>
+      `}</style> */}
     </section>
   );
 }

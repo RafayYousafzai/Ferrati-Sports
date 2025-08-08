@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import ExploreItem from "./ExploreItem";
 
 // Define the type for explore item data
@@ -83,8 +84,8 @@ const Explore = () => {
             {leftColumnItems.map((item, index) => (
               <ExploreItem
                 key={`left-${index}`}
-                itemCSS={item.itemCSS}
                 icon={item.icon}
+                itemCSS={item.itemCSS}
                 text={item.text}
               />
             ))}
@@ -94,14 +95,14 @@ const Explore = () => {
           <div className="hidden xl:flex justify-center">
             <div className="relative w-[322px] h-[680px]">
               <Image
-                src="/assets/manwearing.png"
+                data-scroll
                 fill
+                priority
                 alt=""
                 className="object-cover"
-                quality={100}
-                priority
-                data-scroll
                 data-scroll-speed="0.1"
+                quality={100}
+                src="/assets/manwearing.png"
               />
             </div>
           </div>
@@ -111,8 +112,8 @@ const Explore = () => {
             {rightColumnItems.map((item, index) => (
               <ExploreItem
                 key={`right-${index}`}
-                itemCSS={item.itemCSS}
                 icon={item.icon}
+                itemCSS={item.itemCSS}
                 text={item.text}
               />
             ))}

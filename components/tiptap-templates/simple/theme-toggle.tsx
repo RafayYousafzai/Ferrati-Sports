@@ -15,7 +15,9 @@ export function ThemeToggle() {
   React.useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => setIsDarkMode(mediaQuery.matches);
+
     mediaQuery.addEventListener("change", handleChange);
+
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
@@ -23,6 +25,7 @@ export function ThemeToggle() {
     const initialDarkMode =
       !!document.querySelector('meta[name="color-scheme"][content="dark"]') ||
       window.matchMedia("(prefers-color-scheme: dark)").matches;
+
     setIsDarkMode(initialDarkMode);
   }, []);
 
@@ -34,9 +37,9 @@ export function ThemeToggle() {
 
   return (
     <Button
-      onClick={toggleDarkMode}
       aria-label={`Switch to ${isDarkMode ? "light" : "dark"} mode`}
       data-style="ghost"
+      onClick={toggleDarkMode}
     >
       {isDarkMode ? (
         <MoonStarIcon className="tiptap-button-icon" />

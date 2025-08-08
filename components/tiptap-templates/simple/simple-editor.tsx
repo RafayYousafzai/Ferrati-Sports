@@ -39,7 +39,6 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 
 // --- Tiptap UI ---
 import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu";
-import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button";
 import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu";
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button";
 import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button";
@@ -99,8 +98,8 @@ const MainToolbarContent = ({
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3, 4]} portal={isMobile} />
         <ListDropdownMenu
-          types={["bulletList", "orderedList", "taskList"]}
           portal={isMobile}
+          types={["bulletList", "orderedList", "taskList"]}
         />
         <BlockquoteButton />
         <CodeBlockButton />
@@ -274,9 +273,9 @@ export function SimpleEditor({
         >
           {mobileView === "main" ? (
             <MainToolbarContent
+              isMobile={isMobile}
               onHighlighterClick={() => setMobileView("highlighter")}
               onLinkClick={() => setMobileView("link")}
-              isMobile={isMobile}
             />
           ) : (
             <MobileToolbarContent
@@ -287,9 +286,9 @@ export function SimpleEditor({
         </Toolbar>
 
         <EditorContent
+          className="simple-editor-content"
           editor={editor}
           role="presentation"
-          className="simple-editor-content"
         />
       </EditorContext.Provider>
     </div>

@@ -1,8 +1,9 @@
+import { cookies } from "next/headers";
+
 import Card from "@/components/custom-ui/card";
-import Header from "@/components/custom-ui/header";
+import Header from "@/components/custom-ui/Header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
-import { cookies } from "next/headers";
 
 interface Category {
   id: string;
@@ -67,27 +68,24 @@ export default async function CategoryPage({
     .limit(6);
 
   return (
-    <div className="">
+    <div>
       <ProductDetails
+        buttonText={products.length + " " + "Products Available"}
+        description={[category.description]}
+        image={category.image_url}
+        variant="orange"
         key={category.id}
         // sectionTitle={new Date(product.created_at).toLocaleDateString()}
         headline={category.title}
-        description={[category.description]}
-        buttonText={products.length + " " + "Products Available"}
-        image={category.image_url}
-        variant="orange"
       />
 
       <Header
         badge="Ferrati"
-        title={"Explore more in "}
         highlightedTitle={category.title}
-        subtitle={"All the products in this category"}
         leftAlign={false}
+        subtitle={"All the products in this category"}
+        title={"Explore more in "}
       />
-
-      {/* Products Grid */}
-      <h2 className="text-2xl font-semibold mb-6"></h2>
 
       {products.length === 0 ? (
         <div className="text-center py-16">
@@ -100,18 +98,18 @@ export default async function CategoryPage({
         products.map((product, index) => (
           <ProductDetails
             key={product.id}
-            sectionTitle={new Date(product.created_at).toLocaleDateString()}
-            headline={product.title}
-            description={[product.description]}
             buttonText="View positions"
+            description={[product.description]}
+            headline={product.title}
             image={product.image_url}
-            variant="white"
             reversed={index % 2 === 0} // Alternates between true and false
+            sectionTitle={new Date(product.created_at).toLocaleDateString()}
+            variant="white"
           />
         ))
       )}
 
-      <Header badge="Ferrati" title="Explore our " highlightedTitle="fabrics" />
+      <Header badge="Ferrati" highlightedTitle="fabrics" title="Explore our " />
 
       {/* Related Fabrics Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
@@ -119,15 +117,15 @@ export default async function CategoryPage({
           <div key={item.id}>
             <Card
               description={undefined}
-              title={item.title}
-              image={item.image_url}
               href={`/fabrics/${item.id}`}
+              image={item.image_url}
+              title={item.title}
             >
               <div
-                className="text-sm text-default-500 line-clamp-3"
                 dangerouslySetInnerHTML={{
                   __html: item.description,
                 }}
+                className="text-sm text-default-500 line-clamp-3"
               />
             </Card>
           </div>

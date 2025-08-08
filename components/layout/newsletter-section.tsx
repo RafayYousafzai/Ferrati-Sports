@@ -106,7 +106,7 @@ export default function NewsletterSection({
             Thank you for subscribing!
           </h3>
           <p className={`text-lg ${styles.text} opacity-80`}>
-            You'll receive our latest updates and insights directly in your
+            You will receive our latest updates and insights directly in your
             inbox.
           </p>
         </div>
@@ -128,7 +128,7 @@ export default function NewsletterSection({
               </span>
               <div
                 className={`w-16 h-0.5 mb-8 ${variant === "orange" ? "bg-black" : "bg-orange-500"}`}
-              ></div>
+              />
 
               <h2
                 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] ${styles.text}`}
@@ -144,29 +144,29 @@ export default function NewsletterSection({
             </div>
 
             {/* Newsletter Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <Input
                     fullWidth
+                    required
+                    className={`h-14 text-lg px-6 `}
+                    placeholder={placeholder}
                     size="lg"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder={placeholder}
-                    required
-                    className={`h-14 text-lg px-6 `}
                   />
                 </div>
                 <Button
-                  type="submit"
+                  className=" bg-white"
                   disabled={isLoading}
                   size="lg"
-                  className=" bg-white"
+                  type="submit"
                 >
                   {isLoading ? (
                     <div className="flex items-center space-x-2">
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                       <span>Subscribing...</span>
                     </div>
                   ) : (
@@ -195,7 +195,7 @@ export default function NewsletterSection({
                   className={`w-16 h-16 mx-auto lg:mx-0 mb-6 ${styles.accent}`}
                 />
                 <h3 className={`text-2xl font-bold mb-6 ${styles.text}`}>
-                  What you'll get:
+                  What you will get:
                 </h3>
               </div>
 

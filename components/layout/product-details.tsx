@@ -2,13 +2,6 @@
 
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
-import { useState } from "react";
-
-interface ImageItem {
-  src: string;
-  alt: string;
-  className?: string;
-}
 
 interface CareersSectionProps {
   sectionTitle?: string;
@@ -66,7 +59,7 @@ export default function ProductDetails({
                 className={`w-16 h-1 mb-8 ${
                   isOrange ? "bg-white" : "bg-orange-500"
                 }`}
-              ></div>
+              />
             </div>
 
             <div className="space-y-6">
@@ -84,13 +77,13 @@ export default function ProductDetails({
 
             <div className="pt-4">
               <Button
-                variant="solid"
-                size="lg"
                 className={`px-8 py-3 text-base font-medium ${
                   isOrange
                     ? "text-orange-500 bg-white"
                     : "bg-orange-500 text-white"
                 }`}
+                size="lg"
+                variant="solid"
               >
                 {buttonText}
               </Button>
@@ -102,13 +95,13 @@ export default function ProductDetails({
             <div className="relative h-[500px] lg:h-[600px] justify-center flex items-center">
               {/* Main large image */}
               <Image
-                isZoomed
                 isBlurred
+                isZoomed
                 alt="HeroUI Album Cover"
                 className="w-full h-full aspect-square transform rotate-1 hover:rotate-0 transition-transform duration-300"
-                width={500}
                 height={500}
                 src={image}
+                width={500}
               />
 
               {/* Decorative elements */}
@@ -116,12 +109,12 @@ export default function ProductDetails({
                 className={`absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20 ${
                   isOrange ? "bg-white" : "bg-orange-500"
                 }`}
-              ></div>
+              />
               <div
                 className={`absolute -bottom-8 -left-8 w-32 h-32 rounded-full opacity-10 ${
                   isOrange ? "bg-white" : "bg-orange-500"
                 }`}
-              ></div>
+              />
             </div>
           </div>
         </div>

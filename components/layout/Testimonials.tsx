@@ -40,9 +40,9 @@ const Testimonials = () => {
     <section className="h-[60vh] xl:h-[70vh]">
       <div className="container mx-auto h-full flex items-center">
         <Swiper
-          navigation={true}
-          modules={[Navigation]}
           className="h-[400px] [--swiper-navigation-color:#000]"
+          modules={[Navigation]}
+          navigation={true}
         >
           {testimonials.map((person, index) => (
             <SwiperSlide key={index} className="w-full h-full ">

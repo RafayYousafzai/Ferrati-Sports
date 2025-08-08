@@ -1,15 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import {
   IconArrowLeft,
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
-import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
 import { Home } from "lucide-react";
+
+import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
+
+import { cn } from "@/lib/utils";
 
 export function SidebarDashboard({ children }: { children: React.ReactNode }) {
   const links = [
@@ -50,10 +51,11 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
     },
   ];
   const [open, setOpen] = useState(false);
+
   return (
     <div
       className={cn(
-        "mx-auto flex w-full h-full min-h-screen  flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800" // for your use case, use `h-screen` instead of `h-[60vh]`
+        "mx-auto flex w-full h-full min-h-screen  flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800", // for your use case, use `h-screen` instead of `h-[60vh]`
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -73,11 +75,11 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
                 href: "#",
                 icon: (
                   <img
-                    src="https://assets.aceternity.com/manu.png"
-                    className="h-7 w-7 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
                     alt="Avatar"
+                    className="h-7 w-7 shrink-0 rounded-full"
+                    height={50}
+                    src="https://assets.aceternity.com/manu.png"
+                    width={50}
                   />
                 ),
               }}

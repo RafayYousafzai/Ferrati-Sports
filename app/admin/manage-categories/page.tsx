@@ -13,12 +13,13 @@ import {
 import { Input, Textarea } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
-import { createClient } from "@/lib/supabase/client";
 import { Spinner } from "@heroui/spinner";
 import { Tabs, Tab } from "@heroui/tabs";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { Select, SelectItem } from "@heroui/select";
+
+import { createClient } from "@/lib/supabase/client";
 
 interface Category {
   id: string;
@@ -135,12 +136,14 @@ export default function CategoriesPage() {
   };
 
   const handleCategoryImageChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = e.target.files?.[0];
+
     if (file) {
       setCategoryImageFile(file);
       const reader = new FileReader();
+
       reader.onloadend = () => {
         setCategoryImagePreview(reader.result as string);
       };
@@ -150,9 +153,11 @@ export default function CategoriesPage() {
 
   const handleProductImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
       setProductImageFile(file);
       const reader = new FileReader();
+
       reader.onloadend = () => {
         setProductImagePreview(reader.result as string);
       };
@@ -261,7 +266,7 @@ export default function CategoriesPage() {
   const handleDeleteCategory = async (id: string) => {
     if (
       !confirm(
-        "Are you sure? This will also delete all products in this category."
+        "Are you sure? This will also delete all products in this category.",
       )
     )
       return;
@@ -378,8 +383,8 @@ export default function CategoriesPage() {
           </Button>
           <Button
             className="text-black"
-            variant="bordered"
             startContent={<Package size={18} />}
+            variant="bordered"
             onPress={openAddProduct}
           >
             Add Product
@@ -389,8 +394,6 @@ export default function CategoriesPage() {
 
       <Tabs
         aria-label="Categories and Products"
-        color="primary"
-        variant="underlined"
         classNames={{
           tabList:
             "gap-6 w-full relative rounded-none p-0 border-b border-divider",
@@ -398,6 +401,8 @@ export default function CategoriesPage() {
           tab: "max-w-fit px-0 h-12",
           tabContent: "group-data-[selected=true]:text-primary",
         }}
+        color="primary"
+        variant="underlined"
       >
         <Tab key="categories" title="Categories">
           <div className="mt-6">
@@ -418,13 +423,14 @@ export default function CategoriesPage() {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {categories.map((category) => {
                   const categoryProducts = getProductsByCategory(category.id);
+
                   return (
                     <Card key={category.id} className="w-full">
                       <CardHeader className="p-0">
                         <Image
-                          src={category.image_url}
                           alt={category.title}
                           radius="lg"
+                          src={category.image_url}
                         />
                       </CardHeader>
                       <CardBody className="px-4 py-4">
@@ -443,9 +449,9 @@ export default function CategoriesPage() {
                             </Button>
                             <Button
                               isIconOnly
+                              color="danger"
                               size="sm"
                               variant="light"
-                              color="danger"
                               onPress={() => handleDeleteCategory(category.id)}
                             >
                               <Trash2 size={16} />
@@ -456,10 +462,10 @@ export default function CategoriesPage() {
                           {category.description}
                         </p>
                         <div className="flex items-center justify-between">
-                          <Chip color="secondary" variant="flat" size="sm">
+                          <Chip color="secondary" size="sm" variant="flat">
                             {categoryProducts.length} products
                           </Chip>
-                          <Chip variant="bordered" size="sm">
+                          <Chip size="sm" variant="bordered">
                             {new Date(category.created_at).toLocaleDateString()}
                           </Chip>
                         </div>
@@ -489,6 +495,7 @@ export default function CategoriesPage() {
               <div className="space-y-8">
                 {categories.map((category) => {
                   const categoryProducts = getProductsByCategory(category.id);
+
                   if (categoryProducts.length === 0) return null;
 
                   return (
@@ -497,7 +504,7 @@ export default function CategoriesPage() {
                         <h2 className="text-xl font-semibold text-foreground">
                           {category.title}
                         </h2>
-                        <Chip color="secondary" variant="flat" size="sm">
+                        <Chip color="secondary" size="sm" variant="flat">
                           {categoryProducts.length} products
                         </Chip>
                       </div>
@@ -506,14 +513,14 @@ export default function CategoriesPage() {
                           <Card key={product.id} className="w-full">
                             <CardHeader className="p-0">
                               <Image
+                                alt={product.title}
+                                className="object-cover"
+                                radius="lg"
                                 src={
                                   product.image_url ||
                                   "/placeholder.svg?height=200&width=200&query=product" ||
                                   "/placeholder.svg"
                                 }
-                                alt={product.title}
-                                className="object-cover"
-                                radius="lg"
                               />
                             </CardHeader>
                             <CardBody className="px-3 py-3">
@@ -532,9 +539,9 @@ export default function CategoriesPage() {
                                   </Button>
                                   <Button
                                     isIconOnly
+                                    color="danger"
                                     size="sm"
                                     variant="light"
-                                    color="danger"
                                     onPress={() =>
                                       handleDeleteProduct(product.id)
                                     }
@@ -562,9 +569,9 @@ export default function CategoriesPage() {
       {/* Category Modal */}
       <Modal
         isOpen={isCategoryOpen}
-        onClose={onCategoryClose}
         placement="top-center"
         size="2xl"
+        onClose={onCategoryClose}
       >
         <ModalContent>
           <form onSubmit={handleCategorySubmit}>
@@ -573,47 +580,47 @@ export default function CategoriesPage() {
             </ModalHeader>
             <ModalBody>
               <Input
+                isRequired
                 label="Title"
                 placeholder="Enter category title"
                 value={categoryForm.title}
+                variant="bordered"
                 onChange={(e) =>
                   setCategoryForm({ ...categoryForm, title: e.target.value })
                 }
-                isRequired
-                variant="bordered"
               />
 
               <Textarea
                 label="Description"
+                minRows={3}
                 placeholder="Enter category description"
                 value={categoryForm.description}
+                variant="bordered"
                 onChange={(e) =>
                   setCategoryForm({
                     ...categoryForm,
                     description: e.target.value,
                   })
                 }
-                variant="bordered"
-                minRows={3}
               />
 
               {/* Image Upload Section */}
               <div className="space-y-3">
-                <label className="text-sm font-medium">Category Image</label>
+                <p className="text-sm font-medium">Category Image</p>
 
                 {/* Image Preview */}
                 {categoryImagePreview && (
                   <div className="relative inline-block">
                     <img
-                      src={categoryImagePreview || "/placeholder.svg"}
                       alt="Preview"
                       className="w-32 h-32 object-cover rounded-lg border"
+                      src={categoryImagePreview || "/placeholder.svg"}
                     />
                     <Button
                       isIconOnly
-                      size="sm"
-                      color="danger"
                       className="absolute -top-2 -right-2"
+                      color="danger"
+                      size="sm"
                       onPress={removeCategoryImage}
                     >
                       <X size={14} />
@@ -624,18 +631,18 @@ export default function CategoriesPage() {
                 {/* File Input */}
                 <div className="flex gap-3">
                   <input
-                    type="file"
                     accept="image/*"
-                    onChange={handleCategoryImageChange}
                     className="hidden"
                     id="category-image-upload"
+                    type="file"
+                    onChange={handleCategoryImageChange}
                   />
                   <Button
                     as="label"
-                    htmlFor="category-image-upload"
-                    variant="bordered"
-                    startContent={<Upload size={16} />}
                     className="cursor-pointer"
+                    htmlFor="category-image-upload"
+                    startContent={<Upload size={16} />}
+                    variant="bordered"
                   >
                     Upload Image
                   </Button>
@@ -646,33 +653,33 @@ export default function CategoriesPage() {
                   label="Or enter image URL"
                   placeholder="https://example.com/image.jpg"
                   value={categoryForm.image_url}
+                  variant="bordered"
                   onChange={(e) =>
                     setCategoryForm({
                       ...categoryForm,
                       image_url: e.target.value,
                     })
                   }
-                  variant="bordered"
                 />
               </div>
             </ModalBody>
             <ModalFooter>
               <Button
                 color="danger"
+                isDisabled={uploading}
                 variant="light"
                 onPress={() => {
                   resetCategoryForm();
                   onCategoryClose();
                 }}
-                isDisabled={uploading}
               >
                 Cancel
               </Button>
               <Button
                 color="primary"
-                type="submit"
-                isLoading={uploading}
                 isDisabled={uploading}
+                isLoading={uploading}
+                type="submit"
               >
                 {uploading ? "Saving..." : editingCategory ? "Update" : "Add"}{" "}
                 Category
@@ -685,9 +692,9 @@ export default function CategoriesPage() {
       {/* Product Modal */}
       <Modal
         isOpen={isProductOpen}
-        onClose={onProductClose}
         placement="top-center"
         size="2xl"
+        onClose={onProductClose}
       >
         <ModalContent>
           <form onSubmit={handleProductSubmit}>
@@ -696,67 +703,71 @@ export default function CategoriesPage() {
             </ModalHeader>
             <ModalBody>
               <Select
+                isRequired
                 label="Category"
                 placeholder="Select a category"
                 selectedKeys={
                   productForm.category_id ? [productForm.category_id] : []
                 }
+                variant="bordered"
                 onSelectionChange={(keys) => {
                   const selectedKey = Array.from(keys)[0] as string;
+
                   setProductForm({ ...productForm, category_id: selectedKey });
                 }}
-                isRequired
-                variant="bordered"
               >
                 {categories.map((category) => (
-                  <SelectItem key={category.id} value={category.id}>
+                  <SelectItem
+                    key={category.id}
+                    // value={category.id}
+                  >
                     {category.title}
                   </SelectItem>
                 ))}
               </Select>
 
               <Input
+                isRequired
                 label="Title"
                 placeholder="Enter product title"
                 value={productForm.title}
+                variant="bordered"
                 onChange={(e) =>
                   setProductForm({ ...productForm, title: e.target.value })
                 }
-                isRequired
-                variant="bordered"
               />
 
               <Textarea
                 label="Description"
+                minRows={3}
                 placeholder="Enter product description"
                 value={productForm.description}
+                variant="bordered"
                 onChange={(e) =>
                   setProductForm({
                     ...productForm,
                     description: e.target.value,
                   })
                 }
-                variant="bordered"
-                minRows={3}
               />
 
               {/* Image Upload Section */}
               <div className="space-y-3">
-                <label className="text-sm font-medium">Product Image</label>
+                <p className="text-sm font-medium">Product Image</p>
 
                 {/* Image Preview */}
                 {productImagePreview && (
                   <div className="relative inline-block">
                     <img
-                      src={productImagePreview || "/placeholder.svg"}
                       alt="Preview"
                       className="w-32 h-32 object-cover rounded-lg border"
+                      src={productImagePreview || "/placeholder.svg"}
                     />
                     <Button
                       isIconOnly
-                      size="sm"
-                      color="danger"
                       className="absolute -top-2 -right-2"
+                      color="danger"
+                      size="sm"
                       onPress={removeProductImage}
                     >
                       <X size={14} />
@@ -767,18 +778,18 @@ export default function CategoriesPage() {
                 {/* File Input */}
                 <div className="flex gap-3">
                   <input
-                    type="file"
                     accept="image/*"
-                    onChange={handleProductImageChange}
                     className="hidden"
                     id="product-image-upload"
+                    type="file"
+                    onChange={handleProductImageChange}
                   />
                   <Button
                     as="label"
-                    htmlFor="product-image-upload"
-                    variant="bordered"
-                    startContent={<Upload size={16} />}
                     className="cursor-pointer"
+                    htmlFor="product-image-upload"
+                    startContent={<Upload size={16} />}
+                    variant="bordered"
                   >
                     Upload Image
                   </Button>
@@ -789,33 +800,33 @@ export default function CategoriesPage() {
                   label="Or enter image URL"
                   placeholder="https://example.com/image.jpg"
                   value={productForm.image_url}
+                  variant="bordered"
                   onChange={(e) =>
                     setProductForm({
                       ...productForm,
                       image_url: e.target.value,
                     })
                   }
-                  variant="bordered"
                 />
               </div>
             </ModalBody>
             <ModalFooter>
               <Button
                 color="danger"
+                isDisabled={uploading}
                 variant="light"
                 onPress={() => {
                   resetProductForm();
                   onProductClose();
                 }}
-                isDisabled={uploading}
               >
                 Cancel
               </Button>
               <Button
                 color="primary"
-                type="submit"
-                isLoading={uploading}
                 isDisabled={uploading}
+                isLoading={uploading}
+                type="submit"
               >
                 {uploading ? "Saving..." : editingProduct ? "Update" : "Add"}{" "}
                 Product

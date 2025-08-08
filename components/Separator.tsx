@@ -14,7 +14,7 @@ const Separator = ({
 
   return (
     <div className={`relative w-[168px] h-[26px] mx-auto ${className}`}>
-      <Image src={imgSrc} fill alt="" />
+      <Image fill alt="" src={imgSrc} />
     </div>
   );
 };

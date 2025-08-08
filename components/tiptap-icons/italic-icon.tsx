@@ -1,14 +1,14 @@
-import * as React from "react"
+import * as React from "react";
 
 export const ItalicIcon = React.memo(
   ({ className, ...props }: React.SVGProps<SVGSVGElement>) => {
     return (
       <svg
-        width="24"
-        height="24"
         className={className}
-        viewBox="0 0 24 24"
         fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
@@ -17,8 +17,8 @@ export const ItalicIcon = React.memo(
           fill="currentColor"
         />
       </svg>
-    )
-  }
-)
+    );
+  },
+);
 
-ItalicIcon.displayName = "ItalicIcon"
+ItalicIcon.displayName = "ItalicIcon";

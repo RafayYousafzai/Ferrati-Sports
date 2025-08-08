@@ -1,4 +1,5 @@
 import { Building2, Store, Settings, Lightbulb } from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ServiceCard {
@@ -34,7 +35,7 @@ export default function ServiceCards({ cards }: ServiceCardsProps) {
               <CardContent className="p-8 text-center">
                 <div className="mb-6">
                   <div className="relative inline-block">
-                    <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"></div>
+                    <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm" />
                     <div className="relative bg-white p-2">
                       <IconComponent
                         className="w-8 h-8 text-gray-700"

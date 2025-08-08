@@ -2,12 +2,13 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Badge from "../Badge";
-import Separator from "../Separator";
 import Image from "next/image";
 import { Button } from "@heroui/button";
+
+import Badge from "../Badge";
+import Separator from "../Separator";
 import Card from "../custom-ui/card";
-import Header from "../custom-ui/header";
+import Header from "../custom-ui/Header";
 
 const data = [
   {
@@ -61,7 +62,7 @@ const CategoriesCarousal = () => {
           scrub: 0.6,
           pin: true,
         },
-      }
+      },
     );
 
     return () => {
@@ -114,12 +115,12 @@ const CategoriesCarousal = () => {
                     {/* image */}
                     <div className="hidden xl:flex flex-1 w-full h-[70vh] relative">
                       <Image
-                        src={item.imgSrc}
                         fill
-                        className="object-cover"
-                        quality={100}
                         priority
                         alt={item.title}
+                        className="object-cover"
+                        quality={100}
+                        src={item.imgSrc}
                       />
                     </div>
                   </div>
@@ -139,10 +140,12 @@ const CategoriesCarousal = () => {
         {data.map((item, index) => (
           <Card
             key={index}
-            title={item.title}
             description={item.description}
             image={item.imgSrc}
-          />
+            title={item.title}
+          >
+            <></>
+          </Card>
         ))}
       </div>
     </section>

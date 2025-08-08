@@ -1,10 +1,8 @@
 "use client";
-import { cn } from "@/lib/utils";
-import {
-  SkeletonProblemOne,
-  SkeletonSolutionThree,
-} from "@/components/skeletons";
 import { BentoGrid, BentoGridItem } from "../custom-ui/bento-grid";
+
+import { cn } from "@/lib/utils";
+import { SkeletonSolutionThree } from "@/components/skeletons";
 
 export default function BentoGridAboutUs() {
   return (
@@ -12,11 +10,11 @@ export default function BentoGridAboutUs() {
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
-          title={item.title}
+          className={cn("[&>p:text-lg]", item.className)}
           description={item.description}
           header={item.header}
-          className={cn("[&>p:text-lg]", item.className)}
           icon={item.icon}
+          title={item.title}
         />
       ))}
     </BentoGrid>

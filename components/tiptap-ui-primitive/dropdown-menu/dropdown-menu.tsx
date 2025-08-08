@@ -1,42 +1,46 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { cn } from "@/lib/tiptap-utils"
-import "@/components/tiptap-ui-primitive/dropdown-menu/dropdown-menu.scss"
+import * as React from "react";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+
+import { cn } from "@/lib/tiptap-utils";
+import "@/components/tiptap-ui-primitive/dropdown-menu/dropdown-menu.scss";
 
 function DropdownMenu({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-  return <DropdownMenuPrimitive.Root modal={false} {...props} />
+  return <DropdownMenuPrimitive.Root modal={false} {...props} />;
 }
 
 function DropdownMenuPortal({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
-  return <DropdownMenuPrimitive.Portal {...props} />
+  return <DropdownMenuPrimitive.Portal {...props} />;
 }
 
 const DropdownMenuTrigger = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger>
->(({ ...props }, ref) => <DropdownMenuPrimitive.Trigger ref={ref} {...props} />)
-DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName
+>(({ ...props }, ref) => (
+  <DropdownMenuPrimitive.Trigger ref={ref} {...props} />
+));
 
-const DropdownMenuGroup = DropdownMenuPrimitive.Group
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
 
-const DropdownMenuSub = DropdownMenuPrimitive.Sub
+const DropdownMenuGroup = DropdownMenuPrimitive.Group;
 
-const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
-const DropdownMenuItem = DropdownMenuPrimitive.Item
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-const DropdownMenuSubTrigger = DropdownMenuPrimitive.SubTrigger
+const DropdownMenuItem = DropdownMenuPrimitive.Item;
+
+const DropdownMenuSubTrigger = DropdownMenuPrimitive.SubTrigger;
 
 const DropdownMenuSubContent = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.SubContent>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent> & {
-    portal?: boolean | React.ComponentProps<typeof DropdownMenuPortal>
+    portal?: boolean | React.ComponentProps<typeof DropdownMenuPortal>;
   }
 >(({ className, portal = true, ...props }, ref) => {
   const content = (
@@ -45,7 +49,7 @@ const DropdownMenuSubContent = React.forwardRef<
       className={cn("tiptap-dropdown-menu", className)}
       {...props}
     />
-  )
+  );
 
   return portal ? (
     <DropdownMenuPortal {...(typeof portal === "object" ? portal : {})}>
@@ -53,26 +57,27 @@ const DropdownMenuSubContent = React.forwardRef<
     </DropdownMenuPortal>
   ) : (
     content
-  )
-})
+  );
+});
+
 DropdownMenuSubContent.displayName =
-  DropdownMenuPrimitive.SubContent.displayName
+  DropdownMenuPrimitive.SubContent.displayName;
 
 const DropdownMenuContent = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> & {
-    portal?: boolean
+    portal?: boolean;
   }
 >(({ className, sideOffset = 4, portal = false, ...props }, ref) => {
   const content = (
     <DropdownMenuPrimitive.Content
       ref={ref}
+      className={cn("tiptap-dropdown-menu", className)}
       sideOffset={sideOffset}
       onCloseAutoFocus={(e) => e.preventDefault()}
-      className={cn("tiptap-dropdown-menu", className)}
       {...props}
     />
-  )
+  );
 
   return portal ? (
     <DropdownMenuPortal {...(typeof portal === "object" ? portal : {})}>
@@ -80,9 +85,10 @@ const DropdownMenuContent = React.forwardRef<
     </DropdownMenuPortal>
   ) : (
     content
-  )
-})
-DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+  );
+});
+
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
 export {
   DropdownMenu,
@@ -95,4 +101,4 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
-}
+};

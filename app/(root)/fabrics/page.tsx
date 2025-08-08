@@ -1,8 +1,9 @@
-import Card from "@/components/custom-ui/card";
-import Header from "@/components/custom-ui/header";
-import { createClient } from "@/lib/supabase/server";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+import Card from "@/components/custom-ui/card";
+import Header from "@/components/custom-ui/Header";
+import { createClient } from "@/lib/supabase/server";
 
 const title = "Choose the Most Suitable Fabrics for  ";
 const highlightedTitle = "Your Brand";
@@ -24,25 +25,25 @@ export default async function page() {
     <section>
       <Header
         badge="Ferrati"
-        title={title}
         highlightedTitle={highlightedTitle}
-        subtitle={subtitle}
         leftAlign={true}
+        subtitle={subtitle}
+        title={title}
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {fabrics &&
           fabrics.map((fabric) => (
             <div key={fabric.id}>
               <Card
-                description={undefined}
                 key={fabric.id}
+                description={undefined}
+                href={`/fabrics/${fabric.id}`}
                 image={fabric.image_url}
                 title={fabric.title}
-                href={`/fabrics/${fabric.id}`}
               >
                 <div
-                  className="text-sm text-default-500 line-clamp-3"
                   dangerouslySetInnerHTML={{ __html: fabric.description }}
+                  className="text-sm text-default-500 line-clamp-3"
                 />
               </Card>
             </div>

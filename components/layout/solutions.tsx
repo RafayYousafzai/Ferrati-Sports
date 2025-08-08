@@ -1,6 +1,8 @@
-import { BarChart3, Sprout, Rocket, Diamond, ChevronRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
+
 import Header from "../custom-ui/header";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ServiceItem {
   name: string;
@@ -18,33 +20,26 @@ interface SolutionsProps {
   cards: SolutionCard[];
 }
 
-const iconMap = {
-  analytics: BarChart3,
-  earned: Sprout,
-  paid: Rocket,
-  creative: Diamond,
-};
-
 export default function Solutions({ cards }: SolutionsProps) {
   return (
     <section className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-20 px-8 overflow-hidden">
       {/* Background geometric patterns */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40"></div>
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-300 rounded-full transform -translate-y-32"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40" />
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-300 rounded-full transform -translate-y-32" />
       </div>
 
       <div className="relative max-w-7xl mx-auto">
         <Header
-          theme="dark"
           badge="SOLUTIONS"
-          title="A results oriented "
           highlightedTitle="Materials."
           subtitle="We're specialists, not generalists. We were built to provide deep
             expertise in digital channels that are extremely complex, and
             changing daily. We offer integrated solutions with unique services
             and deliverables tailored to unlock full-funnel growth."
+          theme="dark"
+          title="A results oriented "
         />
 
         {/* Cards Grid */}
@@ -61,7 +56,7 @@ export default function Solutions({ cards }: SolutionsProps) {
                   {/* Icon with orange accent */}
                   <div className="mb-6">
                     <div className="relative inline-block">
-                      <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"></div>
+                      <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm" />
                       <div className="relative bg-white p-2">
                         {/* <IconComponent
                           className="w-8 h-8 text-gray-700"

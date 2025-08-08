@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 import CounterSection from "@/components/layout/counter-section";
 import Explore from "@/components/Explore/Explore";
 import CategoriesCarousal from "@/components/layout/categories-carousal";
@@ -11,7 +13,6 @@ import JoinOurCommunity from "@/components/custom-ui/join-our-community";
 import Testimonials from "@/components/layout/testimonials";
 import ProductDetails from "@/components/layout/product-details";
 import NewsletterSection from "@/components/layout/newsletter-section";
-import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import Card from "@/components/custom-ui/card";
 
@@ -125,21 +126,22 @@ export default async function Home() {
     .from("fabrics")
     .select("*")
     .limit(3);
+
   return (
     <>
       <Hero />
       <CounterSection />
       <Header
         badge="Ferrati"
-        title="Why "
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
+        title="Why "
       />
       <ServiceCards cards={WhyChooseUsCards as any} />;
       <Header
-        title="The New Standard in "
         highlightedTitle="Business"
         subtitle="We believe in doing things differently. While traditional manufacturers stick to outdated processes, we push the boundaries of what’s possible. We offer customized solutions, quick turnarounds, and unmatched flexibility, ensuring that your designs are brought to life exactly the way you envision."
+        title="The New Standard in "
       />
       <div className="hidden md:block">
         <Explore />
@@ -150,50 +152,50 @@ export default async function Home() {
       <Solutions cards={materials as any} />
       <Header
         badge="OUR APPROACH"
-        title="Sell without "
         highlightedTitle="Selling"
         subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
+        title="Sell without "
       />
       <VideoShowcase videos={sampleVideos} />
       <JoinOurCommunity />
       <CategoriesCarousal />
       <ProductDetails
-        sectionTitle="OPPORTUNITIES"
-        headline="Build your career with innovative leaders."
+        buttonText="View positions"
         description={[
           "We believe in fostering talent and creating opportunities for growth. Our team is passionate about digital innovation and committed to delivering exceptional results for our clients.",
         ]}
-        buttonText="View positions"
+        headline="Build your career with innovative leaders."
         image={"https://heroui.com/images/album-cover.png"}
+        sectionTitle="OPPORTUNITIES"
         variant="white"
       />
       <Header
         badge="Ferrati"
-        title="Explore more "
         highlightedTitle="fabrics"
         subtitle="Discover our premium materials tailored for your needs."
+        title="Explore more "
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {relatedFabrics?.map((item) => (
           <div key={item.id}>
             <Card
               description={undefined}
-              title={item.title}
-              image={item.image_url}
               href={`/fabrics/${item.id}`}
+              image={item.image_url}
+              title={item.title}
             >
               <div
-                className="text-sm text-default-500 line-clamp-3"
                 dangerouslySetInnerHTML={{
                   __html: item.description,
                 }}
+                className="text-sm text-default-500 line-clamp-3"
               />
             </Card>
           </div>
         ))}
       </div>
       <Testimonials />
-      <NewsletterSection headline={""} description={""} />
+      <NewsletterSection description={""} headline={""} />
     </>
   );
 }

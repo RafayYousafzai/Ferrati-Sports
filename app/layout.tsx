@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Cormorant_Upright, Open_Sans } from "next/font/google";
 
 import { Providers } from "./providers";
+
 import { siteConfig } from "@/config/site";
-import Appbar from "@/components/layout/navbar/navbar";
-import { Cormorant_Upright, Open_Sans } from "next/font/google";
-import Footer from "@/components/layout/footer";
 
 const cormorant_upright = Cormorant_Upright({
   subsets: ["latin"],
@@ -50,7 +49,7 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
           cormorant_upright.variable,
-          open_sans.variable
+          open_sans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>

@@ -1,8 +1,9 @@
+import { Metadata } from "next";
+import { cookies } from "next/headers";
+
 import Header from "@/components/custom-ui/header";
 import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
-import { Metadata } from "next";
-import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 
 // Generate metadata for SEO
@@ -61,17 +62,17 @@ export default async function FabricPage({
     <section>
       <Header
         badge="Ferrati"
-        title="Fabric"
         highlightedTitle="Technical Details"
+        title="Fabric"
       />
 
       <ProductDetails
-        sectionTitle="OPPORTUNITIES"
-        headline={fabric.title}
         description={[
           `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,
         ]}
+        headline={fabric.title}
         image={fabric.image_url}
+        sectionTitle="OPPORTUNITIES"
         variant="white"
       />
 
@@ -82,8 +83,8 @@ export default async function FabricPage({
 
       <Header
         badge="Ferrati"
-        title="Explore more "
         highlightedTitle="fabrics"
+        title="Explore more "
       />
 
       {/* Related Fabrics Grid */}
@@ -92,15 +93,15 @@ export default async function FabricPage({
           <div key={item.id}>
             <Card
               description={undefined}
-              title={item.title}
-              image={item.image_url}
               href={`/fabrics/${item.id}`}
+              image={item.image_url}
+              title={item.title}
             >
               <div
-                className="text-sm text-default-500 line-clamp-3"
                 dangerouslySetInnerHTML={{
                   __html: item.description,
                 }}
+                className="text-sm text-default-500 line-clamp-3"
               />
             </Card>
           </div>

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type PropsType = {
   itemCSS: "xl:text-right xl:items-end" | "xl:text-left items-start";
   icon: `${string}.svg`;

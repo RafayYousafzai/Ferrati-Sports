@@ -11,9 +11,12 @@ import {
 } from "@heroui/navbar";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
+import Badge from "../../Badge";
+
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
-import Badge from "../../Badge";
+
 import { createClient } from "@/lib/supabase/client";
 
 // Type definitions
@@ -83,6 +86,7 @@ export default function Appbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -163,10 +167,10 @@ export default function Appbar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent justify="end" className="hidden sm:flex gap-4">
+      <NavbarContent className="hidden sm:flex gap-4" justify="end">
         {navigationConfig.leftNav.map((item) => (
           <NavbarItem key={item.href}>
-            <Link href={item.href} className="text-white hover:text-gray-300">
+            <Link className="text-white hover:text-gray-300" href={item.href}>
               {item.title}
             </Link>
           </NavbarItem>
@@ -175,14 +179,14 @@ export default function Appbar() {
 
       <MenuContent navigationConfig={navigationConfig} />
 
-      <NavbarContent justify="end" className="hidden sm:flex gap-4 -ml-4">
+      <NavbarContent className="hidden sm:flex gap-4 -ml-4" justify="end">
         {navigationConfig.rightNav.map((item) => (
           <NavbarItem key={item.href}>
             <Link
-              href={item.href}
               className={`text-white hover:text-gray-300 ${
                 item.title === "Request Quote" ? "font-bold text-primary" : ""
               }`}
+              href={item.href}
             >
               {item.title}
             </Link>
@@ -198,11 +202,12 @@ export default function Appbar() {
             ...navigationConfig.centerDropdowns.flatMap((group) => group.items),
           ];
           const navItem = allItems.find((n) => n.title === item);
+
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                href={navItem?.href || "#"}
                 className="w-full text-white hover:text-primary py-2"
+                href={navItem?.href || "#"}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
@@ -232,22 +237,22 @@ function MenuContent({
       {navigationConfig.centerDropdowns.map((group) => (
         <MenuItem
           key={group.title}
-          setActive={setActive}
           active={active}
           item={group.title}
+          setActive={setActive}
         >
           {group.isProductGrid ? (
             <div className="text-sm grid grid-cols-2 gap-4 p-4">
               {group.items.map((item) => (
                 <ProductItem
                   key={item.href}
-                  title={item.title}
+                  description={item.description || ""}
                   href={item.href}
                   src={
                     item.image ||
                     "/placeholder.svg?height=200&width=200&query=product"
                   }
-                  description={item.description || ""}
+                  title={item.title}
                 />
               ))}
             </div>

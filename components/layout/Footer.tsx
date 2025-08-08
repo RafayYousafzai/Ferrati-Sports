@@ -1,8 +1,8 @@
 "use client";
 // icons
-import Image from "next/image";
 import Link from "next/link";
 import { FaYoutube, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+
 import Badge from "../Badge";
 
 const links = [
@@ -28,16 +28,16 @@ const Footer = () => {
       <div className="container mx-auto z-20 relative">
         <div className="flex flex-col items-center justify-center gap-14">
           {/* logo */}
-          <Link href="/" className="relative w-[120px] h-[50px] mx-auto mb-20">
+          <Link className="relative w-[120px] h-[50px] mx-auto mb-20" href="/">
             <Badge containerStyles="  xl:flex w-[160px] h-[180px]" />
           </Link>
           {/* nav */}
           <nav className="flex flex-col xl:flex-row gap-8 xl:gap-12 justify-center items-center">
             {links.map((link, index) => (
               <Link
-                href={link.href}
                 key={index}
                 className="uppercase text-white tracking-widest hover:text-accent transition-all"
+                href={link.href}
               >
                 {link.name}
               </Link>
@@ -48,8 +48,8 @@ const Footer = () => {
             {socialIcons.map((social, index) => (
               <Link
                 key={`social-${index}`}
-                href="/"
                 className="w-[54px] h-[54px] border border-white/[0.15] rounded-full flex items-center justify-center hover:text-accent transition-all"
+                href="/"
               >
                 {social.icon}
               </Link>

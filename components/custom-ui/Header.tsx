@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import Separator from "../Separator";
 
 interface HeaderProps {
@@ -36,15 +37,15 @@ export default function Header({
         ${leftAlign ? "text-left ml-[5%] md:ml-[2%]" : "text-center"}
       `}
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
       transition={{ duration: 0.8, ease: [0.25, 0.25, 0, 1] }}
+      viewport={{ once: true }}
+      whileInView={{ opacity: 1, y: 0 }}
     >
       <motion.div
         className={leftAlign ? "block" : "inline-block mb-4"}
         initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+        whileInView={{ scale: 1 }}
       >
         <span
           className={`px-4 py-2 ${badgeBg} rounded-full ${badgeText} font-semibold text-sm uppercase tracking-wider border`}
@@ -56,16 +57,16 @@ export default function Header({
       <motion.h2
         className={`text-4xl md:text-6xl font-bold mb-6 leading-tight ${textColor}`}
         initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         transition={{ delay: 0.4, duration: 0.8 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
       >
         {title}{" "}
         <motion.span
-          className={`bg-clip-text ${theme === "dark" ? "text-white" : "text-orange-500"}`}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
+          className={`bg-clip-text ${theme === "dark" ? "text-white" : "text-orange-500"}`}
           transition={{
             duration: 3,
             repeat: Infinity,
@@ -84,9 +85,9 @@ export default function Header({
           ${leftAlign ? "pr-[10%]" : "mx-auto px-[10%]"}
         `}
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         transition={{ delay: 0.6, duration: 0.8 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
       >
         {subtitle}
       </motion.p>
