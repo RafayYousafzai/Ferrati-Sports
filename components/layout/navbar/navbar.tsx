@@ -64,7 +64,7 @@ export default function Appbar() {
           .from("categories")
           .select("*")
           .order("created_at", { ascending: false })
-          .limit(4); // Only fetch 4 categories
+          .limit(3); // Only fetch 4 categories
 
         if (error) throw error;
         setCategories(data || []);
@@ -91,12 +91,20 @@ export default function Appbar() {
   }, []);
 
   // Convert categories to navigation items
-  const categoryNavItems: NavItem[] = categories.map((category) => ({
-    title: category.title,
-    href: `/categories/${category.id}`,
-    description: `${category.description.substring(0, 50)}...`,
-    image: category.image_url || "/placeholder.svg?height=200&width=200",
-  }));
+  const categoryNavItems: NavItem[] = [
+    ...categories.map((category) => ({
+      title: category.title,
+      href: `/categories/${category.id}`,
+      description: `${category.description.substring(0, 50)}...`,
+      image: category.image_url || "/placeholder.svg?height=200&width=200",
+    })),
+    {
+      title: "All Categories",
+      href: `/categories`,
+      description: `Check our all categories`,
+      image: "/assets/cat4.png",
+    },
+  ];
 
   const navigationConfig: NavigationConfig = {
     leftNav: [

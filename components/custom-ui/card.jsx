@@ -15,8 +15,8 @@ export default function Card({
         <Image
           isZoomed
           isBlurred
-          alt="HeroUI Album Cover"
-          className="w-[88vw] md:w-[100%] h-auto"
+          alt="Album Cover"
+          className="w-[88vw] md:w-2xl h-80 object-cover"
           src={image}
         />
 

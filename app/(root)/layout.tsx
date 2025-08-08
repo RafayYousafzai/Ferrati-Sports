@@ -13,7 +13,8 @@ export default function RootLayout({
       <Appbar />
       <div className="min-h-screen">
         {children}
-
+        <br />
+        <br />
         <ProductDetails
           buttonText="Request Quote"
           description={[
