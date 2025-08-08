@@ -5,11 +5,7 @@ import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function CategoryPage({ params }) {
   const categoryId = params.id;
 
   const cookieStore = cookies();

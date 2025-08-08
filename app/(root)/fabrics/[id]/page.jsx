@@ -6,11 +6,7 @@ import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 
 // Main page component
-export default async function FabricPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function FabricPage({ params }) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 

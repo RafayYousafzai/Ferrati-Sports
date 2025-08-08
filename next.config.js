@@ -2,8 +2,26 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      new URL("https://ferratisports.com/**"),
-      new URL("https://heroui.com/**"),
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ferratisports.com",
+      },
+      {
+        protocol: "https",
+        hostname: "heroui.com",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.aceternity.com",
+      },
     ],
   },
 };

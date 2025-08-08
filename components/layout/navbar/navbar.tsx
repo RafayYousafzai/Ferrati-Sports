@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import Badge from "../../Badge";
+import Badge from "../../badge";
 
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";

@@ -5,7 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "@heroui/button";
 
-import Badge from "../Badge";
+import Badge from "../badge";
 import Separator from "../separator";
 import Card from "../custom-ui/card";
 import Header from "../custom-ui/header";
@@ -62,7 +62,7 @@ const CategoriesCarousal = () => {
           scrub: 0.6,
           pin: true,
         },
-      },
+      }
     );
 
     return () => {

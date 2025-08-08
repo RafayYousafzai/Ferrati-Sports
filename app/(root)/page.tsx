@@ -6,7 +6,7 @@ import CategoriesCarousal from "@/components/layout/categories-carousal";
 import BentoGridAboutUs from "@/components/layout/bento-grid-about-us";
 import ServiceCards from "@/components/service-cards";
 import Solutions from "@/components/layout/solutions";
-import VideoShowcase from "@/components/layout/video-showcase.tsx";
+import VideoShowcase from "@/components/layout/video-showcase";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import JoinOurCommunity from "@/components/custom-ui/join-our-community";
