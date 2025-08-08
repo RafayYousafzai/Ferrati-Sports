@@ -8,7 +8,7 @@ import { Button } from "@heroui/button";
 import Badge from "../Badge";
 import Separator from "../Separator";
 import Card from "../custom-ui/card";
-import Header from "../custom-ui/Header";
+import Header from "../custom-ui/header";
 
 const data = [
   {

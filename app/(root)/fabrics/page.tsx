@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 import Card from "@/components/custom-ui/card";
-import Header from "@/components/custom-ui/Header";
+import Header from "@/components/custom-ui/header";
 import { createClient } from "@/lib/supabase/server";
 
 const title = "Choose the Most Suitable Fabrics for  ";

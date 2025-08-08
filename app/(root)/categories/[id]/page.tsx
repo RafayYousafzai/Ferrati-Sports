@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 import Card from "@/components/custom-ui/card";
-import Header from "@/components/custom-ui/Header";
+import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 
