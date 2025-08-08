@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import Separator from "../Separator";
+import Separator from "../separator";
 
 interface HeaderProps {
   badge?: string;
