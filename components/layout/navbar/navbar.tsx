@@ -52,6 +52,8 @@ export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [blogs, setBlogs] = useState<Category[]>([]);
+  const [services, setServices] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
   const supabase = createClient();
@@ -68,6 +70,24 @@ export default function Appbar() {
 
         if (error) throw error;
         setCategories(data || []);
+
+        const { data: blogsData, error: blogsError } = await supabase
+          .from("blogs")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(3); // Only fetch 4 categories
+
+        if (blogsError) throw blogsError;
+        setBlogs(blogsData || []);
+
+        const { data: servicesData, error: servicesError } = await supabase
+          .from("services")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(3); // Only fetch 4 categories
+
+        if (servicesError) throw servicesError;
+        setServices(servicesData || []);
       } catch (error) {
         console.error("Error fetching categories:", error);
         // Fallback to static data if database fetch fails
@@ -105,6 +125,26 @@ export default function Appbar() {
       image: "/assets/cat4.png",
     },
   ];
+  const blogsNavItems: NavItem[] = [
+    ...blogs.map((blogs) => ({
+      title: blogs.title,
+      href: `/blogs/${blogs.id}`,
+    })),
+    {
+      title: "All Blogs",
+      href: `/blogs`,
+    },
+  ];
+  const servicesNavItems: NavItem[] = [
+    ...services.map((services) => ({
+      title: services.title,
+      href: `/services/${services.id}`,
+    })),
+    {
+      title: "All services",
+      href: `/services`,
+    },
+  ];
 
   const navigationConfig: NavigationConfig = {
     leftNav: [
@@ -114,12 +154,11 @@ export default function Appbar() {
     centerDropdowns: [
       {
         title: "Services",
-        items: [
-          { title: "Printing", href: "/printing" },
-          { title: "Sublimation", href: "/sublimation" },
-          { title: "Embroidery", href: "/embroidery" },
-          { title: "Stitching", href: "/stitching" },
-        ],
+        items: loading
+          ? servicesNavItems.length > 0
+            ? servicesNavItems
+            : []
+          : servicesNavItems,
       },
       {
         title: "Products",
@@ -131,16 +170,16 @@ export default function Appbar() {
           : categoryNavItems,
       },
       {
-        title: "About",
-        items: [
-          { title: "About us", href: "/about-us" },
-          { title: "Return Policy", href: "/return-policy" },
-          { title: "Our Process", href: "/our-process" },
-        ],
+        title: "Blogs",
+        items: loading
+          ? blogsNavItems.length > 0
+            ? blogsNavItems
+            : []
+          : blogsNavItems,
       },
     ],
     rightNav: [
-      { title: "Blogs", href: "/blogs" },
+      { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
       { title: "Calculate Price", href: "/calculate-price" },
       { title: "Request Quote", href: "/request-quote" },

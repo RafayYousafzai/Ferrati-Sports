@@ -4,9 +4,9 @@ import {
   IconArrowLeft,
   IconBrandTabler,
   IconSettings,
-  IconUserBolt,
 } from "@tabler/icons-react";
-import { Box, Home, List, UserRound } from "lucide-react";
+import { Box, Home, ListFilterPlusIcon, UserRound } from "lucide-react";
+import { FaServicestack } from "react-icons/fa";
 import Image from "next/image";
 
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
@@ -47,9 +47,17 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
       label: "Blogs",
       href: "/admin/manage-blogs",
       icon: (
-        <List className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <ListFilterPlusIcon className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
+    {
+      label: "Services",
+      href: "/admin/manage-services",
+      icon: (
+        <FaServicestack className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+
     {
       label: "Settings",
       href: "#",

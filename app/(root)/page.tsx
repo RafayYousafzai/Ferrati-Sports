@@ -1,18 +1,14 @@
 import { cookies } from "next/headers";
 
 import CounterSection from "@/components/layout/counter-section";
-import Explore from "@/components/Explore/Explore";
 import CategoriesCarousal from "@/components/layout/categories-carousal";
-import BentoGridAboutUs from "@/components/layout/bento-grid-about-us";
 import ServiceCards from "@/components/service-cards";
 import Solutions from "@/components/layout/solutions";
 import VideoShowcase from "@/components/layout/video-showcase";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import JoinOurCommunity from "@/components/custom-ui/join-our-community";
 import Testimonials from "@/components/layout/testimonials";
 import ProductDetails from "@/components/layout/product-details";
-import NewsletterSection from "@/components/layout/newsletter-section";
 import { createClient } from "@/lib/supabase/server";
 import Card from "@/components/custom-ui/card";
 
