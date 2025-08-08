@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
 } from "motion/react";
+import { Image } from "@heroui/image";
 
 export const AnimatedTooltip = ({
   items,
@@ -47,7 +48,7 @@ export const AnimatedTooltip = ({
 
   return (
     <>
-      {items.map((item, idx) => (
+      {items.map((item) => (
         <div
           key={item.name}
           className="group relative -mr-4"
@@ -85,7 +86,7 @@ export const AnimatedTooltip = ({
               </motion.div>
             )}
           </AnimatePresence>
-          <img
+          <Image
             alt={item.name}
             className="relative !m-0 h-14 w-14 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105"
             height={100}

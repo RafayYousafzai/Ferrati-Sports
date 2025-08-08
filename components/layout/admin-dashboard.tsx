@@ -7,6 +7,7 @@ import {
   IconUserBolt,
 } from "@tabler/icons-react";
 import { Home } from "lucide-react";
+import Image from "next/image";
 
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 
@@ -74,7 +75,7 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
                 label: "Manu Arora",
                 href: "#",
                 icon: (
-                  <img
+                  <Image
                     alt="Avatar"
                     className="h-7 w-7 shrink-0 rounded-full"
                     height={50}

@@ -1,6 +1,8 @@
 "use client";
 import type React from "react";
 
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 export const BentoGrid = ({
@@ -27,7 +29,6 @@ export const BentoGridItem = ({
   title,
   description,
   header,
-  icon,
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -44,7 +45,7 @@ export const BentoGridItem = ({
     >
       {typeof header === "string" ? (
         <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100">
-          <img
+          <Image
             alt={typeof title === "string" ? title : "header image"}
             className="w-full h-full object-cover rounded-xl"
             src={header || "/placeholder.svg"}
@@ -55,7 +56,7 @@ export const BentoGridItem = ({
       )}
       <div className="group-hover/bento:translate-x-2 transition duration-200">
         {/* {typeof icon === "string" ? (
-          <img
+          <Image
             src={icon || "/placeholder.svg"}
             alt={typeof title === "string" ? title : "icon"}
             className="h-8 w-8 object-contain"

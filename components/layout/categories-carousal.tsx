@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "@heroui/button";
 
 import Badge from "../Badge";
-import Separator from "../Separator";
+import Separator from "../separator";
 import Card from "../custom-ui/card";
 import Header from "../custom-ui/header";
 
@@ -133,8 +133,8 @@ const CategoriesCarousal = () => {
       <div className="md:hidden block bg-white">
         <Header
           badge="Ferrati"
-          title="Our "
           highlightedTitle="Categories"
+          title="Our "
           // subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
         />
         {data.map((item, index) => (

@@ -7,7 +7,7 @@ type PropsType = {
   };
 };
 
-const ExploreItem = ({ itemCSS, icon, text }: PropsType) => {
+const ExploreItem = ({ itemCSS, text }: PropsType) => {
   return (
     <div className="relative flex items-start">
       <div

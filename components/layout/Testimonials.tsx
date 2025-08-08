@@ -1,17 +1,14 @@
 "use client";
 
-// import swiper react components
-import { Swiper, SwiperSlide } from "swiper/react";
-
 // import swiper style
 import "swiper/css";
 import "swiper/css/navigation";
 
+// import swiper react components
+import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Navigation } from "swiper/modules";
 import { Quote } from "lucide-react";
-
-// react icons
 
 // data
 const testimonials = [

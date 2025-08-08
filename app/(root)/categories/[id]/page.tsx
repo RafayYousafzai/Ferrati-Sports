@@ -5,23 +5,6 @@ import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 
-interface Category {
-  id: string;
-  title: string;
-  description: string;
-  image_url: string;
-  created_at: string;
-}
-
-interface Product {
-  id: string;
-  category_id: string;
-  title: string;
-  description: string;
-  image_url: string;
-  created_at: string;
-}
-
 export default async function CategoryPage({
   params,
 }: {
@@ -70,21 +53,20 @@ export default async function CategoryPage({
   return (
     <div>
       <ProductDetails
-        buttonText={products.length + " " + "Products Available"}
+        key={category.id}
+        buttonText={`${products.length} Products Available`}
         description={[category.description]}
+        headline={category.title}
         image={category.image_url}
         variant="orange"
-        key={category.id}
-        // sectionTitle={new Date(product.created_at).toLocaleDateString()}
-        headline={category.title}
       />
 
       <Header
         badge="Ferrati"
         highlightedTitle={category.title}
         leftAlign={false}
-        subtitle={"All the products in this category"}
-        title={"Explore more in "}
+        subtitle="All the products in this category"
+        title="Explore more in "
       />
 
       {products.length === 0 ? (
@@ -102,7 +84,7 @@ export default async function CategoryPage({
             description={[product.description]}
             headline={product.title}
             image={product.image_url}
-            reversed={index % 2 === 0} // Alternates between true and false
+            reversed={index % 2 === 0}
             sectionTitle={new Date(product.created_at).toLocaleDateString()}
             variant="white"
           />
