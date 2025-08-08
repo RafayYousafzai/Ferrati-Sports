@@ -3,9 +3,10 @@ import { cookies } from "next/headers";
 import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import { createClient } from "@/lib/supabase/server";
+import Separator from "@/components/separator";
 
-const title = "Choose the Most Suitable Fabrics for  ";
-const highlightedTitle = "Your Brand";
+const title = "Choose the most";
+const highlightedTitle = " Suitable Fabrics";
 const subtitle =
   "At Ascension International, discover the perfect fabric for your brand or clothing collection. Explore the advantages and disadvantages of each material, uncover the story behind its name, and understand its true identity. Learn how the fabric feels against the skin—whether it’s soft, textured, warm, or cool—and what it’s like to wear in real life. Find out which fabric is ideal for creating blank t-shirts, vintage hoodies, stylish jackets, or comfortable tracksuits. This comprehensive fabric guide covers everything from GSM, texture, available colors, care instructions, to its compatibility with different printing techniques—helping you make informed, confident choices for your clothing brand";
 
@@ -24,6 +25,7 @@ export default async function page() {
         subtitle={subtitle}
         title={title}
       />
+      <Separator bg="accent" />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {fabrics &&
           fabrics.map((fabric) => (

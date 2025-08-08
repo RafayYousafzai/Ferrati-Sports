@@ -18,7 +18,12 @@ function extractYouTubeId(url: string): string {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
 
-  return match && match[2].length === 11 ? match[2] : url;
+  const id = match && match[2].length === 11 ? match[2] : url;
+  if (id.length !== 11) {
+    console.warn(`Invalid YouTube ID: ${url}`);
+    return "";
+  }
+  return id;
 }
 
 export default function VideoShowcase({
@@ -26,111 +31,91 @@ export default function VideoShowcase({
   className = "",
 }: VideoShowcaseProps) {
   return (
-    <section className={` px-6 ${className}`}>
+    <section className={`px-6 py-12 ${className}`}>
       <div className="max-w-7xl mx-auto">
+        {/* Fallback UI if no videos */}
+        {videos.length === 0 && (
+          <div className="text-center text-gray-600">
+            No videos available. Please check the provided video data.
+          </div>
+        )}
+
         {/* Video Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {videos.map((video, index) => (
-            <div
-              key={video.id}
-              className="space-y-6 transform transition-all duration-500 hover:-translate-y-2"
-            >
-              {/* Category Label - positioned above left video */}
-              {index === 0 && video.category && (
-                <div className="text-left lg:text-left mb-4 animate-fade-in">
-                  <span className="text-orange-600 font-semibold text-base tracking-wide">
-                    <span className="text-orange-600 font-extrabold">
-                      Creative
-                    </span>{" "}
-                    storytelling and branding.
-                  </span>
-                </div>
-              )}
+          {videos.map((video, index) => {
+            const youtubeId = extractYouTubeId(video.youtubeId);
+            return (
+              <div
+                key={video.id}
+                className="space-y-6 transform transition-all duration-500 hover:-translate-y-2"
+              >
+                {/* Category Label - positioned above left video */}
+                {index === 0 && video.category && (
+                  <div className="flex flex-row items-center gap-2 mb-4 animate-fade-in">
+                    <span className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300">
+                      {video.category}
+                    </span>
+                    <span className="text-orange-600 font-extrabold text-base">
+                      Creative storytelling and branding.
+                    </span>
+                  </div>
+                )}
 
-              {/* YouTube Video Embed */}
-              <div className="relative group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
-                <div className="relative aspect-video bg-black">
-                  <iframe
-                    allowFullScreen
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    className="w-full h-full transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                    src={`https://www.youtube.com/embed/${extractYouTubeId(video.youtubeId)}?rel=0&modestbranding=1&showinfo=0`}
-                    title={video.title}
-                  />
-                  {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* YouTube Video Embed */}
+                <div className="relative group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                  {youtubeId ? (
+                    <div className="relative aspect-video bg-black">
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src={`https://www.youtube.com/embed/${youtubeId}?controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        frameBorder="0"
+                        title={video.title}
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-video bg-gray-800 flex items-center justify-center rounded-xl">
+                      <p className="text-white text-sm">
+                        Invalid YouTube video ID
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Gradient Border Effect */}
+                  <div className="absolute -inset-px bg-gradient-to-r from-orange-600/30 to-red-600/30 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                 </div>
 
-                {/* Gradient Border Effect */}
-                <div className="absolute -inset-px bg-gradient-to-r from-orange-600/30 to-red-600/30 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                {/* Video Title and Description */}
+                <div className="text-left lg:text-left space-y-2 animate-fade-in delay-200">
+                  <h3 className="text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors duration-300">
+                    {video.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed text-base">
+                    {video.description}
+                  </p>
+                </div>
+
+                {/* Category Label - positioned below right video */}
+                {index === 1 && video.category && (
+                  <div className="flex flex-row items-center gap-2 animate-fade-in delay-300">
+                    <span className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300">
+                      {video.category}
+                    </span>
+                    <span className="text-gray-700 font-semibold text-base">
+                      Flawless{" "}
+                      <span className="text-orange-600 font-extrabold">
+                        digital marketing
+                      </span>{" "}
+                      execution.
+                    </span>
+                  </div>
+                )}
               </div>
-
-              {/* Video Title and Description */}
-              <div className="text-left lg:text-left space-y-2 animate-fade-in delay-200">
-                <h3 className="text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors duration-300">
-                  {video.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-base">
-                  {video.description}
-                </p>
-              </div>
-
-              {/* Category Label - positioned below right video */}
-              {index === 1 && video.category && (
-                <div className="text-left lg:text-left animate-fade-in delay-300">
-                  <span className="text-gray-700 font-semibold text-base tracking-wide">
-                    Flawless{" "}
-                    <span className="text-orange-600 font-extrabold">
-                      digital marketing
-                    </span>{" "}
-                    execution.
-                  </span>
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-
-      {/* Tailwind Animation Keyframes */}
-      {/* <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-        }
-        .animate-slide-up {
-          animation: slideUp 0.8s ease-out forwards;
-        }
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-      `}</style> */}
     </section>
   );
 }

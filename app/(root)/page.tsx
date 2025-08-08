@@ -127,6 +127,10 @@ export default async function Home() {
     .select("*")
     .limit(3);
 
+  const { data: blogs } = await supabase.from("blogs").select("*").limit(3);
+
+  const { data: categories } = await supabase.from("categories").select("*");
+
   return (
     <>
       <Hero />
@@ -138,17 +142,18 @@ export default async function Home() {
         title="Why "
       />
       <ServiceCards cards={WhyChooseUsCards as any} />;
-      <Header
-        highlightedTitle="Business"
-        subtitle="We believe in doing things differently. While traditional manufacturers stick to outdated processes, we push the boundaries of what’s possible. We offer customized solutions, quick turnarounds, and unmatched flexibility, ensuring that your designs are brought to life exactly the way you envision."
-        title="The New Standard in "
+      <ProductDetails
+        buttonText="Request Quote"
+        description={[
+          "Looking for a team that brings your digital ideas to life? From strategy to execution, we deliver tailored solutions that meet your business needs with precision and creativity.",
+        ]}
+        headline="Request Quote to Build Your Digital Future"
+        href="/request-quote"
+        image="/assets/workers.png"
+        reversed={true}
+        sectionTitle="WORK WITH US"
+        variant="white"
       />
-      <div className="hidden md:block">
-        <Explore />
-      </div>
-      <div className="block md:hidden">
-        <BentoGridAboutUs />
-      </div>
       <Solutions cards={materials as any} />
       <Header
         badge="OUR APPROACH"
@@ -157,23 +162,14 @@ export default async function Home() {
         title="Sell without "
       />
       <VideoShowcase videos={sampleVideos} />
-      <JoinOurCommunity />
-      <CategoriesCarousal />
-      <ProductDetails
-        buttonText="View positions"
-        description={[
-          "We believe in fostering talent and creating opportunities for growth. Our team is passionate about digital innovation and committed to delivering exceptional results for our clients.",
-        ]}
-        headline="Build your career with innovative leaders."
-        image={"https://heroui.com/images/album-cover.png"}
-        sectionTitle="OPPORTUNITIES"
-        variant="white"
-      />
+      <br />
+      <br />
+      <CategoriesCarousal categories={categories} />
       <Header
         badge="Ferrati"
-        highlightedTitle="fabrics"
+        highlightedTitle="Fabrics"
         subtitle="Discover our premium materials tailored for your needs."
-        title="Explore more "
+        title="Explore our "
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {relatedFabrics?.map((item) => (
@@ -194,8 +190,32 @@ export default async function Home() {
           </div>
         ))}
       </div>
+      <Header
+        badge="Ferrati"
+        highlightedTitle="Blogs"
+        subtitle="Discover our premium materials tailored for your needs."
+        title="Explore our "
+      />
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+        {blogs?.map((item) => (
+          <div key={item.id}>
+            <Card
+              description={undefined}
+              href={`/blogs/${item.id}`}
+              image={item.image_url}
+              title={item.title}
+            >
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.description,
+                }}
+                className="text-sm text-default-500 line-clamp-3"
+              />
+            </Card>
+          </div>
+        ))}
+      </div>
       <Testimonials />
-      <NewsletterSection description={""} headline={""} />
     </>
   );
 }

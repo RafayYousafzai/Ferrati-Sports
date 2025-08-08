@@ -139,15 +139,21 @@ export default function Appbar() {
     ],
     mobileNav: [
       "Home",
-      "About",
       "Fabrics",
-      "Our Services",
+      "Printing",
       "Our Products",
-      "More",
+      "Our Services",
+      "Sublimation",
+      "Embroidery",
+      "Stitching",
+      "About",
+      "About us",
+      "Return Policy",
+      "Our Process",
       "Blogs",
       "Contact Us",
-      "Request Quote",
       "Calculate Price",
+      "Request Quote",
     ],
   };
 
@@ -167,7 +173,7 @@ export default function Appbar() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
+      <NavbarContent className="hidden md:flex gap-4" justify="end">
         {navigationConfig.leftNav.map((item) => (
           <NavbarItem key={item.href}>
             <Link className="text-white hover:text-gray-300" href={item.href}>
@@ -177,9 +183,11 @@ export default function Appbar() {
         ))}
       </NavbarContent>
 
-      <MenuContent navigationConfig={navigationConfig} />
+      <NavbarContent className="hidden md:flex gap-4" justify="center">
+        <MenuContent navigationConfig={navigationConfig} />
+      </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4 -ml-4" justify="end">
+      <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
         {navigationConfig.rightNav.map((item) => (
           <NavbarItem key={item.href}>
             <Link
@@ -206,7 +214,7 @@ export default function Appbar() {
           return (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                className="w-full text-white hover:text-primary py-2"
+                className="w-full text-white hover:text-slate-200 py-2"
                 href={navItem?.href || "#"}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -219,7 +227,7 @@ export default function Appbar() {
 
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="sm:hidden text-white"
+        className="md:hidden text-white"
       />
     </Navbar>
   );

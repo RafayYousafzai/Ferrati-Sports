@@ -2,6 +2,7 @@
 
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
+import Link from "next/link";
 
 interface CareersSectionProps {
   sectionTitle?: string;
@@ -12,6 +13,7 @@ interface CareersSectionProps {
   variant?: "orange" | "white";
   className?: string;
   reversed?: boolean;
+  href?: string;
 }
 
 export default function ProductDetails({
@@ -23,6 +25,7 @@ export default function ProductDetails({
   variant = "orange",
   className = "",
   reversed = false,
+  href = "#",
 }: CareersSectionProps) {
   const isOrange = variant === "orange";
 
@@ -76,17 +79,19 @@ export default function ProductDetails({
             </div>
 
             <div className="pt-4">
-              <Button
-                className={`px-8 py-3 text-base font-medium ${
-                  isOrange
-                    ? "text-orange-500 bg-white"
-                    : "bg-orange-500 text-white"
-                }`}
-                size="lg"
-                variant="solid"
-              >
-                {buttonText}
-              </Button>
+              <Link href={href}>
+                <Button
+                  className={`px-8 py-3 text-base font-medium ${
+                    isOrange
+                      ? "text-orange-500 bg-white"
+                      : "bg-orange-500 text-white"
+                  }`}
+                  size="lg"
+                  variant="solid"
+                >
+                  {buttonText}
+                </Button>
+              </Link>
             </div>
           </div>
 

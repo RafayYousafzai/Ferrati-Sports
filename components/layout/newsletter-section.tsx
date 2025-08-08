@@ -150,7 +150,7 @@ export default function NewsletterSection({
                   <Input
                     fullWidth
                     required
-                    className={`h-14 text-lg px-6 `}
+                    className={`h-14 text-lg   `}
                     placeholder={placeholder}
                     size="lg"
                     type="email"

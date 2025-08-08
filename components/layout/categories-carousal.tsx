@@ -10,38 +10,7 @@ import Separator from "../separator";
 import Card from "../custom-ui/card";
 import Header from "../custom-ui/header";
 
-const data = [
-  {
-    imgSrc: "https://ferratisports.com/items/attimgs/0g9o6x2i7k.jpg",
-
-    title: "Active Wear",
-    description:
-      "Our expert activewear manufacturing blends innovation and performance. Using stretchable, quick-dry fabrics and seamless construction, we help brands offer functional, stylish fitness apparel that stands up to the toughest demands.",
-  },
-  {
-    imgSrc: "https://ferratisports.com/items/attimgs/5f2g0f2r2h.jpg",
-
-    title: "Casual Wear",
-    description:
-      "We produce high-quality casual wear that combines comfort and style with unmatched consistency. From tees to hoodies, our efficient manufacturing process supports your brand’s growth with on-time delivery and superior fabric standards trusted worldwide.",
-  },
-  {
-    imgSrc: "https://ferratisports.com/items/attimgs/8o1k4v0m0x.jpg",
-
-    title: "Motorbike Gear",
-    description:
-      "Safety meets quality in our motorbike gear manufacturing. We deliver certified, durable jackets, gloves, and Jeans with precision engineering—trusted by brands and wholesalers who prioritize rider protection and premium craftsmanship.",
-  },
-  {
-    imgSrc: "https://ferratisports.com/items/attimgs/8a0c8o3a7f.jpg",
-
-    title: "Sports Wear",
-    description:
-      "Trusted by global brands, we deliver premium sportswear manufacturing with advanced fabrics and precision craftsmanship. Our scalable production ensures consistent quality in moisture-wicking, durable sports apparel—perfect for retailers.",
-  },
-];
-
-const CategoriesCarousal = () => {
+const CategoriesCarousal = ({ categories }: { categories: any }) => {
   const scrollableSectionRef = useRef<HTMLDivElement>(null);
   const scrollTriggerRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +47,7 @@ const CategoriesCarousal = () => {
             ref={scrollableSectionRef}
             className="h-screen w-[300vw] flex relative"
           >
-            {data.map((item, index) => (
+            {categories.map((item: any, index: any) => (
               <div
                 key={index}
                 className="w-screen h-screen flex flex-col justify-center items-center relative"
@@ -120,7 +89,7 @@ const CategoriesCarousal = () => {
                         alt={item.title}
                         className="object-cover"
                         quality={100}
-                        src={item.imgSrc}
+                        src={item.image_url}
                       />
                     </div>
                   </div>
@@ -131,22 +100,24 @@ const CategoriesCarousal = () => {
         </div>
       </div>
       <div className="md:hidden block bg-white">
-        <Header
-          badge="Ferrati"
-          highlightedTitle="Categories"
-          title="Our "
-          // subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-        />
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            description={item.description}
-            image={item.imgSrc}
-            title={item.title}
-          >
-            <></>
-          </Card>
-        ))}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+          <Header
+            badge="Ferrati"
+            highlightedTitle="Categories"
+            title="Our "
+            subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
+          />
+          {categories.map((item: any, index: any) => (
+            <Card
+              key={index}
+              description={item.description}
+              image={item.image_url}
+              title={item.title}
+            >
+              <></>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

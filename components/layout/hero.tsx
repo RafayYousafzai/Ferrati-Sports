@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/button";
 
 import Separator from "../separator";
+import Image from "next/image";
 
 const defaultDescription =
   "Unleash your potential with Ferrati Impex. Gear up with our premium sportswear, designed to enhance your performance and help you achieve greatness.";
@@ -14,22 +15,19 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      image:
-        "https://healingconsultingturkey.com/wp-content/uploads/2021/04/sports-ortho-1.jpg",
+      image: "/assets/cat1.png",
       badge: "Coffee",
-      title: "Want to Start Your Custom Order",
+      title: "Want to Start Your Custom Order?",
       description: defaultDescription,
     },
     {
-      image:
-        "https://www.uchealth.com/content/dam/uchealth/images/media-room/articles/olympians-vs-average-people-RUNNING.png",
+      image: "/assets/cat2.png",
       badge: "Artisan",
       title: "Are you still struggling in 2025?",
       description: defaultDescription,
     },
     {
-      image:
-        "https://goharsports.com.pk/wp-content/uploads/2019/08/sports-wears-banner.jpg",
+      image: "/assets/cat4.png",
       badge: "Fresh",
       title: "Want to scale in 2025?",
       description: defaultDescription,
@@ -101,16 +99,22 @@ const Hero = () => {
         {" "}
         {/* Added bg-black here */}
         <AnimatePresence mode="wait">
-          <motion.img
-            key={currentSlideData.image} // Key on the image URL itself
-            alt={`Slide ${currentSlide + 1}`}
-            animate={{ opacity: 1 }}
-            className="w-full h-full object-cover absolute top-0 left-0" // Ensure it covers the black background
-            exit={{ opacity: 0 }}
+          <motion.div
+            key={currentSlideData.image}
             initial={{ opacity: 0 }}
-            src={currentSlideData.image || "/placeholder.svg"}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-          />
+            className="w-full h-full absolute top-0 left-0"
+          >
+            <Image
+              src={currentSlideData.image || "/placeholder.svg"}
+              alt={`Slide ${currentSlide + 1}`}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
         </AnimatePresence>
       </div>
       {/* Navigation arrows */}
