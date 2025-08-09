@@ -1,166 +1,84 @@
 import { cookies } from "next/headers";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
 import CounterSection from "@/components/layout/counter-section";
-import CategoriesCarousal from "@/components/layout/categories-carousal";
-import ServiceCards from "@/components/service-cards";
-import Solutions from "@/components/layout/solutions";
-import VideoShowcase from "@/components/layout/video-showcase";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import Testimonials from "@/components/layout/testimonials";
-import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 import Card from "@/components/custom-ui/card";
+import {
+  getCachedFabrics,
+  getCachedBlogs,
+  getCachedCategories,
+} from "@/lib/supabase/cached-queries";
 
-// Example usage with sample data
-const WhyChooseUsCards = [
+// Lazy load components that are below the fold
+const CategoriesCarousal = dynamic(
+  () => import("@/components/layout/categories-carousal"),
   {
-    id: "1",
-    title: "Customized Solutions",
-    description:
-      "Every piece is crafted specifically to match your brand's unique style, fabric choice, and fit.",
-    icon: "building",
-  },
-  {
-    id: "2",
-    title: "Fast Turnaround Time",
-    description:
-      "From samples in 7-10 days to bulk orders in 3-4 weeks, we meet deadlines so you can meet your customers' demands.",
-    icon: "store",
-  },
-  {
-    id: "3",
-    title: "Comprehensive Support",
-    description:
-      "Our in-house design team, pattern makers, and packaging experts are here to ensure your brand vision comes to life.",
-    icon: "settings",
-  },
-  {
-    id: "4",
-    title: "Innovative Design",
-    description:
-      "We push the boundaries of traditional manufacturing with cutting-edge techniques and sustainable practices.",
-    icon: "lightbulb",
-  },
-];
+    loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" />,
+  }
+);
 
-const materials = [
-  {
-    id: "1",
-    title: "Comfort & Feel",
-    icon: "comfort",
-    href: "/fabrics/comfort",
-    services: [
-      { name: "Soft and breathable fabrics like Cotton and French Terry" },
-      { name: "Ideal for t-shirts, hoodies, and casual wear" },
-      { name: "Warm and cozy options like Cotton Fleece" },
-      { name: "Gentle against the skin" },
-    ],
-  },
-  {
-    id: "2",
-    title: "Durability & Performance",
-    icon: "durability",
-    href: "/fabrics/durability",
-    services: [
-      { name: "Durable fabrics like Polyester and Softshell" },
-      { name: "Perfect for activewear and jackets" },
-      { name: "Moisture-wicking and water-resistant options" },
-      { name: "Lightweight and long-lasting" },
-    ],
-  },
-  {
-    id: "3",
-    title: "Printability & Customization",
-    icon: "printability",
-    href: "/fabrics/printability",
-    services: [
-      { name: "Fabrics like Cotton Blend and Scuba for printing" },
-      { name: "Supports screen printing, sublimation, and embroidery" },
-      { name: "Great for bold designs and logos" },
-      { name: "Versatile for custom apparel" },
-    ],
-  },
-  {
-    id: "4",
-    title: "Luxury & Style",
-    icon: "luxury",
-    href: "/fabrics/luxury",
-    services: [
-      { name: "Premium fabrics like Leather and Polar Fleece" },
-      { name: "Ideal for stylish jackets and accessories" },
-      { name: "Rich textures and unique aesthetics" },
-      { name: "Elevates brand appeal" },
-    ],
-  },
-];
+const ServiceCards = dynamic(() => import("@/components/service-cards"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
+});
 
-const sampleVideos = [
-  {
-    id: "creative-storytelling",
-    title: "Creative Marketing Campaign",
-    description:
-      "An innovative approach to digital storytelling that captures audience attention and drives engagement through compelling visual narratives.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
-    category: "Creative",
-  },
-  {
-    id: "digital-execution",
-    title: "Marketing Analytics Dashboard",
-    description:
-      "A comprehensive look at how data-driven insights power modern marketing strategies and deliver measurable results.",
-    youtubeId: "jNQXAC9IVRw", // Replace with actual YouTube video ID
-    category: "Technical",
-  },
-];
+const Solutions = dynamic(() => import("@/components/layout/solutions"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
+});
 
-export default async function Home() {
-  const cookieStore: any = await cookies();
+const VideoShowcase = dynamic(
+  () => import("@/components/layout/video-showcase"),
+  {
+    loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
+  }
+);
+
+const ProductDetails = dynamic(
+  () => import("@/components/layout/product-details"),
+  {
+    loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
+  }
+);
+
+const Testimonials = dynamic(() => import("@/components/layout/testimonials"), {
+  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
+});
+
+// Move static data to separate file or constants
+import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
+
+// Loading components for Suspense boundaries
+function FabricsLoading() {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="h-64 animate-pulse bg-gray-200 rounded" />
+      ))}
+    </div>
+  );
+}
+
+function BlogsLoading() {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="h-64 animate-pulse bg-gray-200 rounded" />
+      ))}
+    </div>
+  );
+}
+
+// Separate components for data fetching
+async function FabricsSection() {
+  const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-
-  const { data: relatedFabrics } = await supabase
-    .from("fabrics")
-    .select("*")
-    .limit(3);
-
-  const { data: blogs } = await supabase.from("blogs").select("*").limit(3);
-
-  const { data: categories } = await supabase.from("categories").select("*");
+  const relatedFabrics = await getCachedFabrics();
 
   return (
     <>
-      <Hero />
-      <CounterSection />
-      <Header
-        badge="Ferrati"
-        highlightedTitle="Choose Us"
-        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
-        title="Why "
-      />
-      <ServiceCards cards={WhyChooseUsCards as any} />;
-      <ProductDetails
-        buttonText="Request Quote"
-        description={[
-          "Looking for a team that brings your digital ideas to life? From strategy to execution, we deliver tailored solutions that meet your business needs with precision and creativity.",
-        ]}
-        headline="Request Quote to Build Your Digital Future"
-        href="/request-quote"
-        image="/assets/workers.png"
-        reversed={true}
-        sectionTitle="WORK WITH US"
-        variant="white"
-      />
-      <Solutions cards={materials as any} />
-      <Header
-        badge="OUR APPROACH"
-        highlightedTitle="Selling"
-        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-        title="Sell without "
-      />
-      <VideoShowcase videos={sampleVideos} />
-      <br />
-      <br />
-      <CategoriesCarousal categories={categories} />
       <Header
         badge="Ferrati"
         highlightedTitle="Fabrics"
@@ -186,6 +104,17 @@ export default async function Home() {
           </div>
         ))}
       </div>
+    </>
+  );
+}
+
+async function BlogsSection() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+  const blogs = await getCachedBlogs();
+
+  return (
+    <>
       <Header
         badge="Ferrati"
         highlightedTitle="Blogs"
@@ -211,7 +140,97 @@ export default async function Home() {
           </div>
         ))}
       </div>
-      <Testimonials />
+    </>
+  );
+}
+
+async function CategoriesSection() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+  const categories = await getCachedCategories();
+
+  return <CategoriesCarousal categories={categories} />;
+}
+
+export default async function Home() {
+  return (
+    <>
+      {/* Above the fold content - loads immediately */}
+      <Hero />
+      <CounterSection />
+
+      <Header
+        badge="Ferrati"
+        highlightedTitle="Choose Us"
+        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
+        title="Why "
+      />
+
+      {/* Below the fold content - lazy loaded */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <ServiceCards cards={WhyChooseUsCards as any} />
+      </Suspense>
+
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <ProductDetails
+          buttonText="Request Quote"
+          description={[
+            "Looking for a team that brings your digital ideas to life? From strategy to execution, we deliver tailored solutions that meet your business needs with precision and creativity.",
+          ]}
+          headline="Request Quote to Build Your Digital Future"
+          href="/request-quote"
+          image="/assets/workers.png"
+          reversed={true}
+          sectionTitle="WORK WITH US"
+          variant="white"
+        />
+      </Suspense>
+
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <Solutions cards={materials as any} />
+      </Suspense>
+
+      <Header
+        badge="OUR APPROACH"
+        highlightedTitle="Selling"
+        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
+        title="Sell without "
+      />
+
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <VideoShowcase videos={sampleVideos} />
+      </Suspense>
+
+      <br />
+      <br />
+
+      <Suspense
+        fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
+      >
+        <CategoriesSection />
+      </Suspense>
+
+      <Suspense fallback={<FabricsLoading />}>
+        <FabricsSection />
+      </Suspense>
+
+      <Suspense fallback={<BlogsLoading />}>
+        <BlogsSection />
+      </Suspense>
+
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <Testimonials />
+      </Suspense>
     </>
   );
 }
