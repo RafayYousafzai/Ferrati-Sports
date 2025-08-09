@@ -1,5 +1,9 @@
-import React from "react";
+import { NavigationGrid } from "@/components/dashboard/navigation-grid";
 
-export default function page() {
-  return <div>page</div>;
+export default function Page() {
+  return (
+    <div>
+      <NavigationGrid stats={null} loading={false} />
+    </div>
+  );
 }
