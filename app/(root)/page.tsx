@@ -143,6 +143,10 @@ async function BlogsSection() {
 async function CategoriesSection() {
   const categories = await getCachedCategories();
 
+  if (!categories) {
+    return null;
+  }
+
   return <CategoriesCarousal categories={categories} />;
 }
 

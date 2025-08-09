@@ -113,9 +113,9 @@ export default function RequestQuote() {
       <div className="container mx-auto px-4 py-8">
         <Header
           badge="OUR APPROACH"
-          highlightedTitle="Selling"
-          subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-          title="Sell without "
+          highlightedTitle="Quote"
+          title="Request "
+          subtitle="Tell us your needs and we'll prepare a tailored offer just for you"
         />
 
         <Spacer y={8} />

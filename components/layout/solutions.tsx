@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import Header from "../custom-ui/header";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { IconComponents } from "@tabler/icons-react";
 
 interface ServiceItem {
   name: string;
@@ -58,10 +59,10 @@ export default function Solutions({ cards }: SolutionsProps) {
                     <div className="relative inline-block">
                       <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm" />
                       <div className="relative bg-white p-2">
-                        {/* <IconComponent
+                        <IconComponents
                           className="w-8 h-8 text-gray-700"
                           strokeWidth={1.5}
-                        /> */}
+                        />
                       </div>
                     </div>
                   </div>

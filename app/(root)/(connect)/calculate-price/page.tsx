@@ -23,9 +23,9 @@ export default function PriceCalculator() {
     <div className="container mx-auto px-4 py-8 gap-8">
       <Header
         badge="OUR APPROACH"
-        highlightedTitle="Selling"
-        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-        title="Sell without "
+        highlightedTitle="Price"
+        title="Calculate "
+        subtitle="Get an instant estimate for your project using our simple calculator"
       />
 
       <div className="space-y-6">
