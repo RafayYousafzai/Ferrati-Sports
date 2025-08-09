@@ -56,14 +56,27 @@ type Product = {
   title: string;
 };
 
-type ComposedQuote = QuoteRequest & {
-  items: Array<
-    QuoteItem & {
-      product?: Product | null;
-      line_total: number;
-    }
-  >;
+type CartItem = {
+  id: string;
+  name: string;
+  qty: number;
+  price: number;
+};
+
+type ComposedQuote = {
+  id: string;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
   total_price: number;
+  status: string | null;
+  created_at: string | null;
+  items: (QuoteItem & {
+    product?: Product | null;
+    line_total: number;
+  })[];
+  cart_items?: any[];
+  message?: any;
 };
 
 const supabase = createClient();
