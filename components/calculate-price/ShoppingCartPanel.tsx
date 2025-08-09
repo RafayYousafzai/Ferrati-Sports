@@ -34,8 +34,16 @@ interface ShoppingCartPanelProps {
 export function ShoppingCartPanel() {
   const router = useRouter();
 
-  const { cart, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } =
-    usePriceCalculation();
+  const {
+    cart,
+    updateQuantity,
+    removeFromCart,
+    getTotalPrice,
+    getTotalItems,
+    setView,
+  } = usePriceCalculation();
+
+  const onBackToSelection = () => setView("selection");
 
   return (
     <Card className="w-full p-4 shadow-none border-none">
@@ -121,7 +129,7 @@ export function ShoppingCartPanel() {
 
                             updateQuantity(
                               item.product.id,
-                              Math.max(50, newQty)
+                              Math.max(50, newQty),
                             );
                           }}
                         />
@@ -181,7 +189,12 @@ export function ShoppingCartPanel() {
               </Button>
 
               <br />
-              <Button className="w-full" size="lg" variant="flat">
+              <Button
+                className="w-full"
+                size="lg"
+                variant="flat"
+                onPress={onBackToSelection}
+              >
                 Back to Selection
               </Button>
             </div>

@@ -1,3 +1,4 @@
+"use client";
 // src/context/PriceCalculationContext.tsx
 import React, {
   createContext,
@@ -66,8 +67,6 @@ export const PriceCalculationProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  console.log("PriceCalculationProvider");
-
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -99,7 +98,7 @@ export const PriceCalculationProvider = ({
         `
         *,
         categories:category_id (*)
-      `
+      `,
       )
       .order("title");
 
@@ -134,7 +133,7 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -147,13 +146,13 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -170,7 +169,7 @@ export const PriceCalculationProvider = ({
     if (!product) return;
 
     const existingItem = cart.find(
-      (item) => item.product.id === selectedProduct
+      (item) => item.product.id === selectedProduct,
     );
 
     if (existingItem) {
@@ -178,8 +177,8 @@ export const PriceCalculationProvider = ({
         cart.map((item) =>
           item.product.id === selectedProduct
             ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
+            : item,
+        ),
       );
     } else {
       setCart([...cart, { product, quantity }]);
@@ -201,8 +200,8 @@ export const PriceCalculationProvider = ({
       cart.map((item) =>
         item.product.id === productId
           ? { ...item, quantity: newQuantity }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
