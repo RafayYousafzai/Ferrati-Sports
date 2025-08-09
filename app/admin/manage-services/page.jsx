@@ -9,7 +9,7 @@ const ServiceManagerUI = dynamic(
   () => import("./components/ServicesManagerUI"),
   {
     ssr: false,
-  }
+  },
 );
 
 export default function AdminPage() {

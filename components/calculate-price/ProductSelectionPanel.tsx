@@ -1,8 +1,8 @@
 "use client";
 
-import { Plus, ShoppingCart, Package, Minus, Trash2, Box } from "lucide-react";
+import { Plus, ShoppingCart, Package, Minus, Trash2 } from "lucide-react";
 import { Button } from "@heroui/button";
-import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
 import { Image } from "@heroui/image";
@@ -16,56 +16,29 @@ import {
   TableRow,
 } from "@heroui/table";
 
-import { Category, Product } from "@/types/calculate-price";
-import { CartItem } from "@/types/calculate-price";
+import { usePriceCalculation } from "@/context/PriceCalculationContext";
 
-interface ProductSelectionPanelProps {
-  categories: Category[];
-  products: Product[];
-  filteredProducts: Product[];
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
-  selectedProduct: string;
-  setSelectedProduct: (product: string) => void;
-  quantity: number;
-  handleQuantityChange: (value: string) => void;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  addToCart: () => void;
-  cart: CartItem[];
-  updateQuantity: (productId: string, newQuantity: number) => void;
-  removeFromCart: (productId: string) => void;
-  onMakeNewQuote: () => void;
-}
+export function ProductSelectionPanel({ fn = true, showModal = false }) {
+  const {
+    categories,
+    filteredProducts,
+    selectedCategory,
+    setSelectedCategory,
+    selectedProduct,
+    setSelectedProduct,
+    quantity,
+    handleQuantityChange,
+    addToCart,
+    cart,
+    updateQuantity,
+    removeFromCart,
+    setView,
+  } = usePriceCalculation();
 
-export function ProductSelectionPanel({
-  categories,
-  products,
-  filteredProducts,
-  selectedCategory,
-  setSelectedCategory,
-  selectedProduct,
-  setSelectedProduct,
-  quantity,
-  handleQuantityChange,
-  searchTerm,
-  setSearchTerm,
-  addToCart,
-  cart,
-  updateQuantity,
-  removeFromCart,
-  onMakeNewQuote,
-}: ProductSelectionPanelProps) {
+  const onMakeNewQuote = () => setView("cart");
+
   return (
     <Card className="w-full p-4 shadow-none border-none">
-      <CardHeader className="pb-3">
-        <div className="flex items-center gap-3">
-          <Box className="h-6 w-6 text-orange-600" />
-          <div>
-            <h2 className="text-xl font-bold">Calculate Price</h2>
-          </div>
-        </div>
-      </CardHeader>
       <CardBody className="space-y-6 pt-6">
         <div className="flex flex-row gap-1 flex-wrap">
           {/* Category Selection */}
@@ -209,11 +182,11 @@ export function ProductSelectionPanel({
               Quantity
             </label>
             <Input
-              color={quantity < 50 ? "danger" : "default"}
+              color={quantity < 0 ? "danger" : "default"}
               description={`Current quantity: ${quantity} items`}
-              errorMessage={quantity < 50 ? "Minimum quantity is 50" : ""}
+              errorMessage={quantity < 0 ? "Minimum quantity is 0" : ""}
               id="quantity-input"
-              min={50}
+              min={0}
               placeholder="Enter quantity"
               radius="full"
               size="lg"
@@ -228,8 +201,7 @@ export function ProductSelectionPanel({
 
         {cart.length > 0 && (
           <>
-            <h3 className="text-lg font-bold">Selected Products</h3>
-            <Table removeWrapper aria-label="Cart items">
+            <Table removeWrapper aria-label="Cart items" radius="lg">
               <TableHeader>
                 <TableColumn>PRODUCT</TableColumn>
                 <TableColumn align="center">QUANTITY</TableColumn>
@@ -259,7 +231,7 @@ export function ProductSelectionPanel({
                           </div>
 
                           <Chip className="mt-1" color="secondary" size="sm">
-                            {item.product.categories.title}
+                            {item.product.categories?.title}
                           </Chip>
                         </div>
                       </div>
@@ -277,18 +249,19 @@ export function ProductSelectionPanel({
                           <Minus className="h-4 w-4" />
                         </Button>
                         <Input
+                          className="w-20"
+                          min={0}
+                          size="sm"
                           type="number"
                           value={item.quantity.toString()}
                           onChange={(e) => {
-                            const newQty = parseInt(e.target.value) || 50;
+                            const newQty = parseInt(e.target.value);
+
                             updateQuantity(
                               item.product.id,
-                              Math.max(50, newQty)
+                              Math.max(0, newQty)
                             );
                           }}
-                          className="w-20"
-                          size="sm"
-                          min={50}
                         />
                         <Button
                           isIconOnly
@@ -319,27 +292,32 @@ export function ProductSelectionPanel({
             </Table>
           </>
         )}
-
         <Button
           className="w-full"
           color="primary"
-          isDisabled={!selectedProduct || quantity < 50}
+          isDisabled={!selectedProduct || quantity < 0}
+          radius="full"
           size="lg"
           startContent={<Plus className="h-5 w-5" />}
           onClick={addToCart}
         >
           Add {categories.find((cat) => cat.id === selectedCategory)?.title}
         </Button>
-        <Button
-          className="w-full"
-          color="success"
-          isDisabled={cart.length === 0}
-          size="lg"
-          startContent={<ShoppingCart className="h-5 w-5" />}
-          onClick={onMakeNewQuote}
-        >
-          Make New Quote
-        </Button>
+        {fn && (
+          <>
+            <Button
+              className="w-full"
+              color="success"
+              isDisabled={cart.length === 0}
+              radius="full"
+              size="lg"
+              startContent={<ShoppingCart className="h-5 w-5" />}
+              onClick={onMakeNewQuote}
+            >
+              Make New Quote
+            </Button>
+          </>
+        )}
       </CardBody>
     </Card>
   );

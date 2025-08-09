@@ -20,16 +20,16 @@ export default function ContactPage() {
       <div className="absolute inset-0 opacity-10">
         <svg
           className="w-full h-full"
-          viewBox="0 0 1200 800"
           fill="none"
+          viewBox="0 0 1200 800"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
             <pattern
-              id="grid"
-              width="40"
               height="40"
+              id="grid"
               patternUnits="userSpaceOnUse"
+              width="40"
             >
               <path
                 d="M 40 0 L 0 0 0 40"
@@ -39,20 +39,20 @@ export default function ContactPage() {
               />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          <rect fill="url(#grid)" height="100%" width="100%" />
           <path
             d="M0 400 Q300 200 600 400 T1200 400"
-            stroke="white"
-            strokeWidth="2"
             fill="none"
             opacity="0.3"
+            stroke="white"
+            strokeWidth="2"
           />
           <path
             d="M0 600 Q400 300 800 600 T1200 600"
-            stroke="white"
-            strokeWidth="1"
             fill="none"
             opacity="0.2"
+            stroke="white"
+            strokeWidth="1"
           />
         </svg>
       </div>
@@ -74,15 +74,15 @@ export default function ContactPage() {
         <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
-              type="email"
-              placeholder="Email"
-              variant="flat"
-              size="lg"
               classNames={{
                 input: "bg-gray-100 text-gray-900",
                 inputWrapper:
                   "bg-gray-100 border-0 shadow-none hover:bg-gray-200 group-data-[focus=true]:bg-gray-100",
               }}
+              placeholder="Email"
+              size="lg"
+              type="email"
+              variant="flat"
             />
             <div className="flex">
               {/* <div className="flex items-center bg-gray-100 px-3 rounded-l-xl border-r h-14">
@@ -90,58 +90,61 @@ export default function ContactPage() {
                 <span className="text-gray-900 text-sm">+92</span>
               </div> */}
               <Input
-                type="tel"
-                placeholder=""
-                defaultValue="+92"
-                variant="flat"
-                size="lg"
                 classNames={{
                   input: "bg-gray-100 text-gray-900",
                   inputWrapper:
                     "bg-gray-100 border-0 shadow-none hover:bg-gray-200 group-data-[focus=true]:bg-gray-100",
                 }}
+                defaultValue="+92"
+                placeholder=""
+                size="lg"
+                type="tel"
+                variant="flat"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
-              type="text"
-              placeholder="First Name"
-              variant="flat"
-              size="lg"
               classNames={{
                 input: "bg-gray-100 text-gray-900",
                 inputWrapper:
                   "bg-gray-100 border-0 shadow-none hover:bg-gray-200 group-data-[focus=true]:bg-gray-100",
               }}
+              placeholder="First Name"
+              size="lg"
+              type="text"
+              variant="flat"
             />
             <Input
-              type="text"
-              placeholder="Last Name"
-              variant="flat"
-              size="lg"
               classNames={{
                 input: "bg-gray-100 text-gray-900",
                 inputWrapper:
                   "bg-gray-100 border-0 shadow-none hover:bg-gray-200 group-data-[focus=true]:bg-gray-100",
               }}
+              placeholder="Last Name"
+              size="lg"
+              type="text"
+              variant="flat"
             />
           </div>
 
           <Select
-            placeholder="I'm interested in..."
-            variant="flat"
-            size="lg"
             classNames={{
               trigger:
                 "bg-gray-100 border-0 shadow-none hover:bg-gray-200 data-[open=true]:bg-gray-100",
               value: "text-gray-900",
               popoverContent: "bg-white",
             }}
+            placeholder="I'm interested in..."
+            size="lg"
+            variant="flat"
           >
             {interestOptions.map((option) => (
-              <SelectItem key={option.key} value={option.key}>
+              <SelectItem
+                key={option.key}
+                // value={option.key}
+              >
                 {option.label}
               </SelectItem>
             ))}
@@ -149,9 +152,9 @@ export default function ContactPage() {
 
           <div className="pt-6">
             <Button
-              type="submit"
-              size="lg"
               className="w-full md:w-auto bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-base font-semibold"
+              size="lg"
+              type="submit"
             >
               Send Message
             </Button>

@@ -15,7 +15,11 @@ import {
 import { Chip } from "@heroui/chip";
 import { Divider } from "@heroui/divider";
 import { Image } from "@heroui/image";
+import Link from "next/link";
+
 import { CartItem } from "@/types/calculate-price";
+import { usePriceCalculation } from "@/context/PriceCalculationContext";
+import { useRouter } from "next/navigation";
 
 interface ShoppingCartPanelProps {
   cart: CartItem[];
@@ -27,23 +31,21 @@ interface ShoppingCartPanelProps {
   onBackToSelection: () => void;
 }
 
-export function ShoppingCartPanel({
-  cart,
-  getTotalItems,
-  clearCart,
-  updateQuantity,
-  removeFromCart,
-  getTotalPrice,
-  onBackToSelection,
-}: ShoppingCartPanelProps) {
+export function ShoppingCartPanel() {
+  const router = useRouter();
+
+  const { cart, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } =
+    usePriceCalculation();
+
   return (
     <Card className="w-full p-4 shadow-none border-none">
+      <Link prefetch href="/request-quote" />
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <Calculator className="h-6 w-6 text-orange-600" />
             <div>
-              <h2 className="text-xl font-bold">Shopping Cart</h2>
+              <h2 className="text-xl font-bold">Estimated Price</h2>
             </div>
           </div>
         </div>
@@ -60,7 +62,7 @@ export function ShoppingCartPanel({
           </div>
         ) : (
           <div className="space-y-6">
-            <Table aria-label="Cart items" removeWrapper>
+            <Table removeWrapper aria-label="Cart items">
               <TableHeader>
                 <TableColumn>PRODUCT</TableColumn>
                 <TableColumn align="center">QUANTITY</TableColumn>
@@ -74,11 +76,11 @@ export function ShoppingCartPanel({
                       <div className="flex items-center gap-3">
                         {item.product.image_url ? (
                           <Image
-                            src={item.product.image_url || "/placeholder.svg"}
                             alt={item.product.title}
-                            width={48}
-                            height={48}
                             className="rounded object-cover"
+                            height={48}
+                            src={item.product.image_url || "/placeholder.svg"}
+                            width={48}
                           />
                         ) : (
                           <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
@@ -90,8 +92,8 @@ export function ShoppingCartPanel({
                             {item.product.title}
                           </div>
 
-                          <Chip color="secondary" size="sm" className="mt-1">
-                            {item.product.categories.title}
+                          <Chip className="mt-1" color="secondary" size="sm">
+                            {item.product.categories?.title}
                           </Chip>
                         </div>
                       </div>
@@ -109,18 +111,19 @@ export function ShoppingCartPanel({
                           <Minus className="h-4 w-4" />
                         </Button>
                         <Input
+                          className="w-20"
+                          min={50}
+                          size="sm"
                           type="number"
                           value={item.quantity.toString()}
                           onChange={(e) => {
                             const newQty = parseInt(e.target.value) || 50;
+
                             updateQuantity(
                               item.product.id,
                               Math.max(50, newQty)
                             );
                           }}
-                          className="w-20"
-                          size="sm"
-                          min={50}
                         />
                         <Button
                           isIconOnly
@@ -144,8 +147,8 @@ export function ShoppingCartPanel({
                       <Button
                         isIconOnly
                         color="danger"
-                        variant="light"
                         size="sm"
+                        variant="light"
                         onClick={() => removeFromCart(item.product.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -168,15 +171,17 @@ export function ShoppingCartPanel({
                   {getTotalItems()} total items
                 </div>
               </div>
-              <Button color="success" className="w-full text-white" size="lg">
+              <Button
+                className="w-full text-white"
+                color="success"
+                size="lg"
+                onClick={() => router.push("/request-quote")}
+              >
                 Request Quote Now
               </Button>
-              <Button
-                variant="flat"
-                className="w-full"
-                size="lg"
-                onClick={onBackToSelection}
-              >
+
+              <br />
+              <Button className="w-full" size="lg" variant="flat">
                 Back to Selection
               </Button>
             </div>

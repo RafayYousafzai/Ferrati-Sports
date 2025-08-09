@@ -1,13 +1,73 @@
-"use client";
+// src/context/PriceCalculationContext.tsx
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
-import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { ProductSelectionPanel } from "@/components/calculate-price/ProductSelectionPanel";
-import { ShoppingCartPanel } from "@/components/calculate-price/ShoppingCartPanel";
 import { CartItem, Product, Category } from "@/types/calculate-price";
-import Header from "@/components/custom-ui/header";
 
-export default function PriceCalculator() {
+// Define the shape of the context
+interface Ferrati {
+  categories: Category[];
+  products: Product[];
+  filteredProducts: Product[];
+  selectedCategory: string;
+  setSelectedCategory: (value: string) => void;
+  selectedProduct: string;
+  setSelectedProduct: (value: string) => void;
+  quantity: number;
+  handleQuantityChange: (value: string) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+  addToCart: () => void;
+  cart: CartItem[];
+  updateQuantity: (productId: string, newQuantity: number) => void;
+  removeFromCart: (productId: string) => void;
+  clearCart: () => void;
+  getTotalPrice: () => number;
+  getTotalItems: () => number;
+  loading: boolean;
+  view: "selection" | "cart";
+  setView: (value: "selection" | "cart") => void;
+}
+
+// Create context with default empty values
+const PriceCalculationContext = createContext<Ferrati>({
+  categories: [],
+  products: [],
+  filteredProducts: [],
+  selectedCategory: "",
+  setSelectedCategory: () => {},
+  selectedProduct: "",
+  setSelectedProduct: () => {},
+  quantity: 50,
+  handleQuantityChange: () => {},
+  searchTerm: "",
+  setSearchTerm: () => {},
+  addToCart: () => {},
+  cart: [],
+  updateQuantity: () => {},
+  removeFromCart: () => {},
+  clearCart: () => {},
+  getTotalPrice: () => 0,
+  getTotalItems: () => 0,
+  loading: true,
+  view: "selection",
+  setView: () => {},
+});
+
+// Create provider
+export const PriceCalculationProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  console.log("PriceCalculationProvider");
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -28,6 +88,7 @@ export default function PriceCalculator() {
       .order("title");
 
     if (error) throw error;
+
     return data || [];
   }
 
@@ -37,17 +98,13 @@ export default function PriceCalculator() {
       .select(
         `
         *,
-        categories:category_id (
-          id,
-          title,
-          description,
-          image_url
-        )
+        categories:category_id (*)
       `
       )
       .order("title");
 
     if (error) throw error;
+
     return data || [];
   }
 
@@ -58,6 +115,7 @@ export default function PriceCalculator() {
         getCategories(),
         getProducts(),
       ]);
+
       setCategories(categoriesData);
       setProducts(productsData);
       setFilteredProducts(productsData);
@@ -69,6 +127,7 @@ export default function PriceCalculator() {
   };
 
   useEffect(() => {
+    if (products.length && categories.length) return;
     loadData();
   }, []);
 
@@ -77,6 +136,7 @@ export default function PriceCalculator() {
       const filtered = products.filter(
         (product) => product.category_id === selectedCategory
       );
+
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts(products);
@@ -89,11 +149,13 @@ export default function PriceCalculator() {
       const filtered = products.filter((product) =>
         product.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
+
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
         (product) => product.category_id === selectedCategory
       );
+
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts(products);
@@ -104,6 +166,7 @@ export default function PriceCalculator() {
     if (!selectedProduct || quantity < 50) return;
 
     const product = products.find((p) => p.id === selectedProduct);
+
     if (!product) return;
 
     const existingItem = cart.find(
@@ -130,6 +193,7 @@ export default function PriceCalculator() {
   const updateQuantity = (productId: string, newQuantity: number) => {
     if (newQuantity < 50) {
       removeFromCart(productId);
+
       return;
     }
 
@@ -162,67 +226,40 @@ export default function PriceCalculator() {
 
   const handleQuantityChange = (value: string) => {
     const numValue = parseInt(value) || 50;
+
     setQuantity(Math.max(50, numValue));
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Loading products...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="container mx-auto px-4 py-8 gap-8">
-      <Header
-        badge="OUR APPROACH"
-        highlightedTitle="Selling"
-        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-        title="Sell without "
-      />
-
-      {/* <SummaryStatistics
-        categories={categories}
-        products={products}
-        cart={cart}
-      /> */}
-
-      <div className="space-y-6">
-        {view === "selection" ? (
-          <ProductSelectionPanel
-            categories={categories}
-            products={products}
-            filteredProducts={filteredProducts}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            selectedProduct={selectedProduct}
-            setSelectedProduct={setSelectedProduct}
-            quantity={quantity}
-            handleQuantityChange={handleQuantityChange}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            addToCart={addToCart}
-            cart={cart}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            onMakeNewQuote={() => setView("cart")}
-          />
-        ) : (
-          <ShoppingCartPanel
-            cart={cart}
-            getTotalItems={getTotalItems}
-            clearCart={clearCart}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            getTotalPrice={getTotalPrice}
-            onBackToSelection={() => setView("selection")}
-          />
-        )}
-      </div>
-    </div>
+    <PriceCalculationContext.Provider
+      value={{
+        categories,
+        products,
+        filteredProducts,
+        selectedCategory,
+        setSelectedCategory,
+        selectedProduct,
+        setSelectedProduct,
+        quantity,
+        handleQuantityChange,
+        searchTerm,
+        setSearchTerm,
+        addToCart,
+        cart,
+        updateQuantity,
+        removeFromCart,
+        clearCart,
+        getTotalPrice,
+        getTotalItems,
+        loading,
+        view,
+        setView,
+      }}
+    >
+      {children}
+    </PriceCalculationContext.Provider>
   );
-}
+};
+
+// Hook to use the context
+export const usePriceCalculation = () => useContext(PriceCalculationContext);

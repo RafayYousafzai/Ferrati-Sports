@@ -12,12 +12,7 @@ export type Product = {
   price: number | null;
   created_at: string;
   updated_at: string;
-  categories: {
-    id: string;
-    title: string;
-    description: string | null;
-    image_url: string | null;
-  };
+  categories: Category | null;
 };
 
 export type Category = {
