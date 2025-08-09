@@ -117,10 +117,11 @@ async function BlogsSection() {
     <>
       <Header
         badge="Ferrati"
-        highlightedTitle="Blogs"
-        subtitle="Discover our premium materials tailored for your needs."
-        title="Explore our "
+        highlightedTitle=" Blogs"
+        subtitle="Insights, trends, and stories from the world of apparel manufacturing."
+        title="Check Our Latest"
       />
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {blogs?.map((item) => (
           <div key={item.id}>
@@ -198,9 +199,9 @@ export default async function Home() {
 
       <Header
         badge="OUR APPROACH"
-        highlightedTitle="Selling"
-        subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-        title="Sell without "
+        highlightedTitle="Our Work"
+        subtitle="See our craftsmanship in action — a showcase of projects that reflect our commitment to quality, innovation, and trusted partnerships."
+        title="Where Quality Speaks"
       />
 
       <Suspense

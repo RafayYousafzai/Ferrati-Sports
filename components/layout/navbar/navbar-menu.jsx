@@ -69,7 +69,7 @@ export const ProductItem = ({ title, description, href, src }) => {
   return (
     <a href={href} className="flex space-x-2">
       <Image
-        onBlur={true}
+        // onBlur={true}
         src={src}
         width={140}
         height={100}

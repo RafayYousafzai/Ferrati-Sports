@@ -37,6 +37,7 @@ export default async function BlogPage({ params }) {
         image={fabric.image_url}
         sectionTitle="OPPORTUNITIES"
         variant="white"
+        showButton={false}
       />
 
       {/* Full Blog Description */}

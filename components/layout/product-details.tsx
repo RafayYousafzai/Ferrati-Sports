@@ -14,6 +14,7 @@ interface CareersSectionProps {
   className?: string;
   reversed?: boolean;
   href?: string;
+  showButton?: boolean;
 }
 
 export default function ProductDetails({
@@ -26,6 +27,7 @@ export default function ProductDetails({
   className = "",
   reversed = false,
   href = "#",
+  showButton = true,
 }: CareersSectionProps) {
   const isOrange = variant === "orange";
 
@@ -77,22 +79,23 @@ export default function ProductDetails({
                 </p>
               ))}
             </div>
-
-            <div className="pt-4">
-              <Link href={href}>
-                <Button
-                  className={`px-8 py-3 text-base font-medium ${
-                    isOrange
-                      ? "text-orange-500 bg-white"
-                      : "bg-orange-500 text-white"
-                  }`}
-                  size="lg"
-                  variant="solid"
-                >
-                  {buttonText}
-                </Button>
-              </Link>
-            </div>
+            {showButton && (
+              <div className="pt-4">
+                <Link href={href}>
+                  <Button
+                    className={`px-8 py-3 text-base font-medium ${
+                      isOrange
+                        ? "text-orange-500 bg-white"
+                        : "bg-orange-500 text-white"
+                    }`}
+                    size="lg"
+                    variant="solid"
+                  >
+                    {buttonText}
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Right Images Collage (swaps to left when reversed) */}

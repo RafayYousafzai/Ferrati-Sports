@@ -9,6 +9,7 @@ import Badge from "../badge";
 import Separator from "../separator";
 import Card from "../custom-ui/card";
 import Header from "../custom-ui/header";
+import Link from "next/link";
 
 const CategoriesCarousal = ({ categories }: { categories: any }) => {
   const scrollableSectionRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
           scrub: 0.6,
           pin: true,
         },
-      },
+      }
     );
 
     return () => {
@@ -76,9 +77,11 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
                           {item.description}
                         </p>
                         {/* btn */}
-                        <Button className="  text-white bg-[#d74913]">
-                          See more
-                        </Button>
+                        <Link href={`/categories/${item.id}`}>
+                          <Button className="  text-white bg-[#d74913]">
+                            See more
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                     {/* image */}
@@ -113,6 +116,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               description={item.description}
               image={item.image_url}
               title={item.title}
+              href={`/categories/${item.id}`}
             >
               <></>
             </Card>

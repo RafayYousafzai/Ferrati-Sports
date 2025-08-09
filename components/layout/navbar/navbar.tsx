@@ -140,10 +140,10 @@ export default function Appbar() {
       title: services.title,
       href: `/services/${services.id}`,
     })),
-    {
-      title: "All services",
-      href: `/services`,
-    },
+    // {
+    //   title: "All services",
+    //   href: `/services`,
+    // },
   ];
 
   const navigationConfig: NavigationConfig = {
@@ -189,7 +189,6 @@ export default function Appbar() {
       "Fabrics",
       "Printing",
       "Our Products",
-      "Our Services",
       "Sublimation",
       "Embroidery",
       "Stitching",

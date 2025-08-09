@@ -130,7 +130,7 @@ export default function OurProcess() {
         {/* Header Section */}
         <div className="text-center mb-16">
           {/* <Badge variant="secondary" className="mb-4 text-sm font-medium">
-            Ascension International
+            Ferrati
           </Badge> */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Our Manufacturing Process
@@ -191,7 +191,7 @@ export default function OurProcess() {
         <div className="bg-white p-8 md:p-12  mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Ascension International?
+              Why Choose Ferrati?
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
               We stand out as the best apparel manufacturer with our commitment

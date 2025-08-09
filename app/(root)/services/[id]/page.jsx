@@ -34,6 +34,7 @@ export default async function Page({ params }) {
         image={service.image_url}
         sectionTitle="Ferrati"
         variant="white"
+        showButton={false}
       />
     </div>
   );

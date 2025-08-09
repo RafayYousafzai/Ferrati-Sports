@@ -5,11 +5,6 @@ import Header from "@/components/custom-ui/header";
 import { createClient } from "@/lib/supabase/server";
 import Separator from "@/components/separator";
 
-const title = "Choose the most";
-const highlightedTitle = " Suitable Fabrics";
-const subtitle =
-  "At Ascension International, discover the perfect fabric for  c is ideal for creating blank t-shirts, vintage hoodies, stylish jackets, or comfortable tracksuits. This comprehensive fabric guide covers everything from GSM, texture, available colors, care instructions, to its compatibility with different printing techniques—helping you make informed, confident choices for your clothing brand";
-
 export default async function page() {
   const cookieStore: any = await cookies();
   const supabase = createClient(cookieStore);
@@ -20,10 +15,11 @@ export default async function page() {
     <section>
       <Header
         badge="Ferrati"
-        highlightedTitle={highlightedTitle}
-        subtitle={subtitle}
-        title={title}
+        highlightedTitle="Categories"
+        subtitle="Browse our full range of premium apparel and gear — crafted to meet the highest standards for brands worldwide."
+        title="Explore All"
       />
+
       <Separator bg="accent" />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {categories &&

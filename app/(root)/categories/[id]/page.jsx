@@ -83,6 +83,7 @@ export default async function CategoryPage({ params }) {
             reversed={index % 2 === 0}
             sectionTitle={new Date(product.created_at).toLocaleDateString()}
             variant="white"
+            showButton={false}
           />
         ))
       )}
