@@ -4,6 +4,7 @@ import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
+import { Button } from "@heroui/button";
 
 export default async function CategoryPage({ params }) {
   const categoryId = params.id;
@@ -76,18 +77,17 @@ export default async function CategoryPage({ params }) {
         products.map((product, index) => (
           <ProductDetails
             key={product.id}
-            buttonText="View positions"
+            buttonText="Calculate Price"
+            href={`/calculate-price`}
             description={[product.description]}
             headline={product.title}
             image={product.image_url}
             reversed={index % 2 === 0}
             sectionTitle={new Date(product.created_at).toLocaleDateString()}
             variant="white"
-            showButton={false}
           />
         ))
       )}
-
       <Header badge="Ferrati" highlightedTitle="fabrics" title="Explore our " />
 
       {/* Related Fabrics Grid */}
@@ -106,6 +106,15 @@ export default async function CategoryPage({ params }) {
                 }}
                 className="text-sm text-default-500 line-clamp-3"
               />
+              <br />
+              <Button
+                className="bg-orange-500 text-white"
+                href={`/calculate-price`}
+                radius="full"
+                size="md"
+              >
+                Calculate Price
+              </Button>
             </Card>
           </div>
         ))}

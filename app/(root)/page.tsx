@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import CounterSection from "@/components/layout/counter-section";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import { createClient } from "@/lib/supabase/server";
 import Card from "@/components/custom-ui/card";
 import {
   getCachedFabrics,
@@ -73,8 +72,6 @@ function BlogsLoading() {
 
 // Separate components for data fetching
 async function FabricsSection() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
   const relatedFabrics = await getCachedFabrics();
 
   return (
@@ -109,8 +106,6 @@ async function FabricsSection() {
 }
 
 async function BlogsSection() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
   const blogs = await getCachedBlogs();
 
   return (
@@ -146,8 +141,6 @@ async function BlogsSection() {
 }
 
 async function CategoriesSection() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
   const categories = await getCachedCategories();
 
   return <CategoriesCarousal categories={categories} />;
