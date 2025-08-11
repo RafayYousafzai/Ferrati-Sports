@@ -174,21 +174,30 @@ export default function Appbar() {
       { title: "Request Quote", href: "/request-quote" },
     ],
     mobileNav: [
-      "Home",
-      "Fabrics",
-      "Printing",
-      "Our Products",
-      "Sublimation",
-      "Embroidery",
-      "Stitching",
-      "About",
-      "About us",
-      "Return Policy",
-      "Our Process",
-      "Blogs",
-      "Contact Us",
-      "Calculate Price",
-      "Request Quote",
+      { title: "Home", href: "/" },
+      { title: "Fabrics", href: "/fabrics" },
+      { title: "Our Products", href: "/services/categories" },
+      {
+        title: "Printing",
+        href: "/services/737f8537-cfce-4e4d-81c6-576453748b39",
+      },
+      {
+        title: "Sublimation",
+        href: "/services/0874229c-9fcb-4cce-b4b4-87aa4378707f",
+      },
+      {
+        title: "Embroidery",
+        href: "/services/65eb347d-5158-45be-ab28-e1c885631db5",
+      },
+      {
+        title: "Stitching",
+        href: "/services/11ce9fd8-8b33-4b46-981f-353f63f2403e",
+      },
+      { title: "About", href: "/about" },
+      { title: "Blogs", href: "/blogs" },
+      { title: "Contact Us", href: "/contact" },
+      { title: "Calculate Price", href: "/calculate-price" },
+      { title: "Request Quote", href: "/request-quote" },
     ],
   };
 
@@ -234,26 +243,17 @@ export default function Appbar() {
       </NavbarContent>
 
       <NavbarMenu className="bg-black/95">
-        {navigationConfig.mobileNav.map((item, index) => {
-          const allItems = [
-            ...navigationConfig.leftNav,
-            ...navigationConfig.rightNav,
-            ...navigationConfig.centerDropdowns.flatMap((group) => group.items),
-          ];
-          const navItem = allItems.find((n) => n.title === item);
-
-          return (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className="w-full text-white hover:text-slate-200 py-2"
-                href={navItem?.href || "#"}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </Link>
-            </NavbarMenuItem>
-          );
-        })}
+        {navigationConfig.mobileNav.map((item, index) => (
+          <NavbarMenuItem key={`${item.title}-${index}`}>
+            <Link
+              className="w-full text-white hover:text-slate-200 py-2"
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.title}
+            </Link>
+          </NavbarMenuItem>
+        ))}
       </NavbarMenu>
 
       <NavbarMenuToggle
