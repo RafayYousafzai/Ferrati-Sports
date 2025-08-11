@@ -76,7 +76,7 @@ export default function RootLayout({
                 fjs.parentNode.insertBefore(js, fjs);
               })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
               Botsonic("init", {
-                serviceBaseUrl: "https://api-bot.writesonic.com",
+                serviceBaseUrl: "https://ferrati-sports.vercel.app/",
                 token: "d25c3f41-166c-4890-a6a5-76e74ad7c518",
               });
             `,
