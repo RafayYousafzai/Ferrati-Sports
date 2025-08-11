@@ -6,5 +6,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <PriceCalculationProvider>{children}</PriceCalculationProvider>;
+  return (
+    <PriceCalculationProvider>
+      <div className="mt-2">{children}</div>
+    </PriceCalculationProvider>
+  );
 }

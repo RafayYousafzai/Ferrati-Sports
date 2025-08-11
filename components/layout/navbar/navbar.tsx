@@ -50,7 +50,6 @@ interface Category {
 
 export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [blogs, setBlogs] = useState<Category[]>([]);
   const [services, setServices] = useState<Category[]>([]);
@@ -98,16 +97,6 @@ export default function Appbar() {
     };
 
     fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Convert categories to navigation items
@@ -203,23 +192,19 @@ export default function Appbar() {
     ],
   };
 
-  const navbarClasses = `transition-all duration-300 ${
-    scrolled ? "bg-black/90 backdrop-blur-sm" : "bg-black"
-  }`;
-
   return (
     <Navbar
-      className={navbarClasses}
+      className="transition-all duration-300 bg-black/55 fixed"
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
         <NavbarBrand>
-          <Badge containerStyles="xl:flex w-[160px] h-[180px]" />
+          <Badge containerStyles="xl:flex w-[160px] h-[180px] " sqr={false} />
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden md:flex gap-4" justify="end">
+      <NavbarContent className="hidden md:flex gap-4 " justify="end">
         {navigationConfig.leftNav.map((item) => (
           <NavbarItem key={item.href}>
             <Link className="text-white hover:text-gray-300" href={item.href}>

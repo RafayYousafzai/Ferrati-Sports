@@ -23,17 +23,17 @@ const Footer = () => {
               designs to life with quality and precision.
             </p>
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-gray-300 text-sm">
+              {/* <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <MapPin className="w-4 h-4 text-blue-400" />
                 <span>123 Business Street, City, State 12345</span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <Phone className="w-4 h-4 text-blue-400" />
-                <span>+1 (555) 123-4567</span>
+                <span>+92 332 85 74 009</span>
               </div>
               <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <span>info@yourcompany.com</span>
+                <span>info@ferratisports.com</span>
               </div>
             </div>
           </div>
@@ -167,7 +167,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        {/* <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="max-w-md mx-auto text-center">
             <h3 className="text-lg font-semibold text-white mb-4">
               Stay Updated
@@ -187,7 +187,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom Footer */}
@@ -204,8 +204,8 @@ const Footer = () => {
 
             {/* Social Media */}
             <div className="flex items-center gap-4">
-              <span className="text-gray-400 text-sm mr-2">Follow us:</span>
-              <Link
+              <span className="text-gray-400 text-sm mr-2">Follow us on</span>
+              {/* <Link
                 href="#"
                 className="w-8 h-8 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors group"
               >
@@ -216,19 +216,21 @@ const Footer = () => {
                 className="w-8 h-8 bg-gray-800 hover:bg-blue-400 rounded-full flex items-center justify-center transition-colors group"
               >
                 <Twitter className="w-4 h-4 text-gray-400 group-hover:text-white" />
-              </Link>
+              </Link> */}
               <Link
-                href="#"
+                href="https://www.instagram.com/ferratisports/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-8 h-8 bg-gray-800 hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors group"
               >
                 <Instagram className="w-4 h-4 text-gray-400 group-hover:text-white" />
               </Link>
-              <Link
+              {/* <Link
                 href="#"
                 className="w-8 h-8 bg-gray-800 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors group"
               >
                 <Youtube className="w-4 h-4 text-gray-400 group-hover:text-white" />
-              </Link>
+              </Link> */}
             </div>
 
             {/* Legal Links */}

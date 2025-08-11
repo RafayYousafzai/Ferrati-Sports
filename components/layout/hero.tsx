@@ -168,7 +168,7 @@ const Hero = () => {
           >
             {/* badge & h1 with animation */}
             <motion.div className="flex flex-col  " variants={itemVariants}>
-              <h1 className="font-bold text-5xl md:text-6xl text-white">
+              <h1 className="font-bold text-5xl md:text-7xl text-white">
                 {currentSlideData.title}
               </h1>
             </motion.div>

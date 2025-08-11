@@ -48,6 +48,7 @@ const Testimonials = dynamic(() => import("@/components/layout/testimonials"), {
 
 // Move static data to separate file or constants
 import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
+import Explore from "@/components/Explore/Explore";
 
 // Loading components for Suspense boundaries
 function FabricsLoading() {
@@ -170,6 +171,8 @@ export default async function Home() {
       >
         <ServiceCards cards={WhyChooseUsCards as any} />
       </Suspense>
+
+      <Explore />
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}

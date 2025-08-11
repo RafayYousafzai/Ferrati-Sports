@@ -33,7 +33,7 @@ export default function Header({
   return (
     <motion.div
       className={`
-        my-16 mx-2 ${textColor}
+        mb-16 mt-20 mx-2 ${textColor}
         ${leftAlign ? "text-left ml-[5%] md:ml-[2%]" : "text-center"}
       `}
       initial={{ opacity: 0, y: 50 }}
