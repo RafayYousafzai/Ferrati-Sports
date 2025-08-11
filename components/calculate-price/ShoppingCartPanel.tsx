@@ -73,6 +73,7 @@ export function ShoppingCartPanel() {
             <Table removeWrapper aria-label="Cart items">
               <TableHeader>
                 <TableColumn>PRODUCT</TableColumn>
+                <TableColumn align="center">Fabrics</TableColumn>
                 <TableColumn align="center">QUANTITY</TableColumn>
                 <TableColumn align="end">TOTAL PRICE</TableColumn>
                 <TableColumn align="center">ACTIONS</TableColumn>
@@ -107,6 +108,32 @@ export function ShoppingCartPanel() {
                       </div>
                     </TableCell>
                     <TableCell>
+                      <div className="flex items-center gap-3">
+                        {item.fabric.image_url ? (
+                          <Image
+                            alt={item.fabric.title}
+                            className="rounded object-cover"
+                            height={48}
+                            src={item.fabric.image_url || "/placeholder.svg"}
+                            width={48}
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
+                            <ShoppingCart className="h-5 w-5 text-gray-400" />
+                          </div>
+                        )}
+                        <div>
+                          <div className="font-semibold">
+                            {item.fabric.title}
+                          </div>
+
+                          <Chip className="mt-1" color="secondary" size="sm">
+                            Premium
+                          </Chip>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
                       <div className="flex items-center justify-center gap-2">
                         <Button
                           isIconOnly
@@ -129,7 +156,7 @@ export function ShoppingCartPanel() {
 
                             updateQuantity(
                               item.product.id,
-                              Math.max(50, newQty),
+                              Math.max(50, newQty)
                             );
                           }}
                         />
@@ -148,7 +175,10 @@ export function ShoppingCartPanel() {
                     <TableCell className="text-right">
                       <div className="font-bold text-lg">
                         $
-                        {((item.product.price || 0) * item.quantity).toFixed(2)}
+                        {(
+                          (item.product.price + item.fabric.price) *
+                          item.quantity
+                        ).toFixed(2)}
                       </div>
                     </TableCell>
                     <TableCell>
@@ -157,7 +187,9 @@ export function ShoppingCartPanel() {
                         color="danger"
                         size="sm"
                         variant="light"
-                        onClick={() => removeFromCart(item.product.id)}
+                        onClick={() =>
+                          removeFromCart(item.product.id, item.fabric.id)
+                        }
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>

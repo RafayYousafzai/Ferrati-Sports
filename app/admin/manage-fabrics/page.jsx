@@ -19,6 +19,7 @@ export default function AdminPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
+    price: 0,
     image_url: "",
     description: "",
   });
@@ -76,7 +77,6 @@ export default function AdminPage() {
     }
   };
 
-  // Pass the editorRef from the UI component to the handler
   const handleSubmit = async (e, editorRef) => {
     e.preventDefault();
     try {
@@ -121,6 +121,7 @@ export default function AdminPage() {
     setEditingFabric(fabric);
     setFormData({
       title: fabric.title,
+      price: Number(fabric.price) || 0,
       image_url: fabric.image_url,
       description: fabric.description,
     });
@@ -129,7 +130,12 @@ export default function AdminPage() {
   };
 
   const resetForm = () => {
-    setFormData({ title: "", image_url: "", description: "" });
+    setFormData({
+      title: "",
+      price: 0,
+      image_url: "",
+      description: "",
+    });
     setPreviewImage(null);
     setEditingFabric(null);
   };

@@ -24,6 +24,7 @@ const FabricForm = ({
   resetForm,
   setIsAddModalOpen,
   setIsEditModalOpen,
+  handlePriceChange,
 }) => {
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -43,8 +44,18 @@ const FabricForm = ({
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           isRequired
         />
+        <Input
+          className="max-w-[90%] mx-auto mt-2"
+          label="Price"
+          placeholder="Enter fabric price"
+          value={formData.price}
+          onValueChange={(value) => setFormData({ ...formData, price: value })}
+          isRequired
+          type="number"
+          min={0}
+          step={0.01}
+        />
         <Separator bg="accent" className="my-4" />
-
         <div className="max-w-[90%] mx-auto">
           <label className="text-sm font-medium">Image</label>
           <div className="mt-2 flex flex-col items-start gap-4">
@@ -74,7 +85,6 @@ const FabricForm = ({
             )}
           </div>
         </div>
-
         <Separator bg="accent" className="my-4" />
       </div>
       <div className="space-y-2 bg-[#e4e4e7] py-4 px- rounded-2xl max-w-[87%] mx-auto">

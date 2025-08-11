@@ -38,9 +38,12 @@ export function ProductSelectionPanel({
 }) {
   const {
     categories,
+    fabrics,
     filteredProducts,
     selectedCategory,
     setSelectedCategory,
+    selectedFabric,
+    setSelectedFabric,
     selectedProduct,
     setSelectedProduct,
     quantity,
@@ -81,7 +84,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const category = categories.find(
-                              (cat) => cat.id === item.key,
+                              (cat) => cat.id === item.key
                             );
 
                             return (
@@ -137,6 +140,70 @@ export function ProductSelectionPanel({
                         ))}
                       </Select>
                     </div>
+                    {/* Fabric Selection */}
+                    <div className="w-full my-2">
+                      <label
+                        className="text-sm font-semibold text-gray-700"
+                        htmlFor="fabric-select"
+                      >
+                        Fabric
+                      </label>
+                      <Select
+                        id="fabric-select"
+                        placeholder="Select a fabric"
+                        radius="full"
+                        renderValue={(items) => {
+                          return items.map((item) => {
+                            const fabric = fabrics.find(
+                              (fab) => fab.id === item.key
+                            );
+
+                            return (
+                              <div
+                                key={item.key}
+                                className="flex items-center gap-2"
+                              >
+                                {fabric?.image_url && (
+                                  <Image
+                                    alt={fabric.title}
+                                    className="rounded-full object-cover"
+                                    height={32}
+                                    src={fabric.image_url || "/placeholder.svg"}
+                                    width={32}
+                                  />
+                                )}
+                                <span>{fabric?.title}</span>
+                              </div>
+                            );
+                          });
+                        }}
+                        selectedKeys={selectedFabric ? [selectedFabric] : []}
+                        size="lg"
+                        variant="flat"
+                        onSelectionChange={(keys) => {
+                          const selected = Array.from(keys)[0] as string;
+
+                          setSelectedFabric(selected || "");
+                        }}
+                      >
+                        {fabrics.map((fabric) => (
+                          <SelectItem key={fabric.id} textValue={fabric.title}>
+                            <div className="flex items-center gap-2">
+                              {fabric.image_url && (
+                                <Image
+                                  alt={fabric.title}
+                                  className="rounded-full object-cover"
+                                  height={42}
+                                  src={fabric.image_url || "/placeholder.svg"}
+                                  width={42}
+                                />
+                              )}
+                              <span>{fabric.title}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </Select>
+                    </div>
                     {/* Product Selection */}
                     <div className="w-full my-2">
                       <label
@@ -152,7 +219,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const product = filteredProducts.find(
-                              (prod) => prod.id === item.key,
+                              (prod) => prod.id === item.key
                             );
 
                             return (
@@ -287,6 +354,7 @@ export function ProductSelectionPanel({
         <Table aria-label="Cart items" radius="lg">
           <TableHeader>
             <TableColumn>PRODUCT</TableColumn>
+            <TableColumn>Fabrics</TableColumn>
             <TableColumn align="center">QUANTITY</TableColumn>
             <TableColumn align="center">ACTIONS</TableColumn>
           </TableHeader>
@@ -313,6 +381,30 @@ export function ProductSelectionPanel({
 
                       <Chip className="mt-1" color="secondary" size="sm">
                         {item.product.categories?.title}
+                      </Chip>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    {item.fabric.image_url ? (
+                      <Image
+                        alt={item.fabric.title}
+                        className="rounded object-cover"
+                        height={48}
+                        src={item.fabric.image_url || "/placeholder.svg"}
+                        width={48}
+                      />
+                    ) : (
+                      <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
+                        <ShoppingCart className="h-5 w-5 text-gray-400" />
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-semibold">{item.fabric.title}</div>
+
+                      <Chip className="mt-1" color="secondary" size="sm">
+                        Premium
                       </Chip>
                     </div>
                   </div>
@@ -359,7 +451,9 @@ export function ProductSelectionPanel({
                     color="danger"
                     size="sm"
                     variant="light"
-                    onClick={() => removeFromCart(item.product.id)}
+                    onClick={() =>
+                      removeFromCart(item.product.id, item.fabric.id)
+                    }
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

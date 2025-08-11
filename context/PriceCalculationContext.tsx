@@ -9,15 +9,18 @@ import React, {
 } from "react";
 
 import { createClient } from "@/lib/supabase/client";
-import { CartItem, Product, Category } from "@/types/calculate-price";
+import { CartItem, Product, Category, Fabric } from "@/types/calculate-price";
 
 // Define the shape of the context
 interface Ferrati {
   categories: Category[];
+  fabrics: Fabric[];
   products: Product[];
   filteredProducts: Product[];
   selectedCategory: string;
   setSelectedCategory: (value: string) => void;
+  selectedFabric: string;
+  setSelectedFabric: (value: string) => void;
   selectedProduct: string;
   setSelectedProduct: (value: string) => void;
   quantity: number;
@@ -26,8 +29,12 @@ interface Ferrati {
   setSearchTerm: (value: string) => void;
   addToCart: () => void;
   cart: CartItem[];
-  updateQuantity: (productId: string, newQuantity: number) => void;
-  removeFromCart: (productId: string) => void;
+  updateQuantity: (
+    productId: string,
+    fabricId: string,
+    newQuantity: number
+  ) => void;
+  removeFromCart: (productId: string, fabricId: string) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
@@ -43,6 +50,8 @@ const PriceCalculationContext = createContext<Ferrati>({
   filteredProducts: [],
   selectedCategory: "",
   setSelectedCategory: () => {},
+  selectedFabric: "",
+  setSelectedFabric: () => {},
   selectedProduct: "",
   setSelectedProduct: () => {},
   quantity: 50,
@@ -68,9 +77,11 @@ export const PriceCalculationProvider = ({
   children: ReactNode;
 }) => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [fabrics, setFabrics] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedFabric, setSelectedFabric] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(50);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -80,9 +91,22 @@ export const PriceCalculationProvider = ({
 
   const supabase = createClient();
 
+  console.log(cart);
+
   async function getCategories(): Promise<Category[]> {
     const { data, error } = await supabase
       .from("categories")
+      .select("*")
+      .order("title");
+
+    if (error) throw error;
+
+    return data || [];
+  }
+
+  async function getFabrics(): Promise<Category[]> {
+    const { data, error } = await supabase
+      .from("fabrics")
       .select("*")
       .order("title");
 
@@ -98,7 +122,7 @@ export const PriceCalculationProvider = ({
         `
         *,
         categories:category_id (*)
-      `,
+      `
       )
       .order("title");
 
@@ -110,12 +134,14 @@ export const PriceCalculationProvider = ({
   const loadData = async () => {
     try {
       setLoading(true);
-      const [categoriesData, productsData] = await Promise.all([
+      const [categoriesData, fabricsData, productsData] = await Promise.all([
         getCategories(),
+        getFabrics(),
         getProducts(),
       ]);
 
       setCategories(categoriesData);
+      setFabrics(fabricsData);
       setProducts(productsData);
       setFilteredProducts(productsData);
     } catch (error) {
@@ -133,7 +159,7 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory,
+        (product) => product.category_id === selectedCategory
       );
 
       setFilteredProducts(filtered);
@@ -146,13 +172,13 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase()),
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory,
+        (product) => product.category_id === selectedCategory
       );
 
       setFilteredProducts(filtered);
@@ -162,51 +188,64 @@ export const PriceCalculationProvider = ({
   }, [searchTerm, products, selectedCategory]);
 
   const addToCart = () => {
-    if (!selectedProduct || quantity < 50) return;
+    if (!selectedProduct || !selectedFabric || quantity < 50) return;
 
     const product = products.find((p) => p.id === selectedProduct);
+    const fabric = fabrics.find((f) => f.id === selectedFabric);
 
-    if (!product) return;
+    if (!product || !fabric) return;
 
     const existingItem = cart.find(
-      (item) => item.product.id === selectedProduct,
+      (item) =>
+        item.product.id === selectedProduct && item.fabric.id === selectedFabric
     );
 
     if (existingItem) {
       setCart(
         cart.map((item) =>
-          item.product.id === selectedProduct
+          item.product.id === selectedProduct &&
+          item.fabric.id === selectedFabric
             ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        ),
+            : item
+        )
       );
     } else {
-      setCart([...cart, { product, quantity }]);
+      setCart([...cart, { product, quantity, fabric }]);
     }
 
     // Reset form
     setSelectedProduct("");
+    setSelectedFabric("");
     setQuantity(50);
   };
 
-  const updateQuantity = (productId: string, newQuantity: number) => {
+  const updateQuantity = (
+    productId: string,
+    fabricId: string,
+    newQuantity: number
+  ) => {
     if (newQuantity < 50) {
-      removeFromCart(productId);
+      removeFromCart(productId, fabricId);
 
       return;
     }
 
     setCart(
       cart.map((item) =>
-        item.product.id === productId
+        item.product.id === productId && item.fabric.id === fabricId
           ? { ...item, quantity: newQuantity }
-          : item,
-      ),
+          : item
+      )
     );
   };
 
-  const removeFromCart = (productId: string) => {
-    setCart(cart.filter((item) => item.product.id !== productId));
+  const removeFromCart = (productId: string, fabricId: string) => {
+    setCart(
+      cart.filter(
+        (item) =>
+          !(item.product.id === productId && item.fabric.id === fabricId)
+      )
+    );
   };
 
   const clearCart = () => {
@@ -215,7 +254,9 @@ export const PriceCalculationProvider = ({
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => {
-      return total + (item.product.price || 0) * item.quantity;
+      const productPrice = item.product.price || 0;
+      const fabricPrice = item.fabric.price || 0;
+      return total + (productPrice + fabricPrice) * item.quantity;
     }, 0);
   };
 
@@ -233,10 +274,13 @@ export const PriceCalculationProvider = ({
     <PriceCalculationContext.Provider
       value={{
         categories,
+        fabrics,
         products,
         filteredProducts,
         selectedCategory,
         setSelectedCategory,
+        selectedFabric,
+        setSelectedFabric,
         selectedProduct,
         setSelectedProduct,
         quantity,
