@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/footer";
 import Appbar from "@/components/layout/navbar/navbar";
-import NewsletterSection from "@/components/layout/newsletter-section";
+import NewsletterSection from "@/components/layout/newsletter/newsletter-section";
 import ProductDetails from "@/components/layout/product-details";
 
 export default function RootLayout({
