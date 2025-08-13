@@ -1,3 +1,4 @@
+import FerratiAccordion from "@/components/layout/accordian";
 import Footer from "@/components/layout/footer";
 import Appbar from "@/components/layout/navbar/navbar";
 import NewsletterSection from "@/components/layout/newsletter/newsletter-section";
@@ -37,6 +38,8 @@ export default function RootLayout({
           variant="white"
           href="/calculate-price"
         />
+        <FerratiAccordion />
+
         <NewsletterSection description={""} headline={""} />
       </div>
       <Footer />

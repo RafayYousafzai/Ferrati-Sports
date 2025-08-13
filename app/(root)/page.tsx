@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
@@ -172,6 +171,14 @@ export default async function Home() {
         <ServiceCards cards={WhyChooseUsCards as any} />
       </Suspense>
 
+      <div className="px-2">
+        <Header
+          badge="Ferrati"
+          highlightedTitle="traditional manufacturing"
+          subtitle="We break from outdated methods, delivering custom solutions with speed and flexibility—bringing your vision to life exactly as you imagine it."
+          title="We are the alternative to  "
+        />
+      </div>
       <Explore />
 
       <Suspense
