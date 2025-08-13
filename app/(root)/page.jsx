@@ -10,173 +10,137 @@ import {
   getCachedBlogs,
   getCachedCategories,
 } from "@/lib/supabase/cached-queries";
-
-// Lazy load components that are below the fold
-const CategoriesCarousal = dynamic(
-  () => import("@/components/layout/categories-carousal"),
-  {
-    loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" />,
-  }
-);
-
-const ServiceCards = dynamic(() => import("@/components/service-cards"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
-});
-
-const Solutions = dynamic(() => import("@/components/layout/solutions"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
-});
-
-const VideoShowcase = dynamic(
-  () => import("@/components/layout/video-showcase"),
-  {
-    loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
-  }
-);
-
-const ProductDetails = dynamic(
-  () => import("@/components/layout/product-details"),
-  {
-    loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
-  }
-);
-
-const Testimonials = dynamic(() => import("@/components/layout/testimonials"), {
-  loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" />,
-});
-
-// Move static data to separate file or constants
 import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
 import Explore from "@/components/Explore/Explore";
 
-// Loading components for Suspense boundaries
-function FabricsLoading() {
+// 🔹 Helper to lazy-load components with a standard skeleton
+const lazyLoad = (importFn, height = "h-64") =>
+  dynamic(importFn, {
+    loading: () => (
+      <div className={`${height} animate-pulse bg-gray-200 rounded`} />
+    ),
+  });
+
+const CategoriesCarousal = lazyLoad(
+  () => import("@/components/layout/categories-carousal"),
+  "h-32"
+);
+const ServiceCards = lazyLoad(() => import("@/components/service-cards"));
+const Solutions = lazyLoad(() => import("@/components/layout/solutions"));
+const VideoShowcase = lazyLoad(
+  () => import("@/components/layout/video-showcase")
+);
+const ProductDetails = lazyLoad(
+  () => import("@/components/layout/product-details")
+);
+const Testimonials = lazyLoad(() => import("@/components/layout/testimonials"));
+
+// 🔹 Generic grid skeleton
+function GridSkeleton({ count = 3 }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-      {[1, 2, 3].map((i) => (
+      {Array.from({ length: count }).map((_, i) => (
         <div key={i} className="h-64 animate-pulse bg-gray-200 rounded" />
       ))}
     </div>
   );
 }
 
-function BlogsLoading() {
-  return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-      {[1, 2, 3].map((i) => (
-        <div key={i} className="h-64 animate-pulse bg-gray-200 rounded" />
-      ))}
-    </div>
-  );
-}
-
-// Separate components for data fetching
+// 🔹 Data sections
 async function FabricsSection() {
   const relatedFabrics = await getCachedFabrics();
-
   return (
     <>
-      <Header
+      <SectionHeader
         badge="Ferrati"
+        title="Explore our "
         highlightedTitle="Fabrics"
         subtitle="Discover our premium materials tailored for your needs."
-        title="Explore our "
       />
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-        {relatedFabrics?.map((item) => (
-          <div key={item.id}>
-            <Card
-              description={undefined}
-              href={`/fabrics/${item.id}`}
-              image={item.image_url}
-              title={item.title}
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.description,
-                }}
-                className="text-sm text-default-500 line-clamp-3"
-              />
-            </Card>
-          </div>
-        ))}
-      </div>
+      <ItemsGrid items={relatedFabrics} basePath="/fabrics" />
     </>
   );
 }
 
 async function BlogsSection() {
   const blogs = await getCachedBlogs();
-
   return (
     <>
-      <Header
+      <SectionHeader
         badge="Ferrati"
+        title="Check Our Latest"
         highlightedTitle=" Blogs"
         subtitle="Insights, trends, and stories from the world of apparel manufacturing."
-        title="Check Our Latest"
       />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-        {blogs?.map((item) => (
-          <div key={item.id}>
-            <Card
-              description={undefined}
-              href={`/blogs/${item.id}`}
-              image={item.image_url}
-              title={item.title}
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.description,
-                }}
-                className="text-sm text-default-500 line-clamp-3"
-              />
-            </Card>
-          </div>
-        ))}
-      </div>
+      <ItemsGrid items={blogs} basePath="/blogs" />
     </>
   );
 }
 
 async function CategoriesSection() {
   const categories = await getCachedCategories();
-
-  if (!categories) {
-    return null;
-  }
-
-  return <CategoriesCarousal categories={categories} />;
+  return categories ? <CategoriesCarousal categories={categories} /> : null;
 }
 
+// 🔹 Reusable header component
+function SectionHeader({ badge, title, highlightedTitle, subtitle }) {
+  return (
+    <Header
+      badge={badge}
+      title={title}
+      highlightedTitle={highlightedTitle}
+      subtitle={subtitle}
+    />
+  );
+}
+
+// 🔹 Reusable grid for items
+function ItemsGrid({ items, basePath }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+      {items?.map((item) => (
+        <Card
+          key={item.id}
+          href={`${basePath}/${item.id}`}
+          image={item.image_url}
+          title={item.title}
+        >
+          <div
+            className="text-sm text-default-500 line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
+        </Card>
+      ))}
+    </div>
+  );
+}
+
+// 🔹 Main page
 export default async function Home() {
   return (
     <>
-      {/* Above the fold content - loads immediately */}
+      {/* Above the fold */}
       <Hero />
       <CounterSection />
 
-      <Header
+      <SectionHeader
         badge="Ferrati"
+        title="Why "
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
-        title="Why "
       />
-
-      {/* Below the fold content - lazy loaded */}
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <ServiceCards cards={WhyChooseUsCards as any} />
+        <ServiceCards cards={WhyChooseUsCards} />
       </Suspense>
 
       <div className="px-2">
-        <Header
+        <SectionHeader
           badge="Ferrati"
+          title="We are the alternative to  "
           highlightedTitle="traditional manufacturing"
           subtitle="We break from outdated methods, delivering custom solutions with speed and flexibility—bringing your vision to life exactly as you imagine it."
-          title="We are the alternative to  "
         />
       </div>
       <Explore />
@@ -192,7 +156,7 @@ export default async function Home() {
           headline="Request Quote to Build Your Digital Future"
           href="/request-quote"
           image="/assets/workers.png"
-          reversed={true}
+          reversed
           sectionTitle="WORK WITH US"
           variant="white"
         />
@@ -201,24 +165,20 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <Solutions cards={materials as any} />
+        <Solutions cards={materials} />
       </Suspense>
 
-      <Header
+      <SectionHeader
         badge="OUR APPROACH"
+        title="Where Quality Speaks"
         highlightedTitle="Our Work"
         subtitle="See our craftsmanship in action — a showcase of projects that reflect our commitment to quality, innovation, and trusted partnerships."
-        title="Where Quality Speaks"
       />
-
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <VideoShowcase videos={sampleVideos} />
       </Suspense>
-
-      <br />
-      <br />
 
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
@@ -226,11 +186,11 @@ export default async function Home() {
         <CategoriesSection />
       </Suspense>
 
-      <Suspense fallback={<FabricsLoading />}>
+      <Suspense fallback={<GridSkeleton />}>
         <FabricsSection />
       </Suspense>
 
-      <Suspense fallback={<BlogsLoading />}>
+      <Suspense fallback={<GridSkeleton />}>
         <BlogsSection />
       </Suspense>
 
