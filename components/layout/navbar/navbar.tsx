@@ -142,7 +142,7 @@ export default function Appbar() {
     ],
     centerDropdowns: [
       {
-        href: "services",
+        href: "/services",
         title: "Services",
         items: loading
           ? servicesNavItems.length > 0
@@ -151,7 +151,7 @@ export default function Appbar() {
           : servicesNavItems,
       },
       {
-        href: "categories",
+        href: "/categories",
         title: "Products",
         isProductGrid: true,
         items: loading
@@ -161,7 +161,7 @@ export default function Appbar() {
           : categoryNavItems,
       },
       {
-        href: "blogs",
+        href: "/blogs",
         title: "Blogs",
         items: loading
           ? blogsNavItems.length > 0

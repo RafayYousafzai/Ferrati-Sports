@@ -45,28 +45,7 @@ export default async function BlogPage({ params }) {
         <div dangerouslySetInnerHTML={{ __html: fabric.description }} />
       </div>
 
-      <Header badge="Ferrati" highlightedTitle="blogs" title="Explore more " />
-
-      {/* Related Blogs Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-        {relatedBlogs?.map((item) => (
-          <div key={item.id}>
-            <Card
-              description={undefined}
-              href={`/blogs/${item.id}`}
-              image={item.image_url}
-              title={item.title}
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.description,
-                }}
-                className="text-sm text-default-500 line-clamp-3"
-              />
-            </Card>
-          </div>
-        ))}
-      </div>
+      <AllProductsSummary order={["blogs", "categories", "fabrics"]} />
     </section>
   );
 }

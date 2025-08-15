@@ -5,6 +5,7 @@ import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import { createClient } from "@/lib/supabase/server";
 import Separator from "@/components/separator";
+import AllProductsSummary from "@/components/layout/all-products-summary";
 
 export default async function page() {
   const cookieStore: any = await cookies();
@@ -50,6 +51,7 @@ export default async function page() {
             </div>
           ))}
       </div>
+      <AllProductsSummary order={["fabrics", "blogs"]} />
     </section>
   );
 }

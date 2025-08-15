@@ -4,14 +4,10 @@ import dynamic from "next/dynamic";
 import CounterSection from "@/components/layout/counter-section";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import Card from "@/components/custom-ui/card";
-import {
-  getCachedFabrics,
-  getCachedBlogs,
-  getCachedCategories,
-} from "@/lib/supabase/cached-queries";
+import { getCachedCategories } from "@/lib/supabase/cached-queries";
 import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
 import Explore from "@/components/Explore/Explore";
+import AllProductsSummary from "@/components/layout/all-products-summary";
 
 // 🔹 Helper to lazy-load components with a standard skeleton
 const lazyLoad = (importFn, height = "h-64") =>
@@ -35,48 +31,6 @@ const ProductDetails = lazyLoad(
 );
 const Testimonials = lazyLoad(() => import("@/components/layout/testimonials"));
 
-// 🔹 Generic grid skeleton
-function GridSkeleton({ count = 3 }) {
-  return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-      {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="h-64 animate-pulse bg-gray-200 rounded" />
-      ))}
-    </div>
-  );
-}
-
-// 🔹 Data sections
-async function FabricsSection() {
-  const relatedFabrics = await getCachedFabrics();
-  return (
-    <>
-      <SectionHeader
-        badge="Ferrati"
-        title="Explore our "
-        highlightedTitle="Fabrics"
-        subtitle="Discover our premium materials tailored for your needs."
-      />
-      <ItemsGrid items={relatedFabrics} basePath="/fabrics" />
-    </>
-  );
-}
-
-async function BlogsSection() {
-  const blogs = await getCachedBlogs();
-  return (
-    <>
-      <SectionHeader
-        badge="Ferrati"
-        title="Check Our Latest"
-        highlightedTitle=" Blogs"
-        subtitle="Insights, trends, and stories from the world of apparel manufacturing."
-      />
-      <ItemsGrid items={blogs} basePath="/blogs" />
-    </>
-  );
-}
-
 async function CategoriesSection() {
   const categories = await getCachedCategories();
   return categories ? <CategoriesCarousal categories={categories} /> : null;
@@ -91,27 +45,6 @@ function SectionHeader({ badge, title, highlightedTitle, subtitle }) {
       highlightedTitle={highlightedTitle}
       subtitle={subtitle}
     />
-  );
-}
-
-// 🔹 Reusable grid for items
-function ItemsGrid({ items, basePath }) {
-  return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-      {items?.map((item) => (
-        <Card
-          key={item.id}
-          href={`${basePath}/${item.id}`}
-          image={item.image_url}
-          title={item.title}
-        >
-          <div
-            className="text-sm text-default-500 line-clamp-3"
-            dangerouslySetInnerHTML={{ __html: item.description }}
-          />
-        </Card>
-      ))}
-    </div>
   );
 }
 
@@ -178,13 +111,7 @@ export default async function Home() {
         <CategoriesSection />
       </Suspense>
 
-      <Suspense fallback={<GridSkeleton />}>
-        <FabricsSection />
-      </Suspense>
-
-      <Suspense fallback={<GridSkeleton />}>
-        <BlogsSection />
-      </Suspense>
+      <AllProductsSummary order={["blogs", "fabrics"]} />
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}

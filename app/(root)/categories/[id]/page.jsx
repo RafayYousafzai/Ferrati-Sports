@@ -5,6 +5,7 @@ import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@heroui/button";
+import AllProductsSummary from "@/components/layout/all-products-summary";
 
 export default async function CategoryPage({ params }) {
   const categoryId = params.id;
@@ -88,37 +89,7 @@ export default async function CategoryPage({ params }) {
           />
         ))
       )}
-      <Header badge="Ferrati" highlightedTitle="fabrics" title="Explore our " />
-
-      {/* Related Fabrics Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-        {relatedFabrics?.map((item) => (
-          <div key={item.id}>
-            <Card
-              description={undefined}
-              href={`/fabrics/${item.id}`}
-              image={item.image_url}
-              title={item.title}
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.description,
-                }}
-                className="text-sm text-default-500 line-clamp-3"
-              />
-              <br />
-              <Button
-                className="bg-orange-500 text-white"
-                href={`/calculate-price`}
-                radius="full"
-                size="md"
-              >
-                Calculate Price
-              </Button>
-            </Card>
-          </div>
-        ))}
-      </div>
+      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import { createClient } from "@/lib/supabase/server";
 import Separator from "@/components/separator";
+import AllProductsSummary from "@/components/layout/all-products-summary";
 
 const title = "Choose Your";
 const highlightedTitle = " Fabrics";
@@ -45,6 +46,7 @@ export default async function page() {
             </div>
           ))}
       </div>
+      <AllProductsSummary order={["categories", "blogs"]} />
     </section>
   );
 }
