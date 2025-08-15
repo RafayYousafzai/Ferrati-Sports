@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Card({
   title = "title",
-  description,
+  description = "",
   image = "https://heroui.com/images/album-cover.png",
   children,
   href = "#",
@@ -25,7 +25,7 @@ export default function Card({
           <h3 className="text-3xl  font-bold text-gray-900 hover:text-orange-600 transition-colors duration-300">
             {title}
           </h3>
-          {description && (
+          {description && description !== "" && (
             <p className="text-gray-600 text-lg leading-relaxed">
               {description}
             </p>

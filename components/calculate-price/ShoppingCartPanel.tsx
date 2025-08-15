@@ -156,7 +156,7 @@ export function ShoppingCartPanel() {
 
                             updateQuantity(
                               item.product.id,
-                              Math.max(50, newQty)
+                              Math.max(50, newQty),
                             );
                           }}
                         />

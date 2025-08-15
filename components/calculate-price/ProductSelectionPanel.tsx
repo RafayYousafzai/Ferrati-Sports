@@ -84,7 +84,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const category = categories.find(
-                              (cat) => cat.id === item.key
+                              (cat) => cat.id === item.key,
                             );
 
                             return (
@@ -155,7 +155,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const fabric = fabrics.find(
-                              (fab) => fab.id === item.key
+                              (fab) => fab.id === item.key,
                             );
 
                             return (
@@ -219,7 +219,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const product = filteredProducts.find(
-                              (prod) => prod.id === item.key
+                              (prod) => prod.id === item.key,
                             );
 
                             return (

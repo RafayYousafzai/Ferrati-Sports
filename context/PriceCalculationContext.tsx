@@ -32,7 +32,7 @@ interface Ferrati {
   updateQuantity: (
     productId: string,
     fabricId: string,
-    newQuantity: number
+    newQuantity: number,
   ) => void;
   removeFromCart: (productId: string, fabricId: string) => void;
   clearCart: () => void;
@@ -122,7 +122,7 @@ export const PriceCalculationProvider = ({
         `
         *,
         categories:category_id (*)
-      `
+      `,
       )
       .order("title");
 
@@ -159,7 +159,7 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -172,13 +172,13 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -197,7 +197,8 @@ export const PriceCalculationProvider = ({
 
     const existingItem = cart.find(
       (item) =>
-        item.product.id === selectedProduct && item.fabric.id === selectedFabric
+        item.product.id === selectedProduct &&
+        item.fabric.id === selectedFabric,
     );
 
     if (existingItem) {
@@ -206,8 +207,8 @@ export const PriceCalculationProvider = ({
           item.product.id === selectedProduct &&
           item.fabric.id === selectedFabric
             ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
+            : item,
+        ),
       );
     } else {
       setCart([...cart, { product, quantity, fabric }]);
@@ -222,7 +223,7 @@ export const PriceCalculationProvider = ({
   const updateQuantity = (
     productId: string,
     fabricId: string,
-    newQuantity: number
+    newQuantity: number,
   ) => {
     if (newQuantity < 50) {
       removeFromCart(productId, fabricId);
@@ -234,8 +235,8 @@ export const PriceCalculationProvider = ({
       cart.map((item) =>
         item.product.id === productId && item.fabric.id === fabricId
           ? { ...item, quantity: newQuantity }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -243,8 +244,8 @@ export const PriceCalculationProvider = ({
     setCart(
       cart.filter(
         (item) =>
-          !(item.product.id === productId && item.fabric.id === fabricId)
-      )
+          !(item.product.id === productId && item.fabric.id === fabricId),
+      ),
     );
   };
 

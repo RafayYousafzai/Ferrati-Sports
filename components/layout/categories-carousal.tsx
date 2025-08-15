@@ -32,7 +32,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
           scrub: 0.6,
           pin: true,
         },
-      }
+      },
     );
 
     return () => {

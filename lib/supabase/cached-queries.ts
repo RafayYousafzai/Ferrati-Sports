@@ -2,36 +2,86 @@ import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import { cache } from "react";
 
-// Cache database queries to avoid repeated calls
-export const getCachedFabrics = cache(async () => {
+// 🔹 Helper to create Supabase client
+async function getSupabase() {
   const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  return createClient(cookieStore);
+}
 
-  const { data: relatedFabrics } = await supabase
-    .from("fabrics")
-    .select("*")
-    .limit(3);
-
-  return relatedFabrics;
+/* --------------------
+   FABRICS
+-------------------- */
+// ✅ Cached (fast) — default limit is 3
+export const getCachedFabrics = cache(async (limit: number | null = 3) => {
+  const supabase = await getSupabase();
+  let query = supabase.from("fabrics").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
 });
 
-export const getCachedBlogs = cache(async () => {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+// 🚀 Non-cached (always fresh)
+export async function getFabrics(limit: number | null = null) {
+  const supabase = await getSupabase();
+  let query = supabase.from("fabrics").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+}
 
-  const { data: blogs } = await supabase.from("blogs").select("*").limit(3);
-
-  return blogs;
+/* --------------------
+   BLOGS
+-------------------- */
+export const getCachedBlogs = cache(async (limit: number | null = 3) => {
+  const supabase = await getSupabase();
+  let query = supabase.from("blogs").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
 });
 
-export const getCachedCategories = cache(async () => {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+export async function getBlogs(limit: number | null = null) {
+  const supabase = await getSupabase();
+  let query = supabase.from("blogs").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+}
 
-  const { data: categories } = await supabase
-    .from("categories")
-    .select("*")
-    .limit(3);
-
-  return categories;
+/* --------------------
+   CATEGORIES
+-------------------- */
+export const getCachedCategories = cache(async (limit: number | null = 3) => {
+  const supabase = await getSupabase();
+  let query = supabase.from("categories").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
 });
+
+export async function getCategories(limit: number | null = null) {
+  const supabase = await getSupabase();
+  let query = supabase.from("categories").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+}
+
+/* --------------------
+   SERVICES
+-------------------- */
+export const getCachedServices = cache(async (limit: number | null = 3) => {
+  const supabase = await getSupabase();
+  let query = supabase.from("services").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+});
+
+export async function getServices(limit: number | null = null) {
+  const supabase = await getSupabase();
+  let query = supabase.from("services").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+}

@@ -8,17 +8,17 @@ const FerratiAccordion = dynamic(
   () => import("@/components/layout/accordian"),
   {
     loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" />,
-  }
+  },
 );
 
 const NewsletterSection = dynamic(
   () => import("@/components/layout/newsletter/newsletter-section"),
-  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
+  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> },
 );
 
 const ProductDetails = dynamic(
   () => import("@/components/layout/product-details"),
-  { loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" /> }
+  { loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" /> },
 );
 
 // 🔹 Constants to avoid recreating objects
