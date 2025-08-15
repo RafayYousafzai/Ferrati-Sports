@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Image } from "@heroui/image";
+import Link from "next/link";
 
 const transition = {
   type: "spring",
@@ -12,15 +13,19 @@ const transition = {
   restSpeed: 0.001,
 };
 
-export const MenuItem = ({ setActive, active, item, children }) => {
+export const MenuItem = ({ setActive, active, item, href, children }) => {
+  console.log(href);
+
   return (
     <div onMouseEnter={() => setActive(item)} className="relative ">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer   hover:opacity-[0.9] text-white"
-      >
-        {item}
-      </motion.p>
+      <Link href={href}>
+        <motion.p
+          transition={{ duration: 0.3 }}
+          className="cursor-pointer   hover:opacity-[0.9] text-white"
+        >
+          {item}
+        </motion.p>
+      </Link>
       {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
@@ -66,6 +71,10 @@ export const Menu = ({ setActive, children }) => {
 export const ProductItem = ({ title, description, href, src }) => {
   console.log({ title, description, href, src });
 
+  const parentPage = href?.split("/")[1];
+
+  console.log(parentPage);
+
   return (
     <a href={href} className="flex space-x-2">
       <Image
@@ -89,6 +98,10 @@ export const ProductItem = ({ title, description, href, src }) => {
 };
 
 export const HoveredLink = ({ children, ...rest }) => {
+  const parentPage = children[0]?.href?.split("/")[1];
+
+  console.log(children);
+
   return (
     <a
       {...rest}

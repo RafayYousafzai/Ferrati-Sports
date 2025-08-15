@@ -35,17 +35,6 @@ const PRODUCT_DETAILS_SECTIONS = [
     sectionTitle: "WORK WITH US",
     variant: "orange" as const,
   },
-  {
-    buttonText: "Calculate Now",
-    description: [
-      "Curious about project costs? Use our smart price calculator to get an instant estimate based on your specific requirements—no guesswork, just clarity.",
-    ],
-    headline: "Instant Price Estimates. No Surprises.",
-    image: "/assets/cat4.png",
-    sectionTitle: "PRICE CALCULATOR",
-    variant: "white" as const,
-    href: "/calculate-price",
-  },
 ];
 
 export default function RootLayout({
@@ -60,12 +49,10 @@ export default function RootLayout({
         {children}
 
         <section className="space-y-16 mt-16">
+          <FerratiAccordion />
           {PRODUCT_DETAILS_SECTIONS.map((props, idx) => (
             <ProductDetails key={idx} {...props} />
           ))}
-
-          <FerratiAccordion />
-          <NewsletterSection description="" headline="" />
         </section>
       </main>
       <Footer />

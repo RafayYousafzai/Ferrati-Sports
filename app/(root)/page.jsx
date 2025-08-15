@@ -135,14 +135,6 @@ export default async function Home() {
         <ServiceCards cards={WhyChooseUsCards} />
       </Suspense>
 
-      <div className="px-2">
-        <SectionHeader
-          badge="Ferrati"
-          title="We are the alternative to  "
-          highlightedTitle="traditional manufacturing"
-          subtitle="We break from outdated methods, delivering custom solutions with speed and flexibility—bringing your vision to life exactly as you imagine it."
-        />
-      </div>
       <Explore />
 
       <Suspense

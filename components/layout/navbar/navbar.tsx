@@ -115,24 +115,24 @@ export default function Appbar() {
     },
   ];
   const blogsNavItems: NavItem[] = [
-    ...blogs.map((blogs) => ({
-      title: blogs.title,
-      href: `/blogs/${blogs.id}`,
-    })),
     {
       title: "All Blogs",
       href: `/blogs`,
     },
+    ...blogs.map((blogs) => ({
+      title: blogs.title,
+      href: `/blogs/${blogs.id}`,
+    })),
   ];
   const servicesNavItems: NavItem[] = [
+    {
+      title: "All Services",
+      href: `/services`,
+    },
     ...services.map((services) => ({
       title: services.title,
       href: `/services/${services.id}`,
     })),
-    // {
-    //   title: "All services",
-    //   href: `/services`,
-    // },
   ];
 
   const navigationConfig: NavigationConfig = {
@@ -142,6 +142,7 @@ export default function Appbar() {
     ],
     centerDropdowns: [
       {
+        href: "services",
         title: "Services",
         items: loading
           ? servicesNavItems.length > 0
@@ -150,6 +151,7 @@ export default function Appbar() {
           : servicesNavItems,
       },
       {
+        href: "categories",
         title: "Products",
         isProductGrid: true,
         items: loading
@@ -159,6 +161,7 @@ export default function Appbar() {
           : categoryNavItems,
       },
       {
+        href: "blogs",
         title: "Blogs",
         items: loading
           ? blogsNavItems.length > 0
@@ -176,25 +179,12 @@ export default function Appbar() {
     mobileNav: [
       { title: "Home", href: "/" },
       { title: "Fabrics", href: "/fabrics" },
-      { title: "Our Products", href: "/services/categories" },
       {
-        title: "Printing",
-        href: "/services/737f8537-cfce-4e4d-81c6-576453748b39",
+        title: "Services",
+        href: "/services ",
       },
-      {
-        title: "Sublimation",
-        href: "/services/0874229c-9fcb-4cce-b4b4-87aa4378707f",
-      },
-      {
-        title: "Embroidery",
-        href: "/services/65eb347d-5158-45be-ab28-e1c885631db5",
-      },
-      {
-        title: "Stitching",
-        href: "/services/11ce9fd8-8b33-4b46-981f-353f63f2403e",
-      },
-      { title: "About", href: "/about" },
       { title: "Blogs", href: "/blogs" },
+      { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
       { title: "Calculate Price", href: "/calculate-price" },
       { title: "Request Quote", href: "/request-quote" },
@@ -203,7 +193,9 @@ export default function Appbar() {
 
   return (
     <Navbar
-      className="transition-all duration-300 bg-black/55 fixed"
+      shouldHideOnScroll
+      className="transition-all duration-300 bg-black h-[8vh] "
+      isMenuOpen={isMenuOpen}
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
     >
@@ -242,11 +234,11 @@ export default function Appbar() {
         ))}
       </NavbarContent>
 
-      <NavbarMenu className="bg-black/95">
+      <NavbarMenu className="bg-black/80 justify-center ">
         {navigationConfig.mobileNav.map((item, index) => (
           <NavbarMenuItem key={`${item.title}-${index}`}>
             <Link
-              className="w-full text-white hover:text-slate-200 py-2"
+              className="w-full text-white hover:text-slate-200 py-2 text-2xl"
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -277,6 +269,7 @@ function MenuContent({
         <MenuItem
           key={group.title}
           active={active}
+          href={group.href}
           item={group.title}
           setActive={setActive}
         >

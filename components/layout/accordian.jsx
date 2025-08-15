@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import Link from "next/link";
 import {
@@ -10,7 +8,10 @@ import {
   Timer,
   Package,
   Mail,
+  Calculator,
+  ArrowRight,
 } from "lucide-react";
+import { Button } from "@heroui/button";
 
 export default function FerratiAccordion() {
   const faqs = [
@@ -98,7 +99,7 @@ export default function FerratiAccordion() {
   ];
 
   return (
-    <section className="w-full px-4 sm:px-6 lg:px-8 py-8">
+    <section className="w-full px-4 sm:px-6 lg:px-16 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <div className="mx-auto w-full max-w-3xl">
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">
           Frequently Asked Questions
@@ -132,6 +133,78 @@ export default function FerratiAccordion() {
             </AccordionItem>
           ))}
         </Accordion>
+      </div>
+
+      {/* Enhanced Hero Section */}
+      <div className="flex flex-col justify-center space-y-8 px-6 md:px-8 lg:px-10 bg-orange-500  rounded-2xl shadow-2xl    ">
+        {/* Header Section */}
+        <div className="text lg:text-left text-white">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">
+            Instant Price <span className="  text-white">Estimates.</span>
+            <br />
+            <span className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-100">
+              No Surprises.
+            </span>
+          </h2>
+
+          <div className="w-20 h-1 bg-white rounded-full mb-8 mx-auto lg:mx-0" />
+        </div>
+
+        {/* Content Section */}
+        <div className="space-y-6">
+          <p className="text-lg text-gray-50 leading-relaxed text-center lg:text-left">
+            Curious about project costs? Use our smart price calculator to get
+            an instant estimate based on your specific requirements—no
+            guesswork, just clarity.
+          </p>
+
+          {/* Feature highlights */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <span className="text-sm font-medium text-gray-100">
+                Instant Results
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <span className="text-sm font-medium text-gray-100">
+                No Hidden Fees
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <span className="text-sm font-medium text-gray-100">
+                Custom Quotes
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-white rounded-full" />
+              <span className="text-sm font-medium text-gray-100">
+                Bulk Discounts
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="pt-4">
+          <Button
+            className="w-full sm:w-auto px-8 py-4 text-orange-500 bg-white hover:white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group"
+            size="lg"
+            variant="solid"
+          >
+            <span className="font-semibold">Calculate Now</span>
+            <ArrowRight
+              size={18}
+              className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
+            />
+          </Button>
+
+          <p className="text-xs text-white mt-3 text-center sm:text-left">
+            Get your estimate in under 30 seconds
+          </p>
+        </div>
       </div>
     </section>
   );
