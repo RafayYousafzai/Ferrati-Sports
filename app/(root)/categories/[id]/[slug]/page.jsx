@@ -4,11 +4,11 @@ import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
-import { Button } from "@heroui/button";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 
 export default async function CategoryPage({ params }) {
   const categoryId = params.id;
+  const productId = params.slug;
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -28,6 +28,8 @@ export default async function CategoryPage({ params }) {
     .eq("category_id", categoryId)
     .order("created_at", { ascending: false });
 
+  const selectedProduct = products.find((product) => product.id === productId);
+
   if (productsError) throw productsError;
 
   if (!category) {
@@ -46,11 +48,11 @@ export default async function CategoryPage({ params }) {
   return (
     <div>
       <ProductDetails
-        key={category.id}
+        key={selectedProduct.id}
         buttonText={`${products.length} Products Available`}
-        description={[category.description]}
-        headline={category.title}
-        image={category.image_url}
+        description={[selectedProduct.description]}
+        headline={selectedProduct.title}
+        image={selectedProduct.image_url}
         variant="orange"
       />
 
@@ -58,7 +60,7 @@ export default async function CategoryPage({ params }) {
         badge="Ferrati"
         highlightedTitle={category.title}
         leftAlign={false}
-        subtitle="All the products in this category"
+        subtitle="More products in same category"
         title="Explore more in "
       />
 
@@ -66,7 +68,7 @@ export default async function CategoryPage({ params }) {
         {products?.map((product) => (
           <Card
             key={product.id}
-            href={`${categoryId}/${product.id}`}
+            href={`/categories/${categoryId}/${product.id}`}
             image={product.image_url}
             title={product.title}
           >
@@ -78,28 +80,6 @@ export default async function CategoryPage({ params }) {
         ))}
       </div>
 
-      {/* {products.length === 0 ? (
-        <div className="text-center py-16">
-          <h3 className="text-xl font-semibold mb-2">No products yet</h3>
-          <p className="text-default-500">
-            Products will be added to this category soon.
-          </p>
-        </div>
-      ) : (
-        products.map((product, index) => (
-          <ProductDetails
-            key={product.id}
-            buttonText="Calculate Price"
-            href={`/calculate-price`}
-            description={[product.description]}
-            headline={product.title}
-            image={product.image_url}
-            reversed={index % 2 === 0}
-            sectionTitle={new Date(product.created_at).toLocaleDateString()}
-            variant="white"
-          />
-        ))
-      )} */}
       <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
     </div>
   );

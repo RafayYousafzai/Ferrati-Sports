@@ -189,18 +189,19 @@ export default function FerratiAccordion() {
 
         {/* CTA Section */}
         <div className="pt-4">
-          <Button
-            className="w-full sm:w-auto px-8 py-4 text-orange-500 bg-white hover:white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group"
-            size="lg"
-            variant="solid"
-          >
-            <span className="font-semibold">Calculate Now</span>
-            <ArrowRight
-              size={18}
-              className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
-            />
-          </Button>
-
+          <Link href="/calculate-price">
+            <Button
+              className="w-full sm:w-auto px-8 py-4 text-orange-500 bg-white hover:white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group"
+              size="lg"
+              variant="solid"
+            >
+              <span className="font-semibold">Calculate Now</span>
+              <ArrowRight
+                size={18}
+                className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
+              />
+            </Button>
+          </Link>
           <p className="text-xs text-white mt-3 text-center sm:text-left">
             Get your estimate in under 30 seconds
           </p>

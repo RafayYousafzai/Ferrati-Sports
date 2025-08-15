@@ -11,9 +11,9 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-[#042e59] text-white ">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
@@ -165,33 +165,10 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
-        {/* Newsletter Signup */}
-        {/* <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="max-w-md mx-auto text-center">
-            <h3 className="text-lg font-semibold text-white mb-4">
-              Stay Updated
-            </h3>
-            <p className="text-gray-300 text-sm mb-6">
-              Subscribe to our newsletter for the latest updates and special
-              offers.
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div> */}
       </div>
 
       {/* Bottom Footer */}
-      <div className="bg-gray-950 border-t border-gray-800">
+      <div className="bg-black border-t border-gray-800 rounded-t-2xl">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
