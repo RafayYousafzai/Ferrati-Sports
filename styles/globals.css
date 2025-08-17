@@ -215,3 +215,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+.html-content h1 {
+  @apply text-5xl font-bold mb-4;
+}
+
+.html-content h2 {
+  @apply text-4xl font-semibold mb-3;
+}
+
+.html-content h3 {
+  @apply text-3xl font-semibold mb-2;
+}
+
+.html-content p {
+  @apply  mb-4 leading-relaxed;
+}

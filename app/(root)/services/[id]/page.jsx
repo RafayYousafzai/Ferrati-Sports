@@ -29,7 +29,7 @@ export default async function Page({ params }) {
         showButton={false}
       />
 
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6 html-content">
         <div dangerouslySetInnerHTML={{ __html: service.description }} />
       </div>
 

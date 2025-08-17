@@ -4,6 +4,7 @@ import Header from "@/components/custom-ui/header";
 import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
+import AllProductsSummary from "@/components/layout/all-products-summary";
 
 // Main page component
 export default async function BlogPage({ params }) {
@@ -41,7 +42,7 @@ export default async function BlogPage({ params }) {
       />
 
       {/* Full Blog Description */}
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6 html-content">
         <div dangerouslySetInnerHTML={{ __html: fabric.description }} />
       </div>
 

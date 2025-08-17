@@ -57,7 +57,7 @@ export default async function CategoryPage({ params }) {
         href={`/calculate-price`}
       />
 
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6 html-content">
         <div
           dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
         />

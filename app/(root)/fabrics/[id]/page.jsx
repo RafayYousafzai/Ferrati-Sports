@@ -47,7 +47,7 @@ export default async function FabricPage({ params }) {
       />
 
       {/* Full Fabric Description */}
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6 html-content">
         <div dangerouslySetInnerHTML={{ __html: fabric.description }} />
       </div>
 
