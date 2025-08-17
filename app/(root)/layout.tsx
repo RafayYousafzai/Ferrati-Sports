@@ -2,23 +2,25 @@ import dynamic from "next/dynamic";
 
 import Footer from "@/components/layout/footer";
 import Appbar from "@/components/layout/navbar/navbar";
+import { ArrowRightCircle } from "lucide-react";
+import Link from "next/link";
 
 // 🔹 Lazy load below-the-fold sections
 const FerratiAccordion = dynamic(
   () => import("@/components/layout/accordian"),
   {
     loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" />,
-  },
+  }
 );
 
 const NewsletterSection = dynamic(
   () => import("@/components/layout/newsletter/newsletter-section"),
-  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> },
+  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
 );
 
 const ProductDetails = dynamic(
   () => import("@/components/layout/product-details"),
-  { loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" /> },
+  { loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" /> }
 );
 
 // 🔹 Constants to avoid recreating objects
@@ -55,6 +57,15 @@ export default function RootLayout({
           ))}
         </section>
       </main>
+
+      <Link href="/contact">
+        <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
+          <h1 className="text-orange-500 text-7xl font-bold ml-[10%] group-hover:text-orange-600 transition-colors duration-300 text-left">
+            Let's Talk
+          </h1>
+          <ArrowRightCircle className="ml-4 pt-1 w-12 h-12 text-orange-500 group-hover:text-orange-600 group-hover:translate-x-2 transition-all duration-300" />
+        </div>
+      </Link>
       <Footer />
     </>
   );

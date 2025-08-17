@@ -8,6 +8,7 @@ import { getCachedCategories } from "@/lib/supabase/cached-queries";
 import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
 import Explore from "@/components/Explore/Explore";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+import ReviewsShowcase from "@/components/layout/reviews-showcase";
 
 // 🔹 Helper to lazy-load components with a standard skeleton
 const lazyLoad = (importFn, height = "h-64") =>
@@ -117,7 +118,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <Testimonials />
+        <ReviewsShowcase />
       </Suspense>
     </>
   );
