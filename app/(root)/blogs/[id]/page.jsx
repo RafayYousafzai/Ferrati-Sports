@@ -41,7 +41,7 @@ export default async function BlogPage({ params }) {
       />
 
       {/* Full Blog Description */}
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6">
         <div dangerouslySetInnerHTML={{ __html: fabric.description }} />
       </div>
 

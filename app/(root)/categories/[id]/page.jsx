@@ -55,11 +55,10 @@ export default async function CategoryPage({ params }) {
       />
 
       <Header
-        badge="Ferrati"
         highlightedTitle={category.title}
         leftAlign={false}
         subtitle="All the products in this category"
-        title="Explore more in "
+        title="Products in "
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">

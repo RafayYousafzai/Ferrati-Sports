@@ -49,19 +49,26 @@ export default async function CategoryPage({ params }) {
     <div>
       <ProductDetails
         key={selectedProduct.id}
-        buttonText={`${products.length} Products Available`}
-        description={[selectedProduct.description]}
+        buttonText={`Calculate Price`}
+        description={[selectedProduct.subtitle]}
         headline={selectedProduct.title}
         image={selectedProduct.image_url}
         variant="orange"
+        href={`/calculate-price`}
       />
+
+      <div className="max-w-7xl mx-auto p-6">
+        <div
+          dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
+        />
+      </div>
 
       <Header
         badge="Ferrati"
         highlightedTitle={category.title}
         leftAlign={false}
         subtitle="More products in same category"
-        title="Explore more in "
+        title="More Products in "
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">

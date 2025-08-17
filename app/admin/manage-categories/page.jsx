@@ -41,6 +41,7 @@ export default function CategoriesPage() {
   });
   const [productForm, setProductForm] = useState({
     title: "",
+    subtitle: "",
     price: "",
     description: "",
     image_url: "",
@@ -188,10 +189,17 @@ export default function CategoriesPage() {
     }
   };
 
-  const handleProductSubmit = async (e) => {
+  const handleProductSubmit = async (e, editorRef) => {
     e.preventDefault();
     setUploading(true);
+
+    if (!editorRef.current?.editor) {
+      throw new Error("Editor not initialized");
+    }
+
     try {
+      const content = editorRef.current.getHTML();
+
       let imageUrl = productForm.image_url;
       if (productImageFile) {
         imageUrl = await uploadImage(productImageFile, "products");
@@ -204,9 +212,11 @@ export default function CategoriesPage() {
       const { error } = editingProduct
         ? await supabase
             .from("products")
-            .update(productData)
+            .update({ ...productData, description: content })
             .eq("id", editingProduct.id)
-        : await supabase.from("products").insert([productData]);
+        : await supabase
+            .from("products")
+            .insert([{ ...productData, description: content }]);
 
       if (error) throw error;
       await fetchProducts();

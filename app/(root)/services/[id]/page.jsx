@@ -29,6 +29,10 @@ export default async function Page({ params }) {
         showButton={false}
       />
 
+      <div className="max-w-7xl mx-auto p-6">
+        <div dangerouslySetInnerHTML={{ __html: service.description }} />
+      </div>
+
       <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
     </div>
   );
