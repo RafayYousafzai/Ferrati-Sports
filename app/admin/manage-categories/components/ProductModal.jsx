@@ -24,6 +24,7 @@ export default function ProductModal({
   productForm,
   setProductForm,
   categories,
+  fabrics,
   imagePreview,
   onImageChange,
   onImageRemove,
@@ -59,6 +60,24 @@ export default function ProductModal({
                 {categories.map((category) => (
                   <SelectItem key={String(category.id)}>
                     {category.title}
+                  </SelectItem>
+                ))}
+              </Select>
+              <Select
+                label="Fabrics"
+                placeholder="Select fabrics"
+                selectionMode="multiple"
+                selectedKeys={productForm.fabric_ids || []}
+                onSelectionChange={(keys) =>
+                  setProductForm({
+                    ...productForm,
+                    fabric_ids: Array.from(keys),
+                  })
+                }
+              >
+                {fabrics.map((fabric) => (
+                  <SelectItem key={fabric.id} value={fabric.id}>
+                    {fabric.title}
                   </SelectItem>
                 ))}
               </Select>

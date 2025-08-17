@@ -57,6 +57,11 @@ export function ProductSelectionPanel({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const onMakeNewQuote = () => setView("cart");
 
+  const product = filteredProducts.find((p) => p.id === selectedProduct);
+  const availableFabrics = fabrics.filter((fabric) =>
+    product?.fabric_ids?.includes(fabric.id)
+  );
+
   return (
     <Card className="w-full p-4 shadow-none border-none">
       <CardBody className="space-y-6 pt-6">
@@ -135,70 +140,6 @@ export function ProductSelectionPanel({
                                 />
                               )}
                               <span>{category.title}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </Select>
-                    </div>
-                    {/* Fabric Selection */}
-                    <div className="w-full my-2">
-                      <label
-                        className="text-sm font-semibold text-gray-700"
-                        htmlFor="fabric-select"
-                      >
-                        Fabric
-                      </label>
-                      <Select
-                        id="fabric-select"
-                        placeholder="Select a fabric"
-                        radius="full"
-                        renderValue={(items) => {
-                          return items.map((item) => {
-                            const fabric = fabrics.find(
-                              (fab) => fab.id === item.key
-                            );
-
-                            return (
-                              <div
-                                key={item.key}
-                                className="flex items-center gap-2"
-                              >
-                                {fabric?.image_url && (
-                                  <Image
-                                    alt={fabric.title}
-                                    className="rounded-full object-cover"
-                                    height={32}
-                                    src={fabric.image_url || "/placeholder.svg"}
-                                    width={32}
-                                  />
-                                )}
-                                <span>{fabric?.title}</span>
-                              </div>
-                            );
-                          });
-                        }}
-                        selectedKeys={selectedFabric ? [selectedFabric] : []}
-                        size="lg"
-                        variant="flat"
-                        onSelectionChange={(keys) => {
-                          const selected = Array.from(keys)[0] as string;
-
-                          setSelectedFabric(selected || "");
-                        }}
-                      >
-                        {fabrics.map((fabric) => (
-                          <SelectItem key={fabric.id} textValue={fabric.title}>
-                            <div className="flex items-center gap-2">
-                              {fabric.image_url && (
-                                <Image
-                                  alt={fabric.title}
-                                  className="rounded-full object-cover"
-                                  height={42}
-                                  src={fabric.image_url || "/placeholder.svg"}
-                                  width={42}
-                                />
-                              )}
-                              <span>{fabric.title}</span>
                             </div>
                           </SelectItem>
                         ))}
@@ -287,6 +228,72 @@ export function ProductSelectionPanel({
                         ))}
                       </Select>
                     </div>
+                    {/* Fabric Selection */}
+                    <div className="w-full my-2">
+                      <label
+                        className="text-sm font-semibold text-gray-700"
+                        htmlFor="fabric-select"
+                      >
+                        Fabric
+                      </label>
+                      <Select
+                        id="fabric-select"
+                        placeholder="Select a fabric"
+                        radius="full"
+                        isDisabled={!selectedProduct}
+                        renderValue={(items) => {
+                          return items.map((item) => {
+                            const fabric = fabrics.find(
+                              (fab) => fab.id === item.key
+                            );
+
+                            return (
+                              <div
+                                key={item.key}
+                                className="flex items-center gap-2"
+                              >
+                                {fabric?.image_url && (
+                                  <Image
+                                    alt={fabric.title}
+                                    className="rounded-full object-cover"
+                                    height={32}
+                                    src={fabric.image_url || "/placeholder.svg"}
+                                    width={32}
+                                  />
+                                )}
+                                <span>{fabric?.title}</span>
+                              </div>
+                            );
+                          });
+                        }}
+                        selectedKeys={selectedFabric ? [selectedFabric] : []}
+                        size="lg"
+                        variant="flat"
+                        onSelectionChange={(keys) => {
+                          const selected = Array.from(keys)[0] as string;
+
+                          setSelectedFabric(selected || "");
+                        }}
+                      >
+                        {availableFabrics.map((fabric) => (
+                          <SelectItem key={fabric.id} textValue={fabric.title}>
+                            <div className="flex items-center gap-2">
+                              {fabric.image_url && (
+                                <Image
+                                  alt={fabric.title}
+                                  className="rounded-full object-cover"
+                                  height={42}
+                                  src={fabric.image_url || "/placeholder.svg"}
+                                  width={42}
+                                />
+                              )}
+                              <span>{fabric.title}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </Select>
+                    </div>
+
                     {/* Quantity Input */}
                     <div className="w-full my-2">
                       <label

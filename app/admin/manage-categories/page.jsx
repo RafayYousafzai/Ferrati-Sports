@@ -17,6 +17,7 @@ import ProductList from "./components/ProductList";
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [fabrics, setFabrics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
 
@@ -48,6 +49,7 @@ export default function CategoriesPage() {
     category_id: "",
     trustpilot: "",
     google_reviews: "",
+    fabric_ids: [],
   });
 
   const [categoryImageFile, setCategoryImageFile] = useState(null);
@@ -60,7 +62,7 @@ export default function CategoriesPage() {
   // Data Fetching
   useEffect(() => {
     const fetchAllData = async () => {
-      await Promise.all([fetchCategories(), fetchProducts()]);
+      await Promise.all([fetchCategories(), fetchProducts(), fetchFabrics()]);
       setLoading(false);
     };
     fetchAllData();
@@ -89,6 +91,19 @@ export default function CategoriesPage() {
       setProducts(data || []);
     } catch (error) {
       console.error("Error fetching products:", error);
+    }
+  };
+
+  const fetchFabrics = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("fabrics")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      setFabrics(data || []);
+    } catch (error) {
+      console.error("Error fetching fabrics:", error);
     }
   };
 
@@ -130,6 +145,7 @@ export default function CategoriesPage() {
       description: "",
       image_url: "",
       category_id: "",
+      fabric_ids: [],
     });
     setProductImageFile(null);
     setProductImagePreview("");
@@ -157,7 +173,7 @@ export default function CategoriesPage() {
 
   const handleEditProduct = (product) => {
     setEditingProduct(product);
-    setProductForm({ ...product });
+    setProductForm({ ...product, fabric_ids: product.fabric_ids || [] });
     setProductImagePreview(product.image_url);
     onProductOpen();
   };
@@ -361,6 +377,7 @@ export default function CategoriesPage() {
         productForm={productForm}
         setProductForm={setProductForm}
         categories={categories}
+        fabrics={fabrics}
         imagePreview={productImagePreview}
         onImageChange={(e) =>
           handleImageChange(e, setProductImageFile, setProductImagePreview)
