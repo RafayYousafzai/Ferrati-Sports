@@ -9,6 +9,8 @@ import { Input, Textarea } from "@heroui/input";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import Separator from "@/components/separator";
 import Card from "@/components/custom-ui/card";
+import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor";
+import { Image } from "@heroui/image";
 
 // 1. Define ServiceForm OUTSIDE the main component.
 // It now receives all its data and functions as props.
@@ -24,6 +26,7 @@ const ServiceForm = ({
   setIsAddModalOpen,
   setIsEditModalOpen,
 }) => {
+  const editorRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const triggerFileInput = () => {
@@ -31,7 +34,7 @@ const ServiceForm = ({
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="space-y-4">
+    <form onSubmit={(e) => handleSubmit(e, editorRef)} className="space-y-4">
       <div className="mx-auto p-6">
         <Input
           className="max-w-[90%] mx-auto"
@@ -63,24 +66,22 @@ const ServiceForm = ({
             </Button>
             {(previewImage || formData.image_url) && (
               <div className="aspect-square w-48 relative rounded-lg border">
-                <img
-                  src={previewImage || formData.image_url}
+                <Image
+                  src={previewImage || formData.image_url || null}
                   alt="Preview"
                   className="w-full h-full object-cover"
                 />
               </div>
             )}
           </div>
-          <Textarea
-            className="mt-4"
-            label="Description"
-            minRows={3}
-            placeholder="Enter service description"
-            value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
-          />
+          <div className="space-y-2 bg-[#e4e4e7] py-4 px- rounded-2xl max-w-full mt-4">
+            <label className="text-sm font-medium p-6">Description</label>
+            <SimpleEditor
+              editorRef={editorRef}
+              key={editingService ? `edit-${editingService.id}` : "new-fabric"}
+              content={formData.description}
+            />
+          </div>
         </div>
       </div>
       <div className="flex justify-end gap-2 max-w-[90%] mx-auto pb-6">

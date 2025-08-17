@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { createClient } from "@/lib/supabase/client";
+import { Spinner } from "@heroui/spinner";
 
 // Dynamically import the UI component with SSR turned off
 const ServiceManagerUI = dynamic(
   () => import("./components/ServicesManagerUI"),
   {
     ssr: false,
-  },
+  }
 );
 
 export default function AdminPage() {
@@ -80,20 +81,25 @@ export default function AdminPage() {
   };
 
   // Pass the editorRef from the UI component to the handler
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, editorRef) => {
     e.preventDefault();
     try {
+      if (!editorRef.current?.editor) {
+        throw new Error("Editor not initialized");
+      }
+      const content = editorRef.current.getHTML();
+
       if (editingService) {
         const { error } = await supabase
           .from("services")
-          .update({ ...formData })
+          .update({ ...formData, description: content })
           .eq("id", editingService.id);
         if (error) throw error;
         setIsEditModalOpen(false);
       } else {
         const { error } = await supabase
           .from("services")
-          .insert([{ ...formData }]);
+          .insert([{ ...formData, description: content }]);
         if (error) throw error;
         setIsAddModalOpen(false);
       }
@@ -136,7 +142,7 @@ export default function AdminPage() {
     return (
       <div className="container mx-auto p-6">
         <div className="flex items-center justify-center h-64">
-          <div className="text-lg">Loading services...</div>
+          <Spinner />
         </div>
       </div>
     );
