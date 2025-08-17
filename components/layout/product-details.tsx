@@ -15,6 +15,7 @@ interface CareersSectionProps {
   reversed?: boolean;
   href?: string;
   showButton?: boolean;
+  children?: React.ReactNode;
 }
 
 export default function ProductDetails({
@@ -28,6 +29,7 @@ export default function ProductDetails({
   reversed = false,
   href = "#",
   showButton = true,
+  children,
 }: CareersSectionProps) {
   const isOrange = variant === "orange";
 
@@ -79,6 +81,7 @@ export default function ProductDetails({
                 </p>
               ))}
             </div>
+            {children && children}
             {showButton && (
               <div className="pt-4">
                 <Link href={href}>

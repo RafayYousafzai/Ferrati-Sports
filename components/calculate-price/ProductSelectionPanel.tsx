@@ -84,7 +84,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const category = categories.find(
-                              (cat) => cat.id === item.key,
+                              (cat) => cat.id === item.key
                             );
 
                             return (
@@ -155,7 +155,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const fabric = fabrics.find(
-                              (fab) => fab.id === item.key,
+                              (fab) => fab.id === item.key
                             );
 
                             return (
@@ -219,7 +219,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const product = filteredProducts.find(
-                              (prod) => prod.id === item.key,
+                              (prod) => prod.id === item.key
                             );
 
                             return (
@@ -344,13 +344,22 @@ export function ProductSelectionPanel({
           </ModalContent>
         </Modal>
         {startContent}
-        <Button
-          className="bg-orange-500 text-white max-w-sm"
-          radius="full"
-          onPress={onOpen}
-        >
-          <Plus className="h-5 w-5 " /> Add New Product
-        </Button>
+        <div className="flex items-center">
+          <Button
+            className="bg-orange-500 text-white max-w-sm"
+            radius="full"
+            onPress={onOpen}
+          >
+            <Plus className="h-5 w-5 " /> Add New Product
+          </Button>
+          <p className="italic text-gray-600 ml-4">
+            <p>
+              &ldquo;The calculation provided is for estimation purposes only
+              and may vary based on final requirements and
+              specifications.&rdquo;
+            </p>
+          </p>
+        </div>
         <Table aria-label="Cart items" radius="lg">
           <TableHeader>
             <TableColumn>PRODUCT</TableColumn>

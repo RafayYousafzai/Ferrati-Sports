@@ -5,6 +5,10 @@ import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+import { Button } from "@heroui/button";
+import { SiTrustpilot } from "react-icons/si";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 export default async function CategoryPage({ params }) {
   const categoryId = params.id;
@@ -55,7 +59,26 @@ export default async function CategoryPage({ params }) {
         image={selectedProduct.image_url}
         variant="orange"
         href={`/calculate-price`}
-      />
+      >
+        <div className="">
+          {selectedProduct.trustpilot && (
+            <Link href={selectedProduct.trustpilot}>
+              <Button className="bg-white">
+                <SiTrustpilot className="text-green-400 size-4" />
+                TrustPilot
+              </Button>
+            </Link>
+          )}
+          {selectedProduct.google_reviews && (
+            <Link href={selectedProduct.google_reviews}>
+              <Button className="ml-2 bg-white">
+                <FcGoogle className=" size-4" />
+                Google Reviews
+              </Button>
+            </Link>
+          )}
+        </div>
+      </ProductDetails>
 
       <div className="max-w-7xl mx-auto p-6 html-content">
         <div

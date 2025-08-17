@@ -84,13 +84,11 @@ export default function ProductList({
                         </Button>
                       </div>
                     </div>
-                    <p className="text-default-500 text-md line-clamp-2 mb-3">
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: product?.description,
-                        }}
-                      />
-                    </p>
+                    <div
+                      className="text-default-500 text-md line-clamp-2 mb-3"
+                      dangerouslySetInnerHTML={{ __html: product?.description }}
+                    />
+
                     {product?.price && (
                       <Chip size="sm" color="danger">
                         Price {product?.price}

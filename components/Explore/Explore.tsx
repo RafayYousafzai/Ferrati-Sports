@@ -89,7 +89,7 @@ const Explore = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Problems Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-slate-50 rounded-2xl shadow-2xl p-10 h-full">
+            <div className="space-y-6 bg-slate-50  p-10 h-full ">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-red-400 mb-2">
                   What You Have Been Struggling
@@ -110,7 +110,7 @@ const Explore = () => {
 
           {/* Solutions Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-slate-50 rounded-2xl shadow-2xl p-10 h-full">
+            <div className="space-y-6 bg-slate-50  p-10 h-full  border-t-orange-500 border-t-[1rem]">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-orange-500 mb-2">
                   How We Empower You With

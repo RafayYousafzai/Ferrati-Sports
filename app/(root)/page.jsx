@@ -30,7 +30,6 @@ const VideoShowcase = lazyLoad(
 const ProductDetails = lazyLoad(
   () => import("@/components/layout/product-details")
 );
-const Testimonials = lazyLoad(() => import("@/components/layout/testimonials"));
 
 async function CategoriesSection() {
   const categories = await getCachedCategories();
@@ -113,7 +112,7 @@ export default async function Home() {
         <CategoriesSection />
       </Suspense>
 
-      <AllProductsSummary order={["blogs", "fabrics"]} />
+      <AllProductsSummary order={["fabrics", "blogs"]} />
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}

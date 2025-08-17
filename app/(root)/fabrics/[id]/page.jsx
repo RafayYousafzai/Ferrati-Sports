@@ -30,12 +30,6 @@ export default async function FabricPage({ params }) {
 
   return (
     <section>
-      <Header
-        badge="Ferrati"
-        highlightedTitle="Technical Details"
-        title="Fabric"
-      />
-
       <ProductDetails
         description={[
           `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,

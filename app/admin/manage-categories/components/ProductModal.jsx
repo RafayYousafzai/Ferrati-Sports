@@ -48,7 +48,6 @@ export default function ProductModal({
                     ? [String(productForm.category_id)]
                     : []
                 }
-                variant="bordered"
                 onSelectionChange={(keys) => {
                   const selectedKey = keys.values().next().value;
                   setProductForm({
@@ -68,7 +67,6 @@ export default function ProductModal({
                 label="Title"
                 placeholder="Enter product title"
                 value={productForm.title}
-                variant="bordered"
                 onChange={(e) =>
                   setProductForm({ ...productForm, title: e.target.value })
                 }
@@ -78,18 +76,43 @@ export default function ProductModal({
                 label="Subtitle"
                 placeholder="Enter product subtitle"
                 value={productForm.subtitle}
-                variant="bordered"
                 onChange={(e) =>
                   setProductForm({ ...productForm, subtitle: e.target.value })
                 }
               />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  isRequired
+                  label="Trustpilot"
+                  placeholder="Enter product trustpilot"
+                  value={productForm.trustpilot}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      trustpilot: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  isRequired
+                  label="Google Reviews"
+                  placeholder="Enter product google_reviews"
+                  value={productForm.google_reviews}
+                  onChange={(e) =>
+                    setProductForm({
+                      ...productForm,
+                      google_reviews: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
               <Input
                 isRequired
                 type="number"
                 label="Price"
                 placeholder="Enter product price"
                 value={productForm.price}
-                variant="bordered"
                 onChange={(e) =>
                   setProductForm({ ...productForm, price: e.target.value })
                 }
@@ -137,7 +160,6 @@ export default function ProductModal({
                     className="cursor-pointer"
                     htmlFor="product-image-upload"
                     startContent={<Upload size={16} />}
-                    variant="bordered"
                   >
                     Upload Image
                   </Button>
@@ -146,7 +168,6 @@ export default function ProductModal({
                   label="Or enter image URL"
                   placeholder="https://example.com/image.jpg"
                   value={productForm.image_url}
-                  variant="bordered"
                   onChange={(e) =>
                     setProductForm({
                       ...productForm,

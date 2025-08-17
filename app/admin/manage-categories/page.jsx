@@ -46,6 +46,8 @@ export default function CategoriesPage() {
     description: "",
     image_url: "",
     category_id: "",
+    trustpilot: "",
+    google_reviews: "",
   });
 
   const [categoryImageFile, setCategoryImageFile] = useState(null);
