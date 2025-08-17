@@ -19,15 +19,15 @@ const lazyLoad = (importFn, height = "h-64") =>
 
 const CategoriesCarousal = lazyLoad(
   () => import("@/components/layout/categories-carousal"),
-  "h-32",
+  "h-32"
 );
 const ServiceCards = lazyLoad(() => import("@/components/service-cards"));
 const Solutions = lazyLoad(() => import("@/components/layout/solutions"));
 const VideoShowcase = lazyLoad(
-  () => import("@/components/layout/video-showcase"),
+  () => import("@/components/layout/video-showcase")
 );
 const ProductDetails = lazyLoad(
-  () => import("@/components/layout/product-details"),
+  () => import("@/components/layout/product-details")
 );
 const Testimonials = lazyLoad(() => import("@/components/layout/testimonials"));
 
@@ -62,6 +62,7 @@ export default async function Home() {
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
       />
+
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >

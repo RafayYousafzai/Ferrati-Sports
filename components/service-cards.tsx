@@ -22,7 +22,7 @@ const iconMap = {
 
 export default function ServiceCards({ cards }: ServiceCardsProps) {
   return (
-    <div className="w-full bg-gray-100 p-8">
+    <div className="w-full  p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {cards.map((card) => {
           const IconComponent = iconMap[card.icon];
@@ -30,7 +30,7 @@ export default function ServiceCards({ cards }: ServiceCardsProps) {
           return (
             <Card
               key={card.id}
-              className="bg-white border-0 rounded-none shadow-none border-none duration-200"
+              className="bg-slate-50 border-0 rounded-none shadow-none border-none duration-200"
             >
               <CardContent className="p-8 text-center">
                 <div className="mb-6">
