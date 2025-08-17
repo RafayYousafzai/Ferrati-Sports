@@ -118,7 +118,7 @@ export default function ReviewsShowcase() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id} className="!w-80 min-w-md py-6">
-            <Card className="w-full p-6   shadow-none rounded-2xl group animate-fade-in border-none bg-slate-50 ">
+            <Card className="w-full p-6  h-72 shadow-none rounded-2xl group animate-fade-in border-none bg-slate-50 ">
               <div className="flex justify-between items-start ">
                 <div className="flex gap-1">
                   {[...Array(review.rating)].map((_, i) => (
@@ -139,7 +139,7 @@ export default function ReviewsShowcase() {
               <p className="text-gray-600 text-sm leading-relaxed   group-hover:text-gray-700 transition-colors duration-300">
                 {review.content}
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mt-auto">
                 <Avatar name={review.name} />
                 <div className="transition-transform duration-300 group-hover:translate-x-1">
                   <p className="font-medium text-gray-900 text-sm">

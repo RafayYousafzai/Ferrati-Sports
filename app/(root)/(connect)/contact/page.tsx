@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+import { Input, Textarea } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
 import { addToast } from "@heroui/toast";
 
@@ -118,7 +118,7 @@ export default function ContactPage() {
             CONTACT
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-black mb-6">
-            You made it!
+            You Made it!
           </h1>
           <div className="w-16 h-1 bg-orange-500 mx-auto mb-8" />
           <p className="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto">
@@ -156,7 +156,6 @@ export default function ContactPage() {
               onChange={(e) => handleChange("phone", e.target.value)}
             />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
               required
@@ -186,27 +185,14 @@ export default function ContactPage() {
               onChange={(e) => handleChange("lastName", e.target.value)}
             />
           </div>
-
-          <Select
-            required
-            classNames={{
-              trigger:
-                "bg-gray-100 border-0 shadow-none hover:bg-gray-200 data-[open=true]:bg-gray-100",
-              value: "text-gray-900",
-              popoverContent: "bg-white",
-            }}
-            placeholder="I'm interested in..."
-            selectedKeys={form.interest ? [form.interest] : []}
-            size="lg"
-            variant="flat"
-            onSelectionChange={(keys) =>
-              handleChange("interest", Array.from(keys)[0] as string)
-            }
-          >
-            {interestOptions.map((option) => (
-              <SelectItem key={option.key}>{option.label}</SelectItem>
-            ))}
-          </Select>
+          <Textarea
+            fullWidth
+            className=""
+            label="Description"
+            placeholder="Enter your description"
+            value={form.interest}
+            onChange={(e) => handleChange("interest", e.target.value)}
+          />
 
           <div className="pt-6">
             <Button
@@ -218,7 +204,6 @@ export default function ContactPage() {
               Send Message
             </Button>
           </div>
-
           <div className="text-xs text-gray-400 max-w-2xl">
             <p>
               By submitting this form, you consent to receive marketing
