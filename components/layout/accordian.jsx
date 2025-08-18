@@ -136,7 +136,7 @@ export default function FerratiAccordion() {
       </div>
 
       {/* Enhanced Hero Section */}
-      <div className="flex flex-col justify-center space-y-8 px-6 md:px-8 lg:px-10 bg-orange-500  rounded-2xl shadow-2xl    ">
+      <div className="flex flex-col justify-center space-y-8 p-6 md:px-8 lg:px-10 bg-orange-500  rounded-2xl shadow-2xl    ">
         {/* Header Section */}
         <div className="text lg:text-left text-white">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">

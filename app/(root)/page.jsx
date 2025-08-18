@@ -5,7 +5,7 @@ import CounterSection from "@/components/layout/counter-section";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import { getCachedCategories } from "@/lib/supabase/cached-queries";
-import { WhyChooseUsCards, materials, sampleVideos } from "@/lib/constants";
+import { WhyChooseUsCards, process, sampleVideos } from "@/lib/constants";
 import Explore from "@/components/Explore/Explore";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
@@ -91,7 +91,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <Solutions cards={materials} />
+        <Solutions cards={process} />
       </Suspense>
 
       <SectionHeader

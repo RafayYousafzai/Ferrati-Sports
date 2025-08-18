@@ -111,7 +111,10 @@ export default function ProductDetails({
                 alt="HeroUI Album Cover"
                 className="w-full h-full aspect-square transform rotate-1 hover:rotate-0 transition-transform duration-300"
                 height={500}
-                src={image}
+                src={
+                  image ||
+                  "https://images.unsplash.com/photo-1599009434802-ca1dd09895e7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
                 width={500}
               />
 

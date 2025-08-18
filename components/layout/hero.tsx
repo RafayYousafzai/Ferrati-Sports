@@ -6,6 +6,7 @@ import { Button } from "@heroui/button";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Separator from "../separator";
+import Link from "next/link";
 
 const defaultDescription =
   "Unleash your potential with Ferrati Impex. Gear up with our premium sportswear, designed to enhance your performance and help you achieve greatness.";
@@ -155,9 +156,11 @@ const Hero = () => {
               {currentSlideData.description}
             </p>
             {/* Dynamic button */}
-            <Button className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-white text-black">
-              Learn more about our services and products
-            </Button>
+            <Link href="/services">
+              <Button className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-white text-black">
+                Learn more about our services and products
+              </Button>
+            </Link>
           </motion.div>
         </AnimatePresence>
       </div>

@@ -40,14 +40,11 @@ export default function Solutions({ cards }: SolutionsProps) {
 
       <div className="relative max-w-full mx-auto">
         <Header
-          badge="SOLUTIONS"
-          highlightedTitle="Materials."
-          subtitle="We're specialists, not generalists. We were built to provide deep
-            expertise in digital channels that are extremely complex, and
-            changing daily. We offer integrated solutions with unique services
-            and deliverables tailored to unlock full-funnel growth."
+          badge="PROCESS"
+          highlightedTitle="Manufacturing."
+          subtitle="From concept to delivery, we transform your ideas into high-quality custom apparel through our streamlined 6-step process, backed by expertise and state-of-the-art facilities."
           theme="dark"
-          title="A results oriented "
+          title="Our streamlined "
         />
 
         {/* Cards Grid */}

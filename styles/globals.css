@@ -217,17 +217,17 @@
 }
 
 .html-content h1 {
-  @apply text-5xl font-bold mb-4;
+  @apply font-sans text-5xl text-gray-900   mb-4;
 }
 
 .html-content h2 {
-  @apply text-4xl font-semibold mb-3;
+  @apply font-sans text-4xl text-gray-900  mb-3;
 }
 
 .html-content h3 {
-  @apply text-3xl font-semibold mb-2;
+  @apply font-sans text-3xl text-gray-900  mb-2;
 }
 
 .html-content p {
-  @apply  mb-4 leading-relaxed;
+  @apply font-sans text-lg mb-4 leading-relaxed;
 }

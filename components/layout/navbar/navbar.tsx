@@ -63,7 +63,7 @@ export default function Appbar() {
       try {
         const { data, error } = await supabase
           .from("categories")
-          .select("*")
+          .select("title,id,description,image_url")
           .order("created_at", { ascending: false })
           .limit(3); // Only fetch 4 categories
 
@@ -72,18 +72,16 @@ export default function Appbar() {
 
         const { data: blogsData, error: blogsError } = await supabase
           .from("blogs")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(3); // Only fetch 4 categories
+          .select("title,id")
+          .order("created_at", { ascending: false });
 
         if (blogsError) throw blogsError;
         setBlogs(blogsData || []);
 
         const { data: servicesData, error: servicesError } = await supabase
           .from("services")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(3); // Only fetch 4 categories
+          .select("title,id")
+          .order("created_at", { ascending: false });
 
         if (servicesError) throw servicesError;
         setServices(servicesData || []);
@@ -201,7 +199,9 @@ export default function Appbar() {
     >
       <NavbarContent>
         <NavbarBrand>
-          <Badge containerStyles="xl:flex w-[160px] h-[180px] " sqr={false} />
+          <Link href="/">
+            <Badge containerStyles="xl:flex w-[160px] h-[180px] " sqr={false} />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

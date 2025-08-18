@@ -101,7 +101,6 @@ export default function ProductModal({
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
-                  isRequired
                   label="Trustpilot"
                   placeholder="Enter product trustpilot"
                   value={productForm.trustpilot}
@@ -113,7 +112,6 @@ export default function ProductModal({
                   }
                 />
                 <Input
-                  isRequired
                   label="Google Reviews"
                   placeholder="Enter product google_reviews"
                   value={productForm.google_reviews}
