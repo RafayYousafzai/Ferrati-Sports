@@ -8,10 +8,13 @@ import {
   Timer,
   Package,
   Mail,
-  Calculator,
-  ArrowRight,
+  CheckCircle,
 } from "lucide-react";
 import { Button } from "@heroui/button";
+import { useState } from "react";
+import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import { createClient } from "@/lib/supabase/client";
+import { Card, CardBody } from "@heroui/card";
 
 export default function FerratiAccordion() {
   const faqs = [
@@ -98,6 +101,61 @@ export default function FerratiAccordion() {
     },
   ];
 
+  const supabase = createClient();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleConfirm = async () => {
+    setSaving(true);
+    const { error } = await supabase.from("requested_quotes").insert([
+      {
+        email,
+        name,
+        phone,
+        description,
+        cart_items: [],
+        total_price: 0,
+      },
+    ]);
+
+    setSaving(false);
+    if (error) {
+      console.error(error);
+      alert("Failed to submit quote request. Please try again.");
+    } else {
+      setSubmitted(true);
+      setTimeout(() => {
+        setEmail("");
+        setName("");
+        setPhone("");
+        setDescription("");
+        setSubmitted(false);
+      }, 3000);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Card className="w-full max-w-lg mx-4">
+          <CardBody className="text-center py-16">
+            <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
+            <h2 className="text-2xl font-bold text-gray-800 mb-3">
+              Quote Request Submitted!
+            </h2>
+            <p className="text-gray-600">
+              Thank you! We will get back to you within 24 hours.
+            </p>
+          </CardBody>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <section className="w-full px-4 sm:px-6 lg:px-16 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <div className="mx-auto w-full max-w-3xl">
@@ -135,76 +193,35 @@ export default function FerratiAccordion() {
         </Accordion>
       </div>
 
-      {/* Enhanced Hero Section */}
-      <div className="flex flex-col justify-center space-y-8 p-6 md:px-8 lg:px-10 bg-orange-500  rounded-2xl shadow-2xl    ">
-        {/* Header Section */}
-        <div className="text lg:text-left text-white">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">
-            Instant Price <span className="  text-white">Estimates.</span>
-            <br />
-            <span className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-100">
-              No Surprises.
-            </span>
-          </h2>
-
-          <div className="w-20 h-1 bg-white rounded-full mb-8 mx-auto lg:mx-0" />
-        </div>
-
-        {/* Content Section */}
-        <div className="space-y-6">
-          <p className="text-lg text-gray-50 leading-relaxed text-center lg:text-left">
-            Curious about project costs? Use our smart price calculator to get
-            an instant estimate based on your specific requirements—no
-            guesswork, just clarity.
-          </p>
-
-          {/* Feature highlights */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-white rounded-full" />
-              <span className="text-sm font-medium text-gray-100">
-                Instant Results
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-white rounded-full" />
-              <span className="text-sm font-medium text-gray-100">
-                No Hidden Fees
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-white rounded-full" />
-              <span className="text-sm font-medium text-gray-100">
-                Custom Quotes
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-white rounded-full" />
-              <span className="text-sm font-medium text-gray-100">
-                Bulk Discounts
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="pt-4">
-          <Link href="/calculate-price">
-            <Button
-              className="w-full sm:w-auto px-8 py-4 text-orange-500 bg-white hover:white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 group"
-              size="lg"
-              variant="solid"
-            >
-              <span className="font-semibold">Calculate Now</span>
-              <ArrowRight
-                size={18}
-                className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </Button>
-          </Link>
-          <p className="text-xs text-white mt-3 text-center sm:text-left">
-            Get your estimate in under 30 seconds
-          </p>
+      <div className="p-6 md:px-8 lg:px-10 bg-gray-50 rounded-2xl shadow-lg">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-gray-800">
+          Request a Quote
+        </h2>
+        <p className="text-sm sm:text-base text-gray-600 mb-6">
+          Tell us your needs, and we will prepare a tailored offer for you.
+        </p>
+        <QuoteContactForm
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          phone={phone}
+          setPhone={setPhone}
+          description={description}
+          setDescription={setDescription}
+        />
+        <div className="mt-6 text-center">
+          <Button
+            className="bg-orange-500 text-white px-12 rounded-full"
+            color="warning"
+            isDisabled={!email || !name}
+            radius="lg"
+            size="lg"
+            isLoading={saving}
+            onPress={handleConfirm}
+          >
+            {saving ? "Submitting..." : "Submit Request"}
+          </Button>
         </div>
       </div>
     </section>

@@ -26,12 +26,12 @@ const ProductDetails = dynamic(
 // 🔹 Constants to avoid recreating objects
 const PRODUCT_DETAILS_SECTIONS = [
   {
-    buttonText: "Request Quote",
+    buttonText: "Get a Price",
     description: [
-      "Looking for a team that brings your digital ideas to life? From strategy to execution, we deliver tailored solutions that meet your business needs with precision and creativity.",
+      "Easily estimate your project cost in just a few clicks. Our calculator helps you plan your budget, compare options, and get clarity before you start.",
     ],
-    headline: "Request Quote to Build Your Digital Future",
-    href: "/request-quote",
+    headline: "Get an instant estimate for your project.",
+    href: "/calculate-price",
     image: "/assets/workers.png",
     reversed: true,
     sectionTitle: "WORK WITH US",

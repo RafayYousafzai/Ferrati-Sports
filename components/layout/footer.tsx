@@ -45,6 +45,10 @@ const stats = [
 
 const quickLinks = [
   { href: "/", label: "Home" },
+  {
+    label: "Products",
+    href: "/categories ",
+  },
   { href: "/fabrics", label: "Fabrics" },
   { href: "/services", label: "Services" },
   { href: "/blogs", label: "Blog" },

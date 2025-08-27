@@ -176,6 +176,10 @@ export default function Appbar() {
     ],
     mobileNav: [
       { title: "Home", href: "/" },
+      {
+        title: "Products",
+        href: "/categories ",
+      },
       { title: "Fabrics", href: "/fabrics" },
       {
         title: "Services",
@@ -235,7 +239,7 @@ export default function Appbar() {
         ))}
       </NavbarContent>
 
-      <NavbarMenu className="bg-black/80 justify-center ">
+      <NavbarMenu className="bg-black/80 py-4 -mt-1 ">
         {navigationConfig.mobileNav.map((item, index) => (
           <NavbarMenuItem key={`${item.title}-${index}`}>
             <Link
