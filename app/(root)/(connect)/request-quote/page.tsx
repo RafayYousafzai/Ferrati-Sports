@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FC } from "react";
 import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
 import { Card, CardBody } from "@heroui/card";
 import { Spacer } from "@heroui/spacer";
 import {
@@ -13,32 +12,38 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/modal";
-import { CheckCircle, Mail, User, Phone, Send } from "lucide-react";
+import { Switch } from "@heroui/switch"; // Assuming Switch component exists in this library
+import { CheckCircle, Send } from "lucide-react";
 
 import { ProductSelectionPanel } from "@/components/calculate-price/ProductSelectionPanel";
 import Header from "@/components/custom-ui/header";
 import { usePriceCalculation } from "@/context/PriceCalculationContext";
 import { createClient } from "@/lib/supabase/client";
+import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import { Spinner } from "@heroui/spinner";
 
+// --- Main Page Component ---
 export default function RequestQuote() {
   const supabase = createClient();
   const { loading, cart } = usePriceCalculation();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+  const [addProducts, setAddProducts] = useState(false); // State for the switch
   const [saving, setSaving] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleContinue = () => {
+    // Basic validation for name and email
     if (!email || !name) {
       alert("Please fill in your email and name before continuing.");
-
       return;
     }
-    if (cart.length === 0) {
+    // Conditional validation for product selection
+    if (addProducts && cart.length === 0) {
       alert("Please select at least one product.");
-
       return;
     }
     onOpen();
@@ -51,8 +56,9 @@ export default function RequestQuote() {
         email,
         name,
         phone,
-        cart_items: cart,
-        total_price: 0, // No price shown as requested
+        description, // Added description to the submission
+        cart_items: addProducts ? cart : [], // Only add cart items if switch is on
+        total_price: 0,
       },
     ]);
 
@@ -63,29 +69,24 @@ export default function RequestQuote() {
     } else {
       onClose();
       setSubmitted(true);
-      // Reset after 3 seconds
+      // Reset form state after successful submission
       setTimeout(() => {
         setEmail("");
         setName("");
         setPhone("");
+        setDescription("");
+        setAddProducts(true); // Reset the switch
         setSubmitted(false);
+        // Note: You might want to clear the cart here as well
+        // clearCart();
       }, 3000);
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <Card className="w-full max-w-md">
-              <CardBody className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">Loading products...</p>
-              </CardBody>
-            </Card>
-          </div>
-        </div>
+      <div className="min-h-screen   flex items-center justify-center">
+        <Spinner className="mx-auto mt-20" size="lg" color="warning" />
       </div>
     );
   }
@@ -120,66 +121,70 @@ export default function RequestQuote() {
 
         <Spacer y={8} />
 
-        <ProductSelectionPanel
-          endContent={
-            <>
-              <div className="text-center">
-                <Button
-                  className="bg-orange-500 text-white px-12  rounded-full"
-                  color="warning"
-                  isDisabled={!email || !name || cart.length === 0}
-                  radius="lg"
-                  size="lg"
-                  onPress={handleContinue}
-                >
-                  Continue
-                </Button>
-              </div>
-            </>
-          }
-          fn={false}
-          startContent={
-            <>
-              <h2 className="text-xl font-bold">Contact Information</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Input
-                  isRequired
-                  label="Full Name"
-                  placeholder="John Doe"
-                  radius="lg"
-                  startContent={<User className="h-4 w-4 text-gray-400" />}
-                  type="text"
-                  value={name}
-                  variant="flat"
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <Input
-                  isRequired
-                  label="Email Address"
-                  placeholder="your.email@example.com"
-                  radius="lg"
-                  startContent={<Mail className="h-4 w-4 text-gray-400" />}
-                  type="email"
-                  value={email}
-                  variant="flat"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Input
-                  className="max-w-md"
-                  label="Phone Number (Optional)"
-                  placeholder="+1 (555) 123-4567"
-                  radius="lg"
-                  startContent={<Phone className="h-4 w-4 text-gray-400" />}
-                  type="tel"
-                  value={phone}
-                  variant="flat"
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-              <h2 className="text-xl font-bold">Product Selection</h2>
-            </>
-          }
+        {/* Using the new reusable form component */}
+        <QuoteContactForm
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          phone={phone}
+          setPhone={setPhone}
+          description={description}
+          setDescription={setDescription}
         />
+
+        <Spacer y={6} />
+
+        {/* Card containing the switch for a cleaner UI */}
+        <Card className="w-full shadow-sm">
+          <CardBody>
+            <div className="flex items-center justify-between p-2">
+              <div className="flex flex-col">
+                <span className="font-semibold text-gray-800">
+                  Add Specific Products?
+                </span>
+                <span className="text-sm text-gray-500">
+                  Toggle this on to select products from our catalog.
+                </span>
+              </div>
+              <Switch
+                isSelected={addProducts}
+                onValueChange={setAddProducts}
+                color="warning"
+              />
+            </div>
+          </CardBody>
+        </Card>
+
+        <Spacer y={6} />
+
+        {/* Conditionally render the Product Selection Panel */}
+        {addProducts && (
+          <ProductSelectionPanel
+            fn={false}
+            startContent={
+              <h2 className="text-2xl font-bold text-gray-800">
+                Product Selection
+              </h2>
+            }
+          />
+        )}
+
+        <Spacer y={8} />
+
+        {/* Main action button at the bottom of the page */}
+        <div className="text-center">
+          <Button
+            className="bg-orange-500 text-white px-12 rounded-full"
+            color="warning"
+            isDisabled={!email || !name || (addProducts && cart.length === 0)}
+            radius="lg"
+            size="lg"
+            onPress={handleContinue}
+          >
+            Continue to Review
+          </Button>
+        </div>
 
         {/* Summary Modal */}
         <Modal isOpen={isOpen} size="2xl" onClose={onClose}>
@@ -209,30 +214,46 @@ export default function RequestQuote() {
                   </div>
                 </div>
 
-                {/* Selected Products */}
-                <div>
-                  <h4 className="font-semibold text-lg mb-3">
-                    Selected Products
-                  </h4>
-                  <div className="space-y-2">
-                    {cart.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-gray-50 p-3 rounded-lg flex justify-between items-center"
-                      >
-                        <div>
-                          <p className="font-medium">{item.product.title}</p>
-                          <p className="text-sm text-gray-600">
-                            Category: {item.product.categories?.title}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-medium">Qty: {item.quantity}</p>
-                        </div>
-                      </div>
-                    ))}
+                {/* Description */}
+                {description && (
+                  <div>
+                    <h4 className="font-semibold text-lg mb-3">
+                      Description / Message
+                    </h4>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <p className="text-gray-700 whitespace-pre-wrap">
+                        {description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {/* Selected Products (Conditional) */}
+                {addProducts && cart.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-lg mb-3">
+                      Selected Products
+                    </h4>
+                    <div className="space-y-2">
+                      {cart.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-gray-50 p-3 rounded-lg flex justify-between items-center"
+                        >
+                          <div>
+                            <p className="font-medium">{item.product.title}</p>
+                            <p className="text-sm text-gray-600">
+                              Category: {item.product.categories?.title}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-medium">Qty: {item.quantity}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </ModalBody>
             <ModalFooter>
@@ -240,7 +261,7 @@ export default function RequestQuote() {
                 Back
               </Button>
               <Button
-                className="bg-orange-500 text-white px-12  rounded-full"
+                className="bg-orange-500 text-white px-12 rounded-full"
                 isLoading={saving}
                 startContent={!saving && <Send className="h-4 w-4" />}
                 onPress={handleConfirm}
