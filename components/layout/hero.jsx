@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Separator from "../separator";
 import Link from "next/link";
 
+const mobileImage =
+  "https://images.unsplash.com/photo-1619032468883-89a84f565cba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
 const defaultDescription =
   "Unleash your potential with Ferrati Impex. Gear up with our premium sportswear, designed to enhance your performance and help you achieve greatness.";
 
@@ -51,7 +54,7 @@ const Hero = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const goToSlide = (index: number) => {
+  const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
@@ -77,25 +80,38 @@ const Hero = () => {
       <div className="bg-hero_overlay absolute w-full h-full z-10 bg-black/[0.70]" />
       {/* Image slider */}
       <div className="absolute top-0 left-0 w-full h-full bg-black">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={imageVariants}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full h-full absolute top-0 left-0"
-          >
+        <div className="hidden md:block w-full h-full relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={imageVariants}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="w-full h-full absolute top-0 left-0"
+            >
+              <Image
+                fill
+                priority
+                alt={`Slide ${currentSlide + 1}`}
+                className="object-cover"
+                src={currentSlideData.image || "/placeholder.svg"}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <div className="md:hidden block">
+          <motion.div className="w-full h-full absolute top-0 left-0">
             <Image
               fill
               priority
               alt={`Slide ${currentSlide + 1}`}
               className="object-cover"
-              src={currentSlideData.image || "/placeholder.svg"}
+              src={mobileImage}
             />
           </motion.div>
-        </AnimatePresence>
+        </div>
       </div>
       {/* Navigation arrows */}
       <button
@@ -113,7 +129,7 @@ const Hero = () => {
         <ChevronRight className="w-6 h-6" />
       </button>
       {/* Slide indicators */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-40 flex space-x-2">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-40  space-x-2 hidden md:flex">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -127,6 +143,7 @@ const Hero = () => {
           />
         ))}
       </div>
+
       <div className="container mx-auto h-full flex flex-col xl:flex-row items-start z-30 relative px-4">
         {/* Dynamic text content */}
         <AnimatePresence mode="wait">

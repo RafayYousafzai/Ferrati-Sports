@@ -71,7 +71,7 @@ export default async function Home() {
 
       <Explore />
 
-      <Suspense
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <ProductDetails
@@ -86,7 +86,7 @@ export default async function Home() {
           sectionTitle="WORK WITH US"
           variant="white"
         />
-      </Suspense>
+      </Suspense> */}
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}

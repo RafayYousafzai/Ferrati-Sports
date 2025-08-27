@@ -125,7 +125,7 @@ export default function OurProcess() {
   ];
 
   return (
-    <div className="min-h-screen bg-white py-12 mt-12 px-4">
+    <div className="min-h-screen bg-slate-50 py-12 pt-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -149,7 +149,7 @@ export default function OurProcess() {
             return (
               <Card
                 key={index}
-                className="relative overflow-hidden group transition-all duration-300  rounded-none shadow-none border-none bg-slate-50"
+                className="relative overflow-hidden group transition-all duration-300  rounded-none shadow-none border-none bg-white"
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-2">
