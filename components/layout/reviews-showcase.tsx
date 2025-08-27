@@ -118,7 +118,7 @@ export default function ReviewsShowcase() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id} className="!w-80 min-w-md py-6">
-            <Card className="w-full p-6  h-72 shadow-none rounded-2xl group animate-fade-in border-none bg-slate-50 ">
+            <Card className="w-full p-6  h-64 shadow-none rounded-2xl group animate-fade-in border-none bg-slate-50 ">
               <div className="flex justify-between items-start ">
                 <div className="flex gap-1">
                   {[...Array(review.rating)].map((_, i) => (
@@ -129,7 +129,7 @@ export default function ReviewsShowcase() {
                     />
                   ))}
                 </div>
-                <Badge containerStyles=" -mt-4 w-[64px] h-[64px]" />
+                {/* <Badge containerStyles=" -mt-4 w-[64px] h-[64px]" /> */}
               </div>
 
               <h3 className="text-lg font-semibold text-gray-900 -mt-4  group-hover:text-orange-500 transition-colors duration-300">
