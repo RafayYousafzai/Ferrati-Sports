@@ -156,11 +156,18 @@ const Hero = () => {
               {currentSlideData.description}
             </p>
             {/* Dynamic button */}
-            <Link href="/services">
-              <Button className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-white text-black">
-                Learn more about our services and products
-              </Button>
-            </Link>
+            <div className="flex flex-col gap-4">
+              <Link href="/request-quote">
+                <Button className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-white text-black">
+                  Get Quote
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-white text-black">
+                  Get a Free Sample
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>

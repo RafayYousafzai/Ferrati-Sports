@@ -67,15 +67,7 @@ const Explore = () => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-7xl text-center ">
-        <TypeEffect
-          sequence={[
-            "We own it.", // Types 'One'
-            1000, // Waits 1s
-            "We Build.", // Deletes 'One' and types 'Two'
-            2000, // Waits 2s
-            "We Deliver.", // Types 'Three' without deleting 'Two'
-          ]}
-        />
+        <TypeEffect />
         <p className="text-gray-600 text-center font-semibold text-3xl mb-2">
           We are the alternative to Traditional Manufacturing
         </p>
@@ -110,7 +102,7 @@ const Explore = () => {
 
           {/* Solutions Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-slate-50  p-10 h-full  border-t-orange-500 border-t-[1rem]">
+            <div className="space-y-6 bg-slate-50  p-10 h-full">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-orange-500 mb-2">
                   How We Empower You With

@@ -196,6 +196,7 @@ export default function Appbar() {
       isMenuOpen={isMenuOpen}
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
+      disableAnimations={true}
     >
       <NavbarContent>
         <NavbarBrand>
