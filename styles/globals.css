@@ -231,3 +231,49 @@
 .html-content p {
   @apply font-sans text-lg mb-4 leading-relaxed;
 }
+
+
+:root {
+  /* Brand colors */
+  --chat--color-primary: #fc7521; /* orange for toggle button */
+  --chat--color-primary-shade-50: #e4691d;
+  --chat--color-primary-shade-100: #cc5c19;
+
+  --chat--color-secondary: #1d9bf0; /* blue for user messages */
+  --chat--color-secondary-shade-50: #1784cc;
+
+  --chat--color-white: #ffffff;
+  --chat--color-light: #f7f9fc;
+  --chat--color-light-shade-50: #e5e9f0;
+  --chat--color-light-shade-100: #cfd5df;
+  --chat--color-dark: #0f172a; /* dark navy */
+  --chat--color-disabled: #9ca3af;
+  --chat--color-typing: #555;
+
+  /* Layout & sizing */
+  --chat--window--width: 420px;
+  --chat--window--height: 600px;
+  --chat--spacing: 0.85rem;
+  --chat--border-radius: 0.75rem;
+  --chat--transition-duration: 0.25s;
+
+  /* Header */
+  --chat--header--background: var(--chat--color-primary);
+  --chat--header--color: var(--chat--color-white);
+  --chat--heading--font-size: 1.25rem;
+  --chat--subtitle--font-size: 0.85rem;
+
+  /* Messages */
+  --chat--message--font-size: 0.95rem;
+  --chat--message-line-height: 1.6;
+  --chat--message--bot--background: var(--chat--color-light);
+  --chat--message--bot--color: var(--chat--color-dark);
+  --chat--message--user--background: var(--chat--color-secondary);
+  --chat--message--user--color: var(--chat--color-white);
+
+  /* Toggle button */
+  --chat--toggle--background: var(--chat--color-primary);
+  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
+  --chat--toggle--active--background: var(--chat--color-primary-shade-100);
+  --chat--toggle--size: 60px;
+}

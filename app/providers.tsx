@@ -9,6 +9,10 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ToastProvider } from "@heroui/toast";
 import NextTopLoader from "nextjs-toploader";
 
+import { useEffect } from "react";
+import "@n8n/chat/style.css";
+import { createChat } from "@n8n/chat";
+
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -24,6 +28,13 @@ declare module "@react-types/shared" {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
+
+  useEffect(() => {
+    createChat({
+      webhookUrl:
+        "https://rafayiscool.online/webhook/a5358191-0662-494e-80a4-8345279eadb3/chat",
+    });
+  }, []);
 
   return (
     <HeroUIProvider navigate={router.push}>
