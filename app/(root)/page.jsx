@@ -81,7 +81,7 @@ export default async function Home() {
           ]}
           headline="Request Quote to Build Your Digital Future"
           href="/request-quote"
-          image="/assets/workers.png"
+          image="/assets/workers.webp"
           reversed
           sectionTitle="WORK WITH US"
           variant="white"

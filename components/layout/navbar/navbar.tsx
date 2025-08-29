@@ -109,7 +109,7 @@ export default function Appbar() {
       title: "All Categories",
       href: `/categories`,
       description: `Check our all categories`,
-      image: "/assets/cat4.png",
+      image: "/assets/cat4.webp",
     },
   ];
   const blogsNavItems: NavItem[] = [

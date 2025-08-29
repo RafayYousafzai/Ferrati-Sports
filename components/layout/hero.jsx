@@ -18,19 +18,19 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      image: "/assets/cat1.png",
+      image: "/assets/cat1.webp",
       badge: "Coffee",
       title: "Want to Start Your Custom Order?",
       description: defaultDescription,
     },
     {
-      image: "/assets/cat2.png",
+      image: "/assets/cat2.webp",
       badge: "Artisan",
       title: "Are you still struggling in 2025?",
       description: defaultDescription,
     },
     {
-      image: "/assets/cat4.png",
+      image: "/assets/cat4.webp",
       badge: "Fresh",
       title: "Want to scale in 2025?",
       description: defaultDescription,

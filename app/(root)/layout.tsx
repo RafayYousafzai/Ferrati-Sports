@@ -32,7 +32,7 @@ const PRODUCT_DETAILS_SECTIONS = [
     ],
     headline: "Get an instant estimate for your project.",
     href: "/calculate-price",
-    image: "/assets/workers.png",
+    image: "/assets/workers.webp",
     reversed: true,
     sectionTitle: "WORK WITH US",
     variant: "orange" as const,
