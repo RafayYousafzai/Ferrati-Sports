@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Ferrati Sports",
+  description:
+    "Ferrati Sports – Premium custom sportswear and apparel manufacturing. High-quality jackets, uniforms, tracksuits, and more tailored for performance and style.",
   navItems: [
     {
       label: "Home",

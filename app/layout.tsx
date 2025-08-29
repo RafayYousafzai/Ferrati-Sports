@@ -6,7 +6,6 @@ import { Cormorant_Upright, Open_Sans } from "next/font/google";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import Script from "next/script";
 
 const cormorant_upright = Cormorant_Upright({
   subsets: ["latin"],
@@ -55,34 +54,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col min-h-screen">
-            <main className="flex-grow">
-              {children}
-              {/* <Script
-                id="botsonic-script"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
-              (function (w, d, s, o, f, js, fjs) {
-                w["botsonic_widget"] = o;
-                w[o] =
-                  w[o] ||
-                  function () {
-                    (w[o].q = w[o].q || []).push(arguments);
-                  };
-                (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-                js.id = o;
-                js.src = f;
-                js.async = 1;
-                fjs.parentNode.insertBefore(js, fjs);
-              })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
-              Botsonic("init", {
-                serviceBaseUrl: "https://api-bot.writesonic.com",
-                token: "d25c3f41-166c-4890-a6a5-76e74ad7c518",
-              });
-            `,
-                }}
-              /> */}
-            </main>
+            <main className="flex-grow">{children}</main>
           </div>
         </Providers>
       </body>
