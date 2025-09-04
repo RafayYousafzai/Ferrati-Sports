@@ -33,6 +33,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
     createChat({
       webhookUrl:
         "https://rafayiscool.online/webhook/a5358191-0662-494e-80a4-8345279eadb3/chat",
+      initialMessages: [
+        "Hi there! I'm here to help you with any questions you have about Ferrati Sports.",
+      ],
     });
   }, []);
 
