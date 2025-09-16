@@ -14,8 +14,7 @@ const mobileImage =
 const defaultDescription =
   "Unleash your potential with Ferrati Impex. Gear up with our premium sportswear, designed to enhance your performance and help you achieve greatness.";
 
-const img =
-  "/assets/young-tailor-thoughtfully-drawing-with-soap-textile-working-modern-sewing-workshop.webp";
+const HERO_IMAGE = "/assets/hero.webp";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -71,7 +70,7 @@ const Hero = () => {
               priority
               alt={`Slide ${currentSlide + 1}`}
               className="object-cover"
-              src={img}
+              src={HERO_IMAGE}
             />
           </div>
         </div>
@@ -81,7 +80,7 @@ const Hero = () => {
             priority
             alt={`Slide ${currentSlide + 1}`}
             className="object-cover"
-            src={img}
+            src={HERO_IMAGE}
           />
         </div>
       </div>

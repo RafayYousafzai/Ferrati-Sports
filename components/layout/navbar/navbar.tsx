@@ -168,7 +168,7 @@ export default function Appbar() {
         <NavbarBrand>
           <Link href="/">
             <div className={`relative xl:flex w-[60px] h-[60px]`}>
-              <Image fill alt="" className="object-contain" src={`/logo.png`} />
+              <Image fill alt="" className="object-contain" src="/logo.png" />
             </div>{" "}
           </Link>
         </NavbarBrand>
