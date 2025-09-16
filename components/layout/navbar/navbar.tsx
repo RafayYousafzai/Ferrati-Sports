@@ -12,12 +12,11 @@ import {
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import Badge from "../../badge";
-
 import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
 
 import { createClient } from "@/lib/supabase/client";
+import Image from "next/image";
 
 // Type definitions
 type NavItem = {
@@ -29,15 +28,16 @@ type NavItem = {
 
 type NavGroup = {
   title: string;
+  href: string;
   items: NavItem[];
   isProductGrid?: boolean;
 };
 
 type NavigationConfig = {
   leftNav: NavItem[];
-  centerDropdowns: NavGroup[];
+  centerNav: NavGroup[];
   rightNav: NavItem[];
-  mobileNav: string[];
+  mobileNav: NavItem[];
 };
 
 interface Category {
@@ -51,8 +51,7 @@ interface Category {
 export default function Appbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [blogs, setBlogs] = useState<Category[]>([]);
-  const [services, setServices] = useState<Category[]>([]);
+  // Remove unused state
   const [loading, setLoading] = useState(true);
 
   const supabase = createClient();
@@ -68,7 +67,12 @@ export default function Appbar() {
           .limit(3); // Only fetch 4 categories
 
         if (error) throw error;
-        setCategories(data || []);
+        setCategories(
+          (data || []).map((cat) => ({
+            ...cat,
+            created_at: (cat as any).created_at || new Date().toISOString(),
+          }))
+        );
 
         const { data: blogsData, error: blogsError } = await supabase
           .from("blogs")
@@ -76,7 +80,7 @@ export default function Appbar() {
           .order("created_at", { ascending: false });
 
         if (blogsError) throw blogsError;
-        setBlogs(blogsData || []);
+        // setBlogs(blogsData || []); // Remove unused
 
         const { data: servicesData, error: servicesError } = await supabase
           .from("services")
@@ -84,9 +88,9 @@ export default function Appbar() {
           .order("created_at", { ascending: false });
 
         if (servicesError) throw servicesError;
-        setServices(servicesData || []);
+        // setServices(servicesData || []); // Remove unused
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        // console.error("Error fetching categories:", error);
         // Fallback to static data if database fetch fails
         setCategories([]);
       } finally {
@@ -112,45 +116,17 @@ export default function Appbar() {
       image: "/assets/cat4.webp",
     },
   ];
-  const blogsNavItems: NavItem[] = [
-    {
-      title: "All Blogs",
-      href: `/blogs`,
-    },
-    ...blogs.map((blogs) => ({
-      title: blogs.title,
-      href: `/blogs/${blogs.id}`,
-    })),
-  ];
-  const servicesNavItems: NavItem[] = [
-    {
-      title: "All Services",
-      href: `/services`,
-    },
-    ...services.map((services) => ({
-      title: services.title,
-      href: `/services/${services.id}`,
-    })),
-  ];
 
   const navigationConfig: NavigationConfig = {
     leftNav: [
       { title: "Home", href: "/" },
       { title: "Fabrics", href: "/fabrics" },
+      { title: "Services", href: "/services" },
     ],
-    centerDropdowns: [
+    centerNav: [
       {
-        href: "/services",
-        title: "Services",
-        items: loading
-          ? servicesNavItems.length > 0
-            ? servicesNavItems
-            : []
-          : servicesNavItems,
-      },
-      {
-        href: "/categories",
         title: "Products",
+        href: "/categories",
         isProductGrid: true,
         items: loading
           ? categoryNavItems.length > 0
@@ -158,17 +134,9 @@ export default function Appbar() {
             : []
           : categoryNavItems,
       },
-      {
-        href: "/blogs",
-        title: "Blogs",
-        items: loading
-          ? blogsNavItems.length > 0
-            ? blogsNavItems
-            : []
-          : blogsNavItems,
-      },
     ],
     rightNav: [
+      { title: "Blogs", href: "/blogs" },
       { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
       { title: "Calculate Price", href: "/calculate-price" },
@@ -176,15 +144,9 @@ export default function Appbar() {
     ],
     mobileNav: [
       { title: "Home", href: "/" },
-      {
-        title: "Products",
-        href: "/categories ",
-      },
+      { title: "Products", href: "/categories" },
       { title: "Fabrics", href: "/fabrics" },
-      {
-        title: "Services",
-        href: "/services ",
-      },
+      { title: "Services", href: "/services" },
       { title: "Blogs", href: "/blogs" },
       { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
@@ -196,16 +158,18 @@ export default function Appbar() {
   return (
     <Navbar
       shouldHideOnScroll
-      className="transition-all duration-300 bg-black h-[8vh] "
+      className="transition-all duration-300 bg-black h-[10vh] "
       isMenuOpen={isMenuOpen}
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
-      disableAnimations={true}
+      disableAnimation={true}
     >
       <NavbarContent>
         <NavbarBrand>
           <Link href="/">
-            <Badge containerStyles="xl:flex w-[160px] h-[180px] " sqr={false} />
+            <div className={`relative xl:flex w-[60px] h-[60px]`}>
+              <Image fill alt="" className="object-contain" src={`/logo.png`} />
+            </div>{" "}
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -221,7 +185,19 @@ export default function Appbar() {
       </NavbarContent>
 
       <NavbarContent className="hidden md:flex gap-4" justify="center">
-        <MenuContent navigationConfig={navigationConfig} />
+        {navigationConfig.centerNav.map((item) => (
+          <NavbarItem key={item.href}>
+            {item.items && item.items.length > 0 ? (
+              // Render dropdown for items with content
+              <MenuContent item={item} />
+            ) : (
+              // Render simple link for items without dropdown
+              <Link className="text-white hover:text-gray-300" href={item.href}>
+                {item.title}
+              </Link>
+            )}
+          </NavbarItem>
+        ))}
       </NavbarContent>
 
       <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
@@ -229,7 +205,9 @@ export default function Appbar() {
           <NavbarItem key={item.href}>
             <Link
               className={`text-white hover:text-gray-300 ${
-                item.title === "Request Quote" ? "font-bold text-primary" : ""
+                item.title === "Request Quote"
+                  ? "font-bold bg-orange-400 p-4 pt-3"
+                  : ""
               }`}
               href={item.href}
             >
@@ -240,7 +218,7 @@ export default function Appbar() {
       </NavbarContent>
 
       <NavbarMenu className="bg-black/80 py-4 -mt-1 ">
-        {navigationConfig.mobileNav.map((item, index) => (
+        {navigationConfig.mobileNav.map((item: NavItem, index: number) => (
           <NavbarMenuItem key={`${item.title}-${index}`}>
             <Link
               className="w-full text-white hover:text-slate-200 py-2 text-2xl"
@@ -261,49 +239,42 @@ export default function Appbar() {
   );
 }
 
-function MenuContent({
-  navigationConfig,
-}: {
-  navigationConfig: NavigationConfig;
-}) {
+function MenuContent({ item }: { item: NavGroup }) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
     <Menu setActive={setActive}>
-      {navigationConfig.centerDropdowns.map((group) => (
-        <MenuItem
-          key={group.title}
-          active={active}
-          href={group.href}
-          item={group.title}
-          setActive={setActive}
-        >
-          {group.isProductGrid ? (
-            <div className="text-sm grid grid-cols-2 gap-4 p-4">
-              {group.items.map((item) => (
-                <ProductItem
-                  key={item.href}
-                  description={item.description || ""}
-                  href={item.href}
-                  src={
-                    item.image ||
-                    "/placeholder.svg?height=200&width=200&query=product"
-                  }
-                  title={item.title}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col space-y-4 text-sm">
-              {group.items.map((item) => (
-                <HoveredLink key={item.href} href={item.href}>
-                  {item.title}
-                </HoveredLink>
-              ))}
-            </div>
-          )}
-        </MenuItem>
-      ))}
+      <MenuItem
+        active={active}
+        href={item.href}
+        item={item.title}
+        setActive={setActive}
+      >
+        {item.isProductGrid ? (
+          <div className="text-sm grid grid-cols-2 gap-4 p-4">
+            {item.items.map((navItem) => (
+              <ProductItem
+                key={navItem.href}
+                description={navItem.description || ""}
+                href={navItem.href}
+                src={
+                  navItem.image ||
+                  "/placeholder.svg?height=200&width=200&query=product"
+                }
+                title={navItem.title}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col space-y-4 text-sm">
+            {item.items.map((navItem) => (
+              <HoveredLink key={navItem.href} href={navItem.href}>
+                {navItem.title}
+              </HoveredLink>
+            ))}
+          </div>
+        )}
+      </MenuItem>
     </Menu>
   );
 }

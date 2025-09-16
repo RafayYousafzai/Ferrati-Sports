@@ -75,7 +75,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="h-[92vh] relative text-white overflow-hidden">
+    <section className="h-[90vh] relative text-white overflow-hidden">
       {/* Overlay */}
       <div className="bg-hero_overlay absolute w-full h-full z-10 bg-black/[0.70]" />
       {/* Image slider */}

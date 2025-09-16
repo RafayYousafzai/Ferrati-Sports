@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Image } from "@heroui/image";
 import Link from "next/link";
 
 export default function Card({
@@ -15,8 +15,8 @@ export default function Card({
       <Link href={href}>
         {/* YouTube Video Embed */}
         <Image
-          // isZoomed
-          // isBlurred
+          isZoomed
+          isBlurred
           alt="Card Cover"
           className="w-[88vw] md:w-2xl h-80 object-cover rounded-2xl"
           width={500}
