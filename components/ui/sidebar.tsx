@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, createContext, useContext } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { Button } from "@heroui/button";
@@ -20,7 +20,7 @@ interface SidebarContextProps {
 }
 
 const SidebarContext = createContext<SidebarContextProps | undefined>(
-  undefined,
+  undefined
 );
 
 export const useSidebar = () => {
@@ -98,7 +98,7 @@ export const DesktopSidebar = ({
         }}
         className={cn(
           "h-full px-4 py-4 hidden  md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] shrink-0",
-          className,
+          className
         )}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
@@ -121,7 +121,7 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-10 px-4 py-4 flex flex-row md:hidden  items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full",
+          "h-10 px-4 py-4 flex flex-row md:hidden  items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full"
         )}
         {...props}
       >
@@ -137,7 +137,7 @@ export const MobileSidebar = ({
               animate={{ x: 0, opacity: 1 }}
               className={cn(
                 "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
-                className,
+                className
               )}
               exit={{ x: "-100%", opacity: 0 }}
               initial={{ x: "-100%", opacity: 0 }}
@@ -176,7 +176,7 @@ export const SidebarLink = ({
     <Link
       className={cn(
         "flex items-center justify-start gap-2  group/sidebar py-2",
-        className,
+        className
       )}
       href={link.href}
       {...props}
