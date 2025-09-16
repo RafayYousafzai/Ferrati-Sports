@@ -141,7 +141,7 @@ const Explore = () => {
               <Button
                 radius="sm"
                 size="lg"
-                className=" bg-orange-500 text-white"
+                className="min-w-sm  bg-orange-500 text-white"
               >
                 Request a Quote
               </Button>
@@ -150,7 +150,7 @@ const Explore = () => {
               <Button
                 radius="sm"
                 size="lg"
-                className=" bg-[#013056] text-white"
+                className="min-w-sm  bg-[#013056] text-white"
               >
                 Book a Consultation Call
               </Button>
