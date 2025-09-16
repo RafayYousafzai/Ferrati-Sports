@@ -3,6 +3,8 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Link from "next/link";
+import { Cover } from "@/components/ui/cover";
+
 interface ExploreItemData {
   description: string;
 
@@ -127,23 +129,18 @@ const Explore = () => {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
-              Tired of running into the same{" "}
-              <span className="text-orange-500">manufacturing problems</span>?
-            </h2>
-            <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-500 max-w-3xl mx-auto">
-              Partner with Ferrati Sports and experience a manufacturing journey
-              that's reliable, transparent, and tailored to your brand's growth.
-            </p>
+            <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+              Tired of running into the same <br />{" "}
+              <Cover>Manufacturing Problems</Cover>
+            </h1>
           </div>
 
           {/* Fixed alignment */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-3 mt-12">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-1 mt-12">
             <Link href={"/request-quote"}>
               <Button
                 radius="sm"
-                size="md"
+                size="lg"
                 className=" bg-orange-500 text-white"
               >
                 Request a Quote
@@ -151,9 +148,9 @@ const Explore = () => {
             </Link>
             <a href="tel:+923328574009">
               <Button
-                size="md"
-                className=" bg-[#013056] text-white"
                 radius="sm"
+                size="lg"
+                className=" bg-[#013056] text-white"
               >
                 Book a Consultation Call
               </Button>
@@ -161,7 +158,7 @@ const Explore = () => {
           </div>
 
           {/* Optional supporting text under buttons */}
-          <p className="text-center text-gray-500 mt-6">
+          <p className="text-center text-gray-500 font-semibold mt-6">
             Book a call today to see the Ferrati difference.
           </p>
         </div>
