@@ -19,7 +19,7 @@ export default async function Page({ params }) {
     return <div>Blog not found</div>;
   }
   return (
-    <div>
+    <div className="bg-white">
       <ProductDetails
         buttonText="All Services"
         description={[
@@ -28,15 +28,15 @@ export default async function Page({ params }) {
         headline={service.title}
         href="/request-quote"
         image={service.image_url}
-        sectionTitle="Ferrati"
+        sectionTitle=""
         variant="white"
         showButton={false}
       >
-        <Link href="/categories">
+        {/* <Link href="/categories">
           <Button size="lg" className=" bg-orange-500 text-white">
             All Products
           </Button>
-        </Link>
+        </Link> */}
         <Link href="/request-quote">
           <Button size="lg" className="ml-2 bg-orange-500 text-white">
             Request Quote

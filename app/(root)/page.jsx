@@ -56,37 +56,21 @@ export default async function Home() {
       <Hero />
       <CounterSection />
 
+      <Explore />
+
       <SectionHeader
         badge="Ferrati"
         title="Why "
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
       />
-
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <ServiceCards cards={WhyChooseUsCards} />
       </Suspense>
 
-      <Explore />
-
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <ProductDetails
-          buttonText="Request Quote"
-          description={[
-            "Looking for a team that brings your digital ideas to life? From strategy to execution, we deliver tailored solutions that meet your business needs with precision and creativity.",
-          ]}
-          headline="Request Quote to Build Your Digital Future"
-          href="/request-quote"
-          image="/assets/workers.webp"
-          reversed
-          sectionTitle="WORK WITH US"
-          variant="white"
-        />
-      </Suspense> */}
+      <br />
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
@@ -112,7 +96,7 @@ export default async function Home() {
         <CategoriesSection />
       </Suspense>
 
-      <AllProductsSummary order={["fabrics", "blogs"]} />
+      <AllProductsSummary order={["fabrics", "services"]} />
 
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}

@@ -206,7 +206,7 @@ export default function Appbar() {
             <Link
               className={`text-white hover:text-gray-300 ${
                 item.title === "Request Quote"
-                  ? "font-bold bg-orange-400 p-4 pt-3"
+                  ? "font-bold bg-orange-500 p-4 pt-3 rounded-sm"
                   : ""
               }`}
               href={item.href}

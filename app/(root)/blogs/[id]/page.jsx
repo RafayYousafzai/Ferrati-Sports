@@ -29,14 +29,14 @@ export default async function BlogPage({ params }) {
     .limit(6);
 
   return (
-    <section>
+    <section className="bg-white">
       <ProductDetails
         description={[
           `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,
         ]}
         headline={fabric.title}
         image={fabric.image_url}
-        sectionTitle="OPPORTUNITIES"
+        sectionTitle=""
         variant="white"
         showButton={false}
       />

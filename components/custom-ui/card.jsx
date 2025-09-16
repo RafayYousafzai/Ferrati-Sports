@@ -18,9 +18,9 @@ export default function Card({
           isZoomed
           isBlurred
           alt="Card Cover"
-          className="w-[88vw] md:w-2xl h-80 object-cover rounded-2xl"
-          width={500}
-          height={500}
+          className="w-full h-80 object-cover rounded-2xl"
+          width={700}
+          height={300}
           src={image || placeholder}
         />
 

@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 export default function TypeEffect() {
   return (
     <TypeAnimation
-      sequence={["We Own It.", 2000, "We Build.", 2000, "We Deliver.", 2000]}
+      sequence={["", 2000, "", 2000, "", 2000]}
       wrapper="span"
       cursor={true}
       repeat={Infinity}

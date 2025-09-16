@@ -193,7 +193,7 @@ export default function FerratiAccordion() {
         </Accordion>
       </div>
 
-      <div className="p-6 md:px-8 lg:px-10 bg-gray-50 rounded-2xl shadow-lg">
+      <div className="p-6 md:px-8 lg:px-10 bg-white rounded-2xl shadow-lg">
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-gray-800">
           Request a Quote
         </h2>

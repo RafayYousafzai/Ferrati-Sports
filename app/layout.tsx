@@ -47,14 +47,14 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
+          "min-h-screen text-foreground font-sans antialiased ",
           cormorant_upright.variable,
           open_sans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col min-h-screen">
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow bg-slate-50">{children}</main>
           </div>
         </Providers>
       </body>

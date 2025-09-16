@@ -1,9 +1,8 @@
-import Header from "@/components/custom-ui/header";
-import { Button } from "@heroui/button";
+import { Button, ButtonGroup } from "@heroui/button";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
-import TypeEffect from "../custom-ui/type-effect";
-// Define the type for explore item data
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
+import Link from "next/link";
 interface ExploreItemData {
   description: string;
 
@@ -65,10 +64,14 @@ const Explore = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="mt-16 ">
       <div className="container mx-auto px-4 max-w-7xl text-center ">
-        <TypeEffect />
-        <p className="text-gray-600 text-center font-semibold text-3xl mb-2">
+        <ContainerTextFlip
+          textClassName="text-6xl font-extrabold text-gray-800 "
+          words={["We Own.", "We Build.", "We Deliver."]}
+        />
+
+        <p className="text-gray-600 text-center font-semibold text-3xl mb-2 mt-3">
           We are the alternative to Traditional Manufacturing
         </p>
         <p className="text-gray-600 text-center text-lg">
@@ -81,14 +84,11 @@ const Explore = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Problems Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-slate-50  p-10 h-full ">
+            <div className="space-y-6 bg-white  p-10 h-full ">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold text-red-400 mb-2">
-                  What You Have Been Struggling
+                <h3 className="text-2xl font-semibold text-orange-500 mb-2">
+                  Problem{" "}
                 </h3>
-                <h4 className="text-xl font-semibold text-red-400 mb-2">
-                  Your Challenges
-                </h4>
               </div>
               {problemItems.map((item, index) => (
                 <ExploreCard
@@ -102,14 +102,11 @@ const Explore = () => {
 
           {/* Solutions Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-slate-50  p-10 h-full">
+            <div className="space-y-6 bg-white  p-10 h-full">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-semibold text-orange-500 mb-2">
-                  How We Empower You With
+                  Solution{" "}
                 </h3>
-                <h4 className="text-xl font-semibold text-orange-500 mb-2">
-                  Our Solutions
-                </h4>
               </div>
               {solutionItems.map((item, index) => (
                 <ExploreCard
@@ -120,6 +117,53 @@ const Explore = () => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+      <div className="relative bg-white py-12 mt-16 px-4 overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#f97316_1px,transparent_0)] bg-[length:40px_40px]"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
+              Tired of running into the same{" "}
+              <span className="text-orange-500">manufacturing problems</span>?
+            </h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
+            <p className="text-xl text-gray-500 max-w-3xl mx-auto">
+              Partner with Ferrati Sports and experience a manufacturing journey
+              that's reliable, transparent, and tailored to your brand's growth.
+            </p>
+          </div>
+
+          {/* Fixed alignment */}
+          <div className="flex flex-col md:flex-row justify-center items-center gap-3 mt-12">
+            <Link href={"/request-quote"}>
+              <Button
+                radius="sm"
+                size="md"
+                className=" bg-orange-500 text-white"
+              >
+                Request a Quote
+              </Button>
+            </Link>
+            <a href="tel:+923328574009">
+              <Button
+                size="md"
+                className=" bg-[#013056] text-white"
+                radius="sm"
+              >
+                Book a Consultation Call
+              </Button>
+            </a>
+          </div>
+
+          {/* Optional supporting text under buttons */}
+          <p className="text-center text-gray-500 mt-6">
+            Book a call today to see the Ferrati difference.
+          </p>
         </div>
       </div>
     </section>
@@ -142,7 +186,7 @@ const ExploreCard = ({ text, type }: ExploreCardProps) => {
     <div className="flex-1 flex gap-3 items-center">
       <Button isIconOnly radius="full" className="bg-transparent">
         {isProblem ? (
-          <TiDelete className="size-12 text-red-400" />
+          <TiDelete className="size-12 text-orange-500" />
         ) : (
           <IoCheckmarkCircle className="size-8 text-orange-500" />
         )}

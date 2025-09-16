@@ -6,6 +6,9 @@ import { FreeMode, Mousewheel, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 import Header from "../custom-ui/header";
 
@@ -29,26 +32,72 @@ interface SolutionsProps {
 }
 
 export default function Solutions({ cards }: SolutionsProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <section className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-20 px-8 overflow-hidden">
-      {/* Background geometric patterns */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40" />
-        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-300 rounded-full transform -translate-y-32" />
+        <motion.div
+          className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48"
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-300 rounded-full transform -translate-y-32"
+          animate={{
+            y: [-20, 20, -20],
+            scale: [1, 1.05, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      <div className="relative max-w-full mx-auto">
-        <Header
-          badge="PROCESS"
-          highlightedTitle="Manufacturing."
-          subtitle="From concept to delivery, we transform your ideas into high-quality custom apparel through our streamlined 6-step process, backed by expertise and state-of-the-art facilities."
-          theme="dark"
-          title="Our streamlined "
-        />
+      <div className="relative max-w-full mx-auto" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <Header
+            badge="PROCESS"
+            highlightedTitle="Manufacturing."
+            subtitle="From concept to delivery, we transform your ideas into high-quality custom apparel through our streamlined 6-step process, backed by expertise and state-of-the-art facilities."
+            theme="dark"
+            title="Our streamlined "
+          />
+        </motion.div>
 
         {/* Cards Grid */}
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           <Swiper
             modules={[FreeMode, Mousewheel, Autoplay, Pagination]}
             spaceBetween={24}
@@ -97,48 +146,137 @@ export default function Solutions({ cards }: SolutionsProps) {
             touchAngle={45}
             threshold={10}
             longSwipesRatio={0.1}
-            className="!pb-12 "
+            className="!pb-12"
           >
-            {cards.map((card) => (
+            {cards.map((card, index) => (
               <SwiperSlide key={card.id} className="!h-auto">
-                <Card className="bg-white border-0 shadow-lg h-full rounded-none hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
-                  <CardContent className="p-8">
-                    {/* Icon with orange accent */}
-                    <div className="mb-6">
-                      <div className="relative inline-block">
-                        <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm" />
-                        <div className="relative bg-white p-2">
-                          <IconComponents
-                            className="w-8 h-8 text-gray-700"
-                            strokeWidth={1.5}
+                <motion.div
+                  initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                  animate={
+                    isInView
+                      ? {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                        }
+                      : {
+                          opacity: 0,
+                          y: 60,
+                          scale: 0.9,
+                        }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    transition: { duration: 0.3, ease: "easeOut" },
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="h-full"
+                >
+                  <Card className="bg-white border-0 shadow-lg h-full rounded-none transition-all duration-500 hover:shadow-2xl group overflow-hidden relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-orange-100/0 group-hover:from-orange-50/30 group-hover:to-orange-100/20 transition-all duration-500" />
+
+                    <CardContent className="p-8 relative z-10">
+                      <motion.div
+                        className="mb-6"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        <div className="relative inline-block">
+                          <motion.div
+                            className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"
+                            whileHover={{
+                              scale: 1.2,
+                              rotate: 45,
+                              transition: { duration: 0.3 },
+                            }}
                           />
+                          <motion.div
+                            className="relative bg-white p-2 shadow-sm"
+                            whileHover={{
+                              rotate: -5,
+                              transition: { duration: 0.3 },
+                            }}
+                          >
+                            <motion.div
+                              whileHover={{
+                                rotate: 360,
+                                transition: {
+                                  duration: 0.6,
+                                  ease: "easeInOut",
+                                },
+                              }}
+                            >
+                              <IconComponents
+                                className="w-8 h-8 text-gray-700 transition-colors duration-300 group-hover:text-orange-600"
+                                strokeWidth={1.5}
+                              />
+                            </motion.div>
+                          </motion.div>
                         </div>
-                      </div>
-                    </div>
+                      </motion.div>
 
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-6">
-                      {card.title}
-                    </h3>
+                      <motion.h3
+                        className="text-xl font-bold text-gray-900 mb-6 group-hover:text-orange-700 transition-colors duration-300"
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {card.title}
+                      </motion.h3>
 
-                    {/* Services List */}
-                    <ul className="space-y-3">
-                      {card.services.map((service, index) => (
-                        <li
-                          key={index}
-                          className="flex items-center text-gray-600 text-sm"
-                        >
-                          <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0" />
-                          <span>{service.name}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                      <ul className="space-y-3">
+                        {card.services.map((service, serviceIndex) => (
+                          <motion.li
+                            key={serviceIndex}
+                            className="flex items-center text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={
+                              isInView
+                                ? {
+                                    opacity: 1,
+                                    x: 0,
+                                  }
+                                : {
+                                    opacity: 0,
+                                    x: -20,
+                                  }
+                            }
+                            transition={{
+                              duration: 0.4,
+                              delay: index * 0.1 + serviceIndex * 0.05 + 0.5,
+                            }}
+                            whileHover={{
+                              x: 8,
+                              transition: { duration: 0.2 },
+                            }}
+                          >
+                            <motion.div
+                              whileHover={{
+                                rotate: 90,
+                                scale: 1.2,
+                                transition: { duration: 0.2 },
+                              }}
+                            >
+                              <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0 transition-colors duration-300 group-hover:text-orange-600" />
+                            </motion.div>
+                            <span className="transition-all duration-300">
+                              {service.name}
+                            </span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

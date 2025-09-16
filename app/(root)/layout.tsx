@@ -32,7 +32,7 @@ const PRODUCT_DETAILS_SECTIONS = [
     ],
     headline: "Get an instant estimate for your project.",
     href: "/calculate-price",
-    image: "/assets/workers.webp",
+    image: "/assets/photo-calculator.webp",
     reversed: true,
     sectionTitle: "WORK WITH US",
     variant: "orange" as const,
@@ -58,10 +58,10 @@ export default function RootLayout({
         </section>
       </main>
 
-      <Link href="/contact">
+      <Link href="/services/0c6e3849-b21e-468f-bb43-44cd5284ac4f">
         <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
-          <h1 className="text-orange-500 text-7xl font-bold ml-[10%] group-hover:text-orange-600 transition-colors duration-300 text-left">
-            Let's Talk
+          <h1 className="text-orange-500 text-4xl md:text-6xl font-bold ml-[3%] group-hover:text-orange-600 transition-colors duration-300 text-left">
+            Ready to Start Your First Free Sample
           </h1>
           <ArrowRightCircle className="ml-4 pt-1 w-12 h-12 text-orange-500 group-hover:text-orange-600 group-hover:translate-x-2 transition-all duration-300" />
         </div>

@@ -28,7 +28,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
   setDescription,
 }) => {
   return (
-    <Card className="w-full shadow-sm">
+    <Card className="w-full  shadow-sm">
       <CardBody>
         <div className="space-y-6 p-2">
           <h2 className="text-2xl font-bold text-gray-800">
@@ -39,7 +39,6 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
             <Input
               isRequired
               label="Full Name"
-              placeholder="John Doe"
               radius="lg"
               startContent={<User className="h-4 w-4 text-gray-400" />}
               type="text"
@@ -50,7 +49,6 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
             <Input
               isRequired
               label="Email Address"
-              placeholder="your.email@example.com"
               radius="lg"
               startContent={<Mail className="h-4 w-4 text-gray-400" />}
               type="email"
@@ -60,7 +58,6 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
             />
             <Input
               label="Phone Number (Optional)"
-              placeholder="+1 (555) 123-4567"
               radius="lg"
               startContent={<Phone className="h-4 w-4 text-gray-400" />}
               type="tel"
