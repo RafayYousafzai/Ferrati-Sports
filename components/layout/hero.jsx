@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/button";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Separator from "../separator";
 import Link from "next/link";
+import { Image } from "@heroui/image";
 
 const mobileImage =
   "https://images.unsplash.com/photo-1619032468883-89a84f565cba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -59,31 +58,25 @@ const Hero = () => {
 
   return (
     <section className="h-[90vh] relative text-white overflow-hidden">
-      {/* Overlay */}
-      <div className="bg-hero_overlay absolute w-full h-full z-10 bg-black/[0.70]" />
       {/* Image slider */}
       <div className="absolute top-0 left-0 w-full h-full bg-black">
         <div className="hidden md:block w-full h-full relative">
           <div className="w-full h-full absolute top-0 left-0">
             <Image
-              fill
-              priority
-              alt={`Slide ${currentSlide + 1}`}
-              className="object-cover"
+              className="object-cover h-full w-full opacity-75"
               src={HERO_IMAGE}
             />
           </div>
         </div>
         <div className="md:hidden block">
           <Image
-            fill
-            priority
-            alt={`Slide ${currentSlide + 1}`}
-            className="object-cover"
+            className="object-cover h-full w-full opacity-75"
             src={HERO_IMAGE}
           />
         </div>
       </div>
+      {/* Overlay - moved after image for correct stacking */}
+      <div className="absolute w-full h-full z-10 bg-black/70 pointer-events-none" />
 
       <div className="container mx-auto h-full flex flex-col xl:flex-row items-start z-30 relative px-4">
         {/* Dynamic text content */}

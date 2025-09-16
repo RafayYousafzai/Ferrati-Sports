@@ -16,7 +16,7 @@ import { MenuItem } from "./navbar-menu";
 import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
 
 import { createClient } from "@/lib/supabase/client";
-import Image from "next/image";
+import { Image } from "@heroui/image";
 
 // Type definitions
 type NavItem = {
@@ -168,7 +168,11 @@ export default function Appbar() {
         <NavbarBrand>
           <Link href="/">
             <div className={`relative xl:flex w-[60px] h-[60px]`}>
-              <Image fill alt="" className="object-contain" src="/logo.png" />
+              <Image
+                alt=""
+                className="object-contain w-[60px] h-[60px]"
+                src="/logo.png"
+              />
             </div>{" "}
           </Link>
         </NavbarBrand>
