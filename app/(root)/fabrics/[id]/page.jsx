@@ -36,7 +36,6 @@ export default async function FabricPage({ params }) {
         ]}
         headline={fabric.title}
         image={fabric.image_url}
-        sectionTitle="OPPORTUNITIES"
         variant="white"
       />
 

@@ -111,7 +111,7 @@ const Hero = () => {
             <Link href="/request-quote">
               <Button
                 radius="sm"
-                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white"
+                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white font-semibold text-lg"
               >
                 Get Quote
               </Button>
@@ -119,7 +119,7 @@ const Hero = () => {
             <Link href="/services/0c6e3849-b21e-468f-bb43-44cd5284ac4f">
               <Button
                 radius="sm"
-                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white"
+                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white font-semibold text-lg"
               >
                 Get a Free Sample
               </Button>

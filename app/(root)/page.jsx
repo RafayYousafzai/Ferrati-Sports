@@ -78,7 +78,7 @@ export default async function Home() {
         <Solutions cards={process} />
       </Suspense>
 
-      <SectionHeader
+      {/* <SectionHeader
         badge="OUR APPROACH"
         title="Where Quality Speaks"
         highlightedTitle="Our Work"
@@ -88,7 +88,7 @@ export default async function Home() {
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <VideoShowcase videos={sampleVideos} />
-      </Suspense>
+      </Suspense> */}
 
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}

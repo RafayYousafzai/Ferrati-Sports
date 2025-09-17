@@ -28,7 +28,6 @@ export default async function Page({ params }) {
         headline={service.title}
         href="/request-quote"
         image={service.image_url}
-        sectionTitle=""
         variant="white"
         showButton={false}
       >

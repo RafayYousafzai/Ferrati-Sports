@@ -5,7 +5,7 @@ import { Image } from "@heroui/image";
 import Link from "next/link";
 
 interface CareersSectionProps {
-  sectionTitle?: string;
+  sectionTitle?: null | string;
   headline: string;
   description: string[];
   buttonText?: string;
@@ -19,7 +19,7 @@ interface CareersSectionProps {
 }
 
 export default function ProductDetails({
-  sectionTitle = "CAREERS",
+  sectionTitle = null,
   headline,
   description,
   buttonText = "Search and apply",
@@ -46,14 +46,15 @@ export default function ProductDetails({
           {/* Left Content (swaps to right when reversed) */}
           <div className={`space-y-8 ${reversed ? "lg:order-2" : ""}`}>
             <div>
-              <span
-                className={`font-bold text-sm tracking-[0.2em] uppercase mb-6 block ${
-                  isOrange ? "text-white" : "text-orange-500"
-                }`}
-              >
-                {sectionTitle}
-              </span>
-
+              {sectionTitle && (
+                <span
+                  className={`font-bold text-sm tracking-[0.2em] uppercase mb-6 block ${
+                    isOrange ? "text-white" : "text-orange-500"
+                  }`}
+                >
+                  {sectionTitle}
+                </span>
+              )}
               <h2
                 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] ${
                   isOrange ? "text-white" : "text-gray-900"

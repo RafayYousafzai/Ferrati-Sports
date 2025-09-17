@@ -50,14 +50,14 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div>
+    <div className="bg-white">
       <ProductDetails
         key={selectedProduct.id}
         buttonText={`Calculate Price`}
         description={[selectedProduct.subtitle]}
         headline={selectedProduct.title}
         image={selectedProduct.image_url}
-        variant="orange"
+        variant="light"
         href={`/calculate-price`}
       >
         <div className="">

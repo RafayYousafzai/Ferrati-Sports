@@ -33,7 +33,7 @@ export default function Header({
         ${leftAlign ? "text-left ml-[5%] md:ml-[2%]" : "text-center"}
       `}
     >
-      {badge && (
+      {/* {badge && (
         <div className={leftAlign ? "block" : "inline-block mb-4"}>
           <span
             className={`px-4 py-2 ${badgeBg} rounded-full ${badgeText} font-semibold text-sm uppercase tracking-wider border`}
@@ -41,7 +41,7 @@ export default function Header({
             {badge}
           </span>
         </div>
-      )}
+      )} */}
 
       <h2
         className={`text-4xl md:text-6xl font-bold mb-6 leading-tight ${textColor}`}

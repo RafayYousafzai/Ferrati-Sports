@@ -51,7 +51,7 @@ export default async function CategoryPage({ params }) {
         description={[category.description]}
         headline={category.title}
         image={category.image_url}
-        variant="orange"
+        variant="light"
       />
 
       <Header

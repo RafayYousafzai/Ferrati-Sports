@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@heroui/button";
+import Header from "@/components/custom-ui/header";
 import {
   MessageSquare,
   Palette,
@@ -125,22 +125,15 @@ export default function OurProcess() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 pt-12 px-4">
+    <div className="min-h-screen bg-slate-50 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          {/* <Badge variant="secondary" className="mb-4 text-sm font-medium">
-            Ferrati
-          </Badge> */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Manufacturing Process
-          </h1>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-            From concept to delivery - discover how we transform your ideas into
+        <Header
+          title="Our Manufacturing Process."
+          highlightedTitle=" "
+          subtitle="   From concept to delivery - discover how we transform your ideas into
             high-quality custom apparel with our streamlined 6-step process,
-            backed by years of expertise and state-of-the-art facilities.
-          </p>
-        </div>
+            backed by years of expertise and state-of-the-art facilities."
+        />
 
         {/* Process Steps */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">

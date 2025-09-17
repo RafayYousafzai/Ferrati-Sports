@@ -64,7 +64,7 @@ const defaultHeadings: Record<keyof typeof sectionComponents, HeadingProps> = {
       "Insights, trends, and stories from the world of apparel manufacturing.",
   },
   services: {
-    title: "We provide the best ",
+    title: "Explore our best ",
     highlightedTitle: " Services",
     subtitle: "Premium solutions tailored for your business.",
   },
@@ -210,7 +210,7 @@ export default async function AllProductsSummary({
           fresh: freshPerSection[sectionKey] ?? fresh,
         }),
       };
-    }),
+    })
   );
 
   return (
@@ -220,7 +220,7 @@ export default async function AllProductsSummary({
           <Suspense key={section.key} fallback={<GridSkeleton />}>
             {section.jsx}
           </Suspense>
-        ) : null,
+        ) : null
       )}
     </div>
   );

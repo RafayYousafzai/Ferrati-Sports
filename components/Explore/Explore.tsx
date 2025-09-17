@@ -4,6 +4,7 @@ import { TiDelete } from "react-icons/ti";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Link from "next/link";
 import { Cover } from "@/components/ui/cover";
+import { Chip } from "@heroui/chip";
 
 interface ExploreItemData {
   description: string;
@@ -90,11 +91,9 @@ const Explore = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Problems Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-white  p-10 h-full ">
+            <div className="space-y-6 bg-orange-500  p-10 h-full ">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold text-orange-500 mb-2">
-                  Problem{" "}
-                </h3>
+                <h3 className="text-3xl font-bold text-white mb-2">Problem </h3>
               </div>
               {problemItems.map((item, index) => (
                 <ExploreCard
@@ -108,9 +107,9 @@ const Explore = () => {
 
           {/* Solutions Column */}
           <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-white  p-10 h-full">
+            <div className="space-y-6 bg-orange-500  p-10 h-full ">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-semibold text-orange-500 mb-2">
+                <h3 className="text-3xl font-bold text-white mb-2">
                   Solution{" "}
                 </h3>
               </div>
@@ -125,7 +124,7 @@ const Explore = () => {
           </div>
         </div>
       </div>
-      <div className="relative bg-white py-12 mt-16 px-4 overflow-hidden">
+      <div className="relative  py-12 mt-16 px-4 overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#f97316_1px,transparent_0)] bg-[length:40px_40px]"></div>
@@ -133,9 +132,11 @@ const Explore = () => {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-10">
+            <Chip className="bg-orange-500 text-white font-semibold">
+              FERRATI
+            </Chip>
             <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
-              Tired of running into the same <br />{" "}
-              <Cover>Manufacturing Problems</Cover>
+              Tired of running into the same <br /> Manufacturing Problems
             </h1>
           </div>
 
@@ -187,12 +188,12 @@ const ExploreCard = ({ text, type }: ExploreCardProps) => {
     <div className="flex-1 flex gap-3 items-center">
       <Button isIconOnly radius="full" className="bg-transparent">
         {isProblem ? (
-          <TiDelete className="size-12 text-orange-500" />
+          <TiDelete className="size-12 text-white" />
         ) : (
-          <IoCheckmarkCircle className="size-8 text-orange-500" />
+          <IoCheckmarkCircle className="size-8 text-white" />
         )}
       </Button>
-      <p className="text-gray-600 leading-relaxed text-left">{text}</p>
+      <p className="text-white leading-relaxed text-left">{text}</p>
     </div>
   );
 };
