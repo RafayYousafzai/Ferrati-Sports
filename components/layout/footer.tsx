@@ -8,9 +8,11 @@ import {
   Award,
   Users,
   Zap,
+  Facebook,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
+import { TwitterIcon } from "../icons";
 
 const stats = [
   {
@@ -322,6 +324,20 @@ const Footer = async () => {
                   className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
                 >
                   <Instagram className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                </Link>
+                <Link
+                  href="mailto:info@ferratisports.com"
+                  className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                >
+                  <Facebook className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                </Link>
+                <Link
+                  href="https://twitter.com/ferratisports"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                >
+                  <TwitterIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link
                   href="mailto:info@ferratisports.com"

@@ -56,6 +56,27 @@ export default function Appbar() {
 
   const supabase = createClient();
 
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (window.scrollY > lastScrollY) {
+        // scrolling down
+        setHidden(true);
+      } else {
+        // scrolling up
+        setHidden(false);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
+
   // Fetch categories from database
   useEffect(() => {
     const fetchCategories = async () => {
@@ -156,90 +177,99 @@ export default function Appbar() {
   };
 
   return (
-    <Navbar
-      shouldHideOnScroll
-      className="transition-all duration-300 bg-black h-[10vh] "
-      isMenuOpen={isMenuOpen}
-      maxWidth="full"
-      onMenuOpenChange={setIsMenuOpen}
-      disableAnimation={true}
+    <nav
+      className={`fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
     >
-      <NavbarContent>
-        <NavbarBrand>
-          <Link href="/">
-            <div className={`relative xl:flex w-[60px] h-[60px]`}>
-              <Image
-                alt=""
-                className="object-contain w-[60px] h-[60px]"
-                src="/logo.png"
-              />
-            </div>{" "}
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden md:flex gap-4 " justify="end">
-        {navigationConfig.leftNav.map((item) => (
-          <NavbarItem key={item.href}>
-            <Link className="text-white hover:text-gray-300" href={item.href}>
-              {item.title}
+      {" "}
+      <Navbar
+        className="transition-all duration-300 bg-black h-[10vh] "
+        isMenuOpen={isMenuOpen}
+        maxWidth="full"
+        onMenuOpenChange={setIsMenuOpen}
+        disableAnimation={true}
+      >
+        <NavbarContent>
+          <NavbarBrand>
+            <Link href="/">
+              <div className={`relative xl:flex w-[60px] h-[60px]`}>
+                <Image
+                  alt=""
+                  className="object-contain w-[60px] h-[60px]"
+                  src="/logo.png"
+                />
+              </div>{" "}
             </Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+          </NavbarBrand>
+        </NavbarContent>
 
-      <NavbarContent className="hidden md:flex gap-4" justify="center">
-        {navigationConfig.centerNav.map((item) => (
-          <NavbarItem key={item.href}>
-            {item.items && item.items.length > 0 ? (
-              // Render dropdown for items with content
-              <MenuContent item={item} />
-            ) : (
-              // Render simple link for items without dropdown
+        <NavbarContent className="hidden md:flex gap-4 " justify="end">
+          {navigationConfig.leftNav.map((item) => (
+            <NavbarItem key={item.href}>
               <Link className="text-white hover:text-gray-300" href={item.href}>
                 {item.title}
               </Link>
-            )}
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
 
-      <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
-        {navigationConfig.rightNav.map((item) => (
-          <NavbarItem key={item.href}>
-            <Link
-              className={`text-white hover:text-gray-300 ${
-                item.title === "Request Quote"
-                  ? "font-bold bg-orange-500 p-4 pt-3 rounded-sm"
-                  : ""
-              }`}
-              href={item.href}
-            >
-              {item.title}
-            </Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+        <NavbarContent className="hidden md:flex gap-4" justify="center">
+          {navigationConfig.centerNav.map((item) => (
+            <NavbarItem key={item.href}>
+              {item.items && item.items.length > 0 ? (
+                // Render dropdown for items with content
+                <MenuContent item={item} />
+              ) : (
+                // Render simple link for items without dropdown
+                <Link
+                  className="text-white hover:text-gray-300"
+                  href={item.href}
+                >
+                  {item.title}
+                </Link>
+              )}
+            </NavbarItem>
+          ))}
+        </NavbarContent>
 
-      <NavbarMenu className="bg-black/80 py-4 -mt-1 ">
-        {navigationConfig.mobileNav.map((item: NavItem, index: number) => (
-          <NavbarMenuItem key={`${item.title}-${index}`}>
-            <Link
-              className="w-full text-white hover:text-slate-200 py-2 text-2xl"
-              href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.title}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+        <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
+          {navigationConfig.rightNav.map((item) => (
+            <NavbarItem key={item.href}>
+              <Link
+                className={`text-white hover:text-gray-300 ${
+                  item.title === "Request Quote"
+                    ? "font-bold bg-orange-500 p-4 pt-3 rounded-sm"
+                    : ""
+                }`}
+                href={item.href}
+              >
+                {item.title}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
 
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="md:hidden text-white"
-      />
-    </Navbar>
+        <NavbarMenu className="bg-black/80 py-4 -mt-1 ">
+          {navigationConfig.mobileNav.map((item: NavItem, index: number) => (
+            <NavbarMenuItem key={`${item.title}-${index}`}>
+              <Link
+                className="w-full text-white hover:text-slate-200 py-2 text-2xl"
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.title}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="md:hidden text-white"
+        />
+      </Navbar>
+    </nav>
   );
 }
 

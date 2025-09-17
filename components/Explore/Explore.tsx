@@ -67,14 +67,14 @@ const Explore = () => {
   ];
 
   return (
-    <section className="mt-16 ">
+    <section className="mt-20 ">
       <div className="container mx-auto px-4 max-w-7xl text-center ">
         <ContainerTextFlip
           textClassName="text-6xl font-extrabold text-gray-800 "
           words={["We Own It.", "We Build It.", "We Deliver."]}
         />
 
-        <p className="text-gray-600 text-center font-semibold text-3xl mb-2 mt-3">
+        <p className="text-gray-600 text-center font-semibold text-3xl mb-2 ">
           We are the alternative to Traditional Manufacturing
         </p>
         <p className="text-gray-600 text-center text-lg">
@@ -135,7 +135,7 @@ const Explore = () => {
             <Chip className="bg-orange-500 text-white font-semibold">
               FERRATI
             </Chip>
-            <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+            <h1 className="text-4xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
               Tired of running into the same <br /> Manufacturing Problems
             </h1>
           </div>

@@ -57,7 +57,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="h-[90vh] relative text-white overflow-hidden">
+    <section className="h-[90vh] relative text-white overflow-hidden mt-[10vh]">
       {/* Image slider */}
       <div className="absolute top-0 left-0 w-full h-full bg-black">
         <div className="hidden md:block w-full h-full relative">
