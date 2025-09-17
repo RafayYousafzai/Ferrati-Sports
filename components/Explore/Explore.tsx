@@ -70,7 +70,7 @@ const Explore = () => {
       <div className="container mx-auto px-4 max-w-7xl text-center ">
         <ContainerTextFlip
           textClassName="text-6xl font-extrabold text-gray-800 "
-          words={["We Own.", "We Build.", "We Deliver."]}
+          words={["We Own It.", "We Build It.", "We Deliver."]}
         />
 
         <p className="text-gray-600 text-center font-semibold text-3xl mb-2 mt-3">
@@ -80,6 +80,10 @@ const Explore = () => {
           We break from outdated methods, delivering custom solutions with speed
           and flexibility—bringing your vision to life exactly as you imagine
           it.
+        </p>
+        <p className="text-gray-600 text-center text-lg">
+          Traditional manufacturing brings problems. We bring the solutions. See
+          how we compare below.
         </p>
         <br />
         <br />

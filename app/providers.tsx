@@ -12,7 +12,7 @@ import NextTopLoader from "nextjs-toploader";
 import { useEffect } from "react";
 import "@n8n/chat/style.css";
 import { createChat } from "@n8n/chat";
-
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -44,7 +44,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <NextThemesProvider {...themeProps}>
         <NextTopLoader color="#fc7521" showSpinner={false} />
         <ToastProvider />
-        {children}
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </NextThemesProvider>
     </HeroUIProvider>
   );

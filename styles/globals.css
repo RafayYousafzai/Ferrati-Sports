@@ -232,7 +232,6 @@
   @apply font-sans text-lg mb-4 leading-relaxed;
 }
 
-
 :root {
   /* Brand colors */
   --chat--color-primary: #fc7521; /* orange for toggle button */
