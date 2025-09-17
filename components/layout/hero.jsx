@@ -63,14 +63,14 @@ const Hero = () => {
         <div className="hidden md:block w-full h-full relative">
           <div className="w-full h-full absolute top-0 left-0">
             <Image
-              className="object-cover h-full w-full opacity-75"
+              className="object-cover  w-screen opacity-75 h-[90vh] rounded-none"
               src={HERO_IMAGE}
             />
           </div>
         </div>
         <div className="md:hidden block">
           <Image
-            className="object-cover h-full w-full opacity-75"
+            className="object-cover h-[90vh] w-screen opacity-75 rounded-none"
             src={HERO_IMAGE}
           />
         </div>
