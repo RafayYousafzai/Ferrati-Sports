@@ -7,6 +7,7 @@ interface HeaderProps {
   subtitle?: string;
   theme?: "light" | "dark";
   leftAlign?: boolean;
+  showbadge?: boolean;
 }
 
 export default function Header({
@@ -16,6 +17,7 @@ export default function Header({
   highlightedTitle,
   subtitle,
   leftAlign = false,
+  showbadge = false,
 }: HeaderProps) {
   // Define color classes based on theme
   const textColor = theme === "dark" ? "text-white" : "text-black";
@@ -33,7 +35,7 @@ export default function Header({
         ${leftAlign ? "text-left ml-[5%] md:ml-[2%]" : "text-center"}
       `}
     >
-      {/* {badge && (
+      {showbadge && (
         <div className={leftAlign ? "block" : "inline-block mb-4"}>
           <span
             className={`px-4 py-2 ${badgeBg} rounded-full ${badgeText} font-semibold text-sm uppercase tracking-wider border`}
@@ -41,7 +43,7 @@ export default function Header({
             {badge}
           </span>
         </div>
-      )} */}
+      )}
 
       <h2
         className={`text-4xl md:text-6xl font-bold mb-6 leading-tight ${textColor}`}

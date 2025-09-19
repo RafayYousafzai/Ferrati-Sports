@@ -84,6 +84,7 @@ export default function Solutions({ cards }: SolutionsProps) {
         >
           <Header
             badge="PROCESS"
+            showbadge={true}
             highlightedTitle="Manufacturing."
             subtitle="From concept to delivery, we transform your ideas into high-quality custom apparel through our streamlined 6-step process, backed by expertise and state-of-the-art facilities."
             theme="dark"
