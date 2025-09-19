@@ -64,7 +64,7 @@ export const CodeBlockButton = React.forwardRef<
       children,
       ...buttonProps
     },
-    ref,
+    ref
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const {
@@ -87,7 +87,7 @@ export const CodeBlockButton = React.forwardRef<
         if (event.defaultPrevented) return;
         handleToggle();
       },
-      [handleToggle, onClick],
+      [handleToggle, onClick]
     );
 
     if (!isVisible) {
@@ -121,7 +121,7 @@ export const CodeBlockButton = React.forwardRef<
         )}
       </Button>
     );
-  },
+  }
 );
 
 CodeBlockButton.displayName = "CodeBlockButton";

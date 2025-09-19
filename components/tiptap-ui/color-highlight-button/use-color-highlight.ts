@@ -98,7 +98,7 @@ export interface UseColorHighlightConfig {
 
 export function pickHighlightColorsByValue(values: string[]) {
   const colorMap = new Map(
-    HIGHLIGHT_COLORS.map((color) => [color.value, color]),
+    HIGHLIGHT_COLORS.map((color) => [color.value, color])
   );
 
   return values
@@ -119,7 +119,7 @@ export function canColorHighlight(editor: Editor | null): boolean {
 
 export function isColorHighlightActive(
   editor: Editor | null,
-  highlightColor?: string,
+  highlightColor?: string
 ): boolean {
   if (!editor || !editor.isEditable) return false;
 
@@ -191,7 +191,7 @@ export function useColorHighlight(config: UseColorHighlightConfig) {
 
       if (highlightMarkType) {
         editor.view.dispatch(
-          editor.state.tr.removeStoredMark(highlightMarkType),
+          editor.state.tr.removeStoredMark(highlightMarkType)
         );
       }
     }
@@ -231,7 +231,7 @@ export function useColorHighlight(config: UseColorHighlightConfig) {
       enabled: isVisible && canColorHighlightState,
       enableOnContentEditable: !isMobile,
       enableOnFormTags: true,
-    },
+    }
   );
 
   return {

@@ -3,11 +3,16 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
 import Link from "next/link";
 import { Chip } from "@heroui/chip";
-
-import { ExploreData } from "@/config/constant";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
-const Explore = () => {
+type ExploreItem = { description: string; type: "problem" | "solution" };
+
+type ExploreProps = {
+  problemItems: ExploreItem[];
+  solutionItems: ExploreItem[];
+};
+
+const Explore = ({ problemItems, solutionItems }: ExploreProps) => {
   return (
     <section className="mt-20 ">
       <div className="container mx-auto px-4 max-w-7xl text-center ">
@@ -37,7 +42,7 @@ const Explore = () => {
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-white mb-2">Problem </h3>
               </div>
-              {ExploreData?.problemItems.map((item, index) => (
+              {problemItems?.map((item, index) => (
                 <ExploreCard
                   key={`problem-${index}`}
                   text={item.description}
@@ -55,7 +60,7 @@ const Explore = () => {
                   Solution{" "}
                 </h3>
               </div>
-              {ExploreData?.solutionItems.map((item, index) => (
+              {solutionItems?.map((item, index) => (
                 <ExploreCard
                   key={`solution-${index}`}
                   text={item.description}
@@ -115,11 +120,7 @@ const Explore = () => {
 };
 
 type ExploreCardProps = {
-  icon: React.ReactNode;
-  text: {
-    title: string;
-    description: string;
-  };
+  text: string;
   type: "problem" | "solution";
 };
 

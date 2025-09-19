@@ -52,11 +52,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       "aria-label": ariaLabel,
       ...props
     },
-    ref,
+    ref
   ) => {
     const shortcuts = React.useMemo(
       () => parseShortcutKeys({ shortcutKeys }),
-      [shortcutKeys],
+      [shortcutKeys]
     );
 
     if (!tooltip || !showTooltip) {
@@ -88,7 +88,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </TooltipContent>
       </Tooltip>
     );
-  },
+  }
 );
 
 Button.displayName = "Button";

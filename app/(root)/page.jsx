@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import CounterSection from "@/components/layout/counter-section";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import { getCachedCategories } from "@/hooks/lib/supabase/cached-queries";
+import { getCachedCategories } from "@/lib/supabase/cached-queries";
 import Explore from "@/components/Explore/Explore";
 import {
   getCachedExploreItems,

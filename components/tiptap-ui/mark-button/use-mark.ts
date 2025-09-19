@@ -219,7 +219,7 @@ export function useMark(config: UseMarkConfig) {
       enabled: isVisible && canToggle,
       enableOnContentEditable: !isMobile,
       enableOnFormTags: true,
-    },
+    }
   );
 
   return {

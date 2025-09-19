@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "lib/supabase/server.js",
+    "hooks/lib/supabase/server.js",
     "app/(root)/categories/[id]/page.jsx",
     "app/(root)/fabrics/[id]/page.jsx",
     "app/admin/manage-categories/page.jsx",

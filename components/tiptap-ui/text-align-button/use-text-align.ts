@@ -70,7 +70,7 @@ export const textAlignLabels: Record<TextAlign, string> = {
  */
 export function canSetTextAlign(
   editor: Editor | null,
-  align: TextAlign,
+  align: TextAlign
 ): boolean {
   if (!editor || !editor.isEditable) return false;
   if (
@@ -83,7 +83,7 @@ export function canSetTextAlign(
 }
 
 export function hasSetTextAlign(
-  commands: ChainedCommands,
+  commands: ChainedCommands
 ): commands is ChainedCommands & {
   setTextAlign: (align: TextAlign) => ChainedCommands;
 } {
@@ -95,7 +95,7 @@ export function hasSetTextAlign(
  */
 export function isTextAlignActive(
   editor: Editor | null,
-  align: TextAlign,
+  align: TextAlign
 ): boolean {
   if (!editor || !editor.isEditable) return false;
 
@@ -227,7 +227,7 @@ export function useTextAlign(config: UseTextAlignConfig) {
       enabled: isVisible && canAlign,
       enableOnContentEditable: !isMobile,
       enableOnFormTags: true,
-    },
+    }
   );
 
   return {

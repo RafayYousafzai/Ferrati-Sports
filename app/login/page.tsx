@@ -13,7 +13,10 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) {
       setError(error.message);
     } else {
@@ -23,13 +26,16 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-neutral-900">
-      <form onSubmit={handleLogin} className="bg-white dark:bg-neutral-800 p-8 rounded shadow-md w-full max-w-sm">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white dark:bg-neutral-800 p-8 rounded shadow-md w-full max-w-sm"
+      >
         <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           required
         />
@@ -37,12 +43,17 @@ export default function LoginPage() {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           className="w-full p-2 mb-4 border rounded"
           required
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        <button type="submit" className="w-full bg-black text-white py-2 rounded hover:bg-neutral-700">Login</button>
+        <button
+          type="submit"
+          className="w-full bg-black text-white py-2 rounded hover:bg-neutral-700"
+        >
+          Login
+        </button>
       </form>
     </div>
   );
