@@ -4,9 +4,13 @@ import dynamic from "next/dynamic";
 import CounterSection from "@/components/layout/counter-section";
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
-import { getCachedCategories } from "@/lib/supabase/cached-queries";
-import { WhyChooseUsCards, process, sampleVideos } from "@/lib/constants";
+import { getCachedCategories } from "@/hooks/lib/supabase/cached-queries";
 import Explore from "@/components/Explore/Explore";
+import {
+  getCachedExploreItems,
+  getCachedWhyChooseUs,
+  getCachedProcessSteps,
+} from "@/lib/supabase/cached-content";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
 
@@ -50,13 +54,20 @@ function SectionHeader({ badge, title, highlightedTitle, subtitle }) {
 
 // 🔹 Main page
 export default async function Home() {
+  const [exploreItems, whyCards, steps] = await Promise.all([
+    getCachedExploreItems(),
+    getCachedWhyChooseUs(),
+    getCachedProcessSteps(),
+  ]);
+  const problemItems = exploreItems.filter((i) => i.type === "problem");
+  const solutionItems = exploreItems.filter((i) => i.type === "solution");
   return (
     <>
       {/* Above the fold */}
       <Hero />
       <CounterSection />
 
-      <Explore />
+      <Explore problemItems={problemItems} solutionItems={solutionItems} />
 
       <SectionHeader
         badge="Ferrati"
@@ -67,7 +78,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <ServiceCards cards={WhyChooseUsCards} />
+        <ServiceCards cards={whyCards} />
       </Suspense>
 
       <br />
@@ -75,7 +86,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <Solutions cards={process} />
+        <Solutions cards={steps} />
       </Suspense>
 
       {/* <SectionHeader

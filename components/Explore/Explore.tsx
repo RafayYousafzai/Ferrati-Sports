@@ -1,71 +1,13 @@
-import { Button, ButtonGroup } from "@heroui/button";
+import { Button } from "@heroui/button";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
-import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Link from "next/link";
-import { Cover } from "@/components/ui/cover";
 import { Chip } from "@heroui/chip";
 
-interface ExploreItemData {
-  description: string;
-
-  type: "problem" | "solution";
-}
+import { ExploreData } from "@/config/constant";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
 const Explore = () => {
-  // Data for problem items (left side)
-  const problemItems: ExploreItemData[] = [
-    {
-      description:
-        "Dealing with inconsistent stitching, poor fabric quality, color mismatches.",
-      type: "problem",
-    },
-    {
-      description:
-        "Frequent delays causing frustrated clients, and lost sales.",
-      type: "problem",
-    },
-    {
-      description:
-        "Compromising your designs due to restrictive fabric options, high MOQs, and inflexible production.",
-      type: "problem",
-    },
-    {
-      description:
-        "Manufacturers leaving you in the dark without timely updates, causing uncertainty and operational headaches.",
-      type: "problem",
-    },
-    {
-      description:
-        "Unclear pricing structures, sudden hidden charges, and unreliable refund policies.",
-      type: "problem",
-    },
-  ];
-
-  // Data for solution items (right side)
-  const solutionItems: ExploreItemData[] = [
-    {
-      description:
-        "85% fewer returns, significantly reducing operational costs and protecting your brand reputation.",
-      type: "solution",
-    },
-    {
-      description:
-        "Up to 60% faster production turnaround compared to typical industry timelines, positioning your products ahead of competitors.",
-      type: "solution",
-    },
-    {
-      description:
-        "30% improvement in customer satisfaction ratings, achieved through reliable quality, consistent delivery, and dedicated service.",
-      type: "solution",
-    },
-    {
-      description:
-        "Offering flexible designs, low MOQs, and rapid prototyping for maximum creativity.",
-      type: "solution",
-    },
-  ];
-
   return (
     <section className="mt-20 ">
       <div className="container mx-auto px-4 max-w-7xl text-center ">
@@ -95,7 +37,7 @@ const Explore = () => {
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-white mb-2">Problem </h3>
               </div>
-              {problemItems.map((item, index) => (
+              {ExploreData?.problemItems.map((item, index) => (
                 <ExploreCard
                   key={`problem-${index}`}
                   text={item.description}
@@ -113,7 +55,7 @@ const Explore = () => {
                   Solution{" "}
                 </h3>
               </div>
-              {solutionItems.map((item, index) => (
+              {ExploreData?.solutionItems.map((item, index) => (
                 <ExploreCard
                   key={`solution-${index}`}
                   text={item.description}
@@ -127,7 +69,7 @@ const Explore = () => {
       <div className="relative  py-12 mt-16 px-4 overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#f97316_1px,transparent_0)] bg-[length:40px_40px]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#f97316_1px,transparent_0)] bg-[length:40px_40px]" />
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -144,18 +86,18 @@ const Explore = () => {
           <div className="flex flex-col md:flex-row justify-center items-center gap-1 mt-12">
             <Link href={"/request-quote"}>
               <Button
+                className="min-w-sm  bg-orange-500 text-white"
                 radius="sm"
                 size="lg"
-                className="min-w-sm  bg-orange-500 text-white"
               >
                 Request a Quote
               </Button>
             </Link>
             <a href="tel:+923328574009">
               <Button
+                className="min-w-sm  bg-[#013056] text-white"
                 radius="sm"
                 size="lg"
-                className="min-w-sm  bg-[#013056] text-white"
               >
                 Book a Consultation Call
               </Button>
@@ -186,7 +128,7 @@ const ExploreCard = ({ text, type }: ExploreCardProps) => {
 
   return (
     <div className="flex-1 flex gap-3 items-center">
-      <Button isIconOnly radius="full" className="bg-transparent">
+      <Button isIconOnly className="bg-transparent" radius="full">
         {isProblem ? (
           <TiDelete className="size-12 text-white" />
         ) : (
