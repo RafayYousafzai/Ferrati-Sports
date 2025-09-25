@@ -44,7 +44,7 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div>
+    <div className="pt-20">
       <ProductDetails
         key={category.id}
         buttonText={`${products.length} Products Available`}

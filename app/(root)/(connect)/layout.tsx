@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <PriceCalculationProvider>
-      <div className="mt-2">{children}</div>
+      <div className="pt-20">{children}</div>
     </PriceCalculationProvider>
   );
 }

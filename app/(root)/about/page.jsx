@@ -125,7 +125,7 @@ export default function OurProcess() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-12 px-4">
+    <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20">
       <div className="max-w-7xl mx-auto">
         <Header
           title="Our Manufacturing Process."

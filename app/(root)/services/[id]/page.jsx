@@ -19,7 +19,7 @@ export default async function Page({ params }) {
     return <div>Blog not found</div>;
   }
   return (
-    <div className="bg-white">
+    <div className="pt-20">
       <ProductDetails
         buttonText="All Services"
         description={[

@@ -29,7 +29,7 @@ export default async function FabricPage({ params }) {
     .limit(6);
 
   return (
-    <section>
+    <div className="  pt-20">
       <ProductDetails
         description={[
           `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,
@@ -45,6 +45,6 @@ export default async function FabricPage({ params }) {
       </div>
 
       <AllProductsSummary order={["fabrics", "categories", "blogs"]} />
-    </section>
+    </div>
   );
 }

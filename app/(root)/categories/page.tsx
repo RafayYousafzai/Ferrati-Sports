@@ -2,7 +2,7 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 
 export default async function Page() {
   return (
-    <section>
+    <div className="pt-20">
       <AllProductsSummary
         fetchAllPerSection={{
           categories: true, // ✅ all categories
@@ -24,6 +24,6 @@ export default async function Page() {
         }}
         order={["categories", "fabrics", "blogs"]}
       />
-    </section>
+    </div>
   );
 }

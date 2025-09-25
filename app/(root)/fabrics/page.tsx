@@ -7,7 +7,7 @@ const subtitle =
 
 export default async function Page() {
   return (
-    <section>
+    <div className="pt-20">
       <AllProductsSummary
         fetchAllPerSection={{
           fabrics: true, // ✅ all fabrics
@@ -29,6 +29,6 @@ export default async function Page() {
         }}
         order={["fabrics", "categories", "blogs"]}
       />
-    </section>
+    </div>
   );
 }

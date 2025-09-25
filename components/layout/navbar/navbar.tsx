@@ -1,314 +1,42 @@
-"use client";
+import { Suspense } from "react";
 
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-} from "@heroui/navbar";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import ClientNavbar from "./client-navbar";
+import { getNavbarData } from "./navbar-data";
 
-import { MenuItem } from "./navbar-menu";
-import { HoveredLink, Menu, ProductItem } from "./navbar-menu";
-
-import { createClient } from "@/lib/supabase/client";
-import { Image } from "@heroui/image";
-
-// Type definitions
-type NavItem = {
-  title: string;
-  href: string;
-  description?: string;
-  image?: string;
-};
-
-type NavGroup = {
-  title: string;
-  href: string;
-  items: NavItem[];
-  isProductGrid?: boolean;
-};
-
-type NavigationConfig = {
-  leftNav: NavItem[];
-  centerNav: NavGroup[];
-  rightNav: NavItem[];
-  mobileNav: NavItem[];
-};
-
-interface Category {
-  id: string;
-  title: string;
-  description: string;
-  image_url: string;
-  created_at: string;
-}
-
-export default function Appbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
-  // Remove unused state
-  const [loading, setLoading] = useState(true);
-
-  const supabase = createClient();
-
-  const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const controlNavbar = () => {
-      if (window.scrollY > lastScrollY) {
-        // scrolling down
-        setHidden(true);
-      } else {
-        // scrolling up
-        setHidden(false);
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, [lastScrollY]);
-
-  // Fetch categories from database
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("categories")
-          .select("title,id,description,image_url")
-          .order("created_at", { ascending: false })
-          .limit(3); // Only fetch 4 categories
-
-        if (error) throw error;
-        setCategories(
-          (data || []).map((cat) => ({
-            ...cat,
-            created_at: (cat as any).created_at || new Date().toISOString(),
-          }))
-        );
-
-        const { data: blogsData, error: blogsError } = await supabase
-          .from("blogs")
-          .select("title,id")
-          .order("created_at", { ascending: false });
-
-        if (blogsError) throw blogsError;
-        // setBlogs(blogsData || []); // Remove unused
-
-        const { data: servicesData, error: servicesError } = await supabase
-          .from("services")
-          .select("title,id")
-          .order("created_at", { ascending: false });
-
-        if (servicesError) throw servicesError;
-        // setServices(servicesData || []); // Remove unused
-      } catch (error) {
-        // console.error("Error fetching categories:", error);
-        // Fallback to static data if database fetch fails
-        setCategories([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  // Convert categories to navigation items
-  const categoryNavItems: NavItem[] = [
-    ...categories.map((category) => ({
-      title: category.title,
-      href: `/categories/${category.id}`,
-      description: `${category.description.substring(0, 50)}...`,
-      image: category.image_url || "/placeholder.svg?height=200&width=200",
-    })),
-    {
-      title: "All Categories",
-      href: `/categories`,
-      description: `Check our all categories`,
-      image: "/assets/cat4.webp",
-    },
-  ];
-
-  const navigationConfig: NavigationConfig = {
-    leftNav: [
-      { title: "Home", href: "/" },
-      { title: "Fabrics", href: "/fabrics" },
-      { title: "Services", href: "/services" },
-    ],
-    centerNav: [
-      {
-        title: "Products",
-        href: "/categories",
-        isProductGrid: true,
-        items: loading
-          ? categoryNavItems.length > 0
-            ? categoryNavItems
-            : []
-          : categoryNavItems,
-      },
-    ],
-    rightNav: [
-      { title: "Blogs", href: "/blogs" },
-      { title: "About", href: "/about" },
-      { title: "Contact Us", href: "/contact" },
-      { title: "Calculate Price", href: "/calculate-price" },
-      { title: "Request Quote", href: "/request-quote" },
-    ],
-    mobileNav: [
-      { title: "Home", href: "/" },
-      { title: "Products", href: "/categories" },
-      { title: "Fabrics", href: "/fabrics" },
-      { title: "Services", href: "/services" },
-      { title: "Blogs", href: "/blogs" },
-      { title: "About", href: "/about" },
-      { title: "Contact Us", href: "/contact" },
-      { title: "Calculate Price", href: "/calculate-price" },
-      { title: "Request Quote", href: "/request-quote" },
-    ],
-  };
-
+// Loading fallback component
+function NavbarSkeleton() {
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300 ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      }`}
-    >
-      {" "}
-      <Navbar
-        className="transition-all duration-300 bg-black h-[10vh] "
-        isMenuOpen={isMenuOpen}
-        maxWidth="full"
-        onMenuOpenChange={setIsMenuOpen}
-        disableAnimation={true}
-      >
-        <NavbarContent>
-          <NavbarBrand>
-            <Link href="/">
-              <div className={`relative xl:flex w-[60px] h-[60px]`}>
-                <Image
-                  alt=""
-                  className="object-contain w-[60px] h-[60px]"
-                  src="/logo.png"
-                />
-              </div>{" "}
-            </Link>
-          </NavbarBrand>
-        </NavbarContent>
-
-        <NavbarContent className="hidden md:flex gap-4 " justify="end">
-          {navigationConfig.leftNav.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link className="text-white hover:text-gray-300" href={item.href}>
-                {item.title}
-              </Link>
-            </NavbarItem>
+    <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200">
+      <div className="flex items-center justify-between h-[10vh] px-4">
+        <div className="w-[60px] h-[60px] bg-gray-700 rounded animate-pulse" />
+        <div className="hidden md:flex gap-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="w-16 h-4 bg-gray-700 rounded animate-pulse"
+            />
           ))}
-        </NavbarContent>
-
-        <NavbarContent className="hidden md:flex gap-4" justify="center">
-          {navigationConfig.centerNav.map((item) => (
-            <NavbarItem key={item.href}>
-              {item.items && item.items.length > 0 ? (
-                // Render dropdown for items with content
-                <MenuContent item={item} />
-              ) : (
-                // Render simple link for items without dropdown
-                <Link
-                  className="text-white hover:text-gray-300"
-                  href={item.href}
-                >
-                  {item.title}
-                </Link>
-              )}
-            </NavbarItem>
+        </div>
+        <div className="hidden md:flex gap-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="w-16 h-4 bg-gray-700 rounded animate-pulse"
+            />
           ))}
-        </NavbarContent>
-
-        <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
-          {navigationConfig.rightNav.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                className={`text-white hover:text-gray-300 ${
-                  item.title === "Request Quote"
-                    ? "font-bold bg-orange-500 p-4 pt-3 rounded-sm"
-                    : ""
-                }`}
-                href={item.href}
-              >
-                {item.title}
-              </Link>
-            </NavbarItem>
-          ))}
-        </NavbarContent>
-
-        <NavbarMenu className="bg-black/80 py-4 -mt-1 ">
-          {navigationConfig.mobileNav.map((item: NavItem, index: number) => (
-            <NavbarMenuItem key={`${item.title}-${index}`}>
-              <Link
-                className="w-full text-white hover:text-slate-200 py-2 text-2xl"
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
-
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden text-white"
-        />
-      </Navbar>
+        </div>
+      </div>
     </nav>
   );
 }
 
-function MenuContent({ item }: { item: NavGroup }) {
-  const [active, setActive] = useState<string | null>(null);
+// Server component that fetches data and renders client navbar
+export default async function Appbar() {
+  const navbarData = await getNavbarData();
 
   return (
-    <Menu setActive={setActive}>
-      <MenuItem
-        active={active}
-        href={item.href}
-        item={item.title}
-        setActive={setActive}
-      >
-        {item.isProductGrid ? (
-          <div className="text-sm grid grid-cols-2 gap-4 p-4">
-            {item.items.map((navItem) => (
-              <ProductItem
-                key={navItem.href}
-                description={navItem.description || ""}
-                href={navItem.href}
-                src={
-                  navItem.image ||
-                  "/placeholder.svg?height=200&width=200&query=product"
-                }
-                title={navItem.title}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col space-y-4 text-sm">
-            {item.items.map((navItem) => (
-              <HoveredLink key={navItem.href} href={navItem.href}>
-                {navItem.title}
-              </HoveredLink>
-            ))}
-          </div>
-        )}
-      </MenuItem>
-    </Menu>
+    <Suspense fallback={<NavbarSkeleton />}>
+      <ClientNavbar categories={navbarData.categories} />
+    </Suspense>
   );
 }

@@ -29,7 +29,7 @@ export default async function BlogPage({ params }) {
     .limit(6);
 
   return (
-    <section className="bg-white">
+    <div className="bg-white pt-20">
       <ProductDetails
         description={[
           `${fabric.description.substring(0, 600).replace(/<[^>]*>/g, "")}...`,
@@ -47,6 +47,6 @@ export default async function BlogPage({ params }) {
       </div>
 
       <AllProductsSummary order={["blogs", "categories", "fabrics"]} />
-    </section>
+    </div>
   );
 }
