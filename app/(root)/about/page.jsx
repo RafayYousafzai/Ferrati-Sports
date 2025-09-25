@@ -1,3 +1,22 @@
+export const metadata = {
+  title: "About Us - Ferrati Sports | Premium Custom Clothing Manufacturer",
+  description:
+    "Learn about Ferrati Sports' journey in premium custom clothing manufacturing. Our expertise, values, and commitment to delivering high-quality apparel for brands worldwide.",
+  keywords:
+    "about ferrati sports, custom clothing manufacturer, apparel manufacturing company, clothing brand story, premium manufacturing",
+  openGraph: {
+    title: "About Ferrati Sports - Premium Custom Clothing Manufacturer",
+    description:
+      "Learn about our journey and expertise in premium custom clothing manufacturing.",
+    type: "website",
+    url: "https://ferrati-sports.com/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 import {
   Card,
   CardContent,

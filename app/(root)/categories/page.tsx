@@ -1,4 +1,24 @@
+import { Metadata } from "next";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+
+export const metadata: Metadata = {
+  title: "Product Categories - Ferrati Sports | Custom Clothing & Sportswear",
+  description:
+    "Explore our wide range of product categories including custom t-shirts, hoodies, sportswear, jackets, and more. Premium quality manufacturing for your brand.",
+  keywords:
+    "product categories, custom t-shirts, hoodies, sportswear, jackets, custom clothing categories, apparel categories",
+  openGraph: {
+    title: "Ferrati Sports Product Categories - Custom Clothing",
+    description:
+      "Wide range of custom clothing categories including t-shirts, hoodies, sportswear, and more.",
+    type: "website",
+    url: "https://ferrati-sports.com/categories",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default async function Page() {
   return (

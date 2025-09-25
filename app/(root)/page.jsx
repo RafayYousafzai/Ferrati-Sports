@@ -2,6 +2,47 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 import CounterSection from "@/components/layout/counter-section";
+
+export const metadata = {
+  title: "Ferrati Sports - Premium Custom Clothing & Sportswear Manufacturing",
+  description:
+    "Leading manufacturer of custom clothing, sportswear, and premium apparel. From design to production, we create high-quality garments for brands worldwide. Get your custom quote today.",
+  keywords:
+    "custom clothing, sportswear manufacturing, premium apparel, custom sportswear, clothing manufacturer, brand manufacturing, custom garments",
+  openGraph: {
+    title: "Ferrati Sports - Premium Custom Clothing Manufacturing",
+    description:
+      "Leading manufacturer of custom clothing and sportswear. High-quality garments for brands worldwide.",
+    type: "website",
+    url: "https://ferrati-sports.com",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Ferrati Sports Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ferrati Sports - Premium Custom Clothing Manufacturing",
+    description:
+      "Leading manufacturer of custom clothing and sportswear. High-quality garments for brands worldwide.",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import { getCachedCategories } from "@/lib/supabase/cached-queries";

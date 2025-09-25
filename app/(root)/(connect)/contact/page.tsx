@@ -1,4 +1,24 @@
+import { Metadata } from "next";
 import ContactForm from "./ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact Us - Ferrati Sports | Get In Touch for Custom Clothing",
+  description:
+    "Contact Ferrati Sports for custom clothing manufacturing, quotes, and partnerships. We're here to help bring your brand vision to life.",
+  keywords:
+    "contact ferrati sports, custom clothing contact, manufacturing inquiry, clothing brand partnership, custom apparel quote",
+  openGraph: {
+    title: "Contact Ferrati Sports - Custom Clothing Experts",
+    description:
+      "Get in touch for custom clothing manufacturing and brand partnerships.",
+    type: "website",
+    url: "https://ferrati-sports.com/contact",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ContactPage() {
   return (

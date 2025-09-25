@@ -1,4 +1,24 @@
+import { Metadata } from "next";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+
+export const metadata: Metadata = {
+  title: "Blogs - Ferrati Sports | Fashion & Manufacturing Insights",
+  description:
+    "Discover the latest trends in custom clothing, sportswear manufacturing, and fashion industry insights from Ferrati Sports experts.",
+  keywords:
+    "fashion blogs, clothing manufacturing insights, sportswear trends, custom clothing tips, manufacturing blog, fashion industry news",
+  openGraph: {
+    title: "Ferrati Sports Blogs - Fashion & Manufacturing Insights",
+    description:
+      "Latest trends and insights in custom clothing and sportswear manufacturing.",
+    type: "website",
+    url: "https://ferrati-sports.com/blogs",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default async function Page() {
   return (

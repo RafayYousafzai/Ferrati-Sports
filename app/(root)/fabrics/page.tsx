@@ -1,4 +1,24 @@
+import { Metadata } from "next";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+
+export const metadata: Metadata = {
+  title: "Premium Fabrics - Ferrati Sports | Choose Your Perfect Material",
+  description:
+    "Discover premium fabrics for your custom clothing. From cotton to performance materials, learn about texture, GSM, care instructions, and printing compatibility.",
+  keywords:
+    "premium fabrics, custom clothing materials, cotton fabrics, performance materials, fabric GSM, textile printing, clothing materials",
+  openGraph: {
+    title: "Ferrati Sports Premium Fabrics - Choose Your Material",
+    description:
+      "Premium fabrics for custom clothing with detailed specifications and care instructions.",
+    type: "website",
+    url: "https://ferrati-sports.com/fabrics",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const title = "Choose Your";
 const highlightedTitle = " Fabrics";
