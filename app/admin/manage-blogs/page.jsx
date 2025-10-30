@@ -23,6 +23,7 @@ export default function AdminPage() {
     title: "",
     image_url: "",
     description: "",
+    slug: "",
   });
   const [tags, setTags] = useState([]);
   const [suggestions, setSuggestions] = useState([
@@ -162,6 +163,7 @@ export default function AdminPage() {
       title: blog.title,
       image_url: blog.image_url,
       description: blog.description,
+      slug: blog.slug || "",
     });
     setTags(blog.tags?.map((tag) => ({ id: tag, text: tag })) || []);
     setPreviewImage(blog.image_url);
@@ -169,7 +171,7 @@ export default function AdminPage() {
   };
 
   const resetForm = () => {
-    setFormData({ title: "", image_url: "", description: "" });
+    setFormData({ title: "", image_url: "", description: "", slug: "" });
     setPreviewImage(null);
     setEditingBlog(null);
     setTags([]);

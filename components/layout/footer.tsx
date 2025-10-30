@@ -29,6 +29,7 @@ type ServiceData = {
 type BlogData = {
   id: string;
   title: string;
+  slug?: string;
 };
 
 const stats = [
@@ -101,7 +102,7 @@ const Footer = async () => {
 
   const { data: blogsData, error: blogsError } = await supabase
     .from("blogs")
-    .select("title,id")
+    .select("title,id,slug")
     .order("created_at", { ascending: false })
     .limit(6);
 
@@ -300,7 +301,7 @@ const Footer = async () => {
               {blogs?.map((blog) => (
                 <li key={blog.id}>
                   <Link
-                    href={`/blogs/${blog.id}`}
+                    href={`/blogs/${blog.slug || blog.id}`}
                     className="text-gray-300 hover:text-cyan-400 transition-colors flex items-center gap-2 group w-full  "
                   >
                     <div className="w-2 h-2 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform" />

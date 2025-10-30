@@ -55,6 +55,22 @@ const BlogForm = ({
         />
         <Separator bg="accent" className="my-4" />
 
+        <Input
+          className="max-w-[90%] mx-auto"
+          label="URL Slug"
+          placeholder="e.g., my-awesome-blog-post"
+          value={formData.slug}
+          onChange={(e) => {
+            const slug = e.target.value
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            setFormData({ ...formData, slug });
+          }}
+          description="Custom URL slug for SEO-friendly links"
+        />
+        <Separator bg="accent" className="my-4" />
+
         <div className="max-w-[90%] mx-auto">
           <label className="text-sm font-medium">Image</label>
           <div className="mt-2 flex flex-col items-start gap-4">
@@ -194,7 +210,7 @@ export default function BlogManagerUI(props) {
             key={blog.id}
             image={blog.image_url}
             title={blog.title}
-            href={`/blogs/${blog.id}`}
+            href={`/blogs/${blog.slug || blog.id}`}
           >
             <div
               className="text-sm text-default-500 line-clamp-3"

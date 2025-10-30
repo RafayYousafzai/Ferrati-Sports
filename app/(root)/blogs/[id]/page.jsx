@@ -8,15 +8,26 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 
 // Main page component
 export default async function BlogPage({ params }) {
+  const blogSlug = params.id;
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  // Fetch the specific fabric by ID
-  const { data: fabric } = await supabase
+  // Fetch the specific blog by slug (or fallback to ID)
+  let { data: fabric } = await supabase
     .from("blogs")
     .select("*")
-    .eq("id", params.id)
+    .eq("slug", blogSlug)
     .single();
+
+  // Fallback to ID if slug doesn't match
+  if (!fabric) {
+    const result = await supabase
+      .from("blogs")
+      .select("*")
+      .eq("id", blogSlug)
+      .single();
+    fabric = result.data;
+  }
 
   if (!fabric) {
     return <div>Blog not found</div>;
