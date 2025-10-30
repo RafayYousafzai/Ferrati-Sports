@@ -172,7 +172,7 @@ export default function ServiceManagerUI(props) {
             key={service.id}
             image={service.image_url}
             title={service.title}
-            href={`/services/${service.id}`}
+            href={`/services/${service.slug || service.id}`}
           >
             <div
               className="text-sm text-default-500 line-clamp-3"

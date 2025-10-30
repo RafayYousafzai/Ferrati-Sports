@@ -44,6 +44,7 @@ interface Category {
   description: string;
   image_url: string;
   created_at: string;
+  slug?: string;
 }
 
 interface ClientNavbarProps {
@@ -62,7 +63,7 @@ export default function ClientNavbar({
   const categoryNavItems: NavItem[] = [
     ...categories.map((category) => ({
       title: category.title,
-      href: `/categories/${category.id}`,
+      href: `/categories/${category.slug || category.id}`,
       description: `${category.description.substring(0, 50)}...`,
       image: category.image_url || "/placeholder.svg?height=200&width=200",
     })),

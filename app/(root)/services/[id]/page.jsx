@@ -6,13 +6,15 @@ import { Button } from "@heroui/button";
 import Link from "next/link";
 
 export default async function Page({ params }) {
+  const serviceSlug = params.id;
+
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
   const { data: service } = await supabase
     .from("services")
     .select("description, id, image_url, title")
-    .eq("id", params.id)
+    .eq("slug", serviceSlug)
     .single();
 
   if (!service) {

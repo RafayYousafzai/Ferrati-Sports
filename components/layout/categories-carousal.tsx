@@ -84,7 +84,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
                         </p>
 
                         {/* Button */}
-                        <Link href={`/categories/${item.id}`}>
+                        <Link href={`/categories/${item.slug || item.id}`}>
                           <Button
                             size="lg"
                             className="bg-orange-500 text-white hover:scale-105 transition-transform duration-300 ease-in-out"
@@ -129,7 +129,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               description={item.description}
               image={item.image_url}
               title={item.title}
-              href={`/categories/${item.id}`}
+              href={`/categories/${item.slug || item.id}`}
             >
               <></>
             </Card>

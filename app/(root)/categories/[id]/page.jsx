@@ -8,7 +8,7 @@ import { Button } from "@heroui/button";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 
 export default async function CategoryPage({ params }) {
-  const categoryId = params.id;
+  const categorySlug = params.id;
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -16,7 +16,7 @@ export default async function CategoryPage({ params }) {
   const { data: category, error: categoryError } = await supabase
     .from("categories")
     .select("*")
-    .eq("id", categoryId)
+    .eq("slug", categorySlug)
     .single();
 
   if (categoryError) throw categoryError;
@@ -25,7 +25,7 @@ export default async function CategoryPage({ params }) {
   const { data: products, error: productsError } = await supabase
     .from("products")
     .select("*")
-    .eq("category_id", categoryId)
+    .eq("category_id", category.id)
     .order("created_at", { ascending: false });
 
   if (productsError) throw productsError;
@@ -65,7 +65,7 @@ export default async function CategoryPage({ params }) {
         {products?.map((product) => (
           <Card
             key={product.id}
-            href={`${categoryId}/${product.id}`}
+            href={`${categorySlug}/${product.slug || product.id}`}
             image={product.image_url}
             title={product.title}
           >

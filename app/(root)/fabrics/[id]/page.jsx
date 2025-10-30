@@ -8,14 +8,16 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 
 // Main page component
 export default async function FabricPage({ params }) {
+  const fabricSlug = params.id;
+
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  // Fetch the specific fabric by ID
+  // Fetch the specific fabric by slug
   const { data: fabric } = await supabase
     .from("fabrics")
     .select("*")
-    .eq("id", params.id)
+    .eq("slug", fabricSlug)
     .single();
 
   if (!fabric) {

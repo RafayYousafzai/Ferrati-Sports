@@ -11,8 +11,8 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 export default async function CategoryPage({ params }) {
-  const categoryId = params.id;
-  const productId = params.slug;
+  const categorySlug = params.id;
+  const productSlug = params.slug;
 
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -20,7 +20,7 @@ export default async function CategoryPage({ params }) {
   const { data: category, error: categoryError } = await supabase
     .from("categories")
     .select("*")
-    .eq("id", categoryId)
+    .eq("slug", categorySlug)
     .single();
 
   if (categoryError) throw categoryError;
@@ -29,10 +29,12 @@ export default async function CategoryPage({ params }) {
   const { data: products, error: productsError } = await supabase
     .from("products")
     .select("*")
-    .eq("category_id", categoryId)
+    .eq("category_id", category.id)
     .order("created_at", { ascending: false });
 
-  const selectedProduct = products.find((product) => product.id === productId);
+  const selectedProduct = products.find(
+    (product) => product.slug === productSlug || product.id === productSlug
+  );
 
   if (productsError) throw productsError;
 
@@ -98,7 +100,7 @@ export default async function CategoryPage({ params }) {
         {products?.map((product) => (
           <Card
             key={product.id}
-            href={`/categories/${categoryId}/${product.id}`}
+            href={`/categories/${categorySlug}/${product.slug || product.id}`}
             image={product.image_url}
             title={product.title}
           >

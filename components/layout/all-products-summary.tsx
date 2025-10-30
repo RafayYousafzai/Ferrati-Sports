@@ -162,7 +162,7 @@ function ItemsGrid({ items, basePath }: { items: Item[]; basePath: string }) {
       {items?.map((item) => (
         <Card
           key={item.id}
-          href={`${basePath}/${item.id}`}
+          href={`${basePath}/${(item as any).slug || item.id}`}
           image={item.image_url}
           title={item.title}
         >

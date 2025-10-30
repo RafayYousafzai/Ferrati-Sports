@@ -181,7 +181,7 @@ export default function FabricManagerUI(props) {
             key={fabric.id}
             image={fabric.image_url}
             title={fabric.title}
-            href={`/fabrics/${fabric.id}`}
+            href={`/fabrics/${fabric.slug || fabric.id}`}
           >
             <div
               className="text-sm text-default-500 line-clamp-3"

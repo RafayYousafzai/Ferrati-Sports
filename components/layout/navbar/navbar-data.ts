@@ -8,6 +8,7 @@ interface Category {
   description: string;
   image_url: string;
   created_at: string;
+  slug?: string;
 }
 
 interface NavbarData {
@@ -25,6 +26,7 @@ export async function getNavbarData(): Promise<NavbarData> {
       description: cat.description,
       image_url: cat.image_url,
       created_at: cat.created_at || new Date().toISOString(),
+      slug: cat.slug,
     }));
 
     return {

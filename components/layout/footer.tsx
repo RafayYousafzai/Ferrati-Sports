@@ -14,6 +14,23 @@ import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import { TwitterIcon } from "../icons";
 
+type CategoryData = {
+  id: string;
+  title: string;
+  slug?: string;
+};
+
+type ServiceData = {
+  id: string;
+  title: string;
+  slug?: string;
+};
+
+type BlogData = {
+  id: string;
+  title: string;
+};
+
 const stats = [
   {
     icon: Award,
@@ -75,10 +92,12 @@ const Footer = async () => {
 
   const { data, error } = await supabase
     .from("categories")
-    .select("title,id")
+    .select("title,id,slug")
     .order("created_at", { ascending: false });
 
   if (error) throw error;
+
+  const categories = data as CategoryData[];
 
   const { data: blogsData, error: blogsError } = await supabase
     .from("blogs")
@@ -88,12 +107,16 @@ const Footer = async () => {
 
   if (blogsError) throw blogsError;
 
+  const blogs = blogsData as BlogData[];
+
   const { data: servicesData, error: servicesError } = await supabase
     .from("services")
-    .select("title,id")
+    .select("title,id,slug")
     .order("created_at", { ascending: false });
 
   if (servicesError) throw servicesError;
+
+  const services = servicesData as ServiceData[];
 
   return (
     <footer className="bg-gradient-to-br from-[#042e59] via-[#0a3d6b] to-[#042e59] text-white relative overflow-hidden">
@@ -172,10 +195,10 @@ const Footer = async () => {
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-green-400 rounded-full"></div>
             </h3>
             <ul className="space-y-4">
-              {servicesData?.slice(0, 6).map((service) => (
+              {services?.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <Link
-                    href={`/services/${service.id}`}
+                    href={`/services/${service.slug || service.id}`}
                     className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2 group"
                   >
                     <div className="w-2 h-2 bg-green-400 rounded-full group-hover:scale-125 transition-transform"></div>
@@ -223,10 +246,10 @@ const Footer = async () => {
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-orange-400 rounded-full"></div>
             </h3>
             <ul className="space-y-4">
-              {data?.slice(0, 6).map((category) => (
+              {categories?.slice(0, 6).map((category) => (
                 <li key={category.id}>
                   <Link
-                    href={`/categories/${category.id}`}
+                    href={`/categories/${category.slug || category.id}`}
                     className="text-gray-300 hover:text-orange-400 transition-colors flex items-center gap-2 group"
                   >
                     <div className="w-2 h-2 bg-orange-400 rounded-full group-hover:scale-125 transition-transform"></div>
@@ -274,7 +297,7 @@ const Footer = async () => {
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-cyan-400 rounded-full"></div>
             </h3>
             <ul className="space-y-4">
-              {blogsData?.map((blog) => (
+              {blogs?.map((blog) => (
                 <li key={blog.id}>
                   <Link
                     href={`/blogs/${blog.id}`}
