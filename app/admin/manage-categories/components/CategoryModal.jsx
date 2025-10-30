@@ -41,6 +41,20 @@ export default function CategoryModal({
                 setCategoryForm({ ...categoryForm, title: e.target.value })
               }
             />
+            <Input
+              label="URL Slug"
+              placeholder="e.g., custom-sportswear"
+              description="Custom URL slug for this category (e.g., /categories/your-slug)"
+              value={categoryForm.slug}
+              variant="bordered"
+              onChange={(e) => {
+                const slugValue = e.target.value
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-+|-+$/g, "");
+                setCategoryForm({ ...categoryForm, slug: slugValue });
+              }}
+            />
             <Textarea
               label="Description"
               minRows={3}

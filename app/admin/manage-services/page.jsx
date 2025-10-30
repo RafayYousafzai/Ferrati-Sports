@@ -23,6 +23,7 @@ export default function AdminPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     image_url: "",
     description: "",
   });
@@ -89,18 +90,36 @@ export default function AdminPage() {
       }
       const content = editorRef.current.getHTML();
 
+      // Prepare data - only include slug if it exists
+      const dataToSave = {
+        title: formData.title,
+        image_url: formData.image_url,
+        description: content,
+      };
+
+      // Only add slug if it has a value
+      if (formData.slug && formData.slug.trim()) {
+        dataToSave.slug = formData.slug.trim();
+      }
+
       if (editingService) {
         const { error } = await supabase
           .from("services")
-          .update({ ...formData, description: content })
+          .update(dataToSave)
           .eq("id", editingService.id);
-        if (error) throw error;
+        if (error) {
+          console.error("Database error:", error);
+          alert(`Error updating service: ${error.message}`);
+          throw error;
+        }
         setIsEditModalOpen(false);
       } else {
-        const { error } = await supabase
-          .from("services")
-          .insert([{ ...formData, description: content }]);
-        if (error) throw error;
+        const { error } = await supabase.from("services").insert([dataToSave]);
+        if (error) {
+          console.error("Database error:", error);
+          alert(`Error creating service: ${error.message}`);
+          throw error;
+        }
         setIsAddModalOpen(false);
       }
       resetForm();
@@ -125,6 +144,7 @@ export default function AdminPage() {
     setEditingService(service);
     setFormData({
       title: service.title,
+      slug: service.slug || "",
       image_url: service.image_url,
       description: service.description,
     });
@@ -133,7 +153,7 @@ export default function AdminPage() {
   };
 
   const resetForm = () => {
-    setFormData({ title: "", image_url: "", description: "" });
+    setFormData({ title: "", slug: "", image_url: "", description: "" });
     setPreviewImage(null);
     setEditingService(null);
   };

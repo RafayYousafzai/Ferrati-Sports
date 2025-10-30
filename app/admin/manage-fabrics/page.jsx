@@ -19,6 +19,7 @@ export default function AdminPage() {
   const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     price: 0,
     image_url: "",
     description: "",
@@ -85,18 +86,37 @@ export default function AdminPage() {
       }
       const content = editorRef.current.getHTML();
 
+      // Prepare data - only include slug if it exists
+      const dataToSave = {
+        title: formData.title,
+        price: formData.price,
+        image_url: formData.image_url,
+        description: content,
+      };
+
+      // Only add slug if it has a value
+      if (formData.slug && formData.slug.trim()) {
+        dataToSave.slug = formData.slug.trim();
+      }
+
       if (editingFabric) {
         const { error } = await supabase
           .from("fabrics")
-          .update({ ...formData, description: content })
+          .update(dataToSave)
           .eq("id", editingFabric.id);
-        if (error) throw error;
+        if (error) {
+          console.error("Database error:", error);
+          alert(`Error updating fabric: ${error.message}`);
+          throw error;
+        }
         setIsEditModalOpen(false);
       } else {
-        const { error } = await supabase
-          .from("fabrics")
-          .insert([{ ...formData, description: content }]);
-        if (error) throw error;
+        const { error } = await supabase.from("fabrics").insert([dataToSave]);
+        if (error) {
+          console.error("Database error:", error);
+          alert(`Error creating fabric: ${error.message}`);
+          throw error;
+        }
         setIsAddModalOpen(false);
       }
       resetForm();
@@ -121,6 +141,7 @@ export default function AdminPage() {
     setEditingFabric(fabric);
     setFormData({
       title: fabric.title,
+      slug: fabric.slug || "",
       price: Number(fabric.price) || 0,
       image_url: fabric.image_url,
       description: fabric.description,
@@ -132,6 +153,7 @@ export default function AdminPage() {
   const resetForm = () => {
     setFormData({
       title: "",
+      slug: "",
       price: 0,
       image_url: "",
       description: "",

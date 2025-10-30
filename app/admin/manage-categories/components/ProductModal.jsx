@@ -32,14 +32,14 @@ export default function ProductModal({
   const editorRef = useRef(null);
 
   return (
-    <Modal isOpen={isOpen} placement="top-center" size="full" onClose={onClose}>
-      <ModalContent>
+    <Modal isOpen={isOpen} placement="top-center" size="5xl" onClose={onClose}>
+      <ModalContent className="h-full">
         <ScrollShadow className="w-full h-full">
-          <form onSubmit={(e) => onSubmit(e, editorRef)}>
+          <form onSubmit={(e) => onSubmit(e, editorRef)} className="pb-6">
             <ModalHeader className="flex flex-col gap-1">
               {editingProduct ? "Edit Product" : "Add New Product"}
             </ModalHeader>
-            <ModalBody>
+            <ModalBody className="space-y-4">
               <Select
                 isRequired
                 label="Category"
@@ -89,6 +89,19 @@ export default function ProductModal({
                 onChange={(e) =>
                   setProductForm({ ...productForm, title: e.target.value })
                 }
+              />
+              <Input
+                label="URL Slug"
+                placeholder="e.g., custom-hoodies"
+                description="Custom URL slug for this product (e.g., /products/your-slug)"
+                value={productForm.slug}
+                onChange={(e) => {
+                  const slugValue = e.target.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "");
+                  setProductForm({ ...productForm, slug: slugValue });
+                }}
               />
               <Input
                 isRequired

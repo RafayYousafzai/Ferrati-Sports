@@ -34,8 +34,11 @@ const FabricForm = ({
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, editorRef)} className="space-y-4">
-      <div className="mx-auto p-6">
+    <form
+      onSubmit={(e) => handleSubmit(e, editorRef)}
+      className="space-y-4 pb-6"
+    >
+      <div className="mx-auto p-6 space-y-4">
         <Input
           className="max-w-[90%] mx-auto"
           label="Title"
@@ -43,6 +46,20 @@ const FabricForm = ({
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           isRequired
+        />
+        <Input
+          className="max-w-[90%] mx-auto mt-2"
+          label="URL Slug"
+          placeholder="e.g., cotton-blend"
+          description="Custom URL slug for this fabric (e.g., /fabrics/your-slug)"
+          value={formData.slug}
+          onChange={(e) => {
+            const slugValue = e.target.value
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            setFormData({ ...formData, slug: slugValue });
+          }}
         />
         <Input
           className="max-w-[90%] mx-auto mt-2"
@@ -141,7 +158,7 @@ export default function FabricManagerUI(props) {
       <Modal
         isOpen={props.isAddModalOpen}
         onOpenChange={props.setIsAddModalOpen}
-        size="full"
+        size="5xl"
       >
         <ModalContent className="h-full">
           {(onClose) => (
@@ -219,7 +236,7 @@ export default function FabricManagerUI(props) {
       <Modal
         isOpen={props.isEditModalOpen}
         onOpenChange={props.setIsEditModalOpen}
-        size="full"
+        size="5xl"
       >
         <ModalContent className="h-full">
           {(onClose) => (

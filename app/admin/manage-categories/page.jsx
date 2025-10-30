@@ -37,11 +37,13 @@ export default function CategoriesPage() {
 
   const [categoryForm, setCategoryForm] = useState({
     title: "",
+    slug: "",
     description: "",
     image_url: "",
   });
   const [productForm, setProductForm] = useState({
     title: "",
+    slug: "",
     subtitle: "",
     price: "",
     description: "",
@@ -132,7 +134,13 @@ export default function CategoriesPage() {
 
   // Form Resets
   const resetCategoryForm = () => {
-    setCategoryForm({ title: "", price: "", description: "", image_url: "" });
+    setCategoryForm({
+      title: "",
+      slug: "",
+      price: "",
+      description: "",
+      image_url: "",
+    });
     setCategoryImageFile(null);
     setCategoryImagePreview("");
     setEditingCategory(null);
@@ -141,6 +149,7 @@ export default function CategoriesPage() {
   const resetProductForm = () => {
     setProductForm({
       title: "",
+      slug: "",
       price: "",
       description: "",
       image_url: "",
@@ -187,7 +196,18 @@ export default function CategoriesPage() {
       if (categoryImageFile) {
         imageUrl = await uploadImage(categoryImageFile, "categories");
       }
-      const categoryData = { ...categoryForm, image_url: imageUrl };
+
+      // Prepare data - only include slug if it exists
+      const categoryData = {
+        title: categoryForm.title,
+        description: categoryForm.description,
+        image_url: imageUrl,
+      };
+
+      // Only add slug if it has a value
+      if (categoryForm.slug && categoryForm.slug.trim()) {
+        categoryData.slug = categoryForm.slug.trim();
+      }
 
       const { error } = editingCategory
         ? await supabase
@@ -196,12 +216,15 @@ export default function CategoriesPage() {
             .eq("id", editingCategory.id)
         : await supabase.from("categories").insert([categoryData]);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Database error:", error);
+        alert(`Error saving category: ${error.message}`);
+        throw error;
+      }
       await fetchCategories();
       onCategoryClose();
     } catch (error) {
       console.error("Error saving category:", error);
-      alert("Error saving category. Please try again.");
     } finally {
       setUploading(false);
     }
@@ -222,26 +245,39 @@ export default function CategoriesPage() {
       if (productImageFile) {
         imageUrl = await uploadImage(productImageFile, "products");
       }
+
       const { id, created_at, ...productData } = {
         ...productForm,
         image_url: imageUrl,
       };
 
+      // Prepare data - only include slug if it exists
+      const dataToSave = {
+        ...productData,
+        description: content,
+      };
+
+      // Only add slug if it has a value
+      if (productForm.slug && productForm.slug.trim()) {
+        dataToSave.slug = productForm.slug.trim();
+      }
+
       const { error } = editingProduct
         ? await supabase
             .from("products")
-            .update({ ...productData, description: content })
+            .update(dataToSave)
             .eq("id", editingProduct.id)
-        : await supabase
-            .from("products")
-            .insert([{ ...productData, description: content }]);
+        : await supabase.from("products").insert([dataToSave]);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Database error:", error);
+        alert(`Error saving product: ${error.message}`);
+        throw error;
+      }
       await fetchProducts();
       onProductClose();
     } catch (error) {
       console.error("Error saving product:", error);
-      alert("Error saving product. Please try again.");
     } finally {
       setUploading(false);
     }

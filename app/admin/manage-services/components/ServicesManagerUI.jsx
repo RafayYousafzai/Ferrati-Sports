@@ -5,7 +5,7 @@ import { Trash2, Edit, Plus, Upload, Image as ImageIcon } from "lucide-react";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/modal";
 import { Chip } from "@heroui/chip";
 import { Button, ButtonGroup } from "@heroui/button";
-import { Input, Textarea } from "@heroui/input";
+import { Input } from "@heroui/input";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import Separator from "@/components/separator";
 import Card from "@/components/custom-ui/card";
@@ -34,8 +34,11 @@ const ServiceForm = ({
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, editorRef)} className="space-y-4">
-      <div className="mx-auto p-6">
+    <form
+      onSubmit={(e) => handleSubmit(e, editorRef)}
+      className="space-y-4 pb-6"
+    >
+      <div className="mx-auto p-6 space-y-4">
         <Input
           className="max-w-[90%] mx-auto"
           label="Title"
@@ -43,6 +46,23 @@ const ServiceForm = ({
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           isRequired
+        />
+        <Separator bg="accent" className="my-4" />
+
+        <Input
+          className="max-w-[90%] mx-auto"
+          label="URL Slug"
+          placeholder="e.g., custom-design-services"
+          description="Custom URL slug for this service (e.g., /services/your-slug)"
+          value={formData.slug}
+          onChange={(e) => {
+            // Auto-generate slug from title if empty, or use custom input
+            const slugValue = e.target.value
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            setFormData({ ...formData, slug: slugValue });
+          }}
         />
         <Separator bg="accent" className="my-4" />
 
@@ -129,7 +149,7 @@ export default function ServiceManagerUI(props) {
       <Modal
         isOpen={props.isAddModalOpen}
         onOpenChange={props.setIsAddModalOpen}
-        size="full"
+        size="5xl"
       >
         <ModalContent className="h-full">
           {(onClose) => (
@@ -207,7 +227,7 @@ export default function ServiceManagerUI(props) {
       <Modal
         isOpen={props.isEditModalOpen}
         onOpenChange={props.setIsEditModalOpen}
-        size="full"
+        size="5xl"
       >
         <ModalContent className="h-full">
           {(onClose) => (
