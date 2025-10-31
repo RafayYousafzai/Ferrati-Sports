@@ -29,7 +29,7 @@ function AnimatedCounter({
   const springValue = useSpring(motionValue, { stiffness: 100, damping: 30 });
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const display = useTransform(springValue, (current) =>
-    Math.round(current).toLocaleString(),
+    Math.round(current).toLocaleString()
   );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function AnimatedCounter({
   return (
     <motion.div
       ref={ref}
-      className="text-5xl md:text-6xl font-black text-white mb-3 tracking-tight"
+      className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight"
     >
       <motion.span className="bg-white bg-clip-text text-transparent">
         {display}
@@ -72,7 +72,7 @@ function CounterItem({
       whileInView={{ opacity: 1, y: 0 }}
     >
       <motion.div
-        className="relative mb-6"
+        className="relative mb-4"
         transition={{ type: "spring", stiffness: 300 }}
         whileHover={{ rotate: 5 }}
       >
@@ -91,7 +91,7 @@ function CounterItem({
         />
         {/* Main icon container */}
         <motion.div
-          className="relative inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-2xl"
+          className="relative inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-2xl"
           transition={{ type: "spring", stiffness: 300 }}
           whileHover={{
             scale: 1.1,
@@ -100,7 +100,7 @@ function CounterItem({
           }}
         >
           <motion.div
-            className="text-orange-500 text-3xl"
+            className="text-orange-500 text-2xl"
             transition={{ type: "spring", stiffness: 400 }}
             whileHover={{ scale: 1.1 }}
           >
@@ -126,7 +126,7 @@ function CounterItem({
         <AnimatedCounter suffix={suffix} value={value} />
         {/* Label */}
         <motion.div
-          className="text-white font-semibold text-xl tracking-wide uppercase"
+          className="text-white font-semibold text-lg tracking-wide uppercase"
           initial={{ opacity: 0 }}
           transition={{ delay: index * 0.2 + 0.5 }}
           viewport={{ once: true }}
@@ -136,7 +136,7 @@ function CounterItem({
         </motion.div>
         {/* Decorative line */}
         <motion.div
-          className="w-16 h-1 bg-orange-400 mx-auto mt-4 rounded-full"
+          className="w-16 h-1 bg-orange-400 mx-auto mt-3 rounded-full"
           initial={{ scaleX: 0 }}
           transition={{ delay: index * 0.2 + 0.8, duration: 0.6 }}
           viewport={{ once: true }}
@@ -202,7 +202,7 @@ export default function CounterSection() {
   ];
 
   return (
-    <section className="relative h-auto py-24 bg-orange-500 overflow-hidden">
+    <section className="relative h-auto py-12 md:py-16 bg-orange-500 overflow-hidden">
       {/* Animated background elements - optimized */}
       <div className="absolute inset-0">
         {/* Gradient orbs - reduced blur and simplified animations */}
@@ -254,7 +254,7 @@ export default function CounterSection() {
       />
       <div className="relative container mx-auto px-6 lg:px-8">
         {/* Counters Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
           {counters.map((counter, index) => (
             <CounterItem
               key={counter.label}

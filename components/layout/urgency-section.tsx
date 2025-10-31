@@ -46,7 +46,7 @@ export default function UrgencySection() {
   return (
     <section
       ref={ref}
-      className="py-20 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 relative overflow-hidden"
+      className="py-20 mt-6 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 relative overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-10">

@@ -59,6 +59,7 @@ import SuccessSection from "@/components/layout/success-section";
 import UrgencySection from "@/components/layout/urgency-section";
 import PhilosophySection from "@/components/layout/philosophy-section";
 import FinalCTASection from "@/components/layout/final-cta-section";
+import Process from "@/components/layout/process";
 
 // 🔹 Helper to lazy-load components with a standard skeleton
 const lazyLoad = (importFn, height = "h-64") =>
@@ -125,6 +126,7 @@ export default async function Home() {
       </Suspense>
 
       {/* 🧭 PLAN SECTION - 3-Step Simplicity */}
+      <Process />
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
@@ -132,11 +134,11 @@ export default async function Home() {
       </Suspense>
 
       {/* 💪 SUCCESS SECTION - Transformation Vision */}
-      <Suspense
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <SuccessSection />
-      </Suspense>
+      </Suspense> */}
 
       {/* Categories Section */}
       <Suspense
@@ -149,11 +151,11 @@ export default async function Home() {
       <AllProductsSummary order={["fabrics", "services"]} />
 
       {/* ⏰ URGENCY SECTION - Fast-Start Bonus */}
-      <Suspense
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <UrgencySection />
-      </Suspense>
+      </Suspense> */}
 
       {/* Why Choose Us - Optional: Can be kept or replaced */}
       <SectionHeader
@@ -183,11 +185,11 @@ export default async function Home() {
       </Suspense>
 
       {/* 📞 FINAL CTA SECTION - Close Loop */}
-      <Suspense
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <FinalCTASection />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }

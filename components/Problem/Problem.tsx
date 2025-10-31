@@ -16,7 +16,7 @@ const badgeText = "text-white";
 
 const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
   return (
-    <section className="mt-20 py-16">
+    <section className="mt-20 pt-16">
       {/* Problem Section - Empathy */}
       <div className="container mx-auto px-4 max-w-6xl text-balance">
         <div className="text-center mb-12">
@@ -25,7 +25,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
           >
             THE PROBLEM
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mt-8 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-8 mb-6">
             Tired of Unreliable Manufacturers?
           </h2>
           <div className="max-w-3xl mx-auto space-y-4 text-lg text-gray-700 leading-relaxed">
@@ -120,7 +120,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
               </Button>
             </Link>
             <a
-              href="https://wa.me/923328574009"
+              href="https://wa.me/+447757726151"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -162,7 +162,7 @@ const ExploreCard = ({ text, type }: ExploreCardProps) => {
         )}
       </div>
       <p
-        className={`leading-relaxed text-left ${isProblem ? "text-gray-700" : "text-white"}`}
+        className={`leading-relaxed text-left ${isProblem ? "text-gray-900" : "text-white"}`}
       >
         {text}
       </p>
