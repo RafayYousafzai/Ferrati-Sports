@@ -1,17 +1,7 @@
-"use client";
-
 import { ChevronRight } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Mousewheel, Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { IconComponents } from "@tabler/icons-react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { DraggableContainer } from "./solutions/DraggableContainer";
 
 interface ServiceItem {
   name: string;
@@ -30,9 +20,6 @@ interface SolutionsProps {
 }
 
 export default function Solutions({ cards }: SolutionsProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   // Transform cards into 3-step process
   const steps = [
     {
@@ -57,39 +44,12 @@ export default function Solutions({ cards }: SolutionsProps) {
   return (
     <section className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-20 px-8 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 180, 360],
-          }}
-          className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48"
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [360, 180, 0],
-          }}
-          className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40"
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40" />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto">
-        <motion.div
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          initial={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
+      <div className="relative max-w-7xl mx-auto">
+        <div className="text-center mb-16">
           <span className="px-4 py-2 bg-white/20 rounded-full text-white font-semibold text-sm uppercase tracking-wider border border-white/30">
             THE PLAN
           </span>
@@ -100,30 +60,12 @@ export default function Solutions({ cards }: SolutionsProps) {
             From concept to delivery, we&apos;ve streamlined the entire process
             into three simple steps.
           </p>
-        </motion.div>
+        </div>
 
         {/* 3-Step Process */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
-              animate={
-                isInView
-                  ? {
-                      opacity: 1,
-                      y: 0,
-                      scale: 1,
-                    }
-                  : {}
-              }
-              transition={{
-                duration: 0.6,
-                delay: index * 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="relative"
-            >
+            <div key={index} className="relative">
               <div className="bg-white rounded-lg p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
                 {/* Step Number Badge */}
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
@@ -151,27 +93,18 @@ export default function Solutions({ cards }: SolutionsProps) {
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12">
           <a href="/request-quote">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-white text-orange-600 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
-            >
-              🔥 Start Your 30-Day Production Cycle
-            </motion.button>
+            <button className="px-10 py-4 bg-white text-orange-600 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all">
+              Your 30-Day Production Cycle
+            </button>
           </a>
-        </motion.div>
+        </div>
 
         {/* Optional: Original Process Cards Below */}
         {cards && cards.length > 0 && (
@@ -185,193 +118,37 @@ export default function Solutions({ cards }: SolutionsProps) {
               </p>
             </div>
 
-            <motion.div
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              className="relative"
-              initial={{ opacity: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              <Swiper
-                autoplay={{
-                  delay: 4000,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }}
-                breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                    spaceBetween: 16,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 24,
-                  },
-                  1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 24,
-                  },
-                }}
-                className="!pb-12"
-                freeMode={{
-                  enabled: true,
-                  momentum: true,
-                  momentumRatio: 0.25,
-                  momentumVelocityRatio: 0.25,
-                }}
-                grabCursor={true}
-                longSwipesRatio={0.1}
-                modules={[FreeMode, Mousewheel, Autoplay, Pagination]}
-                mousewheel={{
-                  forceToAxis: true,
-                  sensitivity: 0.1,
-                }}
-                pagination={{
-                  clickable: true,
-                  bulletClass:
-                    "swiper-pagination-bullet !bg-white/30 !w-2 !h-2",
-                  bulletActiveClass:
-                    "swiper-pagination-bullet-active !bg-white !scale-125",
-                }}
-                slidesPerView="auto"
-                spaceBetween={24}
-                threshold={10}
-                touchAngle={45}
-                touchRatio={1.5}
-              >
-                {cards.map((card, index) => (
-                  <SwiperSlide key={card.id} className="!h-auto">
-                    <motion.div
-                      animate={
-                        isInView
-                          ? {
-                              opacity: 1,
-                              y: 0,
-                              scale: 1,
-                            }
-                          : {
-                              opacity: 0,
-                              y: 60,
-                              scale: 0.9,
-                            }
-                      }
-                      className="h-full"
-                      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: index * 0.1,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                      }}
-                      whileHover={{
-                        y: -8,
-                        scale: 1.02,
-                        transition: { duration: 0.3, ease: "easeOut" },
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Card className="bg-white rounded-2xl border-0 shadow-lg h-full  transition-all duration-500 hover:shadow-2xl group overflow-hidden relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-orange-100/0 group-hover:from-orange-50/30 group-hover:to-orange-100/20 transition-all duration-500" />
+            <DraggableContainer>
+              {cards.map((card) => (
+                <div key={card.id} className="flex-none w-80">
+                  <div className="h-full">
+                    <Card className="bg-white rounded-2xl border-0 shadow-lg h-full transition-all duration-500  group overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-orange-100/0 group-hover:from-orange-50/30 group-hover:to-orange-100/20 transition-all duration-500" />
 
-                        <CardContent className="p-8 relative z-10">
-                          {/* <motion.div
-                            className="mb-6"
-                            transition={{ duration: 0.3, ease: "easeOut" }}
-                            whileHover={{ scale: 1.1 }}
-                          >
-                            <div className="relative inline-block">
-                              <motion.div
-                                className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"
-                                whileHover={{
-                                  scale: 1.2,
-                                  rotate: 45,
-                                  transition: { duration: 0.3 },
-                                }}
-                              />
-                              <motion.div
-                                className="relative bg-white p-2 shadow-sm"
-                                whileHover={{
-                                  rotate: -5,
-                                  transition: { duration: 0.3 },
-                                }}
-                              >
-                                <motion.div
-                                  whileHover={{
-                                    rotate: 360,
-                                    transition: {
-                                      duration: 0.6,
-                                      ease: "easeInOut",
-                                    },
-                                  }}
-                                >
-                                  <IconComponents
-                                    className="w-8 h-8 text-gray-700 transition-colors duration-300 group-hover:text-orange-600"
-                                    strokeWidth={1.5}
-                                  />
-                                </motion.div>
-                              </motion.div>
-                            </div>
-                          </motion.div> */}
+                      <CardContent className="p-8 relative z-10">
+                        <h3 className="text-xl font-bold text-gray-900 mb-6 group-hover:text-orange-700 transition-colors duration-300">
+                          {card.title}
+                        </h3>
 
-                          <motion.h3
-                            className="text-xl font-bold text-gray-900 mb-6 group-hover:text-orange-700 transition-colors duration-300"
-                            transition={{ duration: 0.2 }}
-                            whileHover={{ x: 5 }}
-                          >
-                            {card.title}
-                          </motion.h3>
-
-                          <ul className="space-y-3">
-                            {card.services.map((service, serviceIndex) => (
-                              <motion.li
-                                key={serviceIndex}
-                                animate={
-                                  isInView
-                                    ? {
-                                        opacity: 1,
-                                        x: 0,
-                                      }
-                                    : {
-                                        opacity: 0,
-                                        x: -20,
-                                      }
-                                }
-                                className="flex items-center  text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300"
-                                initial={{ opacity: 0, x: -20 }}
-                                transition={{
-                                  duration: 0.4,
-                                  delay:
-                                    index * 0.1 + serviceIndex * 0.05 + 0.5,
-                                }}
-                                whileHover={{
-                                  x: 8,
-                                  transition: { duration: 0.2 },
-                                }}
-                              >
-                                <motion.div
-                                  whileHover={{
-                                    rotate: 90,
-                                    scale: 1.2,
-                                    transition: { duration: 0.2 },
-                                  }}
-                                >
-                                  <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0 transition-colors duration-300 group-hover:text-orange-600" />
-                                </motion.div>
-                                <span className="transition-all duration-300">
-                                  {service.name}
-                                </span>
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </motion.div>
+                        <ul className="space-y-3">
+                          {card.services.map((service, serviceIndex) => (
+                            <li
+                              key={serviceIndex}
+                              className="flex items-center text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300"
+                            >
+                              <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0 transition-colors duration-300 group-hover:text-orange-600" />
+                              <span className="transition-all duration-300 text-medium text-gray-800">
+                                {service.name}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              ))}
+            </DraggableContainer>
           </>
         )}
       </div>
