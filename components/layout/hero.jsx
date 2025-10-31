@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Separator from "../separator";
 import Link from "next/link";
 import { Image } from "@heroui/image";
@@ -10,50 +9,18 @@ import { Image } from "@heroui/image";
 const mobileImage =
   "https://images.unsplash.com/photo-1619032468883-89a84f565cba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const defaultDescription =
-  "Unleash your potential with Ferrati Impex. Gear up with our premium sportswear, designed to enhance your performance and help you achieve greatness.";
-
 const HERO_IMAGE = "/assets/hero.webp";
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    {
-      image: "/assets/cat1.webp",
-      badge: "Coffee",
-      title: "Want to Start Your Custom Order?",
-      description: defaultDescription,
-    },
-    {
-      image: "/assets/cat2.webp",
-      badge: "Artisan",
-      title: "Are you still struggling in 2025?",
-      description: defaultDescription,
-    },
-    {
-      image: "/assets/cat4.webp",
-      badge: "Fresh",
-      title: "Want to scale in 2025?",
-      description: defaultDescription,
-    },
-  ];
-
-  // Auto-slide functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  const currentSlideData = slides[currentSlide];
-
   // Animation variants for text
   const textVariants = {
-    initial: { opacity: 0, y: -20 },
+    initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 0 },
+  };
+
+  const fadeIn = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
   };
 
   return (
@@ -80,51 +47,97 @@ const Hero = () => {
 
       <div className="container mx-auto h-full flex flex-col xl:flex-row items-start z-30 relative px-4">
         {/* Dynamic text content */}
-        <div className="flex-1 flex flex-col text-left justify-center xl:pb-12 gap-10 h-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={textVariants}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              data-scroll
-              data-scroll-speed="0.4"
-            >
-              {/* Badge & h1 */}
-              <div className="flex flex-col">
-                <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl text-white">
-                  {currentSlideData.title}
-                </h1>
-              </div>
-              {/* Separator */}
-            </motion.div>
-          </AnimatePresence>
+        <div className="flex-1 flex flex-col text-left justify-center xl:pb-12 gap-6 h-full">
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={textVariants}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {/* Main Headline */}
+            <div className="flex flex-col gap-4">
+              <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-tight">
+                From Sketch to Store in{" "}
+                <span className="text-orange-400">30 Days</span>
+              </h1>
+              <p className="text-2xl md:text-3xl text-gray-200 font-light">
+                Custom Sportswear Manufacturing That's Fast, Flexible, and
+                Reliable.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Separator */}
           <div className="w-10">
             <Separator />
           </div>
-          <p className="lead font-light w-[80%] md:max-w-[450px] xl:max-w-[560px] mb-4 text-xl">
-            {currentSlideData.description}
-          </p>
-          <div className="flex flex-col gap-4">
+
+          {/* Subheadline */}
+          <motion.p
+            className="text-xl md:text-2xl text-gray-100 max-w-[600px]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Stop worrying about delays, minimums, and poor quality.
+            <br />
+            <span className="text-orange-300 font-semibold">
+              Ferrati Sports helps you bring your vision to life on time and on
+              budget.
+            </span>
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 mt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <Link href="/request-quote">
               <Button
                 radius="sm"
-                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white font-semibold text-lg"
+                size="lg"
+                className="w-full sm:w-auto px-8 py-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                Get Quote
+                Get a Quote
               </Button>
             </Link>
-            <Link href="/services/0c6e3849-b21e-468f-bb43-44cd5284ac4f">
+            <Link href="/services/free-clothing-samples">
               <Button
                 radius="sm"
-                className="btn w-full md:w-sm px-6 py-2 cursor-pointer bg-orange-500 text-white font-semibold text-lg"
+                size="lg"
+                className="w-full sm:w-auto px-8 py-6 bg-white text-orange-600 hover:bg-gray-100 font-semibold text-lg border-2 border-white shadow-lg hover:shadow-xl transition-all"
               >
-                Get a Free Sample
+                Request Sample Kit
               </Button>
             </Link>
-          </div>
+          </motion.div>
+
+          {/* Trust Bar */}
+          <motion.div
+            className="flex flex-wrap gap-6 mt-6 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400 text-2xl font-bold">200+</span>
+              <span className="text-sm">Brands Served</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400 text-2xl font-bold">30</span>
+              <span className="text-sm">Day Delivery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400 text-2xl font-bold">50</span>
+              <span className="text-sm">Unit Low MOQ</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400 text-2xl font-bold">✓</span>
+              <span className="text-sm">Factory Direct</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

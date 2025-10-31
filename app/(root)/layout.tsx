@@ -58,7 +58,7 @@ export default function RootLayout({
         </section>
       </main>
 
-      <Link href="/services/0c6e3849-b21e-468f-bb43-44cd5284ac4f">
+      <Link href="/services/free-clothing-samples">
         <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
           <h1 className="text-black text-3xl md:text-5xl font-bold ml-[3%]  transition-colors duration-300 text-left">
             Ready to Start Your First Free Sample?{" "}

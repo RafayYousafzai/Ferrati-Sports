@@ -11,8 +11,6 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { IconComponents } from "@tabler/icons-react";
 
-import Header from "../custom-ui/header";
-
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ServiceItem {
@@ -34,6 +32,27 @@ interface SolutionsProps {
 export default function Solutions({ cards }: SolutionsProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Transform cards into 3-step process
+  const steps = [
+    {
+      number: "1",
+      title: "Share Your Vision",
+      description:
+        "Send us your design or idea. We'll guide you through fabric, fit, and finishes.",
+    },
+    {
+      number: "2",
+      title: "Approve Your Sample",
+      description:
+        "Get a prototype in 7–10 business days. Make changes before bulk production.",
+    },
+    {
+      number: "3",
+      title: "Launch with Confidence",
+      description: "Receive your finished products in 30 days — ready to sell.",
+    },
+  ];
 
   return (
     <section className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-20 px-8 overflow-hidden">
@@ -62,222 +81,299 @@ export default function Solutions({ cards }: SolutionsProps) {
             ease: "linear",
           }}
         />
-        <motion.div
-          animate={{
-            y: [-20, 20, -20],
-            scale: [1, 1.05, 1],
-          }}
-          className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-300 rounded-full transform -translate-y-32"
-          transition={{
-            duration: 15,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
       </div>
 
-      <div ref={ref} className="relative max-w-full mx-auto">
+      <div ref={ref} className="relative max-w-7xl mx-auto">
         <motion.div
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           initial={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <Header
-            badge="PROCESS"
-            showbadge={true}
-            highlightedTitle="Manufacturing."
-            subtitle="From concept to delivery, we transform your ideas into high-quality custom apparel through our streamlined 6-step process, backed by expertise and state-of-the-art facilities."
-            theme="dark"
-            title="Our streamlined "
-          />
+          <span className="px-4 py-2 bg-white/20 rounded-full text-white font-semibold text-sm uppercase tracking-wider border border-white/30">
+            THE PLAN
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-8 mb-6">
+            Your Path to Stress-Free Manufacturing
+          </h2>
+          <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            From concept to delivery, we&apos;ve streamlined the entire process
+            into three simple steps.
+          </p>
         </motion.div>
 
-        {/* Cards Grid */}
+        {/* 3-Step Process */}
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 0.6,
+                delay: index * 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+              className="relative"
+            >
+              <div className="bg-white rounded-lg p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
+                {/* Step Number Badge */}
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                    {step.number}
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Arrow connector (except last) */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <ChevronRight className="w-8 h-8 text-white opacity-50" />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA Button */}
         <motion.div
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          className="relative"
-          initial={{ opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mt-12"
         >
-          <Swiper
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-                spaceBetween: 16,
-              },
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 24,
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 24,
-              },
-            }}
-            className="!pb-12"
-            freeMode={{
-              enabled: true,
-              momentum: true,
-              momentumRatio: 0.25,
-              momentumVelocityRatio: 0.25,
-            }}
-            grabCursor={true}
-            longSwipesRatio={0.1}
-            modules={[FreeMode, Mousewheel, Autoplay, Pagination]}
-            mousewheel={{
-              forceToAxis: true,
-              sensitivity: 0.1,
-            }}
-            pagination={{
-              clickable: true,
-              bulletClass: "swiper-pagination-bullet !bg-white/30 !w-2 !h-2",
-              bulletActiveClass:
-                "swiper-pagination-bullet-active !bg-white !scale-125",
-            }}
-            slidesPerView="auto"
-            spaceBetween={24}
-            threshold={10}
-            touchAngle={45}
-            touchRatio={1.5}
-          >
-            {cards.map((card, index) => (
-              <SwiperSlide key={card.id} className="!h-auto">
-                <motion.div
-                  animate={
-                    isInView
-                      ? {
-                          opacity: 1,
-                          y: 0,
-                          scale: 1,
-                        }
-                      : {
-                          opacity: 0,
-                          y: 60,
-                          scale: 0.9,
-                        }
-                  }
-                  className="h-full"
-                  initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    transition: { duration: 0.3, ease: "easeOut" },
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Card className="bg-white border-0 shadow-lg h-full rounded-none transition-all duration-500 hover:shadow-2xl group overflow-hidden relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-orange-100/0 group-hover:from-orange-50/30 group-hover:to-orange-100/20 transition-all duration-500" />
-
-                    <CardContent className="p-8 relative z-10">
-                      <motion.div
-                        className="mb-6"
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        <div className="relative inline-block">
-                          <motion.div
-                            className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"
-                            whileHover={{
-                              scale: 1.2,
-                              rotate: 45,
-                              transition: { duration: 0.3 },
-                            }}
-                          />
-                          <motion.div
-                            className="relative bg-white p-2 shadow-sm"
-                            whileHover={{
-                              rotate: -5,
-                              transition: { duration: 0.3 },
-                            }}
-                          >
-                            <motion.div
-                              whileHover={{
-                                rotate: 360,
-                                transition: {
-                                  duration: 0.6,
-                                  ease: "easeInOut",
-                                },
-                              }}
-                            >
-                              <IconComponents
-                                className="w-8 h-8 text-gray-700 transition-colors duration-300 group-hover:text-orange-600"
-                                strokeWidth={1.5}
-                              />
-                            </motion.div>
-                          </motion.div>
-                        </div>
-                      </motion.div>
-
-                      <motion.h3
-                        className="text-xl font-bold text-gray-900 mb-6 group-hover:text-orange-700 transition-colors duration-300"
-                        transition={{ duration: 0.2 }}
-                        whileHover={{ x: 5 }}
-                      >
-                        {card.title}
-                      </motion.h3>
-
-                      <ul className="space-y-3">
-                        {card.services.map((service, serviceIndex) => (
-                          <motion.li
-                            key={serviceIndex}
-                            animate={
-                              isInView
-                                ? {
-                                    opacity: 1,
-                                    x: 0,
-                                  }
-                                : {
-                                    opacity: 0,
-                                    x: -20,
-                                  }
-                            }
-                            className="flex items-center text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300"
-                            initial={{ opacity: 0, x: -20 }}
-                            transition={{
-                              duration: 0.4,
-                              delay: index * 0.1 + serviceIndex * 0.05 + 0.5,
-                            }}
-                            whileHover={{
-                              x: 8,
-                              transition: { duration: 0.2 },
-                            }}
-                          >
-                            <motion.div
-                              whileHover={{
-                                rotate: 90,
-                                scale: 1.2,
-                                transition: { duration: 0.2 },
-                              }}
-                            >
-                              <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0 transition-colors duration-300 group-hover:text-orange-600" />
-                            </motion.div>
-                            <span className="transition-all duration-300">
-                              {service.name}
-                            </span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <a href="/request-quote">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-10 py-4 bg-white text-orange-600 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all"
+            >
+              🔥 Start Your 30-Day Production Cycle
+            </motion.button>
+          </a>
         </motion.div>
+
+        {/* Optional: Original Process Cards Below */}
+        {cards && cards.length > 0 && (
+          <>
+            <div className="mt-20 mb-8 text-center">
+              <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Our Complete Manufacturing Process
+              </h3>
+              <p className="text-white/80 text-lg">
+                Behind the scenes of our streamlined 3-step system
+              </p>
+            </div>
+
+            <motion.div
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              className="relative"
+              initial={{ opacity: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <Swiper
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                  },
+                  1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                  },
+                }}
+                className="!pb-12"
+                freeMode={{
+                  enabled: true,
+                  momentum: true,
+                  momentumRatio: 0.25,
+                  momentumVelocityRatio: 0.25,
+                }}
+                grabCursor={true}
+                longSwipesRatio={0.1}
+                modules={[FreeMode, Mousewheel, Autoplay, Pagination]}
+                mousewheel={{
+                  forceToAxis: true,
+                  sensitivity: 0.1,
+                }}
+                pagination={{
+                  clickable: true,
+                  bulletClass:
+                    "swiper-pagination-bullet !bg-white/30 !w-2 !h-2",
+                  bulletActiveClass:
+                    "swiper-pagination-bullet-active !bg-white !scale-125",
+                }}
+                slidesPerView="auto"
+                spaceBetween={24}
+                threshold={10}
+                touchAngle={45}
+                touchRatio={1.5}
+              >
+                {cards.map((card, index) => (
+                  <SwiperSlide key={card.id} className="!h-auto">
+                    <motion.div
+                      animate={
+                        isInView
+                          ? {
+                              opacity: 1,
+                              y: 0,
+                              scale: 1,
+                            }
+                          : {
+                              opacity: 0,
+                              y: 60,
+                              scale: 0.9,
+                            }
+                      }
+                      className="h-full"
+                      initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.1,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      whileHover={{
+                        y: -8,
+                        scale: 1.02,
+                        transition: { duration: 0.3, ease: "easeOut" },
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Card className="bg-white rounded-2xl border-0 shadow-lg h-full  transition-all duration-500 hover:shadow-2xl group overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-orange-100/0 group-hover:from-orange-50/30 group-hover:to-orange-100/20 transition-all duration-500" />
+
+                        <CardContent className="p-8 relative z-10">
+                          {/* <motion.div
+                            className="mb-6"
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            <div className="relative inline-block">
+                              <motion.div
+                                className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 rounded-sm"
+                                whileHover={{
+                                  scale: 1.2,
+                                  rotate: 45,
+                                  transition: { duration: 0.3 },
+                                }}
+                              />
+                              <motion.div
+                                className="relative bg-white p-2 shadow-sm"
+                                whileHover={{
+                                  rotate: -5,
+                                  transition: { duration: 0.3 },
+                                }}
+                              >
+                                <motion.div
+                                  whileHover={{
+                                    rotate: 360,
+                                    transition: {
+                                      duration: 0.6,
+                                      ease: "easeInOut",
+                                    },
+                                  }}
+                                >
+                                  <IconComponents
+                                    className="w-8 h-8 text-gray-700 transition-colors duration-300 group-hover:text-orange-600"
+                                    strokeWidth={1.5}
+                                  />
+                                </motion.div>
+                              </motion.div>
+                            </div>
+                          </motion.div> */}
+
+                          <motion.h3
+                            className="text-xl font-bold text-gray-900 mb-6 group-hover:text-orange-700 transition-colors duration-300"
+                            transition={{ duration: 0.2 }}
+                            whileHover={{ x: 5 }}
+                          >
+                            {card.title}
+                          </motion.h3>
+
+                          <ul className="space-y-3">
+                            {card.services.map((service, serviceIndex) => (
+                              <motion.li
+                                key={serviceIndex}
+                                animate={
+                                  isInView
+                                    ? {
+                                        opacity: 1,
+                                        x: 0,
+                                      }
+                                    : {
+                                        opacity: 0,
+                                        x: -20,
+                                      }
+                                }
+                                className="flex items-center  text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300"
+                                initial={{ opacity: 0, x: -20 }}
+                                transition={{
+                                  duration: 0.4,
+                                  delay:
+                                    index * 0.1 + serviceIndex * 0.05 + 0.5,
+                                }}
+                                whileHover={{
+                                  x: 8,
+                                  transition: { duration: 0.2 },
+                                }}
+                              >
+                                <motion.div
+                                  whileHover={{
+                                    rotate: 90,
+                                    scale: 1.2,
+                                    transition: { duration: 0.2 },
+                                  }}
+                                >
+                                  <ChevronRight className="w-4 h-4 text-orange-500 mr-3 flex-shrink-0 transition-colors duration-300 group-hover:text-orange-600" />
+                                </motion.div>
+                                <span className="transition-all duration-300">
+                                  {service.name}
+                                </span>
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          </>
+        )}
       </div>
     </section>
   );

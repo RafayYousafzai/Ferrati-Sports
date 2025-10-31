@@ -46,7 +46,7 @@ export const metadata = {
 import Hero from "@/components/layout/hero";
 import Header from "@/components/custom-ui/header";
 import { getCachedCategories } from "@/lib/supabase/cached-queries";
-import Explore from "@/components/Explore/Explore";
+import Problem from "@/components/Problem/Problem";
 import {
   getCachedExploreItems,
   getCachedWhyChooseUs,
@@ -54,6 +54,11 @@ import {
 } from "@/lib/supabase/cached-content";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
+import GuideSection from "@/components/layout/guide-section";
+import SuccessSection from "@/components/layout/success-section";
+import UrgencySection from "@/components/layout/urgency-section";
+import PhilosophySection from "@/components/layout/philosophy-section";
+import FinalCTASection from "@/components/layout/final-cta-section";
 
 // 🔹 Helper to lazy-load components with a standard skeleton
 const lazyLoad = (importFn, height = "h-64") =>
@@ -102,14 +107,55 @@ export default async function Home() {
   ]);
   const problemItems = exploreItems.filter((i) => i.type === "problem");
   const solutionItems = exploreItems.filter((i) => i.type === "solution");
+
   return (
     <>
-      {/* Above the fold */}
+      {/* 🎯 HERO SECTION - Clarity + Call to Action */}
       <Hero />
       <CounterSection />
 
-      <Explore problemItems={problemItems} solutionItems={solutionItems} />
+      {/* 😣 PROBLEM SECTION - Empathy & Authority */}
+      <Problem problemItems={problemItems} solutionItems={solutionItems} />
 
+      {/* 🤝 GUIDE SECTION - Understanding + Credibility */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <GuideSection />
+      </Suspense>
+
+      {/* 🧭 PLAN SECTION - 3-Step Simplicity */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <Solutions cards={steps} />
+      </Suspense>
+
+      {/* 💪 SUCCESS SECTION - Transformation Vision */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <SuccessSection />
+      </Suspense>
+
+      {/* Categories Section */}
+      <Suspense
+        fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
+      >
+        <CategoriesSection />
+      </Suspense>
+
+      {/* Products Overview */}
+      <AllProductsSummary order={["fabrics", "services"]} />
+
+      {/* ⏰ URGENCY SECTION - Fast-Start Bonus */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <UrgencySection />
+      </Suspense>
+
+      {/* Why Choose Us - Optional: Can be kept or replaced */}
       <SectionHeader
         badge="Ferrati"
         title="Why "
@@ -122,38 +168,25 @@ export default async function Home() {
         <ServiceCards cards={whyCards} />
       </Suspense>
 
-      <br />
-
-      <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <Solutions cards={steps} />
-      </Suspense>
-
-      {/* <SectionHeader
-        badge="OUR APPROACH"
-        title="Where Quality Speaks"
-        highlightedTitle="Our Work"
-        subtitle="See our craftsmanship in action — a showcase of projects that reflect our commitment to quality, innovation, and trusted partnerships."
-      />
-      <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <VideoShowcase videos={sampleVideos} />
-      </Suspense> */}
-
-      <Suspense
-        fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
-      >
-        <CategoriesSection />
-      </Suspense>
-
-      <AllProductsSummary order={["fabrics", "services"]} />
-
+      {/* Reviews / Social Proof */}
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <ReviewsShowcase />
+      </Suspense>
+
+      {/* 🧠 PHILOSOPHY SECTION - Credibility */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <PhilosophySection />
+      </Suspense>
+
+      {/* 📞 FINAL CTA SECTION - Close Loop */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <FinalCTASection />
       </Suspense>
     </>
   );
