@@ -9,10 +9,8 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ToastProvider } from "@heroui/toast";
 import NextTopLoader from "nextjs-toploader";
 
-import { useEffect } from "react";
-import "@n8n/chat/style.css";
-import { createChat } from "@n8n/chat";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import { CustomChatWidget } from "@/components/custom-chat-widget";
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
@@ -29,15 +27,15 @@ declare module "@react-types/shared" {
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
-  useEffect(() => {
-    createChat({
-      webhookUrl:
-        "https://rafayiscool.online/webhook/a5358191-0662-494e-80a4-8345279eadb3/chat",
-      initialMessages: [
-        "Hi there! I'm here to help you with any questions you have about Ferrati Sports.",
-      ],
-    });
-  }, []);
+  // useEffect(() => {
+  //   createChat({
+  //     webhookUrl:
+  //       "https://rafayiscool.online/webhook/a5358191-0662-494e-80a4-8345279eadb3/chat",
+  //     initialMessages: [
+  //       "Hi there! I'm here to help you with any questions you have about Ferrati Sports.",
+  //     ],
+  //   });
+  // }, []);
 
   return (
     <HeroUIProvider navigate={router.push}>
@@ -45,6 +43,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
         <NextTopLoader color="#fc7521" showSpinner={false} />
         <ToastProvider />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <CustomChatWidget />
       </NextThemesProvider>
     </HeroUIProvider>
   );
