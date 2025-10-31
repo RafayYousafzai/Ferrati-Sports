@@ -47,7 +47,7 @@ const Hero = () => {
 
       <div className="container mx-auto h-full flex flex-col xl:flex-row items-start z-30 relative px-4">
         {/* Dynamic text content */}
-        <div className="flex-1 flex flex-col text-left justify-center xl:pb-12 gap-6 h-full">
+        <div className="flex-1 flex flex-col text-left justify-center xl:pb-12 gap-4 sm:gap-5 lg:gap-6 h-full">
           <motion.div
             initial="initial"
             animate="animate"
@@ -56,11 +56,11 @@ const Hero = () => {
           >
             {/* Main Headline */}
             <div className="flex flex-col gap-4">
-              <h1 className="font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-tight">
+              <h1 className="font-bold text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight">
                 From Sketch to Store in{" "}
                 <span className="text-orange-400">30 Days</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-gray-200 font-light">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl text-gray-200 font-light">
                 Custom Sportswear Manufacturing That's Fast, Flexible, and
                 Reliable.
               </p>
@@ -74,7 +74,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <motion.p
-            className="text-xl md:text-2xl text-gray-100 max-w-[600px]"
+            className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-100 max-w-[600px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -89,7 +89,7 @@ const Hero = () => {
 
           {/* CTAs */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 mt-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -98,7 +98,7 @@ const Hero = () => {
               <Button
                 radius="sm"
                 size="lg"
-                className="w-full sm:w-auto px-8 py-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all"
               >
                 Get a Quote
               </Button>
@@ -107,7 +107,7 @@ const Hero = () => {
               <Button
                 radius="sm"
                 size="lg"
-                className="w-full sm:w-auto px-8 py-6 bg-white text-orange-600 hover:bg-gray-100 font-semibold text-lg border-2 border-white shadow-lg hover:shadow-xl transition-all"
+                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 bg-white text-orange-600 hover:bg-gray-100 font-semibold text-base sm:text-lg border-2 border-white shadow-lg hover:shadow-xl transition-all"
               >
                 Request Sample Kit
               </Button>
@@ -116,26 +116,34 @@ const Hero = () => {
 
           {/* Trust Bar */}
           <motion.div
-            className="flex flex-wrap gap-6 mt-6 text-white"
+            className="flex flex-wrap gap-4 sm:gap-6 mt-4 sm:mt-6 text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
             <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-2xl font-bold">200+</span>
-              <span className="text-sm">Brands Served</span>
+              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
+                200+
+              </span>
+              <span className="text-xs sm:text-sm">Brands Served</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-2xl font-bold">30</span>
-              <span className="text-sm">Day Delivery</span>
+              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
+                30
+              </span>
+              <span className="text-xs sm:text-sm">Day Delivery</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-2xl font-bold">50</span>
-              <span className="text-sm">Unit Low MOQ</span>
+              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
+                50
+              </span>
+              <span className="text-xs sm:text-sm">Unit Low MOQ</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-2xl font-bold">✓</span>
-              <span className="text-sm">Factory Direct</span>
+              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
+                ✓
+              </span>
+              <span className="text-xs sm:text-sm">Factory Direct</span>
             </div>
           </motion.div>
         </div>
