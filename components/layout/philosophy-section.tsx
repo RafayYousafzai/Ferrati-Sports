@@ -19,8 +19,8 @@ export default function PhilosophySection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section ref={ref} className="py-20 ">
+      <div className="container mx-auto px-4 max-w-7xl text-balance">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -30,17 +30,14 @@ export default function PhilosophySection() {
           <span className="px-4 py-2 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border border-orange-500/30 rounded-full text-orange-600 font-semibold text-sm uppercase tracking-wider">
             OUR PHILOSOPHY
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mt-8 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-8 mb-6">
             We Believe Manufacturing Should{" "}
             <span className="text-orange-600">Empower, Not Frustrate.</span>
           </h2>
+
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Your creativity should never be limited by MOQs, missed deadlines,
             or unclear communication.
-          </p>
-          <p className="text-2xl font-semibold text-gray-900 mt-4">
-            That&apos;s why we exist — to give your brand the freedom to create
-            and grow confidently.
           </p>
         </motion.div>
 

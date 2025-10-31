@@ -19,27 +19,24 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
     <section className="mt-20 pt-16">
       {/* Problem Section - Empathy */}
       <div className="container mx-auto px-4 max-w-6xl text-balance">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <span
             className={`px-4 py-2 ${badgeBg} rounded-full ${badgeText} font-semibold text-sm uppercase tracking-wider border`}
           >
             THE PROBLEM
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-8 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-5 mb-4">
             Tired of Unreliable Manufacturers?
           </h2>
-          <div className="max-w-3xl mx-auto space-y-4 text-lg text-gray-700 leading-relaxed">
-            <p>
+          <div className="max-w-2xl mx-auto text-lg text-gray-700 leading-relaxed">
+            <p className="mb-3">
               You have got big plans for your brand but your manufacturer keeps
-              letting you down.
+              letting you down. Late deliveries, poor stitching, unclear pricing
+              — it&apos;s exhausting.
             </p>
-            <p className="font-semibold text-xl text-gray-800">
-              Late deliveries, poor stitching, unclear pricing its exhausting.
-            </p>
-            <p>You are not asking for much.</p>
-            <p className="text-xl">
+            <p className="font-semibold text-gray-900">
               You just want a partner who{" "}
-              <span className="text-orange-600 font-semibold">
+              <span className="text-orange-600">
                 understands your brand, keeps promises,
               </span>{" "}
               and delivers what you envisioned.
@@ -48,7 +45,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
         </div>
 
         {/* Problem vs Solution Comparison */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start mt-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-start mt-12">
           {/* Problems Column */}
           <div className="space-y-6 h-full">
             <div className="space-y-6 bg-red-50 border-2 border-red-200 p-10 rounded-lg h-full">
@@ -99,7 +96,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
         <div className="max-w-6xl mx-auto relative z-10 text-balance">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-7xl mx-auto text-center relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700">
-              Manufacturing Shouldn't Be This Hard.
+              Manufacturing Shouldn&apos;t Be This Hard.
               <br />
               <span className="text-orange-600">
                 You deserve a factory that listens, delivers, and cares about
@@ -120,16 +117,16 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
               </Button>
             </Link>
             <a
-              href="https://wa.me/+447757726151"
-              target="_blank"
+              href="/services/free-clothing-samples"
               rel="noopener noreferrer"
+              target="_blank"
             >
               <Button
                 className="min-w-[240px] bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg font-semibold"
                 radius="sm"
                 size="lg"
               >
-                Chat on WhatsApp
+                Get Free Sample
               </Button>
             </a>
           </div>

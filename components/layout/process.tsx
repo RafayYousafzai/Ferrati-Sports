@@ -85,17 +85,17 @@ export default function Process() {
           Picture This
         </h3>
         <div className="grid md:grid-cols-3 gap-8 mb-6 text-balance capitalize">
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/80 font-semibold ">
+          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
             <p className="text-gray-800 text-lg font-semibold">
               Your orders arrive exactly when you need them
             </p>
           </div>
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/80 font-semibold ">
+          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
             <p className="text-gray-800 text-lg font-semibold">
               Every piece meets your standards no surprises
             </p>
           </div>
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/80 font-semibold ">
+          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
             <p className="text-gray-800 text-lg font-semibold">
               A partner who actually responds and follows through
             </p>
@@ -107,7 +107,7 @@ export default function Process() {
       </div>
 
       {/* Final Call to Action */}
-      <div className="relative max-w-7xl mx-auto mt-12 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+      {/* <div className="relative max-w-7xl mx-auto mt-12 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
           Stop Dealing with Unreliable Factories
         </h3>
@@ -131,7 +131,7 @@ export default function Process() {
             </button>
           </a>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

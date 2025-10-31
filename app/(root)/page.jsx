@@ -111,53 +111,34 @@ export default async function Home() {
 
   return (
     <>
-      {/* 🎯 HERO SECTION - Clarity + Call to Action */}
+      {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero />
       <CounterSection />
 
-      {/* 😣 PROBLEM SECTION - Empathy & Authority */}
+      {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
       <Problem problemItems={problemItems} solutionItems={solutionItems} />
 
-      {/* 🤝 GUIDE SECTION - Understanding + Credibility */}
+      {/* 🤝 GUIDE SECTION - Position yourself as the expert guide */}
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <GuideSection />
       </Suspense>
 
-      {/* 🧭 PLAN SECTION - 3-Step Simplicity */}
+      {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
       <Process />
-      <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <Solutions cards={steps} />
-      </Suspense>
 
-      {/* 💪 SUCCESS SECTION - Transformation Vision */}
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <SuccessSection />
-      </Suspense> */}
-
-      {/* Categories Section */}
+      {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
       >
         <CategoriesSection />
       </Suspense>
 
-      {/* Products Overview */}
+      {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
       <AllProductsSummary order={["fabrics", "services"]} />
 
-      {/* ⏰ URGENCY SECTION - Fast-Start Bonus */}
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <UrgencySection />
-      </Suspense> */}
-
-      {/* Why Choose Us - Optional: Can be kept or replaced */}
+      {/* 💪 WHY CHOOSE US - Reinforce your differentiation */}
       <SectionHeader
         badge="Ferrati"
         title="Why "
@@ -170,21 +151,21 @@ export default async function Home() {
         <ServiceCards cards={whyCards} />
       </Suspense>
 
-      {/* Reviews / Social Proof */}
-      <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <ReviewsShowcase />
-      </Suspense>
-
-      {/* 🧠 PHILOSOPHY SECTION - Credibility */}
+      {/* 🧠 PHILOSOPHY SECTION - Deepen trust with your values */}
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <PhilosophySection />
       </Suspense>
 
-      {/* 📞 FINAL CTA SECTION - Close Loop */}
+      {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}
+      <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <ReviewsShowcase />
+      </Suspense>
+
+      {/* 📞 FINAL CTA SECTION - Strong close with clear action */}
       {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
