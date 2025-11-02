@@ -5,33 +5,24 @@ import Header from "@/components/custom-ui/header";
 const scenarios = [
   {
     image:
-      "https://plus.unsplash.com/premium_photo-1661476126478-a43171605fe5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
-    title: "You've spent months searching",
-    subtitle: "for reliable manufacturers",
-    description:
-      "Countless emails, unreliable suppliers, inconsistent quality, and missed deadlines. You're tired of the runaround.",
-    tag: "The Struggle",
-    gradient: "from-red-500/20 to-orange-500/20",
+      "https://images.unsplash.com/photo-1556745753-b2904692b3cd?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
+    title: "Premium Quality Materials",
+    subtitle: "that stand the test of time",
+    gradient: "from-blue-500/20 to-purple-500/20",
   },
   {
     image:
-      "https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
-    title: "Maybe you've even tried",
-    subtitle: "a few manufacturers",
-    description:
-      "But faced poor communication, quality issues, or minimum orders that broke your budget. You're stuck in analysis paralysis.",
-    tag: "The Frustration",
-    gradient: "from-orange-500/20 to-yellow-500/20",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
+    title: "Fast & Reliable Delivery",
+    subtitle: "your products in just 30 days",
+    gradient: "from-green-500/20 to-teal-500/20",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470",
-    title: "But imagine launching",
-    subtitle: "your brand with confidence",
-    description:
-      "High-quality products, on-time delivery, and a partner who understands your vision. That's the Ferrati difference.",
-    tag: "The Solution",
-    gradient: "from-green-500/20 to-blue-500/20",
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
+    title: "Expert Design Support",
+    subtitle: "from concept to production",
+    gradient: "from-orange-500/20 to-pink-500/20",
   },
 ];
 
@@ -40,9 +31,9 @@ const PictureThisSection = () => {
     <div className="pb-16 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Header
-          title="Picture "
-          highlightedTitle="This"
-          subtitle="We understand your journey because we've helped hundreds of brands overcome these exact challenges."
+          title="Why Choose "
+          highlightedTitle="Ferrati Sports"
+          subtitle="We deliver excellence in every aspect of sportswear manufacturing, making your brand vision a reality."
         />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -79,9 +70,9 @@ const PictureThisSection = () => {
         {/* CTA Section */}
         <div className="mt-12 text-center">
           <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            Stop struggling with unreliable manufacturers.{" "}
+            Join hundreds of successful brands that trust us.{" "}
             <span className="font-bold text-orange-600 dark:text-blue-400">
-              Start building your brand the right way.
+              Start your journey to excellence today.
             </span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
