@@ -52,7 +52,7 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white pt-20">
       <ProductDetails
         key={selectedProduct.id}
         buttonText={`Calculate Price`}
@@ -100,7 +100,7 @@ export default async function CategoryPage({ params }) {
         {products?.map((product) => (
           <Card
             key={product.id}
-            href={`/categories/${categorySlug}/${product.slug || product.id}`}
+            href={`/${categorySlug}/${product.slug || product.id}`}
             image={product.image_url}
             title={product.title}
           >

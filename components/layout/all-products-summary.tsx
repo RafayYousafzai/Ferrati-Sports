@@ -157,12 +157,19 @@ function SectionHeader({
 
 // 🔹 Reusable grid for items
 function ItemsGrid({ items, basePath }: { items: Item[]; basePath: string }) {
+  let isCategories = basePath === "/categories";
+  console.log(basePath);
+
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
       {items?.map((item) => (
         <Card
           key={item.id}
-          href={`${basePath}/${(item as any).slug || item.id}`}
+          href={
+            !isCategories
+              ? `${basePath}/${(item as any).slug || item.id} `
+              : `${(item as any).slug || item.id} `
+          }
           image={item.image_url}
           title={item.title}
         >

@@ -10,9 +10,11 @@ import {
   Zap,
   Facebook,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
+
 import { TwitterIcon } from "../icons";
+
+import { createClient } from "@/lib/supabase/server";
 
 type CategoryData = {
   id: string;
@@ -128,7 +130,7 @@ const Footer = async () => {
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
-        ></div>
+        />
       </div>
 
       {/* Main Footer */}
@@ -140,7 +142,7 @@ const Footer = async () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-white mb-6 relative">
                 Ferrati Sports
-                <div className="absolute -bottom-2 left-0 w-12 h-1 bg-blue-400 rounded-full"></div>
+                <div className="absolute -bottom-2 left-0 w-12 h-1 bg-blue-400 rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-base">
                 Premium fabric printing and customization services. We bring
@@ -193,26 +195,26 @@ const Footer = async () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-6 relative">
               Our Services
-              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-green-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-green-400 rounded-full" />
             </h3>
             <ul className="space-y-4">
               {services?.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <Link
-                    href={`/services/${service.slug || service.id}`}
                     className="text-gray-300 hover:text-green-400 transition-colors flex items-center gap-2 group"
+                    href={`/services/${service.slug || service.id}`}
                   >
-                    <div className="w-2 h-2 bg-green-400 rounded-full group-hover:scale-125 transition-transform"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full group-hover:scale-125 transition-transform" />
                     {service.title}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link
-                  href="/services"
                   className="text-green-400 hover:text-green-300 transition-colors font-medium flex items-center gap-2"
+                  href="/services"
                 >
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full" />
                   View All Services →
                 </Link>
               </li>
@@ -223,16 +225,16 @@ const Footer = async () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-6 relative">
               Quick Links
-              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-purple-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-purple-400 rounded-full" />
             </h3>
             <ul className="space-y-4">
               {quickLinks.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    href={href}
                     className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-2 group"
+                    href={href}
                   >
-                    <div className="w-2 h-2 bg-purple-400 rounded-full group-hover:scale-125 transition-transform"></div>
+                    <div className="w-2 h-2 bg-purple-400 rounded-full group-hover:scale-125 transition-transform" />
                     {label}
                   </Link>
                 </li>
@@ -244,26 +246,26 @@ const Footer = async () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-6 relative">
               Categories
-              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-orange-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-orange-400 rounded-full" />
             </h3>
             <ul className="space-y-4">
               {categories?.slice(0, 6).map((category) => (
                 <li key={category.id}>
                   <Link
-                    href={`/categories/${category.slug || category.id}`}
                     className="text-gray-300 hover:text-orange-400 transition-colors flex items-center gap-2 group"
+                    href={`/${category.slug || category.id}`}
                   >
-                    <div className="w-2 h-2 bg-orange-400 rounded-full group-hover:scale-125 transition-transform"></div>
+                    <div className="w-2 h-2 bg-orange-400 rounded-full group-hover:scale-125 transition-transform" />
                     {category.title}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link
-                  href="/categories"
                   className="text-orange-400 hover:text-orange-300 transition-colors font-medium flex items-center gap-2"
+                  href="/categories"
                 >
-                  <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-orange-400 rounded-full" />
                   All Categories →
                 </Link>
               </li>
@@ -274,16 +276,16 @@ const Footer = async () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white mb-6 relative">
               Support
-              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-red-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-red-400 rounded-full" />
             </h3>
             <ul className="space-y-4">
               {supportLinks.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    href={href}
                     className="text-gray-300 hover:text-red-400 transition-colors flex items-center gap-2 group"
+                    href={href}
                   >
-                    <div className="w-2 h-2 bg-red-400 rounded-full group-hover:scale-125 transition-transform"></div>
+                    <div className="w-2 h-2 bg-red-400 rounded-full group-hover:scale-125 transition-transform" />
                     {label}
                   </Link>
                 </li>
@@ -295,14 +297,14 @@ const Footer = async () => {
           <div className="space-y-6 md:col-span-2">
             <h3 className="text-xl font-bold text-white mb-6 relative">
               Recent Blogs
-              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-cyan-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-cyan-400 rounded-full" />
             </h3>
             <ul className="space-y-4">
               {blogs?.map((blog) => (
                 <li key={blog.id}>
                   <Link
-                    href={`/blogs/${blog.slug || blog.id}`}
                     className="text-gray-300 hover:text-cyan-400 transition-colors flex items-center gap-2 group w-full  "
+                    href={`/blogs/${blog.slug || blog.id}`}
                   >
                     <div className="w-2 h-2 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform" />
                     <span className="line-clamp-2 text-sm  ">{blog.title}</span>
@@ -311,10 +313,10 @@ const Footer = async () => {
               ))}
               <li>
                 <Link
-                  href="/blogs"
                   className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium flex items-center gap-2"
+                  href="/blogs"
                 >
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full" />
                   Read All Blogs →
                 </Link>
               </li>
@@ -342,30 +344,30 @@ const Footer = async () => {
               <span className="text-gray-400 text-sm">Follow us:</span>
               <div className="flex gap-3">
                 <Link
-                  href="https://www.instagram.com/ferratisports/"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                  href="https://www.instagram.com/ferratisports/"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <Instagram className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link
-                  href="mailto:info@ferratisports.com"
                   className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                  href="mailto:info@ferratisports.com"
                 >
                   <Facebook className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link
-                  href="https://twitter.com/ferratisports"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                  href="https://twitter.com/ferratisports"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <TwitterIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>
                 <Link
-                  href="mailto:info@ferratisports.com"
                   className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
+                  href="mailto:info@ferratisports.com"
                 >
                   <Mail className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>

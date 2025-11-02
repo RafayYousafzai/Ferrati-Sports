@@ -31,7 +31,7 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               <Link
                 key={index}
                 className={`group relative ${gridClass} overflow-hidden rounded-3xl shadow-lg bg-white dark:bg-gray-800 block`}
-                href={`/categories/${item.slug || item.id}`}
+                href={`/${item.slug || item.id}`}
                 style={{
                   animationDelay: `${index * 100}ms`,
                 }}
