@@ -1,155 +1,124 @@
 "use client";
 
-import { Button } from "@heroui/button";
-import { motion } from "framer-motion";
-import Separator from "../separator";
+import React from "react";
+import BrandMarquee from "./BrandMarquee";
 import Link from "next/link";
-import { Image } from "@heroui/image";
+const DotIcon = () => (
+  <svg
+    width="8"
+    height="8"
+    viewBox="0 0 8 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="4" cy="4" r="4" fill="currentColor" />
+  </svg>
+);
 
-const mobileImage =
-  "https://images.unsplash.com/photo-1619032468883-89a84f565cba?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-const HERO_IMAGE = "/assets/hero.webp";
-
-const Hero = () => {
-  // Animation variants for text
-  const textVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-  };
-
-  const fadeIn = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-  };
-
+const Portfolio = () => {
   return (
-    <section className="h-[90vh] relative text-white overflow-hidden mt-[10vh]">
-      {/* Image slider */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black">
-        <div className="hidden md:block w-full h-full relative">
-          <div className="w-full h-full absolute top-0 left-0">
-            <Image
-              className="object-cover  w-screen opacity-75 h-[90vh] rounded-none"
-              src={HERO_IMAGE}
-            />
-          </div>
-        </div>
-        <div className="md:hidden block">
-          <Image
-            className="object-cover h-[90vh] w-screen opacity-75 rounded-none"
-            src={HERO_IMAGE}
-          />
-        </div>
-      </div>
-      {/* Overlay - moved after image for correct stacking */}
-      <div className="absolute w-full h-full z-10 bg-black/70 pointer-events-none" />
+    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-4 sm:p-6 lg:p-8">
+      {}
+      <div
+        className="absolute inset-0 z-0 dark:hidden"
+        // style={{
+        //   background:
+        //     "radial-gradient(125% 125% at 50% 100%, #ffffff 40%, #3b82f6 100%)",
+        // }}
+      />
 
-      <div className="container mx-auto h-full flex flex-col xl:flex-row items-start z-30 relative px-4">
-        {/* Dynamic text content */}
-        <div className="flex-1 flex flex-col text-left justify-center xl:pb-12 gap-4 sm:gap-5 lg:gap-6 h-full">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={textVariants}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Main Headline */}
-            <div className="flex flex-col gap-4">
-              <h1 className="font-bold text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight">
-                From Sketch to Store in{" "}
-                <span className="text-orange-400">30 Days</span>
+      {}
+      <div
+        className="absolute inset-0 z-0 hidden dark:block"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
+        }}
+      />
+
+      {}
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 items-center">
+          {}
+          <div className="flex flex-col gap-4 sm:gap-6 items-start text-left order-2 lg:order-1 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500  rounded-full text-xs sm:text-sm text-white  backdrop-blur-sm  transition-all duration-300">
+              <DotIcon />
+              Welcome to Ferrati Sports
+            </div>
+            <div className="relative">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+                Get Your Custom Sportswear in <br />
+                <span className="bg-gradient-to-r from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                  30 Days
+                </span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl text-gray-200 font-light">
-                Custom Sportswear Manufacturing That's Fast, Flexible, and
-                Reliable.
-              </p>
             </div>
-          </motion.div>
 
-          {/* Separator */}
-          <div className="w-10">
-            <Separator />
+            <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg lg:text-xl max-w-lg leading-relaxed">
+              We make high-quality custom sportswear that's built to last.
+              Whether you're launching a new brand, outfitting a team, or
+              expanding your product line, we handle everything from design to
+              delivery.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto">
+              <Link href="/request-quote" passHref>
+                <button className="px-6 py-3 bg-orange-500 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-orange-500 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                  Get Quote
+                </button>
+              </Link>
+              <Link href="/services/free-clothing-samples" passHref>
+                <button className="px-6 py-3 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
+                  Request Sample Kit
+                </button>
+              </Link>
+            </div>
           </div>
 
-          {/* Subheadline */}
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-100 max-w-[600px]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Stop worrying about delays, minimums, and poor quality.
-            <br />
-            <span className="text-orange-300 font-semibold">
-              Ferrati Sports helps you bring your vision to life on time and on
-              budget.
-            </span>
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <Link href="/request-quote">
-              <Button
-                radius="sm"
-                size="lg"
-                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all"
-              >
-                Get a Quote
-              </Button>
-            </Link>
-            <Link href="/services/free-clothing-samples">
-              <Button
-                radius="sm"
-                size="lg"
-                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 bg-white text-orange-600 hover:bg-gray-100 font-semibold text-base sm:text-lg border-2 border-white shadow-lg hover:shadow-xl transition-all"
-              >
-                Request Sample Kit
-              </Button>
-            </Link>
-          </motion.div>
-
-          {/* Trust Bar */}
-          <motion.div
-            className="flex flex-wrap gap-4 sm:gap-6 mt-4 sm:mt-6 text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          >
-            <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
-                200+
-              </span>
-              <span className="text-xs sm:text-sm">Brands Served</span>
+          {}
+          {/* Right side - Image */}
+          <div className="order-1 lg:order-2 animate-fade-in-up mt-2">
+            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
+              <img
+                src="https://cdn.dribbble.com/userupload/45265328/file/55fd13997376b63a889231bcf7ff9fb0.webp?resize=1504x1128&vertical=center"
+                alt="Custom Sportswear"
+                className="w-full h-[90%] object-cover rounded-2xl  "
+              />
+              {/* Optional gradient overlay */}
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div> */}
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
-                30
-              </span>
-              <span className="text-xs sm:text-sm">Day Delivery</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
-                50
-              </span>
-              <span className="text-xs sm:text-sm">Unit Low MOQ</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-orange-400 text-xl sm:text-2xl font-bold">
-                ✓
-              </span>
-              <span className="text-xs sm:text-sm">Factory Direct</span>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </section>
+      <div className="absolute bottom-0 left-0 w-full">
+        <BrandMarquee />
+      </div>
+    </div>
   );
 };
+export default Portfolio;
+const styles = `
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-export default Hero;
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .hover\\:shadow-3xl:hover {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
+`;
+if (typeof document !== "undefined") {
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}

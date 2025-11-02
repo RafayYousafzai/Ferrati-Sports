@@ -89,37 +89,6 @@ function CounterItem({
             ease: "easeInOut",
           }}
         />
-        {/* Main icon container */}
-        <motion.div
-          className="relative inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-2xl"
-          transition={{ type: "spring", stiffness: 300 }}
-          whileHover={{
-            scale: 1.1,
-            rotate: 3,
-            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <motion.div
-            className="text-orange-500 text-2xl"
-            transition={{ type: "spring", stiffness: 400 }}
-            whileHover={{ scale: 1.1 }}
-          >
-            {icon}
-          </motion.div>
-          {/* Animated ring - simplified animation */}
-          <motion.div
-            animate={{
-              scale: [1, 1.1, 1], // Slightly less dramatic scale
-              opacity: [0.5, 0, 0.5],
-            }}
-            className="absolute inset-0 rounded-2xl border-2 border-white/30"
-            transition={{
-              duration: 3, // Increased duration
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeOut",
-            }}
-          />
-        </motion.div>
       </motion.div>
       <div className="relative">
         {/* Counter number */}
@@ -202,7 +171,7 @@ export default function CounterSection() {
   ];
 
   return (
-    <section className="relative h-auto py-12 md:py-16 bg-orange-500 overflow-hidden">
+    <section className="relative h-auto py-4 md:py-4 bg-orange-500 overflow-hidden">
       {/* Animated background elements - optimized */}
       <div className="absolute inset-0">
         {/* Gradient orbs - reduced blur and simplified animations */}

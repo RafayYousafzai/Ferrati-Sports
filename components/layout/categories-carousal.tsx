@@ -1,142 +1,133 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@heroui/button";
 
-import Badge from "../badge";
-import Separator from "../separator";
-import Card from "../custom-ui/card";
 import Header from "../custom-ui/header";
-import Link from "next/link";
-import { Image } from "@heroui/image";
 
 const CategoriesCarousal = ({ categories }: { categories: any }) => {
-  const scrollableSectionRef = useRef<HTMLDivElement>(null);
-  const scrollTriggerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const animation = gsap.fromTo(
-      scrollableSectionRef.current,
-      { translateX: 0 },
-      {
-        translateX: "-200vw",
-        ease: "none",
-        duration: 1,
-        scrollTrigger: {
-          trigger: scrollTriggerRef.current,
-          start: "top top",
-          end: "1800vw top",
-          scrub: 0.6,
-          pin: true,
-        },
-      }
-    );
-
-    return () => {
-      animation.kill();
-    };
-  }, []);
-
   return (
-    <section className="overflow-hidden ">
-      <div className="hidden md:block  bg-black">
-        <div ref={scrollTriggerRef}>
-          <div
-            ref={scrollableSectionRef}
-            className="h-screen w-[300vw] flex relative"
-          >
-            {categories.map((item: any, index: any) => (
-              <div
+    <div className="pb-10  ">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <Header
+          badge="Explore"
+          highlightedTitle="Categories"
+          subtitle="Discover our diverse range of premium sportswear and custom clothing solutions designed to elevate your brand."
+          title="Our "
+        />
+
+        {/* Grid Layout */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {categories.map((item: any, index: any) => {
+            // Create different layouts for visual interest
+            const isLarge = index === 0 || index === 4;
+            const gridClass = isLarge
+              ? "md:col-span-2 md:row-span-2"
+              : "md:col-span-1";
+
+            return (
+              <Link
                 key={index}
-                className="w-screen h-screen flex flex-col justify-center items-center relative"
+                className={`group relative ${gridClass} overflow-hidden rounded-3xl shadow-lg bg-white dark:bg-gray-800 block`}
+                href={`/categories/${item.slug || item.id}`}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
               >
-                <div className="container mx-auto">
-                  <div className="flex gap-[30px] relative">
-                    {/* text */}
-                    <div className="flex-1 flex flex-col justify-center items-center space-y-6">
-                      {/* Badge with animation */}
-                      <div className="transform transition-all duration-700 hover:scale-105 hover:rotate-3">
-                        <Badge containerStyles="w-[180px] h-[180px]" />
-                      </div>
+                {/* Image Container - Fixed height */}
+                <div
+                  className={`relative w-full ${isLarge ? "min-h-[450px]" : "min-h-[350px]"} h-full`}
+                >
+                  <Image
+                    fill
+                    alt={item.title}
+                    className="object-cover"
+                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    src={item.image_url}
+                  />
 
-                      <div className="max-w-[560px] text-center animate-fadeInUp">
-                        {/* Title */}
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                          <span className="mr-2">
-                            {item.title.split(" ")[0]}
-                          </span>
-                          <span className="text-accent">
-                            {item.title.split(" ")[1]}
-                          </span>
-                        </h2>
+                  {/* Gradient Overlay - Always visible */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
 
-                        {/* Separator */}
-                        <div className="flex justify-center mb-6">
-                          <Separator className="w-24  border-accent" />
-                        </div>
+                {/* Content Overlay - Always visible, better spacing */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
+                  {/* Title - Controlled size */}
+                  <h3
+                    className={`${isLarge ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"} font-bold text-white mb-2 line-clamp-2`}
+                  >
+                    {item.title}
+                  </h3>
 
-                        {/* Description */}
-                        <p className="leading-relaxed text-gray-200 mb-8 px-4 md:px-8 text-lg">
-                          {item.description}
-                        </p>
+                  {/* Description - Controlled overflow */}
+                  <p
+                    className={`text-gray-200 mb-3 leading-relaxed ${isLarge ? "text-sm sm:text-base line-clamp-3" : "text-xs sm:text-sm line-clamp-2"}`}
+                  >
+                    {item.description}
+                  </p>
 
-                        {/* Button */}
-                        <Link href={`/categories/${item.slug || item.id}`}>
-                          <Button
-                            size="lg"
-                            className="bg-orange-500 text-white hover:scale-105 transition-transform duration-300 ease-in-out"
-                          >
-                            See more
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* image */}
-                    <div className="hidden xl:flex flex-1 w-full h-[70vh] relative">
-                      <Image
-                        isZoomed
-                        isBlurred
-                        alt={item.title}
-                        className="object-cover"
-                        className="w-full h-full object-cover rounded-2xl"
-                        width={600}
-                        height={600}
-                        src={item.image_url}
-                      />
-                    </div>
+                  {/* Button */}
+                  <div>
+                    <Button
+                      className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-semibold"
+                      size="sm"
+                    >
+                      Explore {item.title}
+                      <svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
+                      </svg>
+                    </Button>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              </Link>
+            );
+          })}
         </div>
-      </div>
-      <div className="md:hidden block bg-white">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-          <Header
-            badge="Ferrati"
-            highlightedTitle="Categories"
-            title="Our "
-            subtitle="We Believe In Building trust through unparalleled quality and genuine partnerships, allowing our exceptional work to speak for itself."
-          />
-          {categories.map((item: any, index: any) => (
-            <Card
-              key={index}
-              description={item.description}
-              image={item.image_url}
-              title={item.title}
-              href={`/categories/${item.slug || item.id}`}
+
+        {/* Bottom CTA */}
+        <div className="mt-12 text-center">
+          <Link href="/categories">
+            <Button
+              className="bg-orange-500 dark:bg-blue-500 text-white hover:bg-orange-600 dark:hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-semibold px-8 py-6"
+              size="lg"
             >
-              <></>
-            </Card>
-          ))}
+              See All Categories
+            </Button>
+          </Link>
         </div>
       </div>
-    </section>
+
+      {/* Add animations */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .grid > div {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
+    </div>
   );
 };
 

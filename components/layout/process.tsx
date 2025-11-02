@@ -1,4 +1,6 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Lightbulb, CheckCircle, Rocket } from "lucide-react";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Process() {
   // Transform cards into 3-step process
@@ -8,19 +10,28 @@ export default function Process() {
       title: "Share Your Idea",
       description:
         "Send us your design or idea. We'll guide you through fabric, fit, and finishes.",
+      icon: "Lightbulb",
     },
     {
       number: "2",
       title: "Approve Your Sample",
       description:
         "Get a prototype in 7–10 business days. Make changes before bulk production.",
+      icon: "CheckCircle",
     },
     {
       number: "3",
       title: "Launch with Confidence",
       description: "Receive your finished products in 30 days — ready to sell.",
+      icon: "Rocket",
     },
   ];
+
+  const iconMap: Record<string, any> = {
+    Lightbulb: Lightbulb,
+    CheckCircle: CheckCircle,
+    Rocket: Rocket,
+  };
 
   return (
     <section className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-20 px-8 overflow-hidden">
@@ -43,44 +54,58 @@ export default function Process() {
           </p>
         </div>
 
-        {/* 3-Step Process */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <div className="bg-white rounded-lg p-8 h-full ">
-                {/* Step Number Badge */}
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center text-white text-3xl font-bold ">
-                    {step.number}
-                  </div>
-                </div>
+        {/* 3-Step Process with New Card Design */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {steps.map((step, index) => {
+            const IconComponent = iconMap[step.icon];
 
-                <div className="mt-8 text-center">
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {step.title}
-                  </h3>
+            return (
+              <div key={step.number} className="relative">
+                <Card className="relative bg-white border-0 rounded-none shadow-none border-none duration-200 h-full">
+                  <CardContent className="p-8 text-center">
+                    <div className="mb-6">
+                      <div className="relative inline-block">
+                        <div className="absolute -top-2 -left-2 w-12 h-12 bg-orange-500 rounded-sm" />
+                        <div className="relative bg-white p-3">
+                          <IconComponent
+                            className="w-12 h-12 text-gray-700"
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                    {/* Step Number Badge */}
+                    <div className="mb-4 absolute top-1 left-1">
+                      <span className="w-10 h-10 bg-slate-50 text-orange-500 text-xl font-bold flex items-center justify-center ">
+                        {step.number}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </CardContent>
+                </Card>
 
                 {/* Arrow connector (except last) */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-8 transform -translate-y-1/2">
-                    <ChevronRight className="w-8 h-8 text-white opacity-50" />
+                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                    <ChevronRight className="w-8 h-8 text-white opacity-70" />
                   </div>
                 )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {/* Success Section - Transformation */}
-      <div className="relative max-w-7xl mx-auto mt-16 text-center">
+      {/* <div className="relative max-w-7xl mx-auto mt-16 text-center">
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">
           Picture This
         </h3>
@@ -104,7 +129,7 @@ export default function Process() {
         <p className="text-xl text-white font-semibold mt-6">
           That&apos;s exactly what working with Ferrati Sports feels like.
         </p>
-      </div>
+      </div> */}
 
       {/* Final Call to Action */}
       {/* <div className="relative max-w-7xl mx-auto mt-12 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">

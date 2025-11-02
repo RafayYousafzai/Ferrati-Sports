@@ -60,6 +60,7 @@ import UrgencySection from "@/components/layout/urgency-section";
 import PhilosophySection from "@/components/layout/philosophy-section";
 import FinalCTASection from "@/components/layout/final-cta-section";
 import Process from "@/components/layout/process";
+import PictureThisSection from "@/components/layout/picture-this-section";
 
 // 🔹 Helper to lazy-load components with a standard skeleton
 const lazyLoad = (importFn, height = "h-64") =>
@@ -87,18 +88,6 @@ async function CategoriesSection() {
   return categories ? <CategoriesCarousal categories={categories} /> : null;
 }
 
-// 🔹 Reusable header component
-function SectionHeader({ badge, title, highlightedTitle, subtitle }) {
-  return (
-    <Header
-      badge={badge}
-      title={title}
-      highlightedTitle={highlightedTitle}
-      subtitle={subtitle}
-    />
-  );
-}
-
 // 🔹 Main page
 export default async function Home() {
   const [exploreItems, whyCards, steps] = await Promise.all([
@@ -113,7 +102,7 @@ export default async function Home() {
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero />
-      <CounterSection />
+      {/* <CounterSection /> */}
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
       <Problem problemItems={problemItems} solutionItems={solutionItems} />
@@ -128,6 +117,9 @@ export default async function Home() {
       {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
       <Process />
 
+      {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
+      <PictureThisSection />
+
       {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
@@ -139,17 +131,17 @@ export default async function Home() {
       <AllProductsSummary order={["fabrics", "services"]} />
 
       {/* 💪 WHY CHOOSE US - Reinforce your differentiation */}
-      <SectionHeader
+      {/* <SectionHeader
         badge="Ferrati"
         title="Why "
         highlightedTitle="Choose Us"
         subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
-      />
-      <Suspense
+      /> */}
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <ServiceCards cards={whyCards} />
-      </Suspense>
+      </Suspense> */}
 
       {/* 🧠 PHILOSOPHY SECTION - Deepen trust with your values */}
       <Suspense

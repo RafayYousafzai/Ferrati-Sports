@@ -2,6 +2,7 @@ import { Button } from "@heroui/button";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
 import Link from "next/link";
+import Image from "next/image";
 
 type ExploreItem = { description: string; type: "problem" | "solution" };
 
@@ -16,45 +17,50 @@ const badgeText = "text-white";
 
 const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
   return (
-    <section className="mt-20 pt-16">
-      {/* Problem Section - Empathy */}
-      <div className="container mx-auto px-4 max-w-6xl text-balance">
-        <div className="text-center mb-8">
+    <section className="mt-10 pt-16">
+      {/* Intro Section */}
+      <div className="container mx-auto px-4 max-w-6xl text-balance mb-16">
+        <div className="text-center">
           <span
             className={`px-4 py-2 ${badgeBg} rounded-full ${badgeText} font-semibold text-sm uppercase tracking-wider border`}
           >
             THE PROBLEM
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-5 mb-4">
-            Tired of Unreliable Manufacturers?
+            Tired of Manufacturers Who Let You Down?
           </h2>
           <div className="max-w-2xl mx-auto text-lg text-gray-700 leading-relaxed">
             <p className="mb-3">
-              You have got big plans for your brand but your manufacturer keeps
-              letting you down. Late deliveries, poor stitching, unclear pricing
-              — it&apos;s exhausting.
+              You&apos;ve got big plans for your brand, but your current
+              manufacturer keeps messing things up. Late shipments, sloppy
+              stitching, prices that don&apos;t make sense—it&apos;s
+              frustrating.
             </p>
             <p className="font-semibold text-gray-900">
-              You just want a partner who{" "}
+              You just need a partner who{" "}
               <span className="text-orange-600">
-                understands your brand, keeps promises,
+                gets your vision, keeps their word,
               </span>{" "}
-              and delivers what you envisioned.
+              and actually delivers what you asked for.
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Problem vs Solution Comparison */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start mt-12">
-          {/* Problems Column */}
-          <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-red-50 border-2 border-red-200 p-10 rounded-lg h-full">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-red-700 mb-2">
-                  Traditional Manufacturing
-                </h3>
-                <p className="text-red-600">What frustrates you</p>
-              </div>
+      {/* Problem Section - Points on Left, Image on Right */}
+      <div className="container mx-auto px-4 max-w-7xl mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          {/* Problems - Left Side */}
+          <div className="space-y-6 flex flex-col">
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                What Usually Goes Wrong
+              </h3>
+              <p className="text-gray-600 text-lg">
+                The stuff that drives you crazy
+              </p>
+            </div>
+            <div className="space-y-5">
               {problemItems?.map((item, index) => (
                 <ExploreCard
                   key={`problem-${index}`}
@@ -65,15 +71,42 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
             </div>
           </div>
 
-          {/* Solutions Column */}
-          <div className="space-y-6 h-full">
-            <div className="space-y-6 bg-gradient-to-br from-orange-500 to-orange-600 p-10 rounded-lg h-full shadow-xl">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-white mb-2">
-                  The Ferrati Difference
-                </h3>
-                <p className="text-orange-100">What you deserve</p>
-              </div>
+          {/* Image - Right Side */}
+          <div className="relative min-h-[400px] h-full rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              fill
+              alt="Manufacturing problems and delays"
+              className="object-cover"
+              src="https://images.unsplash.com/photo-1633613286880-dae9f126b728?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          </div>
+        </div>
+      </div>
+
+      {/* Solution Section - Image on Left, Points on Right */}
+      <div className="container mx-auto px-4 max-w-7xl mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          {/* Image - Left Side */}
+          <div className="relative min-h-[400px] h-full rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+            <Image
+              fill
+              alt="Quality sportswear manufacturing"
+              className="object-cover"
+              src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          </div>
+
+          {/* Solutions - Right Side */}
+          <div className="space-y-6 flex flex-col order-1 lg:order-2">
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                How We Do Things Better
+              </h3>
+              <p className="text-gray-600 text-lg">What you get with us</p>
+            </div>
+            <div className="space-y-5">
               {solutionItems?.map((item, index) => (
                 <ExploreCard
                   key={`solution-${index}`}
@@ -99,8 +132,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
               Manufacturing Shouldn&apos;t Be This Hard.
               <br />
               <span className="text-orange-600">
-                You deserve a factory that listens, delivers, and cares about
-                your brand.
+                Work with a team that actually cares about your success.
               </span>
             </h2>
           </div>
@@ -133,7 +165,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
 
           {/* Supporting text */}
           <p className="text-center text-gray-600 font-medium mt-6 text-lg">
-            Stop chasing unreliable factories. Lets talk.
+            Stop chasing unreliable factories. Let&apos;s talk.
           </p>
         </div>
       </div>
@@ -155,14 +187,10 @@ const ExploreCard = ({ text, type }: ExploreCardProps) => {
         {isProblem ? (
           <TiDelete className="size-8 text-red-600" />
         ) : (
-          <IoCheckmarkCircle className="size-8 text-white" />
+          <IoCheckmarkCircle className="size-8 text-green-600" />
         )}
       </div>
-      <p
-        className={`leading-relaxed text-left ${isProblem ? "text-gray-900" : "text-white"}`}
-      >
-        {text}
-      </p>
+      <p className="leading-relaxed text-left text-gray-900">{text}</p>
     </div>
   );
 };
