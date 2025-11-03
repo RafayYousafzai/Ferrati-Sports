@@ -1,10 +1,142 @@
-import { Spinner } from "@heroui/spinner";
+"use client";
 
 export default function Loading() {
-  // Or a custom loading skeleton component
   return (
-    <div className="flex items-center justify-center h-screen">
-      <Spinner color="warning" size="lg" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-orange-50 dark:from-gray-900 dark:via-black dark:to-blue-950">
+      {/* Animated background circles */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" />
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-center gap-8">
+        {/* Video container with enhanced styling */}
+        <div className="relative">
+          {/* Animated ring around video */}
+          <div className="absolute inset-0 -m-4">
+            <div className="w-full h-full border-4 border-orange-500 dark:border-blue-500 rounded-full animate-spin-slow opacity-30" />
+          </div>
+          <div className="absolute inset-0 -m-8">
+            <div className="w-full h-full border-4 border-orange-300 dark:border-blue-300 rounded-full animate-spin-slower opacity-20" />
+          </div>
+
+          {/* Video with glow effect */}
+          <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-2xl ring-4 ring-orange-500/20 dark:ring-blue-500/20">
+            <video
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/assets/Cloths.mp4" type="video/mp4" />
+            </video>
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent dark:from-blue-500/20" />
+          </div>
+        </div>
+
+        {/* Loading text with animation */}
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-pulse">
+            Ferrati Sports
+          </h2>
+          {/* Progress bar */}
+          <div className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-blue-500 dark:to-purple-500 animate-progress" />
+          </div>
+          {/* Animated dots */}
+          <div className="flex items-center justify-center gap-2">
+            <div className="flex gap-1">
+              <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce" />
+              <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce delay-100" />
+              <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce delay-200" />
+            </div>
+          </div>
+        </div>
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-orange-500 dark:bg-blue-500 rounded-full animate-float" />
+        <div className="absolute bottom-20 right-20 w-2 h-2 bg-purple-500 rounded-full animate-float delay-300" />
+        <div className="absolute top-40 right-40 w-2 h-2 bg-orange-400 dark:bg-blue-400 rounded-full animate-float delay-500" />
+      </div>
+
+      {/* Custom animations */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes spin-slower {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+
+        @keyframes progress {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+
+        .animate-spin-slower {
+          animation: spin-slower 4s linear infinite;
+        }
+
+        .animate-progress {
+          animation: progress 1.5s ease-in-out infinite;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+          animation-delay: 0.3s;
+        }
+
+        .delay-500 {
+          animation-delay: 0.5s;
+        }
+
+        .delay-700 {
+          animation-delay: 0.7s;
+        }
+      `}</style>
     </div>
   );
 }
