@@ -22,7 +22,7 @@ export default function Loading() {
           </div>
 
           {/* Video with glow effect */}
-          <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-2xl ring-4 ring-orange-500/20 dark:ring-blue-500/20">
+          <div className="relative w-28 h-3w-28 rounded-full overflow-hidden shadow-2xl ring-4 ring-orange-500/20 dark:ring-blue-500/20">
             <video
               className="w-full h-full object-cover"
               autoPlay
@@ -30,10 +30,10 @@ export default function Loading() {
               muted
               playsInline
             >
-              <source src="/assets/Cloths.mp4" type="video/mp4" />
+              <source src="/assets/T Shirt.mp4" type="video/mp4" />
             </video>
             {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent dark:from-blue-500/20" />
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent dark:from-blue-500/20" /> */}
           </div>
         </div>
 
