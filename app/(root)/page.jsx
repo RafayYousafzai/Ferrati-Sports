@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import CounterSection from "@/components/layout/counter-section";
+import FerratiAccordion from "@/components/layout/accordian";
 
 export const metadata = {
   title: "Ferrati Sports - Premium Custom Clothing & Sportswear Manufacturing",
@@ -159,6 +160,9 @@ export default async function Home() {
       <br />
       <br />
 
+      {/* � FAQ SECTION - Calculator version for home page */}
+      <FerratiAccordion calculator={true} />
+
       <ProductDetails
         buttonText={"Get a Price"}
         description={[
@@ -172,7 +176,7 @@ export default async function Home() {
         variant={"orange"}
       />
 
-      {/* 📞 FINAL CTA SECTION - Strong close with clear action */}
+      {/* �📞 FINAL CTA SECTION - Strong close with clear action */}
       {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >

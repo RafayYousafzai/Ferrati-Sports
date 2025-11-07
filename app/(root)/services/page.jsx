@@ -50,7 +50,8 @@ export default async function Page() {
           },
         }}
         order={["services", "fabrics", "categories", "blogs"]}
-      />
+      />{" "}
+      <FerratiAccordion calculator={false} />
     </div>
   );
 }

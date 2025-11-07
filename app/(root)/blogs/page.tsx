@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+import FerratiAccordion from "@/components/layout/accordian";
 
 export const metadata: Metadata = {
   title: "Blogs - Ferrati Sports | Fashion & Manufacturing Insights",
@@ -42,7 +43,8 @@ export default async function Page() {
           },
         }}
         order={["blogs", "categories", "fabrics"]}
-      />
+      />{" "}
+      <FerratiAccordion calculator={false} />
     </div>
   );
 }

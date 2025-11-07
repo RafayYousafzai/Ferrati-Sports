@@ -39,6 +39,7 @@ import {
   DollarSign,
   Zap,
 } from "lucide-react";
+import FerratiAccordion from "@/components/layout/accordian";
 
 export default function OurProcess() {
   const processSteps = [
@@ -253,7 +254,8 @@ export default function OurProcess() {
             <div className="text-sm text-gray-500">Min Order Qty</div>
           </div>
         </div>
-      </div>
+      </div>{" "}
+      <FerratiAccordion calculator={false} />
     </div>
   );
 }

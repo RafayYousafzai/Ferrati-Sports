@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Button } from "@heroui/button";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import FerratiAccordion from "@/components/layout/accordian";
 
 export default async function CategoryPage({ params }) {
   const categorySlug = params.id;
@@ -55,14 +56,12 @@ export default async function CategoryPage({ params }) {
       >
         <QuoteContactForm />
       </ProductDetails>
-
       <Header
         highlightedTitle={category.title}
         leftAlign={false}
         subtitle="All the products in this category"
         title="Products in "
       />
-
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
         {products?.map((product) => (
           <Card
@@ -78,7 +77,6 @@ export default async function CategoryPage({ params }) {
           </Card>
         ))}
       </div>
-
       {/* {products.length === 0 ? (
         <div className="text-center py-16">
           <h3 className="text-xl font-semibold mb-2">No products yet</h3>
@@ -101,7 +99,8 @@ export default async function CategoryPage({ params }) {
           />
         ))
       )} */}
-      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
+      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />{" "}
+      <FerratiAccordion calculator={false} />
     </div>
   );
 }

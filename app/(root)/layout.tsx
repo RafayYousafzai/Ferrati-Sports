@@ -6,13 +6,6 @@ import { ArrowRightCircle } from "lucide-react";
 import Link from "next/link";
 
 // 🔹 Lazy load below-the-fold sections
-const FerratiAccordion = dynamic(
-  () => import("@/components/layout/accordian"),
-  {
-    loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" />,
-  }
-);
-
 const NewsletterSection = dynamic(
   () => import("@/components/layout/newsletter/newsletter-section"),
   { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
@@ -26,13 +19,7 @@ export default function RootLayout({
   return (
     <>
       <Appbar />
-      <main className="min-h-screen">
-        {children}
-
-        <section className="space-y-16 mt-16">
-          <FerratiAccordion />
-        </section>
-      </main>
+      <main className="min-h-screen">{children}</main>
 
       <Link href="/services/free-clothing-samples">
         <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
