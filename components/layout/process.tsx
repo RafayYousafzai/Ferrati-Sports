@@ -36,7 +36,7 @@ export default function Process() {
   return (
     <section className="overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl mb-20">
-        <div className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-16 px-10 lg:px-10 rounded-3xl shadow-md overflow-hidden">
+        <div className="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 py-16 px-10 lg:px-10 rounded-3xl shadow-xl overflow-hidden">
           <div className="absolute inset-0 opacity-10 overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400 rounded-full transform translate-x-48 -translate-y-48" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400 rounded-full transform -translate-x-40 translate-y-40" />

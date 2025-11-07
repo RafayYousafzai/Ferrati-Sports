@@ -64,33 +64,33 @@ const Portfolio = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto">
               <Link href="/request-quote" passHref>
-                <button className="w-full sm:w-auto px-6 py-3 bg-orange-500 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-orange-500 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                <button className="w-full rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-orange-500 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-500   font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                   Get Quote
                 </button>
               </Link>
               <Link href="/services/free-clothing-samples" passHref>
-                <button className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
+                <button className="w-full hover:bg-orange-500 hover:text-white rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-transparent   dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white   font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
                   Request Sample Kit
                 </button>
               </Link>
             </div>
 
-            <div className="flex justify-around">
+            <div className="flex justify-around gap-2 sm:gap-4 flex-wrap">
               <p className="items-center justify-around text-xs flex flex-row">
-                <Check className="bg-orange-500 rounded-full text-white text-sm  mr-2 p-1" />{" "}
-                point 1
+                <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
+                <span className="font-semibold">200+</span>&nbsp;Brands Served
               </p>{" "}
               <p className="items-center justify-around text-xs flex flex-row">
-                <Check className="bg-orange-500 rounded-full text-white text-sm ml-6 mr-2 p-1" />{" "}
-                point 1
+                <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
+                <span className="font-semibold">30</span>&nbsp;Day Delivery
               </p>{" "}
               <p className="items-center justify-around text-xs flex flex-row">
-                <Check className="bg-orange-500 rounded-full text-white text-sm ml-6 mr-2 p-1" />{" "}
-                point 1
+                <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
+                <span className="font-semibold">50</span>&nbsp;Unit Min Order
               </p>{" "}
               <p className="items-center justify-around text-xs flex flex-row">
-                <Check className="bg-orange-500 rounded-full text-white text-sm ml-6 mr-2 p-1" />{" "}
-                point 1
+                <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
+                <span className="font-semibold">100%</span>&nbsp;Quality Assured
               </p>
             </div>
           </div>
@@ -104,8 +104,6 @@ const Portfolio = () => {
                 alt="Custom Sportswear"
                 className="w-[80%] h-[80%] object-cover rounded-2xl"
               />
-              {/* Optional gradient overlay */}
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div> */}
             </div>
           </div>
         </div>

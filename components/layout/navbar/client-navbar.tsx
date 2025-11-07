@@ -15,6 +15,7 @@ import { Image } from "@heroui/image";
 
 import { MenuItem, HoveredLink, Menu, ProductItem } from "./navbar-menu";
 import { useNavbarScroll } from "./use-navbar-scroll";
+import { Button } from "@heroui/button";
 
 // Type definitions
 type NavItem = {
@@ -47,13 +48,23 @@ interface Category {
   slug?: string;
 }
 
+interface NavItemSimple {
+  id: string;
+  name: string;
+  slug: string;
+}
+
 interface ClientNavbarProps {
   categories: Category[];
+  services: NavItemSimple[];
+  fabrics: NavItemSimple[];
   loading?: boolean;
 }
 
 export default function ClientNavbar({
   categories,
+  services,
+  fabrics,
   loading = false,
 }: ClientNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,30 +86,57 @@ export default function ClientNavbar({
     },
   ];
 
+  // Convert services to navigation items
+  const serviceNavItems: NavItem[] = services.map((service) => ({
+    title: service.name,
+    href: `/services/${service.slug || service.id}`,
+  }));
+
+  // Convert fabrics to navigation items
+  const fabricNavItems: NavItem[] = fabrics.map((fabric) => ({
+    title: fabric.name,
+    href: `/fabrics/${fabric.slug || fabric.id}`,
+  }));
+
   const navigationConfig: NavigationConfig = {
-    leftNav: [
-      { title: "Home", href: "/" },
-      { title: "Fabrics", href: "/fabrics" },
-      { title: "Services", href: "/services" },
-    ],
+    leftNav: [{ title: "Home", href: "/" }],
     centerNav: [
       {
         title: "Products",
         href: "/categories",
-        isProductGrid: true,
+        isProductGrid: false,
         items: loading
           ? categoryNavItems.length > 0
             ? categoryNavItems
             : []
           : categoryNavItems,
       },
+      ...(serviceNavItems.length > 0
+        ? [
+            {
+              title: "Services",
+              href: "/services",
+              isProductGrid: false,
+              items: serviceNavItems,
+            },
+          ]
+        : []),
+      ...(fabricNavItems.length > 0
+        ? [
+            {
+              title: "Fabrics",
+              href: "/fabrics",
+              isProductGrid: false,
+              items: fabricNavItems,
+            },
+          ]
+        : []),
     ],
     rightNav: [
       { title: "Blogs", href: "/blogs" },
       { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
       { title: "Calculate Price", href: "/calculate-price" },
-      { title: "Request Quote", href: "/request-quote" },
     ],
     mobileNav: [
       { title: "Home", href: "/" },
@@ -120,11 +158,11 @@ export default function ClientNavbar({
       }`}
     >
       <Navbar
-        className="transition-all duration-300 bg-black h-[10vh]"
-        isMenuOpen={isMenuOpen}
-        maxWidth="full"
-        onMenuOpenChange={setIsMenuOpen}
+        className="transition-all duration-300 bg-black/90 h-[10vh]"
         disableAnimation={true}
+        isMenuOpen={isMenuOpen}
+        maxWidth="2xl"
+        onMenuOpenChange={setIsMenuOpen}
       >
         <NavbarContent>
           <NavbarBrand>
@@ -140,7 +178,7 @@ export default function ClientNavbar({
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden md:flex gap-4" justify="end">
+        <NavbarContent className="hidden md:flex gap-6" justify="center">
           {navigationConfig.leftNav.map((item) => (
             <NavbarItem key={item.href}>
               <Link className="text-white hover:text-gray-300" href={item.href}>
@@ -148,9 +186,6 @@ export default function ClientNavbar({
               </Link>
             </NavbarItem>
           ))}
-        </NavbarContent>
-
-        <NavbarContent className="hidden md:flex gap-4" justify="center">
           {navigationConfig.centerNav.map((item) => (
             <NavbarItem key={item.href}>
               {item.items && item.items.length > 0 ? (
@@ -165,23 +200,31 @@ export default function ClientNavbar({
               )}
             </NavbarItem>
           ))}
-        </NavbarContent>
-
-        <NavbarContent className="hidden md:flex gap-4 -ml-4" justify="center">
           {navigationConfig.rightNav.map((item) => (
             <NavbarItem key={item.href}>
               <Link
-                className={`text-white hover:text-gray-300 ${
-                  item.title === "Request Quote"
-                    ? "font-bold bg-orange-500 p-4 pt-3 rounded-sm"
-                    : ""
-                }`}
+                className={`text-white hover:text-gray-300  `}
                 href={item.href}
               >
                 {item.title}
               </Link>
             </NavbarItem>
           ))}
+          <Link href={"/services/free-clothing-samples"}>
+            <button className="rounded-full border-2 border-white hover:border-none cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-8 py-3 transition-all duration-300">
+              Start Free
+            </button>
+          </Link>
+          <Link href={"request-quote"}>
+            <Button
+              className="bg-orange-500 text-white hover:bg-orange-600 font-semibold transition-all duration-300"
+              radius="full"
+              size="lg"
+              variant="solid"
+            >
+              Request Quote
+            </Button>
+          </Link>
         </NavbarContent>
 
         <NavbarMenu className="bg-black/80 py-4 -mt-1">

@@ -15,7 +15,7 @@ const Problem = ({ problemItems, solutionItems }: ExploreProps) => {
   return (
     <section className="py-20 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-md">
+        <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left Side - Card with gradient background and bullet points */}
             <div className="relative rounded-3xl bg-gradient-to-br from-orange-300 via-orange-500 to-orange-300 p-6 lg:p-8 shadow-2xl">

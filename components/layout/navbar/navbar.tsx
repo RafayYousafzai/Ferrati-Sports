@@ -36,7 +36,11 @@ export default async function Appbar() {
 
   return (
     <Suspense fallback={<NavbarSkeleton />}>
-      <ClientNavbar categories={navbarData.categories} />
+      <ClientNavbar
+        categories={navbarData.categories}
+        fabrics={navbarData.fabrics}
+        services={navbarData.services}
+      />
     </Suspense>
   );
 }

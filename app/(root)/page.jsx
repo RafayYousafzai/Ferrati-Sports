@@ -101,7 +101,6 @@ export default async function Home() {
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero />
-      <CounterSection />
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
       <Problem problemItems={problemItems} solutionItems={solutionItems} />

@@ -35,7 +35,7 @@ export default function GuideSection() {
 
   return (
     <section ref={ref} className="container mx-auto px-4 max-w-7xl mb-20">
-      <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-md">
+      <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl">
         {/* Header */}
         <motion.div
           animate={isInView ? { opacity: 1, y: 0 } : {}}
