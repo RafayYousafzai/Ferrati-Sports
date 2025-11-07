@@ -18,82 +18,143 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
           title="Our "
         />
 
-        {/* Grid Layout */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {categories.map((item: any, index: any) => {
-            // Create different layouts for visual interest
-            const isLarge = index === 0 || index === 4;
-            const gridClass = isLarge
-              ? "md:col-span-2 md:row-span-2"
-              : "md:col-span-1";
+        {/* Categories Layout */}
+        <div className="flex pb-10 gap-4">
+          {/* Left side */}
+          <div className="flex flex-col gap-4 w-1/2">
+            <Link
+              href={`/${categories[0]?.slug || categories[0]?.id}`}
+              className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-full"
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  fill
+                  alt={categories[0]?.title}
+                  className="object-cover"
+                  src={categories[0]?.image_url}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                <h3 className="text-white text-lg sm:text-xl font-semibold">
+                  {categories[0]?.title}
+                </h3>
+              </div>
+            </Link>
 
-            return (
+            <div className="flex gap-4">
               <Link
-                key={index}
-                className={`group relative ${gridClass} overflow-hidden rounded-3xl shadow-lg bg-white dark:bg-gray-800 block`}
-                href={`/${item.slug || item.id}`}
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
+                href={`/${categories[1]?.slug || categories[1]?.id}`}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
               >
-                {/* Image Container - Fixed height */}
-                <div
-                  className={`relative w-full ${isLarge ? "min-h-[450px]" : "min-h-[350px]"} h-full`}
-                >
+                <div className="relative w-full h-full">
                   <Image
                     fill
-                    alt={item.title}
+                    alt={categories[1]?.title}
                     className="object-cover"
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    src={item.image_url}
+                    src={categories[1]?.image_url}
                   />
-
-                  {/* Gradient Overlay - Always visible */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-
-                {/* Content Overlay - Always visible, better spacing */}
-                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
-                  {/* Title - Controlled size */}
-                  <h3
-                    className={`${isLarge ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"} font-bold text-white mb-2 line-clamp-2`}
-                  >
-                    {item.title}
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold">
+                    {categories[1]?.title}
                   </h3>
-
-                  {/* Description - Controlled overflow */}
-                  <p
-                    className={`text-gray-200 mb-3 leading-relaxed ${isLarge ? "text-sm sm:text-base line-clamp-3" : "text-xs sm:text-sm line-clamp-2"}`}
-                  >
-                    {item.description}
-                  </p>
-
-                  {/* Button */}
-                  <div>
-                    <Button
-                      className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-semibold"
-                      size="sm"
-                    >
-                      Explore {item.title}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                        />
-                      </svg>
-                    </Button>
-                  </div>
                 </div>
               </Link>
-            );
-          })}
+
+              <Link
+                href={`/${categories[2]?.slug || categories[2]?.id}`}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    fill
+                    alt={categories[2]?.title}
+                    className="object-cover"
+                    src={categories[2]?.image_url}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold">
+                    {categories[2]?.title}
+                  </h3>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right side */}
+          <div className="flex flex-col gap-4 w-1/2">
+            <div className="flex gap-4">
+              <Link
+                href={`/${categories[3]?.slug || categories[3]?.id}`}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    fill
+                    alt={categories[3]?.title}
+                    className="object-cover"
+                    src={categories[3]?.image_url}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold">
+                    {categories[3]?.title}
+                  </h3>
+                </div>
+              </Link>
+
+              <Link
+                href={`/${categories[4]?.slug || categories[4]?.id}`}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    fill
+                    alt={categories[4]?.title}
+                    className="object-cover"
+                    src={categories[4]?.image_url}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold">
+                    {categories[4]?.title}
+                  </h3>
+                </div>
+              </Link>
+            </div>
+
+            <Link
+              href={`/${categories[5]?.slug || categories[5]?.id}`}
+              className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-full"
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  fill
+                  alt={categories[5]?.title}
+                  className="object-cover"
+                  src={categories[5]?.image_url}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                <h3 className="text-white text-lg sm:text-xl font-semibold">
+                  {categories[5]?.title}
+                </h3>
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* Bottom CTA */}

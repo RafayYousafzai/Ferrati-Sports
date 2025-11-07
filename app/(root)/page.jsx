@@ -83,7 +83,7 @@ const ProductDetails = lazyLoad(
 );
 
 async function CategoriesSection() {
-  const categories = await getCachedCategories();
+  const categories = await getCachedCategories(6);
   return categories ? <CategoriesCarousal categories={categories} /> : null;
 }
 
