@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-
 import CounterSection from "@/components/layout/counter-section";
 
 export const metadata = {
@@ -102,7 +101,7 @@ export default async function Home() {
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero />
-      {/* <CounterSection /> */}
+      <CounterSection />
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
       <Problem problemItems={problemItems} solutionItems={solutionItems} />
@@ -119,7 +118,7 @@ export default async function Home() {
 
       {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
       <PictureThisSection />
-
+      <UrgencySection />
       {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}

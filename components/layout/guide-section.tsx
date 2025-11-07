@@ -34,8 +34,8 @@ export default function GuideSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-16 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section ref={ref} className="container mx-auto px-4 max-w-7xl mb-20">
+      <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-md">
         {/* Header */}
         <motion.div
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -88,10 +88,10 @@ export default function GuideSection() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">
+                    <h4 className="font-bold text-gray-900 mb-1">
                       {feature.title}
-                    </h3>
-                    <p className="text-md lg:text-lg text-gray-600">
+                    </h4>
+                    <p className="text-sm lg:text-lg text-gray-600">
                       {feature.description}
                     </p>
                   </div>
@@ -151,39 +151,6 @@ export default function GuideSection() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Stats Bar */}
-        <motion.div
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 p-8 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg"
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="text-center">
-            <div className="text-4xl font-bold text-orange-600 mb-2">200+</div>
-            <div className="text-sm text-gray-700 font-medium">
-              Brands Served
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-orange-600 mb-2">30</div>
-            <div className="text-sm text-gray-700 font-medium">
-              Day Delivery
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-orange-600 mb-2">50</div>
-            <div className="text-sm text-gray-700 font-medium">
-              Unit Min Order
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-orange-600 mb-2">100%</div>
-            <div className="text-sm text-gray-700 font-medium">
-              Quality Assured
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
