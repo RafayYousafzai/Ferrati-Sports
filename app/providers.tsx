@@ -43,7 +43,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
         <NextTopLoader color="#fc7521" showSpinner={false} />
         <ToastProvider />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
-        <CustomChatWidget />
+        {/* <CustomChatWidget /> */}
       </NextThemesProvider>
     </HeroUIProvider>
   );

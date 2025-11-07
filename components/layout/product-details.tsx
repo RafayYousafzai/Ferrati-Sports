@@ -20,7 +20,7 @@ export default function ProductDetails({
   sectionTitle = null,
   headline,
   description,
-  buttonText = "Search and apply",
+  buttonText,
   image,
   variant = "orange",
   className = "",
@@ -81,7 +81,7 @@ export default function ProductDetails({
               ))}
             </div>
             {children && children}
-            {showButton && (
+            {showButton && buttonText && (
               <div className="pt-4">
                 <Link href={href}>
                   <Button
@@ -115,18 +115,6 @@ export default function ProductDetails({
                   "https://images.unsplash.com/photo-1599009434802-ca1dd09895e7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
                 width={500}
-              />
-
-              {/* Decorative elements */}
-              <div
-                className={`absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20 ${
-                  isOrange ? "bg-white" : "bg-orange-500"
-                }`}
-              />
-              <div
-                className={`absolute -bottom-8 -left-8 w-32 h-32 rounded-full opacity-10 ${
-                  isOrange ? "bg-white" : "bg-orange-500"
-                }`}
               />
             </div>
           </div>

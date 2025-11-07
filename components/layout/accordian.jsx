@@ -8,15 +8,11 @@ import {
   Timer,
   Package,
   Mail,
-  CheckCircle,
 } from "lucide-react";
-import { Button } from "@heroui/button";
-import { useState } from "react";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
-import { createClient } from "@/lib/supabase/client";
-import { Card, CardBody } from "@heroui/card";
+import Image from "next/image";
 
-export default function FerratiAccordion() {
+export default function FerratiAccordion({ calculator = true }) {
   const faqs = [
     {
       id: "custom-bulk",
@@ -101,61 +97,6 @@ export default function FerratiAccordion() {
     },
   ];
 
-  const supabase = createClient();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [description, setDescription] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleConfirm = async () => {
-    setSaving(true);
-    const { error } = await supabase.from("requested_quotes").insert([
-      {
-        email,
-        name,
-        phone,
-        description,
-        cart_items: [],
-        total_price: 0,
-      },
-    ]);
-
-    setSaving(false);
-    if (error) {
-      console.error(error);
-      alert("Failed to submit quote request. Please try again.");
-    } else {
-      setSubmitted(true);
-      setTimeout(() => {
-        setEmail("");
-        setName("");
-        setPhone("");
-        setDescription("");
-        setSubmitted(false);
-      }, 3000);
-    }
-  };
-
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-lg mx-4">
-          <CardBody className="text-center py-16">
-            <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
-            <h2 className="text-2xl font-bold text-gray-800 mb-3">
-              Quote Request Submitted!
-            </h2>
-            <p className="text-gray-600">
-              Thank you! We will get back to you within 24 hours.
-            </p>
-          </CardBody>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <section className="w-full px-4 sm:px-6 lg:px-16 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <div className="mx-auto w-full max-w-3xl">
@@ -192,38 +133,38 @@ export default function FerratiAccordion() {
           ))}
         </Accordion>
       </div>
-
-      <div className="p-6 md:px-8 lg:px-10 bg-white rounded-2xl shadow-lg">
-        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-gray-800">
-          Request a Quote
-        </h2>
-        <p className="text-sm sm:text-base text-gray-600 mb-6">
-          Tell us your needs, and we will prepare a tailored offer for you.
-        </p>
-        <QuoteContactForm
-          name={name}
-          setName={setName}
-          email={email}
-          setEmail={setEmail}
-          phone={phone}
-          setPhone={setPhone}
-          description={description}
-          setDescription={setDescription}
-        />
-        <div className="mt-6 text-center">
-          <Button
-            className="bg-orange-500 text-white px-12 rounded-full"
-            color="warning"
-            isDisabled={!email || !name}
-            radius="lg"
-            size="lg"
-            isLoading={saving}
-            onPress={handleConfirm}
-          >
-            {saving ? "Submitting..." : "Submit Request"}
-          </Button>
+      {calculator ? (
+        <div className="flex flex-col gap-6">
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              Get an instant estimate for your project.
+            </h2>
+            <p className="text-sm sm:text-base text-foreground/70">
+              Easily estimate your project cost in just a few clicks. Our
+              calculator helps you plan your budget, compare options, and get
+              clarity before you start.
+            </p>
+            <Link href="/calculate-price" passHref>
+              <button className="cursor-pointer px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity">
+                Get a Price
+              </button>
+            </Link>
+          </div>
+          <div className="w-full">
+            <Image
+              src={"/assets/photo-calculator.webp"}
+              alt="Calculator"
+              width={500}
+              height={500}
+              className="w-full h-[80%] object-cover rounded-2xl"
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="p-6 md:px-8 lg:px-10 bg-white rounded-2xl shadow-lg">
+          <QuoteContactForm />
+        </div>
+      )}
     </section>
   );
 }

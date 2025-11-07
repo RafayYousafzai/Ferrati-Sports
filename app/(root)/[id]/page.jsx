@@ -6,6 +6,7 @@ import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@heroui/button";
 import AllProductsSummary from "@/components/layout/all-products-summary";
+import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 export default async function CategoryPage({ params }) {
   const categorySlug = params.id;
@@ -47,12 +48,13 @@ export default async function CategoryPage({ params }) {
     <div className="pt-20">
       <ProductDetails
         key={category.id}
-        buttonText={`${products.length} Products Available`}
         description={[category.description]}
         headline={category.title}
         image={category.image_url}
         variant="light"
-      />
+      >
+        <QuoteContactForm />
+      </ProductDetails>
 
       <Header
         highlightedTitle={category.title}

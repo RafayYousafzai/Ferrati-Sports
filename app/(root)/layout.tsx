@@ -18,27 +18,6 @@ const NewsletterSection = dynamic(
   { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
 );
 
-const ProductDetails = dynamic(
-  () => import("@/components/layout/product-details"),
-  { loading: () => <div className="h-64 animate-pulse bg-gray-200 rounded" /> }
-);
-
-// 🔹 Constants to avoid recreating objects
-const PRODUCT_DETAILS_SECTIONS = [
-  {
-    buttonText: "Get a Price",
-    description: [
-      "Easily estimate your project cost in just a few clicks. Our calculator helps you plan your budget, compare options, and get clarity before you start.",
-    ],
-    headline: "Get an instant estimate for your project.",
-    href: "/calculate-price",
-    image: "/assets/photo-calculator.webp",
-    reversed: true,
-    sectionTitle: "WORK WITH US",
-    variant: "orange" as const,
-  },
-];
-
 export default function RootLayout({
   children,
 }: {
@@ -52,9 +31,6 @@ export default function RootLayout({
 
         <section className="space-y-16 mt-16">
           <FerratiAccordion />
-          {PRODUCT_DETAILS_SECTIONS.map((props, idx) => (
-            <ProductDetails key={idx} {...props} />
-          ))}
         </section>
       </main>
 

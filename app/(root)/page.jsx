@@ -117,7 +117,7 @@ export default async function Home() {
 
       {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
       <PictureThisSection />
-      <UrgencySection />
+      {/* <UrgencySection /> */}
       {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
@@ -154,6 +154,23 @@ export default async function Home() {
       >
         <ReviewsShowcase />
       </Suspense>
+
+      <br />
+      <br />
+      <br />
+
+      <ProductDetails
+        buttonText={"Get a Price"}
+        description={[
+          "Easily estimate your project cost in just a few clicks. Our calculator helps you plan your budget, compare options, and get clarity before you start.",
+        ]}
+        headline={"Get an instant estimate for your project."}
+        href={"/calculate-price"}
+        image={"/assets/photo-calculator.webp"}
+        reversed={true}
+        sectionTitle={"WORK WITH US"}
+        variant={"orange"}
+      />
 
       {/* 📞 FINAL CTA SECTION - Strong close with clear action */}
       {/* <Suspense

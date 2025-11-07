@@ -9,6 +9,7 @@ import { Button } from "@heroui/button";
 import { SiTrustpilot } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 export default async function CategoryPage({ params }) {
   const categorySlug = params.id;
@@ -80,6 +81,7 @@ export default async function CategoryPage({ params }) {
             </Link>
           )}
         </div>
+        <QuoteContactForm />
       </ProductDetails>
 
       <div className="max-w-7xl mx-auto p-6 html-content">
