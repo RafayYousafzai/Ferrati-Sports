@@ -39,6 +39,7 @@ export default async function Appbar() {
       <ClientNavbar
         categories={navbarData.categories}
         fabrics={navbarData.fabrics}
+        products={navbarData.products}
         services={navbarData.services}
       />
     </Suspense>

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Header from "@/components/custom-ui/header";
+import Link from "next/link";
 
 const scenarios = [
   {
@@ -75,19 +76,17 @@ const PictureThisSection = () => {
               Start your journey to excellence today.
             </span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="/request-quote"
-              className="px-8 py-4 bg-orange-500 dark:bg-blue-500 text-white hover:bg-orange-600 dark:hover:bg-blue-600 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-            >
-              Get Your Free Quote
-            </a>
-            <a
-              href="/services/free-clothing-samples"
-              className="px-8 py-4 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              Request Sample Kit
-            </a>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto mx-auto justify-center">
+            <Link href="/request-quote" passHref>
+              <button className="w-full rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-orange-500 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-500   uppercase font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 tracking-wider ">
+                Request Free Quote
+              </button>
+            </Link>
+            <Link href="/services/free-clothing-samples" passHref>
+              <button className="w-full hover:bg-orange-500 hover:text-white rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-transparent  border-1 uppercase border-orange-500 dark:hover:bg-gray-800    dark:border-gray-600 text-orange-500 dark:text-white   font-semibold transition-all duration-300 hover:scale-105 active:scale-95 tracking-wider ">
+                Request Free Sample
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,8 +5,8 @@ export default function Loading() {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-orange-50 dark:from-gray-900 dark:via-black dark:to-blue-950">
       {/* Animated background circles */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" />
+        {/* <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-700" /> */}
       </div>
 
       {/* Main content */}
@@ -57,9 +57,9 @@ export default function Loading() {
         </div>
 
         {/* Floating elements */}
-        <div className="absolute top-20 left-20 w-3 h-3 bg-orange-500 dark:bg-blue-500 rounded-full animate-float" />
+        {/* <div className="absolute top-20 left-20 w-3 h-3 bg-orange-500 dark:bg-blue-500 rounded-full animate-float" />
         <div className="absolute bottom-20 right-20 w-2 h-2 bg-purple-500 rounded-full animate-float delay-300" />
-        <div className="absolute top-40 right-40 w-2 h-2 bg-orange-400 dark:bg-blue-400 rounded-full animate-float delay-500" />
+        <div className="absolute top-40 right-40 w-2 h-2 bg-orange-400 dark:bg-blue-400 rounded-full animate-float delay-500" /> */}
       </div>
 
       {/* Custom animations */}

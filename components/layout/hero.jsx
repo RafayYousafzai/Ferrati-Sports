@@ -3,6 +3,7 @@
 import React from "react";
 import BrandMarquee from "./BrandMarquee";
 import Link from "next/link";
+import Image from "next/image";
 import { Check } from "lucide-react";
 const DotIcon = () => (
   <svg
@@ -20,13 +21,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-4 sm:p-6 lg:p-8">
       {}
-      <div
-        className="absolute inset-0 z-0 dark:hidden"
-        // style={{
-        //   background:
-        //     "radial-gradient(125% 125% at 50% 100%, #ffffff 40%, #3b82f6 100%)",
-        // }}
-      />
+      <div className="absolute inset-0 z-0 dark:hidden" />
 
       {}
       <div
@@ -39,18 +34,14 @@ const Portfolio = () => {
 
       {}
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 items-center min-h-[600px]">
           {}
-          <div className="flex flex-col gap-4 sm:gap-6 items-start text-left lg:order-1 animate-fade-in-up">
-            {/* <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500 rounded-full text-xs sm:text-sm text-white backdrop-blur-sm transition-all duration-300">
-              <DotIcon />
-              Welcome to Ferrati Sports
-            </div> */}
+          <div className="flex flex-col gap-4 sm:gap-6 items-start text-left lg:order-1 animate-fade-in-up self-center">
             <div className="relative">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-                Get Your Custom Sportswear in <br />
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
+                Sketch to Store <br />
                 <span className="bg-gradient-to-r from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-                  30 Days
+                  in 30 Days.
                 </span>
               </h1>
             </div>
@@ -64,53 +55,52 @@ const Portfolio = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto">
               <Link href="/request-quote" passHref>
-                <button className="w-full rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-orange-500 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-500   font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
-                  Get Quote
+                <button className="w-full rounded-full cursor-pointer sm:w-auto px-4 py-2 bg-orange-500 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-500   uppercase font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 tracking-wider ">
+                  Request Free Quote
                 </button>
               </Link>
               <Link href="/services/free-clothing-samples" passHref>
-                <button className="w-full hover:bg-orange-500 hover:text-white rounded-full cursor-pointer sm:w-auto px-6 py-3 bg-transparent   dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white   font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
-                  Request Sample Kit
+                <button className="w-full hover:bg-orange-500 hover:text-white rounded-full cursor-pointer sm:w-auto px-4 py-2 bg-transparent  border-1 uppercase border-orange-500 dark:hover:bg-gray-800    dark:border-gray-600 text-orange-500 dark:text-white   font-semibold transition-all duration-300 hover:scale-105 active:scale-95 tracking-wider ">
+                  Request Free Sample
                 </button>
               </Link>
             </div>
 
-            <div className="flex justify-around gap-2 sm:gap-4 flex-wrap">
-              <p className="items-center justify-around text-xs flex flex-row">
+            <div className="flex justify-between gap-16  w-full mt-2 sm:gap-4 flex-wrap">
+              <p className="items-center justify-around text-sm font-semibold flex flex-row">
                 <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
                 <span className="font-semibold">200+</span>&nbsp;Brands Served
               </p>{" "}
-              <p className="items-center justify-around text-xs flex flex-row">
+              <p className="items-center justify-around text-sm font-semibold flex flex-row">
                 <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
-                <span className="font-semibold">30</span>&nbsp;Day Delivery
+                <span className="font-semibold">100+</span>&nbsp;Fabrics Prices
               </p>{" "}
-              <p className="items-center justify-around text-xs flex flex-row">
+              <p className="items-center justify-around text-sm font-semibold flex flex-row">
                 <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
                 <span className="font-semibold">50</span>&nbsp;Unit Min Order
               </p>{" "}
-              <p className="items-center justify-around text-xs flex flex-row">
-                <Check className="bg-orange-500 rounded-full text-white text-sm mr-2 p-1" />{" "}
-                <span className="font-semibold">100%</span>&nbsp;Quality Assured
-              </p>
             </div>
           </div>
 
           {}
           {/* Right side - Image (Hidden on mobile) */}
-          <div className="hidden lg:block lg:order-2 animate-fade-in-up">
-            <div className="relative flex justify-center w-full h-[600px] mt-20">
-              <img
+          <div className="hidden lg:flex lg:order-2 animate-fade-in-up items-center justify-center self-center">
+            <div className="relative w-full h-[600px] flex items-center justify-center">
+              <Image
                 src="https://cdn.dribbble.com/userupload/45265328/file/55fd13997376b63a889231bcf7ff9fb0.webp?resize=1504x1128&vertical=center"
                 alt="Custom Sportswear"
-                className="w-[80%] h-[80%] object-cover rounded-2xl"
+                width={1504}
+                height={1128}
+                priority
+                className="w-[80%] h-auto object-contain rounded-2xl"
               />
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 w-full">
+      <div className="absolute bottom-0 left-0 w-full">
         <BrandMarquee />
-      </div> */}
+      </div>
     </div>
   );
 };

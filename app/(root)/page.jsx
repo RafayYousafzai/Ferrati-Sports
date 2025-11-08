@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://ferrati-sports.com",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Ferrati Sports Logo",
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Ferrati Sports - Premium Custom Clothing Manufacturing",
     description:
       "Leading manufacturer of custom clothing and sportswear. High-quality garments for brands worldwide.",
-    images: ["/logo.png"],
+    images: ["/logo.jpg"],
   },
   robots: {
     index: true,
@@ -90,21 +90,13 @@ async function CategoriesSection() {
 
 // 🔹 Main page
 export default async function Home() {
-  const [exploreItems, whyCards, steps] = await Promise.all([
-    getCachedExploreItems(),
-    getCachedWhyChooseUs(),
-    getCachedProcessSteps(),
-  ]);
-  const problemItems = exploreItems.filter((i) => i.type === "problem");
-  const solutionItems = exploreItems.filter((i) => i.type === "solution");
-
   return (
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero />
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
-      <Problem problemItems={problemItems} solutionItems={solutionItems} />
+      <Problem />
 
       {/* 🤝 GUIDE SECTION - Position yourself as the expert guide */}
       <Suspense
@@ -115,16 +107,15 @@ export default async function Home() {
 
       {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
       <Process />
-
-      {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
-      <PictureThisSection />
-      {/* <UrgencySection /> */}
       {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
       >
         <CategoriesSection />
       </Suspense>
+      {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
+      <PictureThisSection />
+      {/* <UrgencySection /> */}
 
       {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
       <AllProductsSummary order={["fabrics", "services"]} />
@@ -161,7 +152,7 @@ export default async function Home() {
       <br />
 
       {/* � FAQ SECTION - Calculator version for home page */}
-      <FerratiAccordion calculator={true} />
+      <FerratiAccordion calculator={false} />
 
       <ProductDetails
         buttonText={"Get a Price"}

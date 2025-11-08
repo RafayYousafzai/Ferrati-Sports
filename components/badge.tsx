@@ -12,7 +12,7 @@ const Badge = ({ containerStyles, sqr = true }: PropsType) => {
         fill
         alt=""
         className="object-contain"
-        src={`${sqr ? "/square-logo.png" : "/landscape-logo.png"}`}
+        src={`${sqr ? "/square-logo.jpg" : "/landscape-logo.jpg"}`}
       />
     </div>
   );

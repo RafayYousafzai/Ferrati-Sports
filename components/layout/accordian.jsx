@@ -162,7 +162,7 @@ export default function FerratiAccordion({ calculator = true }) {
         </div>
       ) : (
         <div className="p-6 md:px-8 lg:px-10 bg-white rounded-2xl shadow-lg">
-          <QuoteContactForm />
+          <QuoteContactForm disc="" />
         </div>
       )}
     </section>

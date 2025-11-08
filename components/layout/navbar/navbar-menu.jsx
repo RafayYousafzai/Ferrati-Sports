@@ -21,7 +21,7 @@ export const MenuItem = ({ setActive, active, item, href, children }) => {
       <Link href={href}>
         <motion.p
           transition={{ duration: 0.3 }}
-          className="cursor-pointer   hover:opacity-[0.9] text-white"
+          className="cursor-pointer text-lg hover:opacity-[0.9] text-white"
         >
           {item}
         </motion.p>
@@ -38,12 +38,12 @@ export const MenuItem = ({ setActive, active, item, href, children }) => {
                 transition={transition}
                 // layoutId ensures smooth animation
                 layoutId="active"
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-visible border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
               >
                 <motion.div
                   // layout ensures smooth animation
                   layout
-                  className="w-max h-full p-4"
+                  className="w-max h-full p-4 overflow-visible"
                 >
                   {children}
                 </motion.div>
@@ -105,9 +105,90 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <a
       {...rest}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+      className="text-black dark:text-white font-semibold text-base py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors block"
     >
       {children}
     </a>
+  );
+};
+
+// New component for nested menu items (categories with products)
+export const NestedMenuItem = ({ title, href, products }) => {
+  const [nestedActive, setNestedActive] = React.useState(null);
+  const timeoutRef = React.useRef(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setNestedActive(title);
+  };
+
+  const handleMouseLeave = () => {
+    // Add a small delay before closing to allow moving to nested menu
+    timeoutRef.current = setTimeout(() => {
+      setNestedActive(null);
+    }, 100);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="relative group"
+    >
+      <a
+        href={href}
+        className="text-black dark:text-white font-semibold text-base flex items-center justify-between py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      >
+        <span>{title}</span>
+        {products && products.length > 0 && (
+          <svg
+            className="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        )}
+      </a>
+
+      {/* Nested dropdown for products */}
+      {nestedActive === title && products && products.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={transition}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="absolute left-full top-0 ml-1 min-w-[200px] z-[9999]"
+          style={{ pointerEvents: "auto" }}
+        >
+          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl p-4">
+            <div className="flex flex-col space-y-2 max-h-[400px] overflow-y-auto">
+              {products.map((product) => (
+                <HoveredLink key={product.href} href={product.href}>
+                  {product.title}
+                </HoveredLink>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
   );
 };

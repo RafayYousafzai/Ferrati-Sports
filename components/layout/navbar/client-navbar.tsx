@@ -13,7 +13,13 @@ import {
 import Link from "next/link";
 import { Image } from "@heroui/image";
 
-import { MenuItem, HoveredLink, Menu, ProductItem } from "./navbar-menu";
+import {
+  MenuItem,
+  HoveredLink,
+  Menu,
+  ProductItem,
+  NestedMenuItem,
+} from "./navbar-menu";
 import { useNavbarScroll } from "./use-navbar-scroll";
 import { Button } from "@heroui/button";
 
@@ -23,6 +29,7 @@ type NavItem = {
   href: string;
   description?: string;
   image?: string;
+  products?: { title: string; href: string }[]; // Add products for nested menu
 };
 
 type NavGroup = {
@@ -54,10 +61,20 @@ interface NavItemSimple {
   slug: string;
 }
 
+interface Product {
+  id: string;
+  category_id: string;
+  title: string;
+  description: string | null;
+  image_url: string | null;
+  slug?: string;
+}
+
 interface ClientNavbarProps {
   categories: Category[];
   services: NavItemSimple[];
   fabrics: NavItemSimple[];
+  products: Product[];
   loading?: boolean;
 }
 
@@ -65,25 +82,31 @@ export default function ClientNavbar({
   categories,
   services,
   fabrics,
+  products,
   loading = false,
 }: ClientNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { hidden } = useNavbarScroll();
 
-  // Convert categories to navigation items
+  // Convert categories to navigation items with their products
   const categoryNavItems: NavItem[] = [
-    ...categories.map((category) => ({
-      title: category.title,
-      href: `/${category.slug || category.id}`,
-      description: `${category.description.substring(0, 50)}...`,
-      image: category.image_url || "/placeholder.svg?height=200&width=200",
-    })),
-    {
-      title: "All Categories",
-      href: "/categories",
-      description: "Check our all categories",
-      image: "/assets/cat4.webp",
-    },
+    ...categories.map((category) => {
+      // Get products for this category
+      const categoryProducts = products
+        .filter((product) => product.category_id === category.id)
+        .map((product) => ({
+          title: product.title,
+          href: `/products/${product.slug || product.id}`,
+        }));
+
+      return {
+        title: category.title,
+        href: `/${category.slug || category.id}`,
+        description: `${category.description.substring(0, 50)}...`,
+        image: category.image_url || "/placeholder.svg?height=200&width=200",
+        products: categoryProducts, // Add products to category
+      };
+    }),
   ];
 
   // Convert services to navigation items
@@ -136,7 +159,6 @@ export default function ClientNavbar({
       { title: "Blogs", href: "/blogs" },
       { title: "About", href: "/about" },
       { title: "Contact Us", href: "/contact" },
-      { title: "Calculate Price", href: "/calculate-price" },
     ],
     mobileNav: [
       { title: "Home", href: "/" },
@@ -171,7 +193,7 @@ export default function ClientNavbar({
                 <Image
                   alt="Ferrati Sports Logo"
                   className="object-contain w-[60px] h-[60px]"
-                  src="/logo.png"
+                  src="/logo.jpg"
                 />
               </div>
             </Link>
@@ -181,7 +203,10 @@ export default function ClientNavbar({
         <NavbarContent className="hidden md:flex gap-6" justify="center">
           {navigationConfig.leftNav.map((item) => (
             <NavbarItem key={item.href}>
-              <Link className="text-white hover:text-gray-300" href={item.href}>
+              <Link
+                className="text-white text-lg hover:text-gray-300"
+                href={item.href}
+              >
                 {item.title}
               </Link>
             </NavbarItem>
@@ -192,7 +217,7 @@ export default function ClientNavbar({
                 <MenuContent item={item} />
               ) : (
                 <Link
-                  className="text-white hover:text-gray-300"
+                  className="text-white text-lg hover:text-gray-300"
                   href={item.href}
                 >
                   {item.title}
@@ -203,7 +228,7 @@ export default function ClientNavbar({
           {navigationConfig.rightNav.map((item) => (
             <NavbarItem key={item.href}>
               <Link
-                className={`text-white hover:text-gray-300  `}
+                className={`text-white text-lg hover:text-gray-300  `}
                 href={item.href}
               >
                 {item.title}
@@ -211,19 +236,14 @@ export default function ClientNavbar({
             </NavbarItem>
           ))}
           <Link href={"/services/free-clothing-samples"}>
-            <button className="rounded-full border-2 border-white hover:border-none cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-8 py-3 transition-all duration-300">
-              Start Free
+            <button className="rounded-full uppercase border-2 border-white hover:border-orange-500 tracking-wider cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
+              Calculator
             </button>
           </Link>
           <Link href={"request-quote"}>
-            <Button
-              className="bg-orange-500 text-white hover:bg-orange-600 font-semibold transition-all duration-300"
-              radius="full"
-              size="lg"
-              variant="solid"
-            >
-              Request Quote
-            </Button>
+            <button className="rounded-full uppercase border-2 border-orange-500 bg-orange-500  tracking-wider  cursor-pointer  text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
+              Free Quote{" "}
+            </button>
           </Link>
         </NavbarContent>
 
@@ -277,12 +297,21 @@ function MenuContent({ item }: { item: NavGroup }) {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col space-y-4 text-sm">
-            {item.items.map((navItem) => (
-              <HoveredLink key={navItem.href} href={navItem.href}>
-                {navItem.title}
-              </HoveredLink>
-            ))}
+          <div className="flex flex-col space-y-2 text-sm min-w-[200px]">
+            {item.items.map((navItem) =>
+              navItem.products && navItem.products.length > 0 ? (
+                <NestedMenuItem
+                  key={navItem.href}
+                  href={navItem.href}
+                  products={navItem.products}
+                  title={navItem.title}
+                />
+              ) : (
+                <HoveredLink key={navItem.href} href={navItem.href}>
+                  {navItem.title}
+                </HoveredLink>
+              )
+            )}
           </div>
         )}
       </MenuItem>

@@ -64,8 +64,12 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
   };
 
   return (
-    <div className="w-full  ">
-      <h2 className="text-2xl font-bold text-gray-800">Request Quote</h2>
+    <div className="w-full ">
+      <h2 className="text-4xl font-bold text-gray-800">Request Quote</h2>
+      <p className="mt-2 py-4 text-gray-600">
+        Fill out the form below, and our team will get back to you with a
+        personalized quote.
+      </p>
       <br />
       {/* Grid layout for contact inputs */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -111,14 +115,17 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
         className="w-full mt-4"
       />
 
+      <br />
+      <br />
+
       {/* Submit Button */}
       <Button
         color="primary"
+        className="bg-orange-500 w-full mt-6"
         size="lg"
-        className="w-full mt-6"
         onClick={handleSubmit}
         isLoading={isSubmitting}
-        isDisabled={!name || !email || isSubmitting}
+        // isDisabled={!name || !email || isSubmitting}
       >
         {isSubmitting ? "Submitting..." : "Submit Quote Request"}
       </Button>

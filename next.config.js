@@ -32,6 +32,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "apxliioxqwlepmejxziq.supabase.co",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.dribbble.com",
+      },
     ],
   },
 };

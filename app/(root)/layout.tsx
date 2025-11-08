@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import Footer from "@/components/layout/footer";
 import Appbar from "@/components/layout/navbar/navbar";
+import ScrollProgress from "@/components/layout/scroll-progress";
 import { ArrowRightCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -18,6 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <>
+      <ScrollProgress />
       <Appbar />
       <main className="min-h-screen">{children}</main>
 

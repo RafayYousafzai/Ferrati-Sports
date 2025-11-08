@@ -85,3 +85,22 @@ export async function getServices(limit: number | null = null) {
   const { data } = await query;
   return data;
 }
+
+/* --------------------
+   PRODUCTS
+-------------------- */
+export const getCachedProducts = cache(async (limit: number | null = null) => {
+  const supabase = await getSupabase();
+  let query = supabase.from("products").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+});
+
+export async function getProducts(limit: number | null = null) {
+  const supabase = await getSupabase();
+  let query = supabase.from("products").select("*");
+  if (limit) query = query.limit(limit);
+  const { data } = await query;
+  return data;
+}
