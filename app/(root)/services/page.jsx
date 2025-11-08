@@ -19,6 +19,7 @@ export const metadata = {
 };
 
 import AllProductsSummary from "@/components/layout/all-products-summary";
+import FerratiAccordion from "@/components/layout/accordian";
 
 const title = "Learn All";
 const highlightedTitle = "Services";

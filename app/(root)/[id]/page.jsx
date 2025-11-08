@@ -4,7 +4,6 @@ import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
-import { Button } from "@heroui/button";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import FerratiAccordion from "@/components/layout/accordian";
