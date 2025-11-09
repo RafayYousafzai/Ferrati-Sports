@@ -8,6 +8,7 @@ import {
   ModalFooter,
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
+
 import { CartItem } from "@/types/calculate-price";
 
 interface CheckoutModalProps {
@@ -33,6 +34,7 @@ export function CheckoutModal({
     const queryString = new URLSearchParams({
       cart: JSON.stringify(cartData),
     }).toString();
+
     window.location.href = `/request-quote?${queryString}`;
   };
 

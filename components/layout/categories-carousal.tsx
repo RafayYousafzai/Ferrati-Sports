@@ -23,8 +23,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
           {/* Left side */}
           <div className="flex flex-col gap-4 w-1/2">
             <Link
-              href={`/${categories[0]?.slug || categories[0]?.id}`}
               className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-full"
+              href={`/${categories[0]?.slug || categories[0]?.id}`}
             >
               <div className="relative w-full h-full">
                 <Image
@@ -45,8 +45,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
 
             <div className="flex gap-4">
               <Link
-                href={`/${categories[1]?.slug || categories[1]?.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+                href={`/${categories[1]?.slug || categories[1]?.id}`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -66,8 +66,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               </Link>
 
               <Link
-                href={`/${categories[2]?.slug || categories[2]?.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+                href={`/${categories[2]?.slug || categories[2]?.id}`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -92,8 +92,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
           <div className="flex flex-col gap-4 w-1/2">
             <div className="flex gap-4">
               <Link
-                href={`/${categories[3]?.slug || categories[3]?.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+                href={`/${categories[3]?.slug || categories[3]?.id}`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -113,8 +113,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               </Link>
 
               <Link
-                href={`/${categories[4]?.slug || categories[4]?.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-1/2"
+                href={`/${categories[4]?.slug || categories[4]?.id}`}
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -135,8 +135,8 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
             </div>
 
             <Link
-              href={`/${categories[5]?.slug || categories[5]?.id}`}
               className="group relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800 block transition-all duration-300  hover:scale-[1.02] aspect-square w-full"
+              href={`/${categories[5]?.slug || categories[5]?.id}`}
             >
               <div className="relative w-full h-full">
                 <Image

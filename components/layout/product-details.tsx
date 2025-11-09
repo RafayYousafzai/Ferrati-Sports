@@ -1,6 +1,7 @@
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
 import Link from "next/link";
+
 import Separator from "../separator";
 
 interface CareersSectionProps {

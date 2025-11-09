@@ -158,6 +158,7 @@ function SectionHeader({
 // 🔹 Reusable grid for items
 function ItemsGrid({ items, basePath }: { items: Item[]; basePath: string }) {
   let isCategories = basePath === "/categories";
+
   console.log(basePath);
 
   return (
@@ -217,7 +218,7 @@ export default async function AllProductsSummary({
           fresh: freshPerSection[sectionKey] ?? fresh,
         }),
       };
-    })
+    }),
   );
 
   return (
@@ -227,7 +228,7 @@ export default async function AllProductsSummary({
           <Suspense key={section.key} fallback={<GridSkeleton />}>
             {section.jsx}
           </Suspense>
-        ) : null
+        ) : null,
       )}
     </div>
   );

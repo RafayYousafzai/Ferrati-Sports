@@ -29,7 +29,7 @@ export const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 Separator.displayName = "Separator";

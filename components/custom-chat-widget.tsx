@@ -23,13 +23,14 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
     /(\*\*\*(.*?)\*\*\*)|(\*\*(.*?)\*\*)|(\*(.*?)\*)|(`(.*?)`)|(https?:\/\/[^\s]+)/g;
 
   let match;
+
   while ((match = combinedPattern.exec(content)) !== null) {
     // Add text before the match
     if (match.index > lastIndex) {
       parts.push(
         <span key={`text-${key++}`}>
           {content.substring(lastIndex, match.index)}
-        </span>
+        </span>,
       );
     }
 
@@ -41,21 +42,21 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
           className="font-bold italic text-amber-300"
         >
           {match[2]}
-        </strong>
+        </strong>,
       );
     } else if (match[3]) {
       // Bold text (**text**)
       parts.push(
         <strong key={`bold-${key++}`} className="font-bold text-amber-300">
           {match[4]}
-        </strong>
+        </strong>,
       );
     } else if (match[5]) {
       // Italic text (*text*)
       parts.push(
         <em key={`italic-${key++}`} className="italic text-amber-200">
           {match[6]}
-        </em>
+        </em>,
       );
     } else if (match[7]) {
       // Inline code (`code`)
@@ -65,7 +66,7 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
           className="px-1.5 py-0.5 bg-gray-900/50 border border-amber-500/30 rounded text-amber-400 font-mono text-xs"
         >
           {match[8]}
-        </code>
+        </code>,
       );
     } else if (match[9]) {
       // URL match
@@ -83,10 +84,10 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
       parts.push(
         <a
           key={`link-${key++}`}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
           className="text-amber-400 hover:text-amber-300 underline underline-offset-2 font-medium inline-flex items-center gap-1 break-words"
+          href={url}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           {displayText}
           <svg
@@ -96,13 +97,13 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
             viewBox="0 0 24 24"
           >
             <path
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
             />
           </svg>
-        </a>
+        </a>,
       );
     }
 
@@ -112,7 +113,7 @@ function parseMessageContent(content: string): (string | React.ReactElement)[] {
   // Add remaining text
   if (lastIndex < content.length) {
     parts.push(
-      <span key={`text-${key++}`}>{content.substring(lastIndex)}</span>
+      <span key={`text-${key++}`}>{content.substring(lastIndex)}</span>,
     );
   }
 
@@ -131,7 +132,8 @@ export function CustomChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId] = useState(
-    () => `session_${Math.random().toString(36).substring(2, 15)}_${Date.now()}`
+    () =>
+      `session_${Math.random().toString(36).substring(2, 15)}_${Date.now()}`,
   );
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -153,11 +155,14 @@ export function CustomChatWidget() {
 
   useEffect(() => {
     const chatWindow = chatWindowRef.current;
+
     if (isOpen && chatWindow) {
       const handleWheel = (e: WheelEvent) => {
         e.stopPropagation();
       };
+
       chatWindow.addEventListener("wheel", handleWheel);
+
       return () => {
         chatWindow.removeEventListener("wheel", handleWheel);
       };
@@ -167,6 +172,7 @@ export function CustomChatWidget() {
   useEffect(() => {
     const handleResize = () => {
       const vh = window.innerHeight * 0.01;
+
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     };
 
@@ -204,7 +210,7 @@ export function CustomChatWidget() {
             sessionId: sessionId,
             message: content.trim(),
           }),
-        }
+        },
       );
 
       const data = await response.json();
@@ -222,6 +228,7 @@ export function CustomChatWidget() {
         content: "I'm having trouble connecting. Please try again later.",
         timestamp: new Date(),
       };
+
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsTyping(false);
@@ -239,13 +246,13 @@ export function CustomChatWidget() {
       <AnimatePresence>
         {!isOpen && (
           <motion.button
-            initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
+            className="fixed bottom-4 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 shadow-2xl shadow-amber-500/50 transition-all duration-300 hover:shadow-amber-500/70 sm:bottom-6 sm:right-6"
             exit={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0, opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-4 right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 shadow-2xl shadow-amber-500/50 transition-all duration-300 hover:shadow-amber-500/70 sm:bottom-6 sm:right-6"
           >
             <motion.div
               animate={{
@@ -260,10 +267,10 @@ export function CustomChatWidget() {
               <MessageCircle className="h-7 w-7 text-white" />
             </motion.div>
             <motion.div
-              className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-yellow-500"
               animate={{
                 scale: [1, 1.2, 1],
               }}
+              className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-yellow-500"
               transition={{
                 duration: 2,
                 repeat: Infinity,
@@ -280,11 +287,11 @@ export function CustomChatWidget() {
         {isOpen && (
           <motion.div
             ref={chatWindowRef}
-            initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed bottom-0 right-0 z-50 flex h-[calc(var(--vh,1vh)*100)] w-full flex-col overflow-hidden border-amber-300/10 bg-gradient-to-br from-black via-gray-900/50 to-black shadow-2xl shadow-amber-500/20 backdrop-blur-xl sm:bottom-6 sm:right-6 sm:h-[600px] sm:w-[400px] sm:rounded-3xl"
+            exit={{ opacity: 0, y: 100, scale: 0.8 }}
+            initial={{ opacity: 0, y: 100, scale: 0.8 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
             {/* Header */}
             <div className="relative flex items-center justify-between border-b border-amber-300/10 bg-gradient-to-r from-amber-600/30 via-yellow-600/30 to-amber-600/30 p-5 backdrop-blur-xl">
@@ -293,7 +300,7 @@ export function CustomChatWidget() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-yellow-600 shadow-lg shadow-amber-500/50">
                     <Sparkles className="h-5 w-5 text-white" />
                   </div>
-                  <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-black bg-emerald-500"></div>
+                  <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-black bg-emerald-500" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">
@@ -305,10 +312,10 @@ export function CustomChatWidget() {
                 </div>
               </div>
               <motion.button
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(false)}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
               >
                 <X className="h-4 w-4" />
               </motion.button>
@@ -319,12 +326,12 @@ export function CustomChatWidget() {
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ type: "spring", damping: 20, stiffness: 300 }}
                   className={`flex ${
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}
+                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                  transition={{ type: "spring", damping: 20, stiffness: 300 }}
                 >
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${
@@ -354,38 +361,38 @@ export function CustomChatWidget() {
 
               {isTyping && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
+                  initial={{ opacity: 0, y: 20 }}
                 >
                   <div className="rounded-2xl border border-amber-300/10 bg-gray-800/50 px-4 py-3 backdrop-blur-sm">
                     <div className="flex gap-1">
                       <motion.div
                         animate={{ y: [0, -8, 0] }}
+                        className="h-2 w-2 rounded-full bg-amber-400"
                         transition={{
                           duration: 0.6,
                           repeat: Infinity,
                           delay: 0,
                         }}
-                        className="h-2 w-2 rounded-full bg-amber-400"
                       />
                       <motion.div
                         animate={{ y: [0, -8, 0] }}
+                        className="h-2 w-2 rounded-full bg-amber-400"
                         transition={{
                           duration: 0.6,
                           repeat: Infinity,
                           delay: 0.2,
                         }}
-                        className="h-2 w-2 rounded-full bg-amber-400"
                       />
                       <motion.div
                         animate={{ y: [0, -8, 0] }}
+                        className="h-2 w-2 rounded-full bg-amber-400"
                         transition={{
                           duration: 0.6,
                           repeat: Infinity,
                           delay: 0.4,
                         }}
-                        className="h-2 w-2 rounded-full bg-amber-400"
                       />
                     </div>
                   </div>
@@ -396,21 +403,21 @@ export function CustomChatWidget() {
 
             {/* Input */}
             <div className="border-t border-amber-300/10 bg-gradient-to-r from-amber-600/20 via-yellow-600/20 to-amber-600/20 p-4 backdrop-blur-xl">
-              <form onSubmit={handleSubmit} className="flex gap-2">
+              <form className="flex gap-2" onSubmit={handleSubmit}>
                 <input
                   ref={inputRef}
+                  className="flex-1 rounded-xl border border-amber-300/10 bg-black/20 px-4 py-3 text-sm text-white placeholder-gray-400 backdrop-blur-sm transition-all focus:border-amber-500/50 focus:bg-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                  placeholder="Type your message..."
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type your message..."
-                  className="flex-1 rounded-xl border border-amber-300/10 bg-black/20 px-4 py-3 text-sm text-white placeholder-gray-400 backdrop-blur-sm transition-all focus:border-amber-500/50 focus:bg-black/30 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 />
                 <motion.button
+                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!inputValue.trim() || isTyping}
+                  type="submit"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  disabled={!inputValue.trim() || isTyping}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="h-5 w-5" />
                 </motion.button>

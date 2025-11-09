@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/table";
+
 import { createClient } from "@/lib/supabase/client";
 
 type Item = {
@@ -68,6 +69,7 @@ export default function ManageWhyChooseUs() {
       .from("why_choose_us")
       .select("*")
       .order("sort_order", { ascending: true });
+
     if (error) console.error(error);
     setItems((data as Item[]) || []);
   }
@@ -86,6 +88,7 @@ export default function ManageWhyChooseUs() {
   function openEdit(item: Item) {
     setEditing(item);
     const { id, created_at, ...rest } = item;
+
     setForm(rest);
     onOpen();
   }
@@ -99,9 +102,11 @@ export default function ManageWhyChooseUs() {
           .from("why_choose_us")
           .update(form)
           .eq("id", editing.id);
+
         if (error) throw error;
       } else {
         const { error } = await supabase.from("why_choose_us").insert([form]);
+
         if (error) throw error;
       }
       await fetchItems();
@@ -120,6 +125,7 @@ export default function ManageWhyChooseUs() {
       .from("why_choose_us")
       .delete()
       .eq("id", id);
+
     if (error) {
       console.error(error);
       alert("Failed to delete");
@@ -171,8 +177,8 @@ export default function ManageWhyChooseUs() {
                       Edit
                     </Button>
                     <Button
-                      size="sm"
                       color="danger"
+                      size="sm"
                       variant="flat"
                       onPress={() => handleDelete(item.id)}
                     >
@@ -186,7 +192,7 @@ export default function ManageWhyChooseUs() {
         </Table>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} size="lg">
+      <Modal isOpen={isOpen} size="lg" onClose={onClose}>
         <ModalContent>
           <form onSubmit={handleSubmit}>
             <ModalHeader>{editing ? "Edit Card" : "Add Card"}</ModalHeader>
@@ -221,7 +227,7 @@ export default function ManageWhyChooseUs() {
                 }
               >
                 {ICON_OPTIONS.map((v) => (
-                  <SelectItem key={v} value={v} className="capitalize">
+                  <SelectItem key={v} className="capitalize" value={v}>
                     {v}
                   </SelectItem>
                 ))}

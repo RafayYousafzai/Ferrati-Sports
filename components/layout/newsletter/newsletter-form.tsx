@@ -93,18 +93,18 @@ export function NewsletterForm({
         <div className="flex-1">
           <Input
             required
-            size="lg"
             className={` text-lg ${styles.inputBg}`}
             placeholder={placeholder}
+            size="lg"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <Button
-          size="lg"
           className={` px-8 text-lg ${styles.buttonBg}`}
           disabled={isLoading}
+          size="lg"
           type="submit"
         >
           {isLoading ? (

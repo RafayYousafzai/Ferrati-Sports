@@ -81,6 +81,7 @@ const Problem = () => {
         "Modern systems and fresh ideas that prepare your brand for the future.",
     },
   ];
+
   return (
     <section className="py-20 overflow-hidden">
       <div className="container mx-auto max-w-4xl text-balance">
@@ -118,6 +119,7 @@ const Problem = () => {
                 <ul className="space-y-4">
                   {problemItems?.map((item, index) => {
                     const Icon = item.icon;
+
                     return (
                       <li key={index} className="flex items-start gap-3">
                         <div className="flex-shrink-0 mt-1">
@@ -166,10 +168,10 @@ const Problem = () => {
               <div className="space-y-4">
                 <Link href="/request-quote">
                   <Button
-                    variant="bordered"
                     className="border-1 border-e-orange-500 hover:bg-amber-600 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider"
                     radius="full"
                     size="lg"
+                    variant="bordered"
                   >
                     START FOR FREE
                   </Button>
@@ -242,6 +244,7 @@ const Problem = () => {
                 <ul className="space-y-4">
                   {solutionItems?.map((item, index) => {
                     const Icon = item.icon;
+
                     return (
                       <li key={index} className="flex items-start gap-3">
                         <div className="flex-shrink-0 mt-1">

@@ -24,8 +24,8 @@ export default function PriceCalculator() {
       <Header
         badge="OUR APPROACH"
         highlightedTitle="Price"
-        title="Calculate "
         subtitle="Get an instant estimate for your project using our simple calculator"
+        title="Calculate "
       />
 
       <div className="space-y-6">

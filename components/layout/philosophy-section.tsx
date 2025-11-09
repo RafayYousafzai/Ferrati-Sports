@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Globe, Award, Users } from "lucide-react";
 
 const countries = [
   { code: "US", name: "USA" },
@@ -23,10 +22,10 @@ export default function PhilosophySection() {
       <div className="container mx-auto px-4 max-w-7xl text-balance">
         {/* Footer Quote */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
           className="mt-16 text-center p-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 1 }}
         >
           <p className="text-3xl md:text-4xl font-bold text-white italic">
             &quot;We believe every brand deserves manufacturing that inspires
@@ -47,5 +46,6 @@ function getFlagEmoji(countryCode: string) {
     .toUpperCase()
     .split("")
     .map((char) => 127397 + char.charCodeAt(0));
+
   return String.fromCodePoint(...codePoints);
 }

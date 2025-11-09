@@ -19,6 +19,7 @@ export default function UrgencySection() {
 
   useEffect(() => {
     const targetDate = new Date();
+
     targetDate.setDate(targetDate.getDate() + 7);
 
     const timer = setInterval(() => {
@@ -27,13 +28,14 @@ export default function UrgencySection() {
 
       if (distance < 0) {
         clearInterval(timer);
+
         return;
       }
 
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         ),
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000),
@@ -55,33 +57,33 @@ export default function UrgencySection() {
             scale: [1, 1.2, 1],
             rotate: [0, 90, 0],
           }}
+          className="absolute top-10 right-10 w-64 h-64 bg-white rounded-full"
           transition={{
             duration: 20,
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
           }}
-          className="absolute top-10 right-10 w-64 h-64 bg-white rounded-full"
         />
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
             rotate: [0, -90, 0],
           }}
+          className="absolute bottom-10 left-10 w-48 h-48 bg-white rounded-full"
           transition={{
             duration: 25,
             repeat: Number.POSITIVE_INFINITY,
             ease: "linear",
           }}
-          className="absolute bottom-10 left-10 w-48 h-48 bg-white rounded-full"
         />
       </div>
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
         >
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white font-semibold text-sm uppercase tracking-wider mb-8">
@@ -100,10 +102,10 @@ export default function UrgencySection() {
             {Object.entries(timeLeft).map(([unit, value]) => (
               <motion.div
                 key={unit}
-                initial={{ scale: 0 }}
                 animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 }}
                 className="bg-white rounded-lg p-4 min-w-[80px] shadow-xl"
+                initial={{ scale: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <div className="text-4xl font-bold text-orange-600">
                   {value}
@@ -115,10 +117,10 @@ export default function UrgencySection() {
 
           {/* Offer Description */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-xl p-8 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="flex items-start gap-4 mb-4">
               <div className="flex-shrink-0">
@@ -145,15 +147,15 @@ export default function UrgencySection() {
 
           {/* CTA Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link href="/request-quote">
               <Button
-                size="lg"
                 className="px-10 py-6 bg-yellow-400 hover:bg-yellow-300 text-orange-600 font-bold text-xl shadow-2xl hover:shadow-3xl transition-all"
                 radius="sm"
+                size="lg"
               >
                 🎁 Claim Your Free Branding Bonus
               </Button>

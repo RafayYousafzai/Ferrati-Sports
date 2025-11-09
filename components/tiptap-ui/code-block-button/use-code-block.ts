@@ -46,7 +46,7 @@ export interface UseCodeBlockConfig {
  */
 export function canToggle(
   editor: Editor | null,
-  turnInto: boolean = true
+  turnInto: boolean = true,
 ): boolean {
   if (!editor || !editor.isEditable) return false;
   if (
@@ -252,7 +252,7 @@ export function useCodeBlock(config?: UseCodeBlockConfig) {
       enabled: isVisible && canToggleState,
       enableOnContentEditable: !isMobile,
       enableOnFormTags: true,
-    }
+    },
   );
 
   return {

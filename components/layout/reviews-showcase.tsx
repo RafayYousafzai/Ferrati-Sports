@@ -12,11 +12,12 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/effect-coverflow";
 
-import { Card } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import { Avatar, AvatarGroup, AvatarIcon } from "@heroui/avatar";
-import Badge from "../badge";
+import { Avatar } from "@heroui/avatar";
+
 import Header from "../custom-ui/header";
+
+import { Card } from "@/components/ui/card";
 const reviews = [
   {
     id: 1,
@@ -84,37 +85,37 @@ export default function ReviewsShowcase() {
   return (
     <div className="w-full">
       <Header
-        title="Trusted by"
         highlightedTitle="Brands Worldwide"
         subtitle="See what our partners say about our premium apparel, custom printing, and commitment to quality."
+        title="Trusted by"
       />
 
       <Swiper
-        modules={[FreeMode, Mousewheel, Autoplay, EffectCoverflow]}
-        spaceBetween={24}
-        slidesPerView="auto"
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        centeredSlides={false}
+        className="pb-6"
         freeMode={{
           enabled: true,
           sticky: false,
           momentumRatio: 0.25,
           momentumVelocityRatio: 0.25,
         }}
+        grabCursor={true}
+        loop={true}
+        modules={[FreeMode, Mousewheel, Autoplay, EffectCoverflow]}
         mousewheel={{
           forceToAxis: true,
           sensitivity: 0.5,
           releaseOnEdges: true,
           thresholdDelta: 70,
         }}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
+        slidesPerView="auto"
+        spaceBetween={24}
         speed={800}
-        loop={true}
-        grabCursor={true}
-        centeredSlides={false}
-        className="pb-6"
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id} className="!w-80 min-w-xl py-6">

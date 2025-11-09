@@ -10,7 +10,6 @@ import { ToastProvider } from "@heroui/toast";
 import NextTopLoader from "nextjs-toploader";
 
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import { CustomChatWidget } from "@/components/custom-chat-widget";
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;

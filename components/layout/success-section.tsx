@@ -28,10 +28,10 @@ export default function SuccessSection() {
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
         >
           <span className="px-4 py-2 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border border-orange-500/30 rounded-full text-orange-600 font-semibold text-sm uppercase tracking-wider">
             THE SUCCESS
@@ -50,19 +50,19 @@ export default function SuccessSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Left: Benefits List */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="grid sm:grid-cols-2 gap-4">
               {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                   className="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  initial={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                 >
                   <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
                   <span className="font-semibold text-gray-800">{benefit}</span>
@@ -71,10 +71,10 @@ export default function SuccessSection() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
               <p className="text-2xl font-bold text-gray-900 mb-4">
                 That&apos;s the Ferrati Sports experience.
@@ -90,10 +90,10 @@ export default function SuccessSection() {
 
           {/* Right: Testimonial */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
             className="relative"
+            initial={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="bg-white p-8 md:p-12 rounded-lg shadow-xl relative">
               {/* Quote Icon */}
@@ -133,16 +133,16 @@ export default function SuccessSection() {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
           className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 1 }}
         >
           <Link href="/request-quote">
             <Button
-              size="lg"
               className="px-10 py-6 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
               radius="sm"
+              size="lg"
             >
               📞 Get a Free Quote Today
             </Button>

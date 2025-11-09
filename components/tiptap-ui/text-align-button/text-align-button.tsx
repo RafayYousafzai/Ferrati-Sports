@@ -70,7 +70,7 @@ export const TextAlignButton = React.forwardRef<
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const {
@@ -94,7 +94,7 @@ export const TextAlignButton = React.forwardRef<
         if (event.defaultPrevented) return;
         handleTextAlign();
       },
-      [handleTextAlign, onClick]
+      [handleTextAlign, onClick],
     );
 
     if (!isVisible) {
@@ -131,7 +131,7 @@ export const TextAlignButton = React.forwardRef<
         )}
       </Button>
     );
-  }
+  },
 );
 
 TextAlignButton.displayName = "TextAlignButton";

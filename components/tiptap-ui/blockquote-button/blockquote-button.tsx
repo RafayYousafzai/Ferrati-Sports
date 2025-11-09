@@ -64,7 +64,7 @@ export const BlockquoteButton = React.forwardRef<
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const {
@@ -87,7 +87,7 @@ export const BlockquoteButton = React.forwardRef<
         if (event.defaultPrevented) return;
         handleToggle();
       },
-      [handleToggle, onClick]
+      [handleToggle, onClick],
     );
 
     if (!isVisible) {
@@ -121,7 +121,7 @@ export const BlockquoteButton = React.forwardRef<
         )}
       </Button>
     );
-  }
+  },
 );
 
 BlockquoteButton.displayName = "BlockquoteButton";

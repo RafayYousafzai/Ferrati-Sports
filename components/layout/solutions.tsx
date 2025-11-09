@@ -1,7 +1,8 @@
 import { ChevronRight } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { DraggableContainer } from "./solutions/DraggableContainer";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ServiceItem {
   name: string;

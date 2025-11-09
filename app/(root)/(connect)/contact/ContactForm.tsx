@@ -29,6 +29,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
     e.preventDefault();
 
     const formData = new FormData();
+
     formData.append("email", form.email);
     formData.append("phone", form.phone);
     formData.append("firstName", form.firstName);

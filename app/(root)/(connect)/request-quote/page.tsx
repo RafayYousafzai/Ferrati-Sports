@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FC } from "react";
+import { useState } from "react";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { Spacer } from "@heroui/spacer";
@@ -14,13 +14,13 @@ import {
 } from "@heroui/modal";
 import { Switch } from "@heroui/switch"; // Assuming Switch component exists in this library
 import { CheckCircle, Send } from "lucide-react";
+import { Spinner } from "@heroui/spinner";
 
 import { ProductSelectionPanel } from "@/components/calculate-price/ProductSelectionPanel";
 import Header from "@/components/custom-ui/header";
 import { usePriceCalculation } from "@/context/PriceCalculationContext";
 import { createClient } from "@/lib/supabase/client";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
-import { Spinner } from "@heroui/spinner";
 
 // --- Main Page Component ---
 export default function RequestQuote() {
@@ -39,11 +39,13 @@ export default function RequestQuote() {
     // Basic validation for name and email
     if (!email || !name) {
       alert("Please fill in your email and name before continuing.");
+
       return;
     }
     // Conditional validation for product selection
     if (addProducts && cart.length === 0) {
       alert("Please select at least one product.");
+
       return;
     }
     onOpen();
@@ -86,7 +88,7 @@ export default function RequestQuote() {
   if (loading) {
     return (
       <div className="min-h-screen   flex items-center justify-center">
-        <Spinner className="mx-auto mt-20" size="lg" color="warning" />
+        <Spinner className="mx-auto mt-20" color="warning" size="lg" />
       </div>
     );
   }
@@ -115,22 +117,22 @@ export default function RequestQuote() {
         <Header
           badge="OUR APPROACH"
           highlightedTitle="Quote"
-          title="Request "
           subtitle="Tell us your needs and we'll prepare a tailored offer just for you"
+          title="Request "
         />
 
         <Spacer y={8} />
 
         {/* Using the new reusable form component */}
         <QuoteContactForm
-          name={name}
-          setName={setName}
-          email={email}
-          setEmail={setEmail}
-          phone={phone}
-          setPhone={setPhone}
           description={description}
+          email={email}
+          name={name}
+          phone={phone}
           setDescription={setDescription}
+          setEmail={setEmail}
+          setName={setName}
+          setPhone={setPhone}
         />
 
         <Spacer y={6} />
@@ -148,9 +150,9 @@ export default function RequestQuote() {
                 </span>
               </div>
               <Switch
+                color="warning"
                 isSelected={addProducts}
                 onValueChange={setAddProducts}
-                color="warning"
               />
             </div>
           </CardBody>

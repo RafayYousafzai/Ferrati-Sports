@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/table";
+
 import { createClient } from "@/lib/supabase/client";
 
 type Step = {
@@ -68,12 +69,14 @@ export default function ManageProcessSteps() {
       .from("process_steps")
       .select("*")
       .order("sort_order", { ascending: true });
+
     setSteps((stepRows as Step[]) || []);
 
     const { data: serviceRows } = await supabase
       .from("process_step_services")
       .select("*")
       .order("sort_order", { ascending: true });
+
     setServices((serviceRows as Service[]) || []);
   }
 
@@ -86,6 +89,7 @@ export default function ManageProcessSteps() {
   function openEdit(step: Step) {
     setEditing(step);
     const { id, ...rest } = step;
+
     setForm(rest);
     onOpen();
   }
@@ -99,9 +103,11 @@ export default function ManageProcessSteps() {
           .from("process_steps")
           .update(form)
           .eq("id", editing.id);
+
         if (error) throw error;
       } else {
         const { error } = await supabase.from("process_steps").insert([form]);
+
         if (error) throw error;
       }
       await fetchAll();
@@ -120,6 +126,7 @@ export default function ManageProcessSteps() {
       .from("process_steps")
       .delete()
       .eq("id", id);
+
     if (error) {
       console.error(error);
       alert("Failed to delete");
@@ -134,16 +141,15 @@ export default function ManageProcessSteps() {
 
   async function addService(name: string) {
     if (!selectedStep) return;
-    const { error } = await supabase
-      .from("process_step_services")
-      .insert([
-        {
-          name,
-          step_id: selectedStep.id,
-          sort_order: services.filter((s) => s.step_id === selectedStep.id)
-            .length,
-        },
-      ]);
+    const { error } = await supabase.from("process_step_services").insert([
+      {
+        name,
+        step_id: selectedStep.id,
+        sort_order: services.filter((s) => s.step_id === selectedStep.id)
+          .length,
+      },
+    ]);
+
     if (error) console.error(error);
     await fetchAll();
   }
@@ -153,6 +159,7 @@ export default function ManageProcessSteps() {
       .from("process_step_services")
       .delete()
       .eq("id", id);
+
     if (error) console.error(error);
     await fetchAll();
   }
@@ -210,8 +217,8 @@ export default function ManageProcessSteps() {
                       Edit
                     </Button>
                     <Button
-                      size="sm"
                       color="danger"
+                      size="sm"
                       variant="flat"
                       onPress={() => handleDelete(step.id)}
                     >
@@ -226,7 +233,7 @@ export default function ManageProcessSteps() {
       )}
 
       {/* Create/Edit Step */}
-      <Modal isOpen={isOpen} onClose={onClose} size="lg">
+      <Modal isOpen={isOpen} size="lg" onClose={onClose}>
         <ModalContent>
           <form onSubmit={handleSubmit}>
             <ModalHeader>{editing ? "Edit Step" : "Add Step"}</ModalHeader>
@@ -280,8 +287,8 @@ export default function ManageProcessSteps() {
       {/* Services Modal */}
       <Modal
         isOpen={servicesModal.isOpen}
-        onClose={servicesModal.onClose}
         size="lg"
+        onClose={servicesModal.onClose}
       >
         <ModalContent>
           <ModalHeader>Services for: {selectedStep?.title}</ModalHeader>
@@ -296,8 +303,8 @@ export default function ManageProcessSteps() {
                 >
                   <span>{s.name}</span>
                   <Button
-                    size="sm"
                     color="danger"
+                    size="sm"
                     variant="flat"
                     onPress={() => deleteService(s.id)}
                   >
@@ -311,17 +318,18 @@ export default function ManageProcessSteps() {
             <div className="w-full flex gap-2">
               <Input
                 className="flex-1"
+                id="new-service-input"
                 label="New Service"
                 placeholder="Service bullet text"
-                id="new-service-input"
               />
               <Button
                 color="primary"
                 onPress={() => {
                   const input = document.getElementById(
-                    "new-service-input"
+                    "new-service-input",
                   ) as HTMLInputElement | null;
                   const val = input?.value?.trim();
+
                   if (val) {
                     addService(val);
                     if (input) input.value = "";

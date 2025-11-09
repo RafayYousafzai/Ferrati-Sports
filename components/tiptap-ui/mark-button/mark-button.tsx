@@ -64,7 +64,7 @@ export const MarkButton = React.forwardRef<HTMLButtonElement, MarkButtonProps>(
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const {
@@ -88,7 +88,7 @@ export const MarkButton = React.forwardRef<HTMLButtonElement, MarkButtonProps>(
         if (event.defaultPrevented) return;
         handleMark();
       },
-      [handleMark, onClick]
+      [handleMark, onClick],
     );
 
     if (!isVisible) {
@@ -122,7 +122,7 @@ export const MarkButton = React.forwardRef<HTMLButtonElement, MarkButtonProps>(
         )}
       </Button>
     );
-  }
+  },
 );
 
 MarkButton.displayName = "MarkButton";

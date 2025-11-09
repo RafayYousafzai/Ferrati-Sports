@@ -21,7 +21,6 @@ import {
   NestedMenuItem,
 } from "./navbar-menu";
 import { useNavbarScroll } from "./use-navbar-scroll";
-import { Button } from "@heroui/button";
 
 // Type definitions
 type NavItem = {
@@ -310,7 +309,7 @@ function MenuContent({ item }: { item: NavGroup }) {
                 <HoveredLink key={navItem.href} href={navItem.href}>
                   {navItem.title}
                 </HoveredLink>
-              )
+              ),
             )}
           </div>
         )}

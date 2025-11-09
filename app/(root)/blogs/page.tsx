@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import FerratiAccordion from "@/components/layout/accordian";
 

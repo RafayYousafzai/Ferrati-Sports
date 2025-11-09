@@ -59,7 +59,7 @@ export function ProductSelectionPanel({
 
   const product = filteredProducts.find((p) => p.id === selectedProduct);
   const availableFabrics = fabrics.filter((fabric) =>
-    product?.fabric_ids?.includes(fabric.id)
+    product?.fabric_ids?.includes(fabric.id),
   );
 
   return (
@@ -89,7 +89,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const category = categories.find(
-                              (cat) => cat.id === item.key
+                              (cat) => cat.id === item.key,
                             );
 
                             return (
@@ -160,7 +160,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const product = filteredProducts.find(
-                              (prod) => prod.id === item.key
+                              (prod) => prod.id === item.key,
                             );
 
                             return (
@@ -238,13 +238,13 @@ export function ProductSelectionPanel({
                       </label>
                       <Select
                         id="fabric-select"
+                        isDisabled={!selectedProduct}
                         placeholder="Select a fabric"
                         radius="full"
-                        isDisabled={!selectedProduct}
                         renderValue={(items) => {
                           return items.map((item) => {
                             const fabric = fabrics.find(
-                              (fab) => fab.id === item.key
+                              (fab) => fab.id === item.key,
                             );
 
                             return (

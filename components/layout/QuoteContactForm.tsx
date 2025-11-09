@@ -5,7 +5,8 @@ import { Input } from "@heroui/input";
 import { Textarea } from "@heroui/input";
 import { Button } from "@heroui/button";
 import { Mail, User, Phone, MessageSquare } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+
+import { submitQuoteRequest } from "./quoteActions";
 
 interface QuoteContactFormProps {
   name: string;
@@ -33,25 +34,22 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
     setIsSubmitting(true);
     setSubmitMessage(null);
 
-    const supabase = createClient();
-    const { error } = await supabase.from("requested_quotes").insert([
-      {
-        email,
-        name: `${firstName} ${lastName}`,
-        phone,
-        description,
-        cart_items: [],
-        total_price: 0,
-      },
-    ]);
+    const formData = new FormData();
+
+    formData.append("email", email);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("phone", phone);
+    formData.append("description", description);
+
+    const result = await submitQuoteRequest(formData);
 
     setIsSubmitting(false);
 
-    if (error) {
-      setSubmitMessage("Error submitting quote request. Please try again.");
-      console.error("Error:", error);
-    } else {
-      setSubmitMessage("Quote request submitted successfully!");
+    if (result.error) {
+      setSubmitMessage(result.error);
+    } else if (result.success) {
+      setSubmitMessage(result.success);
       // Reset form
       setFirstName("");
       setLastName("");
@@ -113,14 +111,14 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
       </div>
       {/* Description Textarea */}
       <Textarea
+        className="w-full mt-4"
         label="Project Description / Message"
         placeholder="Tell us about your project or any specific requirements..."
         radius="lg"
+        startContent={<MessageSquare className="h-4 w-4 text-gray-400 mr-2" />}
         value={description}
         variant="flat"
-        startContent={<MessageSquare className="h-4 w-4 text-gray-400 mr-2" />}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full mt-4"
       />
 
       <br />
@@ -128,11 +126,11 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
 
       {/* Submit Button */}
       <Button
-        color="primary"
         className="bg-orange-500 w-full mt-6"
+        color="primary"
+        isLoading={isSubmitting}
         size="lg"
         onClick={handleSubmit}
-        isLoading={isSubmitting}
         // isDisabled={!name || !email || isSubmitting}
       >
         {isSubmitting ? "Submitting..." : "Submit Quote Request"}

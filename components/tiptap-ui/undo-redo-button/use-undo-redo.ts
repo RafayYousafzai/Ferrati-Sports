@@ -60,7 +60,7 @@ export const historyIcons = {
  */
 export function canExecuteUndoRedoAction(
   editor: Editor | null,
-  action: UndoRedoAction
+  action: UndoRedoAction,
 ): boolean {
   if (!editor || !editor.isEditable) return false;
   if (isNodeTypeSelected(editor, ["image"])) return false;
@@ -73,7 +73,7 @@ export function canExecuteUndoRedoAction(
  */
 export function executeUndoRedoAction(
   editor: Editor | null,
-  action: UndoRedoAction
+  action: UndoRedoAction,
 ): boolean {
   if (!editor || !editor.isEditable) return false;
   if (!canExecuteUndoRedoAction(editor, action)) return false;
@@ -189,7 +189,7 @@ export function useUndoRedo(config: UseUndoRedoConfig) {
       enabled: isVisible && canExecute,
       enableOnContentEditable: !isMobile,
       enableOnFormTags: true,
-    }
+    },
   );
 
   return {

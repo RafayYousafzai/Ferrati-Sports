@@ -19,10 +19,13 @@ function extractYouTubeId(url: string): string {
   const match = url.match(regExp);
 
   const id = match && match[2].length === 11 ? match[2] : url;
+
   if (id.length !== 11) {
     console.warn(`Invalid YouTube ID: ${url}`);
+
     return "";
   }
+
   return id;
 }
 
@@ -44,6 +47,7 @@ export default function VideoShowcase({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {videos.map((video, index) => {
             const youtubeId = extractYouTubeId(video.youtubeId);
+
             return (
               <div
                 key={video.id}
@@ -66,11 +70,11 @@ export default function VideoShowcase({
                   {youtubeId ? (
                     <div className="relative aspect-video bg-black">
                       <iframe
-                        className="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src={`https://www.youtube.com/embed/${youtubeId}?controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        className="absolute top-0 left-0 w-full h-full rounded-xl"
                         frameBorder="0"
+                        src={`https://www.youtube.com/embed/${youtubeId}?controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1`}
                         title={video.title}
                       />
                     </div>

@@ -70,7 +70,7 @@ export const UndoRedoButton = React.forwardRef<
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const { isVisible, handleAction, label, canExecute, Icon, shortcutKeys } =
@@ -87,7 +87,7 @@ export const UndoRedoButton = React.forwardRef<
         if (event.defaultPrevented) return;
         handleAction();
       },
-      [handleAction, onClick]
+      [handleAction, onClick],
     );
 
     if (!isVisible) {
@@ -122,7 +122,7 @@ export const UndoRedoButton = React.forwardRef<
         )}
       </Button>
     );
-  }
+  },
 );
 
 UndoRedoButton.displayName = "UndoRedoButton";

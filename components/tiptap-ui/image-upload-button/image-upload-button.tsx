@@ -64,7 +64,7 @@ export const ImageUploadButton = React.forwardRef<
       children,
       ...buttonProps
     },
-    ref
+    ref,
   ) => {
     const { editor } = useTiptapEditor(providedEditor);
     const {
@@ -87,7 +87,7 @@ export const ImageUploadButton = React.forwardRef<
         if (event.defaultPrevented) return;
         handleImage();
       },
-      [handleImage, onClick]
+      [handleImage, onClick],
     );
 
     if (!isVisible) {
@@ -119,7 +119,7 @@ export const ImageUploadButton = React.forwardRef<
         )}
       </Button>
     );
-  }
+  },
 );
 
 ImageUploadButton.displayName = "ImageUploadButton";

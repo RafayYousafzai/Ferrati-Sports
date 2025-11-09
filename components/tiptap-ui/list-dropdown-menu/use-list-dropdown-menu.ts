@@ -69,7 +69,7 @@ export const listOptions: ListOption[] = [
 
 export function canToggleAnyList(
   editor: Editor | null,
-  listTypes: ListType[]
+  listTypes: ListType[],
 ): boolean {
   if (!editor || !editor.isEditable) return false;
 
@@ -78,7 +78,7 @@ export function canToggleAnyList(
 
 export function isAnyListActive(
   editor: Editor | null,
-  listTypes: ListType[]
+  listTypes: ListType[],
 ): boolean {
   if (!editor || !editor.isEditable) return false;
 
@@ -86,10 +86,10 @@ export function isAnyListActive(
 }
 
 export function getFilteredListOptions(
-  availableTypes: ListType[]
+  availableTypes: ListType[],
 ): typeof listOptions {
   return listOptions.filter(
-    (option) => !option.type || availableTypes.includes(option.type)
+    (option) => !option.type || availableTypes.includes(option.type),
   );
 }
 
@@ -118,7 +118,7 @@ export function shouldShowListDropdown(params: {
  */
 export function getActiveListType(
   editor: Editor | null,
-  availableTypes: ListType[]
+  availableTypes: ListType[],
 ): ListType | undefined {
   if (!editor || !editor.isEditable) return undefined;
 
@@ -178,7 +178,7 @@ export function useListDropdownMenu(config?: UseListDropdownMenuConfig) {
 
   const filteredLists = React.useMemo(
     () => getFilteredListOptions(types),
-    [types]
+    [types],
   );
 
   const canToggleAny = canToggleAnyList(editor, types);
@@ -197,7 +197,7 @@ export function useListDropdownMenu(config?: UseListDropdownMenuConfig) {
           hideWhenUnavailable,
           listInSchema,
           canToggleAny,
-        })
+        }),
       );
     };
 

@@ -19,6 +19,7 @@ export default function ScrollProgress() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

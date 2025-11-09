@@ -16,10 +16,10 @@ import { Chip } from "@heroui/chip";
 import { Divider } from "@heroui/divider";
 import { Image } from "@heroui/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { CartItem } from "@/types/calculate-price";
 import { usePriceCalculation } from "@/context/PriceCalculationContext";
-import { useRouter } from "next/navigation";
 
 interface ShoppingCartPanelProps {
   cart: CartItem[];

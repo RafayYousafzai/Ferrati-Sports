@@ -15,7 +15,7 @@ async function getSupabase() {
       setAll(cookiesToSet) {
         try {
           cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
+            cookieStore.set(name, value, options),
           );
         } catch {
           // ignore when called from Server Component
@@ -38,6 +38,7 @@ export const getCachedExploreItems = cache(async (): Promise<ExploreItem[]> => {
     .from("explore_items")
     .select("*")
     .order("sort_order", { ascending: true });
+
   return (data as ExploreItem[]) ?? [];
 });
 
@@ -56,8 +57,9 @@ export const getCachedWhyChooseUs = cache(
       .from("why_choose_us")
       .select("*")
       .order("sort_order", { ascending: true });
+
     return (data as WhyChooseUsItem[]) ?? [];
-  }
+  },
 );
 
 export type ProcessService = {
@@ -93,6 +95,7 @@ export const getCachedProcessSteps = cache(async (): Promise<ProcessStep[]> => {
     .order("sort_order", { ascending: true });
 
   const byStep = new Map<string, ProcessService[]>();
+
   (services as any[])?.forEach((s) => {
     if (!byStep.has(s.step_id)) byStep.set(s.step_id, []);
     byStep.get(s.step_id)!.push(s);

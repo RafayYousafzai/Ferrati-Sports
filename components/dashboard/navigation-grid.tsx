@@ -99,10 +99,10 @@ export function NavigationGrid({ stats, loading }: NavigationGridProps) {
       {navigationItems.map((item, index) => (
         <Card
           key={item.title}
-          as="a"
-          href={item.href}
-          className="py-4 hover:shadow-lg transition-shadow duration-300"
           isHoverable
+          as="a"
+          className="py-4 hover:shadow-lg transition-shadow duration-300"
+          href={item.href}
           shadow="sm"
         >
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
@@ -113,7 +113,7 @@ export function NavigationGrid({ stats, loading }: NavigationGridProps) {
               {loading ? (
                 <Spinner size="sm" />
               ) : (
-                <Chip size="sm" variant="flat" color="default">
+                <Chip color="default" size="sm" variant="flat">
                   {stats ? stats[item.key].toLocaleString() : "N/A"}
                 </Chip>
               )}

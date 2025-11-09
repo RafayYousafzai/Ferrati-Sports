@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useId } from "react";
-
 import { motion } from "framer-motion";
+
 import { cn } from "@/lib/utils";
 
 export interface ContainerTextFlipProps {
@@ -35,6 +35,7 @@ export function ContainerTextFlip({
       // Add some padding to the text width (30px on each side)
       // @ts-ignore
       const textWidth = textRef.current.scrollWidth + 30;
+
       setWidth(textWidth);
     }
   };
@@ -55,36 +56,36 @@ export function ContainerTextFlip({
 
   return (
     <motion.p
+      key={words[currentWordIndex]}
       layout
-      layoutId={`words-here-${id}`}
       animate={{ width }}
-      transition={{ duration: animationDuration / 2000 }}
       className={cn(
         "relative inline-block rounded-lg pt-2 pb-3 text-center text-4xl font-bold text-black md:text-6xl dark:text-white",
-        className
+        className,
       )}
-      key={words[currentWordIndex]}
+      layoutId={`words-here-${id}`}
+      transition={{ duration: animationDuration / 2000 }}
     >
       <motion.div
+        ref={textRef}
+        className={cn("inline-block", textClassName)}
+        layoutId={`word-div-${words[currentWordIndex]}-${id}`}
         transition={{
           duration: animationDuration / 1000,
           ease: "easeInOut",
         }}
-        className={cn("inline-block", textClassName)}
-        ref={textRef}
-        layoutId={`word-div-${words[currentWordIndex]}-${id}`}
       >
         <motion.div className="inline-block">
           {words[currentWordIndex].split("").map((letter, index) => (
             <motion.span
               key={index}
-              initial={{
-                opacity: 0,
-                filter: "blur(10px)",
-              }}
               animate={{
                 opacity: 1,
                 filter: "blur(0px)",
+              }}
+              initial={{
+                opacity: 0,
+                filter: "blur(10px)",
               }}
               transition={{
                 delay: index * 0.02,

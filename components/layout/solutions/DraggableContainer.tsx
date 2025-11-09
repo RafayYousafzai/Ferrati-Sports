@@ -1,7 +1,8 @@
 "use client";
 
-import { useDragScroll } from "@/hooks/use-drag-to-scroll";
 import React from "react";
+
+import { useDragScroll } from "@/hooks/use-drag-to-scroll";
 
 interface DraggableContainerProps {
   children: React.ReactNode;
