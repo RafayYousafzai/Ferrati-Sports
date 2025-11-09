@@ -179,6 +179,8 @@ const Problem = () => {
           </div>
         </div>
 
+        <br />
+
         {/* Second Section - Solutions */}
         <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl mt-12">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">

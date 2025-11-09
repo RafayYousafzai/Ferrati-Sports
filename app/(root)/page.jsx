@@ -134,11 +134,11 @@ export default async function Home() {
       </Suspense> */}
 
       {/* 🧠 PHILOSOPHY SECTION - Deepen trust with your values */}
-      <Suspense
+      {/* <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
         <PhilosophySection />
-      </Suspense>
+      </Suspense> */}
 
       {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}
       <Suspense

@@ -18,16 +18,13 @@ interface QuoteContactFormProps {
   setDescription: (description: string) => void;
 }
 
-const QuoteContactForm: FC<QuoteContactFormProps> = ({
-  name,
-  setName,
-  email,
-  setEmail,
-  phone,
-  setPhone,
-  description,
-  setDescription,
-}) => {
+const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
 
@@ -40,7 +37,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
     const { error } = await supabase.from("requested_quotes").insert([
       {
         email,
-        name,
+        name: `${firstName} ${lastName}`,
         phone,
         description,
         cart_items: [],
@@ -56,7 +53,8 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
     } else {
       setSubmitMessage("Quote request submitted successfully!");
       // Reset form
-      setName("");
+      setFirstName("");
+      setLastName("");
       setEmail("");
       setPhone("");
       setDescription("");
@@ -75,13 +73,23 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Input
           isRequired
-          label="Full Name"
+          label="First Name"
           radius="lg"
           startContent={<User className="h-4 w-4 text-gray-400" />}
           type="text"
-          value={name}
+          value={firstName}
           variant="flat"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setFirstName(e.target.value)}
+        />{" "}
+        <Input
+          isRequired
+          label="Last Name"
+          radius="lg"
+          startContent={<User className="h-4 w-4 text-gray-400" />}
+          type="text"
+          value={lastName}
+          variant="flat"
+          onChange={(e) => setLastName(e.target.value)}
         />
         <Input
           isRequired
