@@ -1,6 +1,7 @@
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/image";
 import Link from "next/link";
+import Separator from "../separator";
 
 interface CareersSectionProps {
   sectionTitle?: null | string;
@@ -27,13 +28,14 @@ export default function ProductDetails({
   reversed = false,
   href = "#",
   showButton = true,
+  bgColor = "bg-white",
   children,
 }: CareersSectionProps) {
   const isOrange = variant === "orange";
 
   return (
     <section
-      className={`py-10 px-6 ${isOrange ? "bg-orange-500" : "bg-white"} ${className}`}
+      className={`py-10 px-6 ${isOrange ? "bg-orange-500" : bgColor} ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         <div
@@ -60,12 +62,13 @@ export default function ProductDetails({
               >
                 {headline}
               </h2>
+              <Separator bg={"accent"} className={"ml-0"} />
 
-              <div
+              {/* <div
                 className={`w-16 h-1 mb-8 ${
                   isOrange ? "bg-white" : "bg-orange-500"
                 }`}
-              />
+              /> */}
             </div>
 
             <div className="space-y-6">

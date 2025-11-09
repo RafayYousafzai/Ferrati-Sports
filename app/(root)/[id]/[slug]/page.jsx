@@ -53,15 +53,16 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div className="bg-white pt-20">
+    <div className=" pt-20">
       <ProductDetails
+        bgColor="bg-slate-50"
         key={selectedProduct.id}
-        buttonText={`Calculate Price`}
+        // buttonText={`Calculate Price`}
         description={[selectedProduct.subtitle]}
         headline={selectedProduct.title}
         image={selectedProduct.image_url}
         variant="light"
-        href={`/calculate-price`}
+        // href={`/calculate-price`}
       >
         <div className="">
           {selectedProduct.trustpilot && (
@@ -81,40 +82,46 @@ export default async function CategoryPage({ params }) {
             </Link>
           )}
         </div>
-        <QuoteContactForm />
+        <div className="bg-white  shadow-2xl rounded-2xl p-8">
+          <QuoteContactForm />
+        </div>{" "}
       </ProductDetails>
-
-      <div className="max-w-7xl mx-auto p-6 html-content">
-        <div
-          dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
+      <div className="bg-white pt-6">
+        <Header
+          badge="Ferrati"
+          highlightedTitle={category.title}
+          leftAlign={false}
+          subtitle="More products in same category"
+          title="More Products in "
         />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+          {products?.map((product) => (
+            <Card
+              key={product.id}
+              href={`/${categorySlug}/${product.slug || product.id}`}
+              image={product.image_url}
+              title={product.title}
+            >
+              <div
+                dangerouslySetInnerHTML={{ __html: product.description }}
+                className="text-sm text-default-500 line-clamp-3"
+              />
+            </Card>
+          ))}
+        </div>
       </div>
 
-      <Header
-        badge="Ferrati"
-        highlightedTitle={category.title}
-        leftAlign={false}
-        subtitle="More products in same category"
-        title="More Products in "
-      />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
-        {products?.map((product) => (
-          <Card
-            key={product.id}
-            href={`/${categorySlug}/${product.slug || product.id}`}
-            image={product.image_url}
-            title={product.title}
-          >
-            <div
-              dangerouslySetInnerHTML={{ __html: product.description }}
-              className="text-sm text-default-500 line-clamp-3"
-            />
-          </Card>
-        ))}
+      <div className="  p-6 mt-6">
+        <div className="max-w-7xl mx-auto  html-content">
+          <div
+            dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
+          />
+        </div>
       </div>
 
-      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
+      <div className="bg-white pt-6">
+        <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
+      </div>
     </div>
   );
 }

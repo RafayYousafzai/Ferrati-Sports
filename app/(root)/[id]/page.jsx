@@ -101,7 +101,7 @@ export default async function CategoryPage({ params }) {
         ))
       )} */}
       <AllProductsSummary order={["categories", "fabrics", "blogs"]} />{" "}
-      <FerratiAccordion calculator={false} />
+      <FerratiAccordion calculator={true} />
     </div>
   );
 }

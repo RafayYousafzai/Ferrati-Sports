@@ -96,7 +96,7 @@ export default function ClientNavbar({
         .filter((product) => product.category_id === category.id)
         .map((product) => ({
           title: product.title,
-          href: `/products/${product.slug || product.id}`,
+          href: `/${category.slug || category.id}/${product.slug || product.id}`,
         }));
 
       return {

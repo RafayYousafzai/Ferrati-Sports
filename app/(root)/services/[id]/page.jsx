@@ -4,6 +4,7 @@ import ProductDetails from "@/components/layout/product-details";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import { Button } from "@heroui/button";
 import Link from "next/link";
+import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 export default async function Page({ params }) {
   const serviceSlug = params.id;
@@ -23,7 +24,6 @@ export default async function Page({ params }) {
   return (
     <div className="pt-20">
       <ProductDetails
-        buttonText="All Services"
         description={[
           "We provide top-notch services tailored to your needs. Experience excellence with our dedicated team. From concept to completion, we ensure satisfaction.",
         ]}
@@ -32,20 +32,17 @@ export default async function Page({ params }) {
         image={service.image_url}
         variant="white"
         showButton={false}
+        bgColor="bg-slate-50"
       >
-        {/* <Link href="/categories">
-          <Button size="lg" className=" bg-orange-500 text-white">
-            All Products
-          </Button>
-        </Link> */}
-        <Link href="/request-quote">
-          <Button size="lg" className="ml-2 bg-orange-500 text-white">
-            Request Quote
-          </Button>
-        </Link>
+        <div className="bg-white  shadow-2xl rounded-2xl p-8">
+          <QuoteContactForm />
+        </div>
       </ProductDetails>
 
-      <div className="max-w-7xl mx-auto py-6 html-content ">
+      <div className="bg-white pt-4">
+        <AllProductsSummary order={["services"]} />
+      </div>
+      <div className="max-w-7xl mx-auto py-6 html-content mt-6">
         <div dangerouslySetInnerHTML={{ __html: service.description }} />
       </div>
 
