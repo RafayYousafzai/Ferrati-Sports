@@ -40,6 +40,7 @@ For production use, you need to verify your domain in Resend:
 ### 4. Test Email Sending
 
 For development, Resend provides a test mode that works without domain verification:
+
 - You can send emails to any email address
 - Emails will be delivered to the inbox
 - Free tier includes 3,000 emails/month
@@ -49,9 +50,11 @@ For development, Resend provides a test mode that works without domain verificat
 The project includes two email templates:
 
 ### 1. Contact Form Email (`emails/ContactFormEmail.tsx`)
+
 Sent when users submit the contact form at `/contact`
 
 ### 2. Quote Request Email (`emails/QuoteRequestEmail.tsx`)
+
 Sent when users request a quote
 
 ## How It Works
