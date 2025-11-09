@@ -53,7 +53,9 @@ export default async function CategoryPage({ params }) {
         image={category.image_url}
         variant="light"
       >
-        <QuoteContactForm />
+        <div className="bg-white  shadow-2xl rounded-2xl p-8">
+          <QuoteContactForm />
+        </div>
       </ProductDetails>
       <Header
         highlightedTitle={category.title}

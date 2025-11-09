@@ -105,7 +105,7 @@ const Problem = () => {
         <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left Side - Card with gradient background and bullet points */}
-            <div className="relative rounded-3xl bg-gradient-to-br from-black via-orange-500 to-black p-6 lg:p-8 shadow-2xl">
+            <div className="relative rounded-3xl bg-gradient-to-br from-orange-700 via-orange-500 to-orange-700 p-6 lg:p-8 shadow-2xl">
               <div className="bg-white backdrop-blur-3xl rounded-2xl p-6 lg:p-8 shadow-lg">
                 {/* Header */}
                 <div className="mb-3">
@@ -227,7 +227,7 @@ const Problem = () => {
             </div>
 
             {/* Right Side - Card with gradient background and bullet points */}
-            <div className="relative rounded-3xl bg-gradient-to-br from-orange-500 via-black to-orange-500  p-6 lg:p-8 shadow-2xl">
+            <div className="relative rounded-3xl bg-gradient-to-br  from-orange-700 via-orange-500 to-orange-700   p-6 lg:p-8 shadow-2xl">
               <div className="bg-white backdrop-blur-3xl rounded-2xl p-6 lg:p-8 shadow-lg">
                 {/* Header */}
                 <div className="mb-3">

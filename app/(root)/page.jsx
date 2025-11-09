@@ -155,7 +155,7 @@ export default async function Home() {
       <FerratiAccordion calculator={false} />
 
       <ProductDetails
-        buttonText={"Get a Price"}
+        buttonText={"Calculate Now"}
         description={[
           "Easily estimate your project cost in just a few clicks. Our calculator helps you plan your budget, compare options, and get clarity before you start.",
         ]}
@@ -163,7 +163,6 @@ export default async function Home() {
         href={"/calculate-price"}
         image={"/assets/photo-calculator.webp"}
         reversed={true}
-        sectionTitle={"WORK WITH US"}
         variant={"orange"}
       />
 

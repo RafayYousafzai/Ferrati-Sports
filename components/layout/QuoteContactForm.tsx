@@ -65,7 +65,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({
 
   return (
     <div className="w-full ">
-      <h2 className="text-4xl font-bold text-gray-800">Request Quote</h2>
+      <h2 className="text-4xl font-bold text-orange-500">Get Instant Quote</h2>
       <p className="mt-2 py-4 text-gray-600">
         Fill out the form below, and our team will get back to you with a
         personalized quote.
