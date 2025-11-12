@@ -36,7 +36,7 @@ export default function ProductDetails({
 
   return (
     <section
-      className={`py-10 px-6 ${isOrange ? "bg-orange-500" : bgColor} ${className}`}
+      className={`py-20 px-6 ${isOrange ? "bg-orange-500" : bgColor} ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         <div
@@ -89,12 +89,13 @@ export default function ProductDetails({
               <div className="pt-4">
                 <Link href={href}>
                   <Button
-                    className={`px-8 py-3 text-base font-medium ${
+                    className={`px-8 py-3 text-base font-medium tracking-wider ${
                       isOrange
                         ? "text-orange-500 bg-white"
                         : "bg-orange-500 text-white"
                     }`}
                     size="lg"
+                    radius="full"
                     variant="solid"
                   >
                     {buttonText}

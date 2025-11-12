@@ -1,6 +1,8 @@
 import { ChevronRight, Calendar, CheckCircle, Rocket } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@heroui/button";
 
 export default function Process() {
   // Transform cards into 3-step process
@@ -98,7 +100,20 @@ export default function Process() {
               })}
             </div>
           </div>
-
+          {/* CTA Section */}
+          <div className="text-center mt-12">
+            <Link href="/services/free-clothing-samples">
+              <Button
+                disableRipple
+                className="border-1 border-white hover:bg-white text-white hover:text-orange-500 font-bold text-base lg:text-lg px-12 py-8 tracking-wider [&]:hover:opacity-100"
+                radius="full"
+                size="lg"
+                variant="bordered"
+              >
+                START FOR FREE
+              </Button>
+            </Link>
+          </div>
           {/* Success Section - Transformation */}
           {/* <div className="relative max-w-7xl mx-auto mt-16 text-center">
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">

@@ -5,6 +5,8 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Building2, Zap, DollarSign, Leaf } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@heroui/button";
 
 const features = [
   {
@@ -43,11 +45,11 @@ export default function GuideSection() {
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl  font-bold text-gray-900 mb-4">
             We Get It. That&apos;s Why We Built{" "}
             <span className="text-orange-600">Ferrati Sports.</span>
           </h2>
-          <p className="text-xl text-balance text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg text-balance text-gray-700 max-w-4xl mx-auto leading-relaxed">
             We&apos;ve helped over{" "}
             <span className="font-bold text-orange-600">
               200 apparel brands
@@ -58,7 +60,7 @@ export default function GuideSection() {
         </motion.div>
 
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
           {/* Left: Story & Features */}
           <motion.div
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -88,10 +90,10 @@ export default function GuideSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-1">
+                    <h6 className="font-bold text-sm -mt-2 text-gray-900 mb-1">
                       {feature.title}
-                    </h4>
-                    <p className="text-sm lg:text-lg text-gray-600">
+                    </h6>
+                    <p className="text-sm  text-gray-600">
                       {feature.description}
                     </p>
                   </div>
@@ -151,6 +153,33 @@ export default function GuideSection() {
             </motion.div>
           </motion.div>
         </div>
+        {/* CTA Section */}
+        <motion.div
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          {/* <p className="text-lg text-gray-700 mb-6">
+            We{" "}
+            <span className="text-orange-500 font-semibold">
+              know the feeling.
+            </span>{" "}
+            You have amazing plans for your brand, but your manufacturer keeps
+            dropping the ball.
+          </p> */}
+          <Link href="/services/free-clothing-samples">
+            <Button
+              disableRipple
+              className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"
+              radius="full"
+              size="lg"
+              variant="bordered"
+            >
+              START FOR FREE
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

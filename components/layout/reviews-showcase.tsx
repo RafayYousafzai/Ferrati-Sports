@@ -141,7 +141,12 @@ export default function ReviewsShowcase() {
                 {review.content}
               </p>
               <div className="flex items-center gap-3 mt-auto">
-                <Avatar name={review.name} />
+                <Avatar
+                  name={review.name}
+                  src={`https://xsgames.co/randomusers/assets/avatars/${
+                    review.id % 2 === 0 ? "male" : "female"
+                  }/${Math.floor(review.id / 2)}.jpg`}
+                />
                 <div className="transition-transform duration-300 group-hover:translate-x-1">
                   <p className="font-medium text-gray-900 text-sm">
                     {review.name}

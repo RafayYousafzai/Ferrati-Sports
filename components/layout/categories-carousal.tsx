@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@heroui/button";
 
 import Header from "../custom-ui/header";
 
 const CategoriesCarousal = ({ categories }: { categories: any }) => {
   return (
-    <div className="pb-10  ">
+    <div className="pb-10 md:-mt-16 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <Header
@@ -155,18 +154,6 @@ const CategoriesCarousal = ({ categories }: { categories: any }) => {
               </div>
             </Link>
           </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-          <Link href="/categories">
-            <Button
-              className="bg-orange-500 dark:bg-blue-500 text-white hover:bg-orange-600 dark:hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-semibold px-8 py-6"
-              size="lg"
-            >
-              See All Categories
-            </Button>
-          </Link>
         </div>
       </div>
 

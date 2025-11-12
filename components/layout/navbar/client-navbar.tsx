@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { Image } from "@heroui/image";
 
+import MobileAccordion from "./mobile-accordion";
 import {
   MenuItem,
   HoveredLink,
@@ -120,56 +121,61 @@ export default function ClientNavbar({
     href: `/fabrics/${fabric.slug || fabric.id}`,
   }));
 
+  const leftNav = [{ title: "Home", href: "/" }];
+  const centerNav = [
+    {
+      title: "Products",
+      href: "/categories",
+      isProductGrid: false,
+      items: loading
+        ? categoryNavItems.length > 0
+          ? categoryNavItems
+          : []
+        : categoryNavItems,
+    },
+    ...(serviceNavItems.length > 0
+      ? [
+          {
+            title: "Services",
+            href: "/services",
+            isProductGrid: false,
+            items: serviceNavItems,
+          },
+        ]
+      : []),
+    ...(fabricNavItems.length > 0
+      ? [
+          {
+            title: "Fabrics",
+            href: "/fabrics",
+            isProductGrid: false,
+            items: fabricNavItems,
+          },
+        ]
+      : []),
+  ];
+  const rightNav = [
+    { title: "Blogs", href: "/blogs" },
+    { title: "About", href: "/about" },
+    { title: "Contact Us", href: "/contact" },
+  ];
+  const mobileNav = [
+    { title: "Home", href: "/" },
+    ...centerNav.map((item) => ({
+      title: item.title,
+      href: item.href,
+      items: item.items,
+    })),
+    ...rightNav,
+    { title: "Calculate Price", href: "/calculate-price" },
+    { title: "Request Quote", href: "/request-quote" },
+  ];
+
   const navigationConfig: NavigationConfig = {
-    leftNav: [{ title: "Home", href: "/" }],
-    centerNav: [
-      {
-        title: "Products",
-        href: "/categories",
-        isProductGrid: false,
-        items: loading
-          ? categoryNavItems.length > 0
-            ? categoryNavItems
-            : []
-          : categoryNavItems,
-      },
-      ...(serviceNavItems.length > 0
-        ? [
-            {
-              title: "Services",
-              href: "/services",
-              isProductGrid: false,
-              items: serviceNavItems,
-            },
-          ]
-        : []),
-      ...(fabricNavItems.length > 0
-        ? [
-            {
-              title: "Fabrics",
-              href: "/fabrics",
-              isProductGrid: false,
-              items: fabricNavItems,
-            },
-          ]
-        : []),
-    ],
-    rightNav: [
-      { title: "Blogs", href: "/blogs" },
-      { title: "About", href: "/about" },
-      { title: "Contact Us", href: "/contact" },
-    ],
-    mobileNav: [
-      { title: "Home", href: "/" },
-      { title: "Products", href: "/categories" },
-      { title: "Fabrics", href: "/fabrics" },
-      { title: "Services", href: "/services" },
-      { title: "Blogs", href: "/blogs" },
-      { title: "About", href: "/about" },
-      { title: "Contact Us", href: "/contact" },
-      { title: "Calculate Price", href: "/calculate-price" },
-      { title: "Request Quote", href: "/request-quote" },
-    ],
+    leftNav,
+    centerNav,
+    rightNav,
+    mobileNav,
   };
 
   return (
@@ -247,15 +253,24 @@ export default function ClientNavbar({
         </NavbarContent>
 
         <NavbarMenu className="bg-black/80 py-4 -mt-1">
-          {navigationConfig.mobileNav.map((item: NavItem, index: number) => (
+          {navigationConfig.mobileNav.map((item: any, index: number) => (
             <NavbarMenuItem key={`${item.title}-${index}`}>
-              <Link
-                className="w-full text-white hover:text-slate-200 py-2 text-2xl"
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </Link>
+              {item.items && item.items.length > 0 ? (
+                <MobileAccordion
+                  title={item.title}
+                  href={item.href}
+                  items={item.items}
+                  onLinkClick={() => setIsMenuOpen(false)}
+                />
+              ) : (
+                <Link
+                  className="w-full text-white hover:text-slate-200 py-2 text-2xl"
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              )}
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
@@ -309,7 +324,7 @@ function MenuContent({ item }: { item: NavGroup }) {
                 <HoveredLink key={navItem.href} href={navItem.href}>
                   {navItem.title}
                 </HoveredLink>
-              ),
+              )
             )}
           </div>
         )}

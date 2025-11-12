@@ -44,14 +44,8 @@ export const metadata = {
   },
 };
 import Hero from "@/components/layout/hero";
-import Header from "@/components/custom-ui/header";
 import { getCachedCategories } from "@/lib/supabase/cached-queries";
 import Problem from "@/components/Problem/Problem";
-import {
-  getCachedExploreItems,
-  getCachedWhyChooseUs,
-  getCachedProcessSteps,
-} from "@/lib/supabase/cached-content";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
 import GuideSection from "@/components/layout/guide-section";
@@ -111,7 +105,12 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}
       >
-        <CategoriesSection />
+        <div className="hidden md:block">
+          <CategoriesSection />
+        </div>
+        <div className="md:hidden block">
+          <AllProductsSummary fetchAll={true} order={["categories"]} />
+        </div>
       </Suspense>
       {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
       <PictureThisSection />
