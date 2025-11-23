@@ -80,12 +80,13 @@ export default function GuideSection() {
                 >
                   <div className="flex-shrink-0">
                     <div className="relative">
-                      <div className="absolute -top-1 -left-1 w-10 h-10 bg-orange-500 rounded-sm opacity-20" />
-                      <div className="relative bg-white p-2">
-                        <feature.icon
-                          className="w-6 h-6 text-orange-600"
-                          strokeWidth={2}
-                        />
+                      <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
+                      <div className="mb-6">
+                        <div className="relative inline-block">
+                          <div className="relative bg-white rounded-3xl p-3">
+                            <feature.icon className="w-6 h-6 text-orange-600" />{" "}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
