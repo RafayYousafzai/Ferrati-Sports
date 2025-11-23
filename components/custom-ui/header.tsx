@@ -21,7 +21,7 @@ export default function Header({
 }: HeaderProps) {
   // Define color classes based on theme
   const textColor = theme === "dark" ? "text-white" : "text-black";
-  const subtitleColor = theme === "dark" ? "text-gray-100" : "text-gray-600";
+  const subtitleColor = theme === "dark" ? "text-gray-100" : "text-black";
   const badgeBg =
     theme === "dark"
       ? "bg-gradient-to-r from-orange-400 to-yellow-400 border-orange-400"
@@ -60,7 +60,7 @@ export default function Header({
 
       <p
         className={`
-          text-lg md:text-2xl leading-relaxed ${subtitleColor}
+          text-lg md:text-xl leading-relaxed ${subtitleColor}
           ${leftAlign ? "pr-[10%]" : "mx-auto px-[10%]"}
         `}
       >

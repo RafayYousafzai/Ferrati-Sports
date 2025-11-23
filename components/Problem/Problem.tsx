@@ -99,11 +99,11 @@ const Problem = () => {
   return (
     <section ref={ref} className="py-20 overflow-hidden">
       <div className="container mx-auto max-w-4xl text-balance mb-16">
-        <h2 className="text-4xl capitalize font-bold text-center text-gray-900 mb-6">
+        <h2 className="text-5xl capitalize font-bold text-center text-black mb-6">
           You design. We make. <span className="text-orange-500">You win.</span>
         </h2>
         <div className="w-32 rounded-2xl h-1 bg-orange-500 mx-auto mb-10 mt-2" />
-        <p className="text-md sm:text-xl text-center text-gray-900 leading-relaxed">
+        <p className="text-md sm:text-xl text-center text-black leading-relaxed">
           We&apos;re client partners first, committed to paving the way for
           growth. We&apos;re focused on helping brands disrupt their industry
           through digital marketing. We&apos;re also big on a work life balance.
@@ -122,13 +122,13 @@ const Problem = () => {
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-5xl font-bold text-black mb-4">
               What You Have Been{" "}
               <span className="text-orange-500">Struggling With.</span>
             </h2>
-            <p className="text-lg text-balance text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
               Slow trend adoption, overproduction, and weak quality control lead
-              to losses and customer issues — while poor support and outdated
+              to losses and customer issues while poor support and outdated
               processes keep your brand lagging behind faster competitors.
             </p>
           </motion.div>
@@ -153,17 +153,21 @@ const Problem = () => {
                   >
                     <div className="flex-shrink-0">
                       <div className="relative">
-                        <div className="absolute -top-1 -left-1 w-10 h-10 bg-orange-500 rounded-sm opacity-20" />
-                        <div className="relative bg-white p-2">
-                          <item.icon
-                            className="w-6 h-6 text-orange-600"
-                            strokeWidth={2}
-                          />
+                        <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
+                        <div className="mb-6">
+                          <div className="relative inline-block">
+                            <div className="relative bg-white rounded-3xl p-3">
+                              <item.icon
+                                className="w-6 h-6 text-orange-500"
+                                strokeWidth={2}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 -mt-2">
+                      <p className="text-sm text-black -mt-2">
                         {item.description}
                       </p>
                     </div>
@@ -216,7 +220,7 @@ const Problem = () => {
                     <div className="text-xl font-bold text-orange-500">
                       Common Issues
                     </div>
-                    <div className="text-xs text-gray-600 font-medium">
+                    <div className="text-xs text-black font-medium">
                       We Solve
                     </div>
                   </div>
@@ -232,7 +236,7 @@ const Problem = () => {
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-lg text-black mb-6">
               We{" "}
               <span className="text-orange-500 font-semibold">
                 know the feeling.
@@ -266,14 +270,14 @@ const Problem = () => {
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl  font-bold text-gray-900 mb-4">
+            <h2 className="text-5xl  font-bold text-black mb-4">
               How <span className="text-orange-500">Ferrati Empowers</span> You
               With.
             </h2>
-            <p className="text-lg text-balance text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
               Quick trend adaptation, smart order management, and strict quality
-              control cut waste and defects — while responsive support and
-              modern systems keep your brand ahead and future-ready.
+              control cut waste and defects while responsive support and modern
+              systems keep your brand ahead and future-ready.
             </p>
           </motion.div>
 
@@ -323,7 +327,7 @@ const Problem = () => {
                     <div className="text-xl font-bold text-orange-500">
                       Our Solutions
                     </div>
-                    <div className="text-xs text-gray-600 font-medium">
+                    <div className="text-xs text-black font-medium">
                       For Your Success
                     </div>
                   </div>
@@ -349,17 +353,21 @@ const Problem = () => {
                   >
                     <div className="flex-shrink-0">
                       <div className="relative">
-                        <div className="absolute -top-1 -left-1 w-10 h-10 bg-orange-500 rounded-sm opacity-20" />
-                        <div className="relative bg-white p-2">
-                          <item.icon
-                            className="w-6 h-6 text-orange-600"
-                            strokeWidth={2}
-                          />
+                        <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
+                        <div className="mb-6">
+                          <div className="relative inline-block">
+                            <div className="relative bg-white rounded-3xl p-3">
+                              <item.icon
+                                className="w-6 h-6 text-orange-500"
+                                strokeWidth={2}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm -mt-2 text-gray-600">
+                      <p className="text-sm -mt-2 text-black">
                         {item.description}
                       </p>
                     </div>
@@ -376,7 +384,7 @@ const Problem = () => {
             initial={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-lg text-black mb-6">
               We{" "}
               <span className="text-orange-500 font-semibold">
                 deliver solutions

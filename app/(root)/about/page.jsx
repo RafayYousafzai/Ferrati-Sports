@@ -145,11 +145,11 @@ export default function OurProcess() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20">
+    <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20 ">
       <div className="max-w-7xl mx-auto">
         <Header
-          title="Our Manufacturing Process."
-          highlightedTitle=" "
+          title="Our Manufacturing "
+          highlightedTitle="Process."
           subtitle="   From concept to delivery - discover how we transform your ideas into
             high-quality custom apparel with our streamlined 6-step process,
             backed by years of expertise and state-of-the-art facilities."
@@ -162,25 +162,29 @@ export default function OurProcess() {
             return (
               <Card
                 key={index}
-                className="relative overflow-hidden group transition-all duration-300  rounded-none shadow-none border-none bg-white"
+                className="relative overflow-hidden group transition-all duration-300   shadow-none border-none bg-white rounded-2xl"
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-none flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                      <IconComponent className="w-6 h-6 text-orange-500" />
+                    <div className="relative top-5">
+                      <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
+                      <div className="mb-6">
+                        <div className="relative inline-block">
+                          <div className="relative bg-white rounded-3xl p-3">
+                            <IconComponent className="w-6 h-6 text-orange-500" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div className="flex-1">
-                      {/* <Badge variant="outline" className="text-xs mb-2">
-                        Step {index + 1}
-                      </Badge> */}
-                      <CardTitle className="text-lg font-semibold text-gray-900">
+                      <CardTitle className="text-lg font-semibold text-black">
                         {step.title}
                       </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-500 mb-4 leading-relaxed">
+                  <CardDescription className="text-black mb-4 leading-relaxed">
                     {step.description}
                   </CardDescription>
                   <div className="space-y-2">
@@ -189,24 +193,25 @@ export default function OurProcess() {
                         key={featureIndex}
                         className="flex items-center gap-2"
                       >
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{feature}</span>
+                        <CheckCircle className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                        <span className="text-sm text-black">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </CardContent>
+                <br />
               </Card>
             );
           })}
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="bg-white p-8 md:p-12  mb-16">
+        <div className="bg-white p-8 md:p-12  my-16 rounded-2xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Ferrati?
+            <h2 className="text-5xl font-bold text-black mb-4">
+              Why Choose <span className="text-orange-500">Ferrati?</span>
             </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <p className="text-black text-xl max-w-2xl mx-auto">
               We stand out as the best apparel manufacturer with our commitment
               to quality, innovation, and customer satisfaction.
             </p>
@@ -220,14 +225,24 @@ export default function OurProcess() {
                   key={index}
                   className="flex items-start gap-4 p-4 rounded-none hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-none flex items-center justify-center">
+                  {/* <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-none flex items-center justify-center">
                     <IconComponent className="w-5 h-5 text-orange-500" />
+                  </div> */}
+                  <div className="relative">
+                    <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
+                    <div className="mb-6">
+                      <div className="relative inline-block">
+                        <div className="relative bg-white rounded-3xl p-3">
+                          <IconComponent className="w-6 h-6 text-orange-500" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">
+                    <h3 className="font-semibold text-black mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-500">{item.description}</p>
+                    <p className="text-sm text-black">{item.description}</p>
                   </div>
                 </div>
               );
@@ -236,22 +251,22 @@ export default function OurProcess() {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 mb-8">
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">2019</div>
-            <div className="text-sm text-gray-500">Established</div>
+            <div className="text-sm text-black">Established</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">4000</div>
-            <div className="text-sm text-gray-500">Sq Meter Factory</div>
+            <div className="text-sm text-black">Sq Meter Factory</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">15+</div>
-            <div className="text-sm text-gray-500">Fabric Types</div>
+            <div className="text-sm text-black">Fabric Types</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">25</div>
-            <div className="text-sm text-gray-500">Min Order Qty</div>
+            <div className="text-sm text-black">Min Order Qty</div>
           </div>
         </div>
       </div>{" "}

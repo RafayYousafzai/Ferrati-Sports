@@ -45,11 +45,11 @@ export default function GuideSection() {
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl  font-bold text-gray-900 mb-4">
+          <h2 className="text-5xl  font-bold text-black mb-4">
             We Get It. That&apos;s Why We Built{" "}
             <span className="text-orange-600">Ferrati Sports.</span>
           </h2>
-          <p className="text-lg text-balance text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
             We&apos;ve helped over{" "}
             <span className="font-bold text-orange-600">
               200 apparel brands
@@ -90,12 +90,10 @@ export default function GuideSection() {
                     </div>
                   </div>
                   <div>
-                    <h6 className="font-bold text-sm -mt-2 text-gray-900 mb-1">
+                    <h6 className="font-bold text-sm -mt-2 text-black mb-1">
                       {feature.title}
                     </h6>
-                    <p className="text-sm  text-gray-600">
-                      {feature.description}
-                    </p>
+                    <p className="text-sm  text-black">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -160,7 +158,7 @@ export default function GuideSection() {
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          {/* <p className="text-lg text-gray-700 mb-6">
+          {/* <p className="text-lg text-black mb-6">
             We{" "}
             <span className="text-orange-500 font-semibold">
               know the feeling.

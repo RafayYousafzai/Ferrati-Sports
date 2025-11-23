@@ -24,7 +24,7 @@ export default function Process() {
     {
       number: "3",
       title: "Launch with Confidence",
-      description: "Receive your finished products in 30 days — ready to sell.",
+      description: "Receive your finished products in 30 days ready to sell.",
       icon: "Rocket",
     },
   ];
@@ -72,7 +72,7 @@ export default function Process() {
                             <div className="absolute -top-2 -left-2 w-12 h-12 bg-orange-500 rounded-sm" />
                             <div className="relative bg-white rounded-3xl p-3">
                               <IconComponent
-                                className="w-12 h-12 text-gray-700"
+                                className="w-12 h-12 text-gray-900"
                                 strokeWidth={1.5}
                               />
                             </div>
@@ -83,7 +83,7 @@ export default function Process() {
                           {step.title}
                         </h3>
 
-                        <p className="text-gray-600 leading-relaxed text-balance">
+                        <p className="text-black leading-relaxed text-balance">
                           {step.description}
                         </p>
                       </CardContent>
