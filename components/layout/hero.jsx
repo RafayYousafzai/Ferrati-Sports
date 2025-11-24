@@ -19,7 +19,7 @@ const DotIcon = () => (
 
 const Portfolio = () => {
   return (
-    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen w-full relative   font-sans p-4 sm:p-6 lg:p-8">
       {}
       <div className="absolute inset-0 z-0 dark:hidden" />
 
@@ -98,7 +98,7 @@ const Portfolio = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full">
+      <div>
         <BrandMarquee />
       </div>
     </div>
