@@ -84,7 +84,7 @@ export default function GuideSection() {
                       <div className="mb-6">
                         <div className="relative inline-block">
                           <div className="relative bg-white rounded-3xl p-3">
-                            <feature.icon className="w-6 h-6 text-orange-600" />{" "}
+                            <feature.icon className="w-6 h-6 text-black" />{" "}
                           </div>
                         </div>
                       </div>

@@ -3,28 +3,16 @@ import React from "react";
 
 const logos = [
   {
-    src: "https://cdn.simpleicons.org/nike/000000",
-    alt: "Nike",
+    src: "/assets/logos/agrius.png",
+    alt: "agrius",
   },
   {
-    src: "https://cdn.simpleicons.org/adidas/000000",
-    alt: "Adidas",
+    src: "/assets/logos/riderich.png",
+    alt: "riderich",
   },
   {
-    src: "https://cdn.simpleicons.org/puma/000000",
-    alt: "Puma",
-  },
-  {
-    src: "https://cdn.simpleicons.org/underarmour/000000",
-    alt: "Under Armour",
-  },
-  {
-    src: "https://cdn.simpleicons.org/reebok/000000",
-    alt: "Reebok",
-  },
-  {
-    src: "https://cdn.simpleicons.org/newbalance/000000",
-    alt: "New Balance",
+    src: "/assets/logos/ghostbikes.png",
+    alt: "ghostbikes",
   },
 ];
 
@@ -37,14 +25,30 @@ const BrandMarquee = () => {
     ...logos,
     ...logos,
     ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
   ];
 
   return (
     <div className="relative w-full overflow-hidden  py-8">
-      <div className="flex animate-marquee">
+      <div className="flex animate-marquee gap-10">
         {repeatedLogos.map((logo, index) => (
           <div key={index} className="flex-shrink-0 w-16 mx-4">
-            <img className="w-full h-auto" src={logo.src} alt={logo.alt} />
+            <img
+              className="w-full h-auto rounded-full"
+              src={logo.src}
+              alt={logo.alt}
+            />
           </div>
         ))}
       </div>

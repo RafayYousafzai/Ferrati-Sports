@@ -158,7 +158,7 @@ const Problem = () => {
                           <div className="relative inline-block">
                             <div className="relative bg-white rounded-3xl p-3">
                               <item.icon
-                                className="w-6 h-6 text-orange-500"
+                                className="w-6 h-6 text-black"
                                 strokeWidth={2}
                               />
                             </div>
@@ -358,7 +358,7 @@ const Problem = () => {
                           <div className="relative inline-block">
                             <div className="relative bg-white rounded-3xl p-3">
                               <item.icon
-                                className="w-6 h-6 text-orange-500"
+                                className="w-6 h-6 text-black"
                                 strokeWidth={2}
                               />
                             </div>
