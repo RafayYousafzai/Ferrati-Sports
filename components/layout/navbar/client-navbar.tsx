@@ -194,11 +194,11 @@ export default function ClientNavbar({
         <NavbarContent>
           <NavbarBrand>
             <Link href="/">
-              <div className="relative xl:flex w-[60px] h-[60px]">
+              <div className="relative xl:flex w-auto h-[4rem]">
                 <Image
                   alt="Ferrati Sports Logo"
-                  className="object-contain w-[60px] h-[60px]"
-                  src="/logo.jpg"
+                  className="object-contain w-auto h-[4rem]"
+                  src="/logo.png"
                 />
               </div>
             </Link>

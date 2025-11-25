@@ -34,7 +34,7 @@ const BrandMarquee = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden bg-transparent ">
+    <div className="w-full py-10 overflow-hidden bg-transparent">
       {/* <div className="container mx-auto px-6 mb-8">
         <div className="text-center">
           <h3 className="text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.3em]">
@@ -48,7 +48,7 @@ const BrandMarquee = () => {
           {repeatedLogos.map((logo, index) => (
             <div
               key={index}
-              className="mx-8 w-32 md:w-44 aspect-[3/2] flex items-center justify-center group"
+              className="mx-4 md:mx-8 w-24 md:w-44 aspect-[3/2] flex items-center justify-center group"
             >
               <img
                 className="w-full h-full rounded-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-out transform group-hover:scale-110"

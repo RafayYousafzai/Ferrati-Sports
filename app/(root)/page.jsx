@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://ferrati-sports.com",
     images: [
       {
-        url: "/logo.jpg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Ferrati Sports Logo",
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Ferrati Sports - Premium Custom Clothing Manufacturing",
     description:
       "Leading manufacturer of custom clothing and sportswear. High-quality garments for brands worldwide.",
-    images: ["/logo.jpg"],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
