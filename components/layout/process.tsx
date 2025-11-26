@@ -3,8 +3,9 @@ import { ChevronRight, Calendar, CheckCircle, Rocket } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@heroui/button";
+import EditableText from "@/components/editable-text";
 
-export default function Process() {
+export default function Process({ contentMap = {} }: { contentMap?: Record<string, string> }) {
   // Transform cards into 3-step process
   const steps = [
     {
@@ -50,12 +51,21 @@ export default function Process() {
                 THE PLAN
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mt-8 mb-6">
-                Your Path to Hustle-Free Manufacturing
+                <EditableText
+                  id="process_title"
+                  defaultValue="Your Path to Hustle-Free Manufacturing"
+                  initialContent={contentMap["process_title"]}
+                  as="span"
+                />
               </h2>
-              <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                From concept to delivery, we&apos;ve streamlined the entire
-                process into three simple steps.
-              </p>
+              <EditableText
+                id="process_description"
+                defaultValue="From concept to delivery, we've streamlined the entire process into three simple steps."
+                initialContent={contentMap["process_description"]}
+                multiline
+                className="text-xl text-white/90 max-w-3xl mx-auto"
+                as="p"
+              />
             </div>
 
             {/* 3-Step Process with New Card Design */}
@@ -114,59 +124,6 @@ export default function Process() {
               </Button>
             </Link>
           </div>
-          {/* Success Section - Transformation */}
-          {/* <div className="relative max-w-7xl mx-auto mt-16 text-center">
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-8">
-          Picture This
-        </h3>
-        <div className="grid md:grid-cols-3 gap-8 mb-6 text-balance capitalize">
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
-            <p className="text-gray-800 text-lg font-semibold">
-              Your orders arrive exactly when you need them
-            </p>
-          </div>
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
-            <p className="text-gray-800 text-lg font-semibold">
-              Every piece meets your standards no surprises
-            </p>
-          </div>
-          <div className="backdrop-blur-sm rounded-lg p-6 bg-white/90 font-semibold ">
-            <p className="text-gray-800 text-lg font-semibold">
-              A partner who actually responds and follows through
-            </p>
-          </div>
-        </div>
-        <p className="text-xl text-white font-semibold mt-6">
-          That&apos;s exactly what working with Ferrati Sports feels like.
-        </p>
-      </div> */}
-
-          {/* Final Call to Action */}
-          {/* <div className="relative max-w-7xl mx-auto mt-12 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Stop Dealing with Unreliable Factories
-        </h3>
-        <p className="text-xl text-white/90 mb-6">
-          Let&apos;s manufacture your next collection — the way it should be
-          done.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="/request-quote">
-            <button className="px-8 py-4 bg-white text-orange-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all">
-              Get Your Free Quote
-            </button>
-          </a>
-          <a
-            href="https://wa.me/yourwhatsappnumber"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <button className="px-8 py-4 bg-green-500 text-white rounded-lg font-bold text-lg hover:bg-green-600 transition-all">
-              Chat on WhatsApp
-            </button>
-          </a>
-        </div>
-      </div> */}
         </div>{" "}
       </div>
     </section>

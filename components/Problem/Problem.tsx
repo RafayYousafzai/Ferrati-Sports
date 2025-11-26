@@ -18,8 +18,9 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import EditableText from "@/components/editable-text";
 
-const Problem = () => {
+const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -100,16 +101,29 @@ const Problem = () => {
     <section ref={ref} className="py-20 overflow-hidden">
       <div className="container mx-auto max-w-4xl text-balance mb-16">
         <h2 className="text-5xl capitalize font-bold text-center text-black mb-6">
-          You design. We make. <span className="text-orange-500">You win.</span>
+          <EditableText
+            id="problem_main_title_1"
+            // defaultValue="You design. We make."
+            initialContent={contentMap["problem_main_title_1"]}
+            as="span"
+          />{" "}
+          <EditableText
+            id="problem_main_title_2"
+            // defaultValue="You win."
+            className="text-orange-500"
+            initialContent={contentMap["problem_main_title_2"]}
+            as="span"
+          />
         </h2>
         <div className="w-32 rounded-2xl h-1 bg-orange-500 mx-auto mb-10 mt-2" />
-        <p className="text-md sm:text-xl text-center text-black leading-relaxed">
-          We&apos;re client partners first, committed to paving the way for
-          growth. We&apos;re focused on helping brands disrupt their industry
-          through digital marketing. We&apos;re also big on a work life balance.
-          We&apos;ve built a team of fun, driven, and motivated specialists who
-          are encouraged to live our company values.
-        </p>
+        <EditableText
+          id="problem_main_desc"
+          // defaultValue="We're client partners first, committed to paving the way for growth. We're focused on helping brands disrupt their industry through digital marketing. We're also big on a work life balance. We've built a team of fun, driven, and motivated specialists who are encouraged to live our company values."
+          initialContent={contentMap["problem_main_desc"]}
+          multiline
+          className="text-md sm:text-xl text-center text-black leading-relaxed"
+          as="p"
+        />
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl">
@@ -123,14 +137,27 @@ const Problem = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl font-bold text-black mb-4">
-              What You Have Been{" "}
-              <span className="text-orange-500">Struggling With.</span>
+              <EditableText
+                id="problem_pain_title_1"
+                defaultValue="What You Have Been"
+                initialContent={contentMap["problem_pain_title_1"]}
+                as="span"
+              />{" "}
+              <EditableText
+                id="problem_struggle_title_2"
+                defaultValue="Struggling With."
+                className="text-orange-500"
+                as="span"
+              />
             </h2>
-            <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
-              Slow trend adoption, overproduction, and weak quality control lead
-              to losses and customer issues while poor support and outdated
-              processes keep your brand lagging behind faster competitors.
-            </p>
+            <EditableText
+              id="problem_pain_desc"
+              defaultValue="Slow trend adoption, overproduction, and weak quality control lead to losses and customer issues while poor support and outdated processes keep your brand lagging behind faster competitors."
+              initialContent={contentMap["problem_pain_desc"]}
+              multiline
+              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+              as="p"
+            />
           </motion.div>
 
           {/* Two Column Layout */}
@@ -167,9 +194,13 @@ const Problem = () => {
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm text-black -mt-2">
-                        {item.description}
-                      </p>
+                      <EditableText
+                        id={`problem_item_${item.id}_desc`}
+                        defaultValue={item.description}
+                        initialContent={contentMap[`problem_item_${item.id}_desc`]}
+                        className="text-sm text-black -mt-2"
+                        as="p"
+                      />
                     </div>
                   </motion.div>
                 ))}
@@ -271,14 +302,33 @@ const Problem = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl  font-bold text-black mb-4">
-              How <span className="text-orange-500">Ferrati Empowers</span> You
-              With.
+              <EditableText
+                id="problem_solution_title_1"
+                defaultValue="How"
+                initialContent={contentMap["problem_solution_title_1"]}
+                as="span"
+              />{" "}
+              <EditableText
+                id="problem_solution_title_2"
+                defaultValue="Ferrati Empowers"
+                className="text-orange-500"
+                as="span"
+              />{" "}
+              <EditableText
+                id="problem_solution_title_3"
+                defaultValue="You With."
+                initialContent={contentMap["problem_solution_title_3"]}
+                as="span"
+              />
             </h2>
-            <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
-              Quick trend adaptation, smart order management, and strict quality
-              control cut waste and defects while responsive support and modern
-              systems keep your brand ahead and future-ready.
-            </p>
+            <EditableText
+              id="problem_solution_desc"
+              defaultValue="Quick trend adaptation, smart order management, and strict quality control cut waste and defects while responsive support and modern systems keep your brand ahead and future-ready."
+              initialContent={contentMap["problem_solution_desc"]}
+              multiline
+              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+              as="p"
+            />
           </motion.div>
 
           {/* Two Column Layout */}
@@ -367,9 +417,13 @@ const Problem = () => {
                       </div>
                     </div>
                     <div>
-                      <p className="text-sm -mt-2 text-black">
-                        {item.description}
-                      </p>
+                      <EditableText
+                        id={`solution_item_${item.id}_desc`}
+                        defaultValue={item.description}
+                        initialContent={contentMap[`solution_item_${item.id}_desc`]}
+                        className="text-sm -mt-2 text-black"
+                        as="p"
+                      />
                     </div>
                   </motion.div>
                 ))}

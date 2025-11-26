@@ -82,25 +82,29 @@ async function CategoriesSection() {
   return categories ? <CategoriesCarousal categories={categories} /> : null;
 }
 
+import { getAllContentBlocks } from "@/lib/content";
+
 // 🔹 Main page
 export default async function Home() {
+  const contentMap = await getAllContentBlocks();
+
   return (
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
-      <Hero />
+      <Hero contentMap={contentMap} />
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
-      <Problem />
+      <Problem contentMap={contentMap} />
 
       {/* 🤝 GUIDE SECTION - Position yourself as the expert guide */}
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <GuideSection />
+        <GuideSection contentMap={contentMap} />
       </Suspense>
 
       {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
-      <Process />
+      <Process contentMap={contentMap} />
       {/* 🏷️ CATEGORIES - Show what you can manufacture */}
       <Suspense
         fallback={<div className="h-32 animate-pulse bg-gray-200 rounded" />}

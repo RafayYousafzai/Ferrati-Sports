@@ -7,6 +7,7 @@ import { Building2, Zap, DollarSign, Leaf } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@heroui/button";
+import EditableText from "@/components/editable-text";
 
 const features = [
   {
@@ -31,7 +32,7 @@ const features = [
   },
 ];
 
-export default function GuideSection() {
+export default function GuideSection({ contentMap = {} }: { contentMap?: Record<string, string> }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -46,17 +47,28 @@ export default function GuideSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-5xl  font-bold text-black mb-4">
-            We Get It. That&apos;s Why We Built{" "}
-            <span className="text-orange-600">Ferrati Sports.</span>
+            <EditableText
+              id="guide_title_1"
+              defaultValue="We Get It. That's Why We Built"
+              initialContent={contentMap["guide_title_1"]}
+              as="span"
+            />{" "}
+            <EditableText
+              id="guide_title_2"
+              defaultValue="Ferrati Sports."
+              className="text-orange-600"
+              initialContent={contentMap["guide_title_2"]}
+              as="span"
+            />
           </h2>
-          <p className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed">
-            We&apos;ve helped over{" "}
-            <span className="font-bold text-orange-600">
-              200 apparel brands
-            </span>{" "}
-            across the UK, USA, and Europe bring their sportswear collections to
-            life on time and on budget.
-          </p>
+          <EditableText
+            id="guide_description"
+            defaultValue="We've helped over 200 apparel brands across the UK, USA, and Europe bring their sportswear collections to life on time and on budget."
+            initialContent={contentMap["guide_description"]}
+            multiline
+            className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+            as="p"
+          />
         </motion.div>
 
         {/* Two Column Layout */}
@@ -92,9 +104,20 @@ export default function GuideSection() {
                   </div>
                   <div>
                     <h6 className="font-bold text-sm -mt-2 text-black mb-1">
-                      {feature.title}
+                      <EditableText
+                        id={`guide_feature_${index}_title`}
+                        defaultValue={feature.title}
+                        initialContent={contentMap[`guide_feature_${index}_title`]}
+                        as="span"
+                      />
                     </h6>
-                    <p className="text-sm  text-black">{feature.description}</p>
+                    <EditableText
+                      id={`guide_feature_${index}_desc`}
+                      defaultValue={feature.description}
+                      initialContent={contentMap[`guide_feature_${index}_desc`]}
+                      className="text-sm  text-black"
+                      as="p"
+                    />
                   </div>
                 </motion.div>
               ))}

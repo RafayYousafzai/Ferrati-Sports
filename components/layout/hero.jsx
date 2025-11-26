@@ -5,8 +5,9 @@ import BrandMarquee from "./BrandMarquee";
 import Link from "next/link";
 import Image from "next/image";
 import { Check } from "lucide-react";
+import EditableText from "@/components/editable-text";
 
-const Portfolio = () => {
+const Portfolio = ({ contentMap = {} }) => {
   return (
     <div className="min-h-screen w-full relative font-sans flex flex-col justify-between pt-[12vh]">
       {/* Background elements */}
@@ -26,19 +27,30 @@ const Portfolio = () => {
           <div className="flex flex-col gap-6 items-start text-left order-2 lg:order-1 animate-fade-in-up">
             <div className="relative">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-                Sketch to Store <br />
-                <span className="bg-gradient-to-r from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-                  in 30 Days.
-                </span>
+                <EditableText
+                  id="hero_title_1"
+                  // defaultValue="Sketch to Store"
+                  initialContent={contentMap["hero_title_1"]}
+                  as="span"
+                /> <br />
+                <EditableText
+                  id="hero_title_2"
+                  // defaultValue="in 30 Days."
+                  initialContent={contentMap["hero_title_2"]}
+                  className="bg-gradient-to-r from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent"
+                  as="span"
+                />
               </h1>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-lg leading-relaxed">
-              We make high-quality custom sportswear that's built to last.
-              Whether you're launching a new brand, outfitting a team, or
-              expanding your product line, we handle everything from design to
-              delivery.
-            </p>
+            <EditableText
+              id="hero_description"
+              // defaultValue="We make high-quality custom sportswear that's built to last. Whether you're launching a new brand, outfitting a team, or expanding your product line, we handle everything from design to delivery."
+              initialContent={contentMap["hero_description"]}
+              multiline
+              className="text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-lg leading-relaxed"
+              as="p"
+            />
 
             <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
               <Link href="/request-quote" passHref>
