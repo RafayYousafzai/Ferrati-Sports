@@ -70,7 +70,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
       {/* Grid layout for contact inputs */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Input
-          isRequired
+          // isRequired
           label="First Name"
           radius="lg"
           startContent={<User className="h-4 w-4 text-gray-400" />}
@@ -80,7 +80,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
           onChange={(e) => setFirstName(e.target.value)}
         />{" "}
         <Input
-          isRequired
+          // isRequired
           label="Last Name"
           radius="lg"
           startContent={<User className="h-4 w-4 text-gray-400" />}
@@ -90,7 +90,7 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
           onChange={(e) => setLastName(e.target.value)}
         />
         <Input
-          isRequired
+          // isRequired
           label="Email Address"
           radius="lg"
           startContent={<Mail className="h-4 w-4 text-gray-400" />}

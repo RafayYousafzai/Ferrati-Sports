@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import CounterSection from "@/components/layout/counter-section";
 import FerratiAccordion from "@/components/layout/accordian";
 
 export const metadata = {
@@ -48,11 +47,6 @@ import { getCachedCategories } from "@/lib/supabase/cached-queries";
 import Problem from "@/components/Problem/Problem";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
-import GuideSection from "@/components/layout/guide-section";
-import SuccessSection from "@/components/layout/success-section";
-import UrgencySection from "@/components/layout/urgency-section";
-import PhilosophySection from "@/components/layout/philosophy-section";
-import FinalCTASection from "@/components/layout/final-cta-section";
 import Process from "@/components/layout/process";
 import PictureThisSection from "@/components/layout/picture-this-section";
 
@@ -100,7 +94,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        <GuideSection contentMap={contentMap} />
+        {/* <GuideSection contentMap={contentMap} /> */}
       </Suspense>
 
       {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
@@ -122,26 +116,6 @@ export default async function Home() {
 
       {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
       <AllProductsSummary order={["fabrics", "services"]} />
-
-      {/* 💪 WHY CHOOSE US - Reinforce your differentiation */}
-      {/* <SectionHeader
-        badge="Ferrati"
-        title="Why "
-        highlightedTitle="Choose Us"
-        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
-      /> */}
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <ServiceCards cards={whyCards} />
-      </Suspense> */}
-
-      {/* 🧠 PHILOSOPHY SECTION - Deepen trust with your values */}
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <PhilosophySection />
-      </Suspense> */}
 
       {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}
       <Suspense
@@ -168,13 +142,32 @@ export default async function Home() {
         reversed={true}
         variant={"orange"}
       />
-
-      {/* �📞 FINAL CTA SECTION - Strong close with clear action */}
-      {/* <Suspense
-        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
-      >
-        <FinalCTASection />
-      </Suspense> */}
     </>
   );
 }
+
+/* 💪 WHY CHOOSE US - Reinforce your differentiation */
+/*   <SectionHeader
+        badge="Ferrati"
+        title="Why "
+        highlightedTitle="Choose Us"
+        subtitle="Discover the unparalleled advantages that make us the ideal partner for bringing your brand's vision to life."
+      /> */
+/*  <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <ServiceCards cards={whyCards} />
+      </Suspense> */
+/* 🧠 PHILOSOPHY SECTION - Deepen trust with your values */
+/*   <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <PhilosophySection />
+      </Suspense> */
+/* �📞 FINAL CTA SECTION - Strong close with clear action */
+
+/*  <Suspense
+        fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
+      >
+        <FinalCTASection />
+      </Suspense> */
