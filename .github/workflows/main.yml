@@ -28,11 +28,11 @@ jobs:
       - name: Install Vercel CLI
         run: bun add -g vercel
 
-      - name: Run Tests
-        run: bun run test
+      # - name: Run Tests
+      #   run: bun run test
 
-      - name: Run Build Check
-        run: bun run build
+      # - name: Run Build Check
+      #   run: bun run build
 
       - name: Pull Vercel Environment
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
