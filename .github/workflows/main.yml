@@ -16,6 +16,6 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Run tests
-        run: bun test
+        run: bun run jest
       - name: Run build check
         run: bun run build
