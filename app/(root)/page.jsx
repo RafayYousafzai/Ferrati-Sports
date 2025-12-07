@@ -77,6 +77,7 @@ async function CategoriesSection() {
 }
 
 import { getAllContentBlocks } from "@/lib/content";
+import GuideSection from "@/components/layout/guide-section";
 
 // 🔹 Main page
 export default async function Home() {
@@ -94,7 +95,7 @@ export default async function Home() {
       <Suspense
         fallback={<div className="h-64 animate-pulse bg-gray-200 rounded" />}
       >
-        {/* <GuideSection contentMap={contentMap} /> */}
+        <GuideSection contentMap={contentMap} />
       </Suspense>
 
       {/* 🧭 PLAN SECTION - Show the simple 3-step path (includes CTA) */}
