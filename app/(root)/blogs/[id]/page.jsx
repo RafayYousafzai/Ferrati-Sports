@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 import Header from "@/components/custom-ui/header";
 import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
@@ -8,9 +6,8 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 
 // Main page component
 export default async function BlogPage({ params }) {
-  const blogSlug = params.id;
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const { id: blogSlug } = await params;
+  const supabase = await createClient();
 
   // Fetch the specific blog by slug (or fallback to ID)
   let { data: fabric } = await supabase

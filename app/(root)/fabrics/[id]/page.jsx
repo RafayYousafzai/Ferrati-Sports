@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 import Header from "@/components/custom-ui/header";
 import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
@@ -9,10 +7,9 @@ import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 // Main page component
 export default async function FabricPage({ params }) {
-  const fabricSlug = params.id;
+  const { id: fabricSlug } = await params;
 
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient();
 
   // Fetch the specific fabric by slug
   const { data: fabric } = await supabase

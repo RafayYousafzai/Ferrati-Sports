@@ -1,6 +1,5 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
@@ -29,8 +28,7 @@ export async function submitQuoteRequest(formData: FormData) {
     return { error: "Email and First Name are required" };
   }
 
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient();
 
   const { error } = await supabase.from("requested_quotes").insert([
     {

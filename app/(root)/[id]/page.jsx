@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 import Card from "@/components/custom-ui/card";
 import Header from "@/components/custom-ui/header";
 import ProductDetails from "@/components/layout/product-details";
@@ -9,10 +7,9 @@ import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import FerratiAccordion from "@/components/layout/accordian";
 
 export default async function CategoryPage({ params }) {
-  const categorySlug = params.id;
+  const { id: categorySlug } = await params;
 
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient();
 
   const { data: category, error: categoryError } = await supabase
     .from("categories")

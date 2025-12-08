@@ -57,9 +57,11 @@ export function ProductSelectionPanel({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const onMakeNewQuote = () => setView("cart");
 
+  console.log(cart);
+
   const product = filteredProducts.find((p) => p.id === selectedProduct);
   const availableFabrics = fabrics.filter((fabric) =>
-    product?.fabric_ids?.includes(fabric.id),
+    product?.fabric_ids?.includes(fabric.id)
   );
 
   return (
@@ -87,14 +89,14 @@ export function ProductSelectionPanel({
                         placeholder="Select a category"
                         radius="full"
                         renderValue={(items) => {
-                          return items.map((item) => {
+                          return items.map((item, idx) => {
                             const category = categories.find(
-                              (cat) => cat.id === item.key,
+                              (cat) => cat.id === item.key
                             );
 
                             return (
                               <div
-                                key={item.key}
+                                key={`${item.key}-${idx}`}
                                 className="flex items-center gap-2"
                               >
                                 {category?.image_url && (
@@ -160,7 +162,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const product = filteredProducts.find(
-                              (prod) => prod.id === item.key,
+                              (prod) => prod.id === item.key
                             );
 
                             return (
@@ -244,7 +246,7 @@ export function ProductSelectionPanel({
                         renderValue={(items) => {
                           return items.map((item) => {
                             const fabric = fabrics.find(
-                              (fab) => fab.id === item.key,
+                              (fab) => fab.id === item.key
                             );
 
                             return (

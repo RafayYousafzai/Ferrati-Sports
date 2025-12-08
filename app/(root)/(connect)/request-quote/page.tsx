@@ -127,12 +127,19 @@ export default function RequestQuote() {
         <QuoteContactForm
           description={description}
           email={email}
+          hideBtn={true}
           name={name}
           phone={phone}
           setDescription={setDescription}
           setEmail={setEmail}
           setName={setName}
           setPhone={setPhone}
+          submitForm={async (fullName, email, phone, description) => {
+            setName(fullName);
+            setEmail(email);
+            setPhone(phone);
+            setDescription(description);
+          }}
         />
 
         <Spacer y={6} />

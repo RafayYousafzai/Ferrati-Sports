@@ -10,7 +10,6 @@ import {
   Zap,
   Facebook,
 } from "lucide-react";
-import { cookies } from "next/headers";
 
 import { TwitterIcon } from "../icons";
 
@@ -90,8 +89,7 @@ const supportLinks = [
 ];
 
 const Footer = async () => {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("categories")

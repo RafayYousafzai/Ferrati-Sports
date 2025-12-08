@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import ProductDetails from "@/components/layout/product-details";
 import AllProductsSummary from "@/components/layout/all-products-summary";
@@ -7,10 +6,9 @@ import Link from "next/link";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 export default async function Page({ params }) {
-  const serviceSlug = params.id;
+  const { id: serviceSlug } = await params;
 
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient();
 
   const { data: service } = await supabase
     .from("services")

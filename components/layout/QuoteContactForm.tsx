@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Input } from "@heroui/input";
 import { Textarea } from "@heroui/input";
 import { Button } from "@heroui/button";
@@ -17,9 +17,18 @@ interface QuoteContactFormProps {
   setPhone: (phone: string) => void;
   description: string;
   setDescription: (description: string) => void;
+  submitForm?: (
+    fullName: string,
+    email: string,
+    phone: string,
+    description: string
+  ) => Promise<void>;
 }
 
-const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
+const QuoteContactForm: FC<QuoteContactFormProps & { hideBtn?: boolean }> = ({
+  hideBtn,
+  submitForm,
+}) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -58,6 +67,12 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
       setDescription("");
     }
   };
+
+  useEffect(() => {
+    if (submitForm) {
+      submitForm(firstName + " " + lastName, email, phone, description);
+    }
+  }, [firstName, lastName, email, phone, description]);
 
   return (
     <div className="w-full ">
@@ -125,16 +140,18 @@ const QuoteContactForm: FC<QuoteContactFormProps> = ({}) => {
       <br />
 
       {/* Submit Button */}
-      <Button
-        className="bg-orange-500 w-full mt-6"
-        color="primary"
-        isLoading={isSubmitting}
-        size="lg"
-        onClick={handleSubmit}
-        // isDisabled={!name || !email || isSubmitting}
-      >
-        {isSubmitting ? "Submitting..." : "Submit Quote Request"}
-      </Button>
+      {hideBtn ? null : (
+        <Button
+          className="bg-orange-500 w-full mt-6"
+          color="primary"
+          isLoading={isSubmitting}
+          size="lg"
+          onClick={handleSubmit}
+          // isDisabled={!name || !email || isSubmitting}
+        >
+          {isSubmitting ? "Submitting..." : "Submit Quote Request"}
+        </Button>
+      )}
 
       {/* Success/Error Message */}
       {submitMessage && (
