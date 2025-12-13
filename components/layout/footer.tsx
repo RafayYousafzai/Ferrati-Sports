@@ -251,7 +251,7 @@ const Footer = async () => {
                 <li key={category.id}>
                   <Link
                     className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"
-                    href={`/${category.slug || category.id}`}
+                    href={`/us/${category.slug || category.id}`}
                   >
                     <div className="w-2 h-2 bg-white rounded-full group-hover:scale-125 transition-transform" />
                     {category.title}

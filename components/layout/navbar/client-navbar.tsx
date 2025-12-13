@@ -96,12 +96,12 @@ export default function ClientNavbar({
         .filter((product) => product.category_id === category.id)
         .map((product) => ({
           title: product.title,
-          href: `/${category.slug || category.id}/${product.slug || product.id}`,
+          href: `/us/${category.slug || category.id}/${product.slug || product.id}`,
         }));
 
       return {
         title: category.title,
-        href: `/${category.slug || category.id}`,
+        href: `/us/${category.slug || category.id}`,
         description: `${category.description.substring(0, 50)}...`,
         image: category.image_url || "/placeholder.svg?height=200&width=200",
         products: categoryProducts, // Add products to category
