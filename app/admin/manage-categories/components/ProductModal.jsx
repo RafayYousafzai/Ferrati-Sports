@@ -147,6 +147,28 @@ export default function ProductModal({
                   setProductForm({ ...productForm, price: e.target.value })
                 }
               />
+              <Input
+                label="Meta Title"
+                placeholder="Enter meta title for SEO"
+                description="Used in search engine results (optional)"
+                value={productForm.meta_title || ""}
+                onChange={(e) =>
+                  setProductForm({ ...productForm, meta_title: e.target.value })
+                }
+              />
+              <Textarea
+                label="Meta Description"
+                minRows={2}
+                placeholder="Enter meta description for SEO"
+                description="Used in search engine results (optional, max 160 characters)"
+                value={productForm.meta_description || ""}
+                onChange={(e) =>
+                  setProductForm({
+                    ...productForm,
+                    meta_description: e.target.value,
+                  })
+                }
+              />
               <div className="space-y-2 bg-[#e4e4e7] py-4 px- rounded-2xl    ">
                 <label className="text-sm font-medium p-6">Description</label>
                 <SimpleEditor

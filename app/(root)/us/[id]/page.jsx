@@ -6,6 +6,39 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import FerratiAccordion from "@/components/layout/accordian";
 
+export async function generateMetadata({ params }) {
+  const { id: categorySlug } = await params;
+  const supabase = await createClient();
+
+  const { data: category } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("slug", categorySlug)
+    .single();
+
+  if (!category) {
+    return {
+      title: "Category Not Found",
+      description: "The requested category could not be found.",
+    };
+  }
+
+  // Use meta_title and meta_description if available, otherwise fallback to title and description
+  const title = category.meta_title || category.title;
+  const description = category.meta_description || category.description;
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: "website",
+      images: category.image_url ? [{ url: category.image_url }] : [],
+    },
+  };
+}
+
 export default async function CategoryPage({ params }) {
   const { id: categorySlug } = await params;
 

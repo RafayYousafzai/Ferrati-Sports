@@ -9,6 +9,58 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
+export async function generateMetadata({ params }) {
+  const { id: categorySlug, slug: productSlug } = await params;
+  const supabase = await createClient();
+
+  const { data: category } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("slug", categorySlug)
+    .single();
+
+  if (!category) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  const { data: products } = await supabase
+    .from("products")
+    .select("*")
+    .eq("category_id", category.id);
+
+  const selectedProduct = products?.find(
+    (product) => product.slug === productSlug || product.id === productSlug
+  );
+
+  if (!selectedProduct) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  // Use meta_title and meta_description if available, otherwise fallback to title
+  const title = selectedProduct.meta_title || selectedProduct.title;
+  const description =
+    selectedProduct.meta_description || selectedProduct.subtitle;
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: "website",
+      images: selectedProduct.image_url
+        ? [{ url: selectedProduct.image_url }]
+        : [],
+    },
+  };
+}
+
 export default async function CategoryPage({ params }) {
   const { id: categorySlug, slug: productSlug } = await params;
 

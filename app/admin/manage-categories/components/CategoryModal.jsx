@@ -68,6 +68,30 @@ export default function CategoryModal({
                 })
               }
             />
+            <Input
+              label="Meta Title"
+              placeholder="Enter meta title for SEO"
+              description="Used in search engine results (optional)"
+              value={categoryForm.meta_title || ""}
+              variant="bordered"
+              onChange={(e) =>
+                setCategoryForm({ ...categoryForm, meta_title: e.target.value })
+              }
+            />
+            <Textarea
+              label="Meta Description"
+              minRows={2}
+              placeholder="Enter meta description for SEO"
+              description="Used in search engine results (optional, max 160 characters)"
+              value={categoryForm.meta_description || ""}
+              variant="bordered"
+              onChange={(e) =>
+                setCategoryForm({
+                  ...categoryForm,
+                  meta_description: e.target.value,
+                })
+              }
+            />
             <div className="space-y-3">
               <p className="text-sm font-medium">Category Image</p>
               {imagePreview && (
