@@ -41,6 +41,8 @@ export default function CategoriesPage() {
     slug: "",
     description: "",
     image_url: "",
+    meta_title: "",
+    meta_description: "",
   });
   const [productForm, setProductForm] = useState({
     title: "",
@@ -54,6 +56,8 @@ export default function CategoriesPage() {
     trustpilot: "",
     google_reviews: "",
     fabric_ids: [],
+    meta_title: "",
+    meta_description: "",
   });
 
   const [categoryImageFile, setCategoryImageFile] = useState(null);
@@ -142,6 +146,8 @@ export default function CategoriesPage() {
       price: "",
       description: "",
       image_url: "",
+      meta_title: "",
+      meta_description: "",
     });
     setCategoryImageFile(null);
     setCategoryImagePreview("");
@@ -159,6 +165,8 @@ export default function CategoriesPage() {
       image_url: "",
       category_id: "",
       fabric_ids: [],
+      meta_title: "",
+      meta_description: "",
     });
     setProductImageFile(null);
     setProductImagePreview("");
@@ -210,9 +218,15 @@ export default function CategoriesPage() {
         image_url: imageUrl,
       };
 
-      // Only add slug if it has a value
+      // Only add optional fields if they have values
       if (categoryForm.slug && categoryForm.slug.trim()) {
         categoryData.slug = categoryForm.slug.trim();
+      }
+      if (categoryForm.meta_title && categoryForm.meta_title.trim()) {
+        categoryData.meta_title = categoryForm.meta_title.trim();
+      }
+      if (categoryForm.meta_description && categoryForm.meta_description.trim()) {
+        categoryData.meta_description = categoryForm.meta_description.trim();
       }
 
       const { error } = editingCategory
@@ -263,9 +277,15 @@ export default function CategoriesPage() {
         description: content,
       };
 
-      // Only add slug if it has a value
+      // Only add optional fields if they have values
       if (productForm.slug && productForm.slug.trim()) {
         dataToSave.slug = productForm.slug.trim();
+      }
+      if (productForm.meta_title && productForm.meta_title.trim()) {
+        dataToSave.meta_title = productForm.meta_title.trim();
+      }
+      if (productForm.meta_description && productForm.meta_description.trim()) {
+        dataToSave.meta_description = productForm.meta_description.trim();
       }
 
       const { error } = editingProduct

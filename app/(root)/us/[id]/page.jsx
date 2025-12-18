@@ -97,7 +97,7 @@ export default async function CategoryPage({ params }) {
         {products?.map((product) => (
           <Card
             key={product.id}
-            href={`${categorySlug}/${product.slug || product.id}`}
+            href={`/us/${categorySlug}/${product.slug || product.id}`}
             image={product.image_url}
             title={product.title}
           >
@@ -130,7 +130,7 @@ export default async function CategoryPage({ params }) {
           />
         ))
       )} */}
-      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />{" "}
+      <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
       <FerratiAccordion calculator={true} />
     </div>
   );

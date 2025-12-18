@@ -146,7 +146,7 @@ export default async function CategoryPage({ params }) {
           {products?.map((product) => (
             <Card
               key={product.id}
-              href={`/${categorySlug}/${product.slug || product.id}`}
+              href={`/us/${categorySlug}/${product.slug || product.id}`}
               image={product.image_url}
               title={product.title}
             >
