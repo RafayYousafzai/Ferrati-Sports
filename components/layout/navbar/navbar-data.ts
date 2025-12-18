@@ -49,7 +49,7 @@ export async function getNavbarData(): Promise<NavbarData> {
 
     const categories = (categoriesData || []).map((cat: any) => ({
       id: cat.id,
-      title: cat.title,
+      title: cat.menu_title || cat.title,
       description: cat.description,
       image_url: cat.image_url,
       created_at: cat.created_at || new Date().toISOString(),
@@ -71,7 +71,7 @@ export async function getNavbarData(): Promise<NavbarData> {
     const products = (productsData || []).map((product: any) => ({
       id: product.id,
       category_id: product.category_id,
-      title: product.title,
+      title: product.menu_title || product.title,
       description: product.description,
       image_url: product.image_url,
       slug: product.slug,

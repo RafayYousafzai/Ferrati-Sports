@@ -40,6 +40,16 @@ export default function CategoryModal({
               onChange={(e) =>
                 setCategoryForm({ ...categoryForm, title: e.target.value })
               }
+            />{" "}
+            <Input
+              isRequired
+              label="Menu Title"
+              placeholder="Enter category menu title"
+              value={categoryForm.menu_title}
+              variant="bordered"
+              onChange={(e) =>
+                setCategoryForm({ ...categoryForm, menu_title: e.target.value })
+              }
             />
             <Input
               label="URL Slug"

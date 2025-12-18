@@ -83,11 +83,20 @@ export default function ProductModal({
               </Select>
               <Input
                 isRequired
-                label="Title"
+                label="Product Title"
                 placeholder="Enter product title"
                 value={productForm.title}
                 onChange={(e) =>
                   setProductForm({ ...productForm, title: e.target.value })
+                }
+              />{" "}
+              <Input
+                isRequired
+                label="Menu Title"
+                placeholder="Enter menu title"
+                value={productForm.menu_title}
+                onChange={(e) =>
+                  setProductForm({ ...productForm, menu_title: e.target.value })
                 }
               />
               <Input
@@ -136,7 +145,6 @@ export default function ProductModal({
                   }
                 />
               </div>
-
               <Input
                 isRequired
                 type="number"

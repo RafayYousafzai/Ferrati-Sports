@@ -37,12 +37,14 @@ export default function CategoriesPage() {
 
   const [categoryForm, setCategoryForm] = useState({
     title: "",
+    menu_title: "",
     slug: "",
     description: "",
     image_url: "",
   });
   const [productForm, setProductForm] = useState({
     title: "",
+    menu_title: "",
     slug: "",
     subtitle: "",
     price: "",
@@ -149,6 +151,8 @@ export default function CategoriesPage() {
   const resetProductForm = () => {
     setProductForm({
       title: "",
+      menu_title: "",
+      subtitle: "",
       slug: "",
       price: "",
       description: "",
@@ -200,6 +204,8 @@ export default function CategoriesPage() {
       // Prepare data - only include slug if it exists
       const categoryData = {
         title: categoryForm.title,
+        menu_title: categoryForm.menu_title,
+        slug: categoryForm.slug,
         description: categoryForm.description,
         image_url: imageUrl,
       };
