@@ -9,6 +9,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ToastProvider } from "@heroui/toast";
 import NextTopLoader from "nextjs-toploader";
 
+import { usePathname } from "next/navigation";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -25,6 +26,8 @@ declare module "@react-types/shared" {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/admin");
 
   // useEffect(() => {
   //   createChat({
@@ -41,7 +44,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <NextThemesProvider {...themeProps}>
         <NextTopLoader color="#fc7521" showSpinner={false} />
         <ToastProvider />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        {isAdminPage ? (
+          <>{children}</>
+        ) : (
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        )}
         {/* <CustomChatWidget /> */}
       </NextThemesProvider>
     </HeroUIProvider>
