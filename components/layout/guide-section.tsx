@@ -30,9 +30,23 @@ const features = [
     title: "Ethical and sustainable",
     description: "Responsible manufacturing practices",
   },
+  {
+    icon: Zap,
+    title: "Expert design support",
+    description: "Guidance from concept to final product",
+  },
+  {
+    icon: DollarSign,
+    title: "Global shipping",
+    description: "Reliable delivery to your doorstep worldwide",
+  },
 ];
 
-export default function GuideSection({ contentMap = {} }: { contentMap?: Record<string, string> }) {
+export default function GuideSection({
+  contentMap = {},
+}: {
+  contentMap?: Record<string, string>;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -107,7 +121,9 @@ export default function GuideSection({ contentMap = {} }: { contentMap?: Record<
                       <EditableText
                         id={`guide_feature_${index}_title`}
                         defaultValue={feature.title}
-                        initialContent={contentMap[`guide_feature_${index}_title`]}
+                        initialContent={
+                          contentMap[`guide_feature_${index}_title`]
+                        }
                         as="span"
                       />
                     </h6>

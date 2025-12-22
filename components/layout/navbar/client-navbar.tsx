@@ -179,11 +179,7 @@ export default function ClientNavbar({
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300 ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      }`}
-    >
+    <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300">
       <Navbar
         className="transition-all duration-300 bg-black/90 h-[10vh]"
         disableAnimation={true}
@@ -240,14 +236,14 @@ export default function ClientNavbar({
               </Link>
             </NavbarItem>
           ))}
-          <Link href={"/services/free-clothing-samples"}>
+          {/* <Link href={"/services/free-clothing-samples"}>
             <button className="rounded-full uppercase border-2 border-white hover:border-orange-500 tracking-wider cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
               Calculator
             </button>
-          </Link>
+          </Link> */}
           <Link href={"request-quote"}>
-            <button className="rounded-full uppercase border-2 border-orange-500 bg-orange-500  tracking-wider  cursor-pointer  text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
-              Free Quote{" "}
+            <button className="rounded-full font-bold uppercase border-2 border-orange-500 bg-orange-500  tracking-widest  cursor-pointer  text-white px-4 py-2 -mr-2 transition-all duration-300">
+              Start Today!{" "}
             </button>
           </Link>
         </NavbarContent>

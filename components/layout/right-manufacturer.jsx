@@ -1,8 +1,4 @@
 "use client";
-import React from "react";
-import Header from "@/components/custom-ui/header";
-import Link from "next/link";
-import { Button } from "@heroui/button";
 import Separator from "../separator";
 
 const scenarios = [
@@ -11,8 +7,8 @@ const scenarios = [
       "https://images.unsplash.com/photo-1556745753-b2904692b3cd?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
     title: (
       <>
-        You have tried multiple{" "}
-        <span className="font-extrabold  ">suppliers</span>
+        Launch real collections instead of stuck in
+        <span className="font-extrabold  ">“sampling forever”</span>
       </>
     ),
     gradient: "from-blue-500/20 to-purple-500/20",
@@ -22,8 +18,9 @@ const scenarios = [
       "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
     title: (
       <>
-        You have <span className="font-extrabold  ">tested</span> different
-        factories
+        Sell with confidence because
+        <span className="font-extrabold  "> quality is consistent</span> every
+        time
       </>
     ),
     gradient: "from-green-500/20 to-teal-500/20",
@@ -33,17 +30,17 @@ const scenarios = [
       "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1000",
     title: (
       <>
-        But your brand is not <span className="font-extrabold ">scaling</span>{" "}
-        the way you hoped.
+        Scale your brand, not just produce{" "}
+        <span className="font-extrabold ">products</span>{" "}
       </>
     ),
     gradient: "from-orange-500/20 to-pink-500/20",
   },
 ];
 
-const PictureThisSection = () => {
+const RightManufacturer = () => {
   return (
-    <div className="pb-16 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
+    <div className="pb-6 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* <Header
           title="Real Reason Your Brand is still behind  "
@@ -53,12 +50,12 @@ const PictureThisSection = () => {
 
         <div className="mb-16 mt-20 mx-2 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            <span className="text-orange-500">Real Reason</span> Your Brand is
-            Still Behind
+            Once You Work With Right
+            <span className="text-orange-500"> Manufacturer</span>{" "}
           </h2>
-          <span className="block mx-auto text-center text-3xl font-bold mb-6 leading-tight bg-clip-text text-orange-500">
+          {/* <span className="block mx-auto text-center text-3xl font-bold mb-6 leading-tight bg-clip-text text-orange-500">
             (It's Not What You Think)
-          </span>
+          </span> */}
           <Separator bg="accent" />
         </div>
 
@@ -98,39 +95,7 @@ const PictureThisSection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 text-center">
-          {/* WHY Section with horizontal bullet list */}
-          <div className="mb-6 max-w-5xl mx-auto text-center">
-            <h3 className="text-2xl sm:text-4xl font-extrabold text-orange-500 mb-4">
-              Why?
-            </h3>
-            <ul className="flex flex-col items-start gap-2 mb-4 list-disc list-inside max-w-xl mx-auto tracking-wide text-left">
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
-                It is not because your designs are not good.
-              </li>
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
-                It is not because there is “too much competition”{" "}
-              </li>
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
-                It is not definitely because you are not working hard enough.
-              </li>
-            </ul>
-            <div className="text-base sm:text-lg text-gray-800 space-y-2 w-full mx-3 text-balance">
-              <p className=" tracking-wider">
-                It is because you are missing key parts of the{" "}
-                <span className="font-bold">manufacturing puzzle</span>. Success
-                is not just{" "}
-                <span className="italic text-orange-500">
-                  “finding a supplier”
-                </span>
-                . If that was all you needed, every brand would be scaling.
-              </p>
-              <p className=" tracking-wider">
-                Most factories focus on products but we focus on your
-                <span className="font-bold"> brand’s growth</span>.
-              </p>
-            </div>
-          </div>
+        {/* <div className="mt-12 text-center">
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto mx-auto justify-center">
             <Link href="/services/free-clothing-samples" passHref>
               <Button
@@ -144,10 +109,10 @@ const PictureThisSection = () => {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default PictureThisSection;
+export default RightManufacturer;

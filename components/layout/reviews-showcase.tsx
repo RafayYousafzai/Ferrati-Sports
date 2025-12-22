@@ -22,7 +22,7 @@ const reviews = [
   {
     id: 1,
     name: "Emily Carter",
-    date: "2025-12-12",
+    date: "2025-03-14",
     rating: 5,
     title: "Premium Quality Fabrics",
     content:
@@ -32,7 +32,7 @@ const reviews = [
   {
     id: 2,
     name: "James Patel",
-    date: "2025-12-10",
+    date: "2025-07-22",
     rating: 5,
     title: "Outstanding Customization",
     content:
@@ -42,7 +42,7 @@ const reviews = [
   {
     id: 3,
     name: "Sophia Martinez",
-    date: "2025-12-08",
+    date: "2025-01-30",
     rating: 5,
     title: "Excellent Service",
     content:
@@ -52,7 +52,7 @@ const reviews = [
   {
     id: 4,
     name: "Daniel Kim",
-    date: "2025-12-05",
+    date: "2025-09-18",
     rating: 5,
     title: "Perfect for Branding",
     content:
@@ -62,7 +62,7 @@ const reviews = [
   {
     id: 5,
     name: "Hannah Wilson",
-    date: "2025-12-03",
+    date: "2025-05-05",
     rating: 5,
     title: "Highly Recommended",
     content:
@@ -72,7 +72,7 @@ const reviews = [
   {
     id: 6,
     name: "Omar Sheikh",
-    date: "2025-12-01",
+    date: "2025-11-27",
     rating: 5,
     title: "Reliable & Creative",
     content:
@@ -121,7 +121,7 @@ export default function ReviewsShowcase() {
           <SwiperSlide key={review.id} className="!w-80 min-w-xl py-6">
             <Card className="w-full p-6  h-64 shadow-none rounded-2xl group animate-fade-in border-none bg-white ">
               <div className="flex justify-between items-start ">
-                <div className="flex gap-1">
+                {/* <div className="flex gap-1">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star
                       key={i}
@@ -129,7 +129,7 @@ export default function ReviewsShowcase() {
                       style={{ animationDelay: `${i * 100}ms` }}
                     />
                   ))}
-                </div>
+                </div> */}
                 {/* <Badge containerStyles=" -mt-4 w-[64px] h-[64px]" /> */}
               </div>
 

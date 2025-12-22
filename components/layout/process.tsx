@@ -4,13 +4,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@heroui/button";
 import EditableText from "@/components/editable-text";
+import { IconBulb } from "@tabler/icons-react";
 
-export default function Process({ contentMap = {} }: { contentMap?: Record<string, string> }) {
+export default function Process({
+  contentMap = {},
+}: {
+  contentMap?: Record<string, string>;
+}) {
   // Transform cards into 3-step process
   const steps = [
     {
       number: "1",
-      title: "Book Your Free Call",
+      title: "Share Your Vision",
       description:
         "Send us your design or idea. We'll guide you through 100+ fabric choices, fit options, and finishing touches. ",
       icon: "Calendar",
@@ -31,7 +36,7 @@ export default function Process({ contentMap = {} }: { contentMap?: Record<strin
   ];
 
   const iconMap: Record<string, any> = {
-    Calendar: Calendar,
+    Calendar: IconBulb,
     CheckCircle: CheckCircle,
     Rocket: Rocket,
   };

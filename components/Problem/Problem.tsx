@@ -20,7 +20,11 @@ import { useRef } from "react";
 import Image from "next/image";
 import EditableText from "@/components/editable-text";
 
-const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) => {
+const Problem = ({
+  contentMap = {},
+}: {
+  contentMap?: Record<string, string>;
+}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -61,6 +65,13 @@ const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) =
       description:
         "Old ways of working that keep your brand behind while others move forward.",
     },
+    {
+      id: "6",
+      icon: AlertTriangle,
+      title: "Unreliable delivery",
+      description:
+        "Missed or late shipments disrupt your launch plans and disappoint customers.",
+    },
   ];
 
   // Hardcoded solution items with icons
@@ -68,32 +79,44 @@ const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) =
     {
       id: "1",
       icon: TrendingUp,
+      title: "Rapid trend adaptation",
       description:
         "Fast response to trends so your products reach the market on time.",
     },
     {
       id: "2",
       icon: ShieldCheck,
+      title: "Smart order management",
       description:
         "Smarter order control that avoids waste and protects your money.",
     },
     {
       id: "3",
       icon: BadgeCheck,
+      title: "Strict quality control",
       description:
         "Careful quality checks at every stage to stop defects before they happen.",
     },
     {
       id: "4",
       icon: Headphones,
+      title: "Responsive support",
       description:
         "A support team that is always ready with quick and clear answers.",
     },
     {
       id: "5",
       icon: Zap,
+      title: "Modern systems",
       description:
         "Modern systems and fresh ideas that prepare your brand for the future.",
+    },
+    {
+      id: "6",
+      icon: BadgeCheck,
+      title: "Reliable delivery",
+      description:
+        "On-time shipments ensure your launches go as planned and customers stay happy.",
     },
   ];
 
@@ -194,11 +217,23 @@ const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) =
                       </div>
                     </div>
                     <div>
+                      <h6 className="font-bold text-sm -mt-2 text-black mb-1">
+                        <EditableText
+                          id={`problem_item_${item.id}_title`}
+                          defaultValue={item.title}
+                          initialContent={
+                            contentMap[`problem_item_${item.id}_title`]
+                          }
+                          as="span"
+                        />
+                      </h6>
                       <EditableText
                         id={`problem_item_${item.id}_desc`}
                         defaultValue={item.description}
-                        initialContent={contentMap[`problem_item_${item.id}_desc`]}
-                        className="text-sm text-black -mt-2"
+                        initialContent={
+                          contentMap[`problem_item_${item.id}_desc`]
+                        }
+                        className="text-sm text-black"
                         as="p"
                       />
                     </div>
@@ -417,11 +452,23 @@ const Problem = ({ contentMap = {} }: { contentMap?: Record<string, string> }) =
                       </div>
                     </div>
                     <div>
+                      <h6 className="font-bold text-sm -mt-2 text-black mb-1">
+                        <EditableText
+                          id={`solution_item_${item.id}_title`}
+                          defaultValue={item.title}
+                          initialContent={
+                            contentMap[`solution_item_${item.id}_title`]
+                          }
+                          as="span"
+                        />
+                      </h6>
                       <EditableText
                         id={`solution_item_${item.id}_desc`}
                         defaultValue={item.description}
-                        initialContent={contentMap[`solution_item_${item.id}_desc`]}
-                        className="text-sm -mt-2 text-black"
+                        initialContent={
+                          contentMap[`solution_item_${item.id}_desc`]
+                        }
+                        className="text-sm text-black"
                         as="p"
                       />
                     </div>

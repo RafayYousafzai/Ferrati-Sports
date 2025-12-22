@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import FerratiAccordion from "@/components/layout/accordian";
+import RightManufacturer from "@/components/layout/right-manufacturer";
 
 export const metadata = {
   title: "Ferrati Sports - Premium Custom Clothing & Sportswear Manufacturing",
@@ -78,6 +79,7 @@ async function CategoriesSection() {
 
 import { getAllContentBlocks } from "@/lib/content";
 import GuideSection from "@/components/layout/guide-section";
+import { X } from "lucide-react";
 
 // 🔹 Main page
 export default async function Home() {
@@ -113,10 +115,12 @@ export default async function Home() {
       </Suspense>
       {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
       <PictureThisSection />
+
       {/* <UrgencySection /> */}
 
       {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
       <AllProductsSummary order={["fabrics", "services"]} />
+      <RightManufacturer />
 
       {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}
       <Suspense
