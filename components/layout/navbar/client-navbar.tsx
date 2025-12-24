@@ -236,7 +236,7 @@ export default function ClientNavbar({
               </Link>
             </NavbarItem>
           ))}
-          {/* <Link href={"/services/free-clothing-samples"}>
+          {/* <Link href={"/request-quote"}>
             <button className="rounded-full uppercase border-2 border-white hover:border-orange-500 tracking-wider cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
               Calculator
             </button>

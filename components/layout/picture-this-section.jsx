@@ -98,25 +98,25 @@ const PictureThisSection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center ">
           {/* WHY Section with horizontal bullet list */}
           <div className="mb-6 max-w-5xl mx-auto text-center">
             <h3 className="text-2xl sm:text-4xl font-extrabold text-orange-500 mb-4">
               Why?
             </h3>
             <ul className="flex flex-col items-start gap-2 mb-4 list-disc list-inside max-w-xl mx-auto tracking-wide text-left">
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
+              <li className="text-lg ml-6 sm:text-m text-black">
                 It is not because your designs are not good.
               </li>
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
+              <li className="text-lg ml-6 sm:text-m text-black">
                 It is not because there is “too much competition”{" "}
               </li>
-              <li className="text-lg ml-6 sm:text-md text-gray-800">
+              <li className="text-lg ml-6 sm:text-m text-black">
                 It is not definitely because you are not working hard enough.
               </li>
             </ul>
-            <div className="text-base sm:text-lg text-gray-800 space-y-2 w-full mx-3 text-balance">
-              <p className=" tracking-wider">
+            <div className="text-base sm:text-l space-y-2 w-full mx-3 text-balance text-black">
+              <p className="tracking-wider">
                 It is because you are missing key parts of the{" "}
                 <span className="font-bold">manufacturing puzzle</span>. Success
                 is not just{" "}
@@ -125,14 +125,14 @@ const PictureThisSection = () => {
                 </span>
                 . If that was all you needed, every brand would be scaling.
               </p>
-              <p className=" tracking-wider">
+              <p className="tracking-wider">
                 Most factories focus on products but we focus on your
                 <span className="font-bold"> brand’s growth</span>.
               </p>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto mx-auto justify-center">
-            <Link href="/services/free-clothing-samples" passHref>
+            <Link href="/request-quote" passHref>
               <Button
                 disableRipple
                 className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"

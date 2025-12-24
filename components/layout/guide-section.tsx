@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Building2, Zap, DollarSign, Leaf } from "lucide-react";
+import { Building2, Zap, DollarSign, Leaf, Headphones } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@heroui/button";
@@ -31,7 +31,7 @@ const features = [
     description: "Responsible manufacturing practices",
   },
   {
-    icon: Zap,
+    icon: Headphones,
     title: "Expert design support",
     description: "Guidance from concept to final product",
   },
@@ -206,7 +206,7 @@ export default function GuideSection({
             You have amazing plans for your brand, but your manufacturer keeps
             dropping the ball.
           </p> */}
-          <Link href="/services/free-clothing-samples">
+          <Link href="/request-quote">
             <Button
               disableRipple
               className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"

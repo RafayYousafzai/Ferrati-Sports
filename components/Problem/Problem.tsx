@@ -13,6 +13,8 @@ import {
   BadgeCheck,
   Headphones,
   Zap,
+  Truck,
+  TruckOff,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -67,7 +69,7 @@ const Problem = ({
     },
     {
       id: "6",
-      icon: AlertTriangle,
+      icon: PackageX,
       title: "Unreliable delivery",
       description:
         "Missed or late shipments disrupt your launch plans and disappoint customers.",
@@ -113,7 +115,7 @@ const Problem = ({
     },
     {
       id: "6",
-      icon: BadgeCheck,
+      icon: Truck,
       title: "Reliable delivery",
       description:
         "On-time shipments ensure your launches go as planned and customers stay happy.",
@@ -284,7 +286,7 @@ const Problem = ({
                   </div>
                   <div>
                     <div className="text-xl font-bold text-orange-500">
-                      Common Issues
+                      Problems
                     </div>
                     <div className="text-xs text-black font-medium">
                       We Solve
@@ -310,7 +312,7 @@ const Problem = ({
               You have amazing plans for your brand, but your manufacturer keeps
               dropping the ball.
             </p>
-            <Link href="/services/free-clothing-samples">
+            <Link href="/request-quote">
               <Button
                 disableRipple
                 className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"
@@ -409,11 +411,11 @@ const Problem = ({
                     <BadgeCheck className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-orange-500">
-                      Our Solutions
+                    <div className="text-xl font-bold text-orange-500 pr-2">
+                      Solutions
                     </div>
                     <div className="text-xs text-black font-medium">
-                      For Your Success
+                      We Provide
                     </div>
                   </div>
                 </div>
@@ -493,7 +495,7 @@ const Problem = ({
               that transform your manufacturing challenges into competitive
               advantages.
             </p>
-            <Link href="/services/free-clothing-samples">
+            <Link href="/request-quote">
               <Button
                 disableRipple
                 className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"

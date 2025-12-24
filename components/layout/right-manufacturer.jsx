@@ -97,7 +97,7 @@ const RightManufacturer = () => {
         {/* CTA Section */}
         {/* <div className="mt-12 text-center">
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto mx-auto justify-center">
-            <Link href="/services/free-clothing-samples" passHref>
+            <Link href="/request-quote" passHref>
               <Button
                 disableRipple
                 className="border-1 border-e-orange-500 hover:bg-orange-500 text-orange-500 hover:text-white font-bold text-base lg:text-lg px-12 py-8 border-orange-500 tracking-wider [&]:hover:opacity-100"

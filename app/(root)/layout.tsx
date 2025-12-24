@@ -9,7 +9,7 @@ import ScrollProgress from "@/components/layout/scroll-progress";
 // 🔹 Lazy load below-the-fold sections
 const NewsletterSection = dynamic(
   () => import("@/components/layout/newsletter/newsletter-section"),
-  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> },
+  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
 );
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
       <Appbar />
       <main className="min-h-screen">{children}</main>
 
-      <Link href="/services/free-clothing-samples">
+      <Link href="/request-quote">
         <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
           <h1 className="text-black text-3xl md:text-5xl font-bold ml-[3%]  transition-colors duration-300 text-left">
             Ready to Start Your First Free Sample?{" "}

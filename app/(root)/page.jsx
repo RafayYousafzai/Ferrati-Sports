@@ -119,7 +119,7 @@ export default async function Home() {
       {/* <UrgencySection /> */}
 
       {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
-      <AllProductsSummary order={["fabrics", "services"]} />
+      <AllProductsSummary order={["services"]} />
       <RightManufacturer />
 
       {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}

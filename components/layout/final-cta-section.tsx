@@ -32,7 +32,7 @@ export default function FinalCTASection() {
       icon: Package,
       title: "Request Sample Kit",
       description: "See and feel our quality firsthand",
-      href: "/services/free-clothing-samples",
+      href: "/request-quote",
       color: "bg-blue-600",
       hoverColor: "hover:bg-blue-700",
     },
@@ -158,7 +158,7 @@ export default function FinalCTASection() {
               🧵 Get a Quote
             </Button>
           </Link>
-          <Link href="/services/free-clothing-samples">
+          <Link href="/request-quote">
             <Button
               className="px-10 py-6 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl shadow-2xl hover:shadow-3xl transition-all min-w-[250px]"
               radius="sm"

@@ -117,7 +117,7 @@ export default function Process({
           </div>
           {/* CTA Section */}
           <div className="text-center mt-12">
-            <Link href="/services/free-clothing-samples">
+            <Link href="/request-quote">
               <Button
                 disableRipple
                 className="border-1 border-white hover:bg-white text-white hover:text-orange-500 font-bold text-base lg:text-lg px-12 py-8 tracking-wider [&]:hover:opacity-100"

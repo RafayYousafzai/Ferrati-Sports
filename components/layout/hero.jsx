@@ -32,7 +32,8 @@ const Portfolio = ({ contentMap = {} }) => {
                   // defaultValue="Sketch to Store"
                   initialContent={contentMap["hero_title_1"]}
                   as="span"
-                /> <br />
+                />{" "}
+                <br />
                 <EditableText
                   id="hero_title_2"
                   // defaultValue="in 30 Days."
@@ -58,7 +59,7 @@ const Portfolio = ({ contentMap = {} }) => {
                   Request Free Quote
                 </button>
               </Link>
-              <Link href="/services/free-clothing-samples" passHref>
+              <Link href="/request-quote" passHref>
                 <button className="w-full sm:w-auto px-8 py-3.5 bg-transparent border-2 border-orange-500 dark:border-gray-600 text-orange-500 dark:text-white hover:bg-orange-500 hover:text-white dark:hover:bg-gray-800 rounded-full uppercase font-bold transition-all duration-300 hover:scale-105 active:scale-95 tracking-wider text-sm sm:text-base">
                   Request Free Sample
                 </button>
