@@ -13,16 +13,8 @@ export default function Loading() {
       <div className="relative z-10 flex flex-col items-center gap-8">
         {/* Video container with enhanced styling */}
         <div className="relative">
-          {/* Animated ring around video */}
-          <div className="absolute inset-0 -m-4">
-            <div className="w-full h-full border-4 border-orange-500 dark:border-blue-500 rounded-full animate-spin-slow opacity-30" />
-          </div>
-          <div className="absolute inset-0 -m-8">
-            <div className="w-full h-full border-4 border-orange-300 dark:border-blue-300 rounded-full animate-spin-slower opacity-20" />
-          </div>
-
-          {/* Video with glow effect */}
-          <div className="relative w-28 h-3w-28 rounded-full overflow-hidden shadow-2xl ring-4 ring-orange-500/20 dark:ring-blue-500/20">
+          {/* Video container */}
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-white/50 dark:border-gray-800/50">
             <video
               className="w-full h-full object-cover"
               autoPlay
@@ -30,10 +22,8 @@ export default function Loading() {
               muted
               playsInline
             >
-              <source src="/assets/T Shirt.mp4" type="video/mp4" />
+              <source src="/assets/t-shirt.mp4" type="video/mp4" />
             </video>
-            {/* Overlay gradient */}
-            {/* <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent dark:from-blue-500/20" /> */}
           </div>
         </div>
 
