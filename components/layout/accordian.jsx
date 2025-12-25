@@ -11,88 +11,69 @@ import {
 } from "lucide-react";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import Image from "next/image";
+import EditableText from "@/components/editable-text";
 
 export default function FerratiAccordion({ calculator = true }) {
   const faqs = [
+
     {
       id: "custom-bulk",
-      title: "Can you handle custom designs and bulk orders?",
+      title: <EditableText id="faq_custom_bulk_title" defaultValue="Can you handle custom designs and bulk orders?" />,
       icon: <Package size={18} aria-hidden />,
       body: (
-        <p>
-          Yes, Ferrati Impex specializes in custom manufacturing and can fulfill
-          bulk orders with precision and timely delivery.
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_custom_bulk_body" defaultValue="Yes, Ferrati Impex specializes in custom manufacturing and can fulfill bulk orders with precision and timely delivery." multiline={true} />
+        </div>
       ),
     },
     {
       id: "lead-time",
-      title: "What is your typical lead time for production?",
+      title: <EditableText id="faq_lead_time_title" defaultValue="What is your typical lead time for production?" />,
       icon: <Timer size={18} aria-hidden />,
       body: (
-        <p>
-          Lead times vary depending on order size and specifications but
-          typically range from <strong>2 to 4 weeks</strong>. We always strive
-          to meet client deadlines efficiently.
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_lead_time_body" defaultValue="Lead times vary depending on order size and specifications but typically range from 2 to 4 weeks. We always strive to meet client deadlines efficiently." multiline={true} />
+        </div>
       ),
     },
     {
       id: "sustainable",
-      title: "Are your manufacturing practices sustainable?",
+      title: <EditableText id="faq_sustainable_title" defaultValue="Are your manufacturing practices sustainable?" />,
       icon: <Leaf size={18} aria-hidden />,
       body: (
-        <p>
-          Absolutely. We source a significant portion of our materials from
-          sustainable suppliers and work with certified factories following
-          ethical labor practices.
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_sustainable_body" defaultValue="Absolutely. We source a significant portion of our materials from sustainable suppliers and work with certified factories following ethical labor practices." multiline={true} />
+        </div>
       ),
     },
     {
       id: "certifications",
-      title: "Do you offer motorbike gear with safety certifications?",
+      title: <EditableText id="faq_certifications_title" defaultValue="Do you offer motorbike gear with safety certifications?" />,
       icon: <ShieldCheck size={18} aria-hidden />,
       body: (
-        <p>
-          Yes, our motorbike garments are manufactured to meet industry safety
-          standards to provide reliable protection for riders.
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_certifications_body" defaultValue="Yes, our motorbike garments are manufactured to meet industry safety standards to provide reliable protection for riders." multiline={true} />
+        </div>
       ),
     },
     {
       id: "products",
-      title: "What types of products does Ferrati Impex manufacture?",
+      title: <EditableText id="faq_products_title" defaultValue="What types of products does Ferrati Impex manufacture?" />,
       icon: <HelpCircle size={18} aria-hidden />,
       body: (
-        <p>
-          We manufacture high‑quality sportswear, casual wear, activewear, and
-          motorbike garments tailored to meet diverse customer needs.
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_products_body" defaultValue="We manufacture high‑quality sportswear, casual wear, activewear, and motorbike garments tailored to meet diverse customer needs." multiline={true} />
+        </div>
       ),
     },
     {
       id: "order",
-      title: "How can I place an order or request a quote?",
+      title: <EditableText id="faq_order_title" defaultValue="How can I place an order or request a quote?" />,
       icon: <Mail size={18} aria-hidden />,
       body: (
-        <p>
-          You can contact our sales team via email{" "}
-          <a
-            href="mailto:info@ferratiimpex.com"
-            className="underline underline-offset-4 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 rounded"
-          >
-            info@ferratiimpex.com
-          </a>{" "}
-          or{" "}
-          <Link
-            href="/contact"
-            className="underline underline-offset-4 hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 rounded"
-          >
-            submit an inquiry on our website
-          </Link>
-          .
-        </p>
+        <div className="text-sm sm:text-base text-foreground/80">
+          <EditableText id="faq_order_body" defaultValue="You can contact our sales team via email info@ferratiimpex.com or submit an inquiry on our website." multiline={true} />
+        </div>
       ),
     },
   ];

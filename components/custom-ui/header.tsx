@@ -2,9 +2,9 @@ import Separator from "../separator";
 
 interface HeaderProps {
   badge?: string;
-  title?: string;
-  highlightedTitle?: string;
-  subtitle?: string;
+  title?: React.ReactNode;
+  highlightedTitle?: React.ReactNode;
+  subtitle?: React.ReactNode;
   theme?: "light" | "dark";
   leftAlign?: boolean;
   showbadge?: boolean;
