@@ -124,6 +124,11 @@ const Problem = ({
 
   return (
     <section ref={ref} className="py-20 overflow-hidden">
+      <div className="flex justify-center">
+        <span className="px-8 py-2 rounded-full text-orange-500  font-bold text-lg uppercase tracking-wider">
+          FERRATI
+        </span>
+      </div>
       <div className="container mx-auto max-w-4xl text-balance mb-16">
         <h2 className="text-5xl capitalize font-bold text-center text-black mb-6">
           <EditableText
@@ -150,7 +155,6 @@ const Problem = ({
           as="p"
         />
       </div>
-
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Problems Section */}
         <div className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl mb-12">

@@ -26,14 +26,9 @@ const Portfolio = ({ contentMap = {} }) => {
           {/* Left side - Text */}
           <div className="flex flex-col gap-6 items-start text-left order-2 lg:order-1 animate-fade-in-up">
             <div className="relative">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-                <EditableText
-                  id="hero_title_1"
-                  // defaultValue="Sketch to Store"
-                  initialContent={contentMap["hero_title_1"]}
-                  as="span"
-                />{" "}
-                <br />
+              <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
+                Custom Apparel Manufacturing{" "}
+                <span className="text-orange-500">Made Easy.</span>
                 <EditableText
                   id="hero_title_2"
                   // defaultValue="in 30 Days."
@@ -66,18 +61,24 @@ const Portfolio = ({ contentMap = {} }) => {
               </Link>
             </div>
 
-            <div className="flex flex-wrap gap-4 sm:gap-6 mt-4">
-              <div className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
-                <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5" />
-                <span>200+ Brands Served</span>
-              </div>
-              <div className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
-                <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5" />
-                <span>100+ Fabrics</span>
-              </div>
-              <div className="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300">
-                <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5" />
-                <span>50 Unit Min Order</span>
+            <div className="mt-8 w-full">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-1 sm:gap-2 w-full">
+                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">200+ Brands Served</span>
+                </div>
+                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">100+ Fabrics</span>
+                </div>
+                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">50 Unit Min Order</span>
+                </div>
+                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">50+ Order</span>
+                </div>
               </div>
             </div>
           </div>

@@ -31,6 +31,7 @@ export default function ProductDetails({
   showButton = true,
   bgColor = "bg-white",
   children,
+  rightChildren,
 }: CareersSectionProps) {
   const isOrange = variant === "orange";
 
@@ -64,7 +65,7 @@ export default function ProductDetails({
                 {headline}
               </h2>
               <Separator
-                bg={!variant === "orange" ? "accent" : "white"}
+                bg={variant === "orange" ? "white" : "accent"}
                 className={"ml-0"}
               />
 
@@ -123,6 +124,7 @@ export default function ProductDetails({
                 }
               />
             </div>
+            {rightChildren && rightChildren}
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ import { SiTrustpilot } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import ReviewsShowcase from "@/components/layout/reviews-showcase";
+import WhyFerrati from "@/components/layout/why-ferrati";
 
 export async function generateMetadata({ params }) {
   const { id: categorySlug, slug: productSlug } = await params;
@@ -110,24 +112,45 @@ export default async function CategoryPage({ params }) {
         headline={selectedProduct.title}
         image={selectedProduct.image_url}
         variant="light"
+        rightChildren={
+          <div>
+            <WhyFerrati />
+          </div>
+        }
         // href={`/calculate-price`}
       >
         <div className="">
           {selectedProduct.trustpilot && (
-            <Link href={selectedProduct.trustpilot}>
-              <Button className="bg-white">
-                <SiTrustpilot className="text-green-400 size-4" />
+            <a
+              href={
+                selectedProduct.trustpilot.startsWith("http")
+                  ? selectedProduct.trustpilot
+                  : `https://${selectedProduct.trustpilot}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="bg-white text-lg">
+                <SiTrustpilot className="text-green-400 size-8" />
                 TrustPilot
               </Button>
-            </Link>
+            </a>
           )}
           {selectedProduct.google_reviews && (
-            <Link href={selectedProduct.google_reviews}>
-              <Button className="ml-2 bg-white">
-                <FcGoogle className=" size-4" />
+            <a
+              href={
+                selectedProduct.google_reviews.startsWith("http")
+                  ? selectedProduct.google_reviews
+                  : `https://${selectedProduct.google_reviews}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="ml-2 bg-white text-lg">
+                <FcGoogle className=" size-8" />
                 Google Reviews
               </Button>
-            </Link>
+            </a>
           )}
         </div>
         <div className="bg-white  shadow-2xl rounded-2xl p-8">
@@ -170,6 +193,7 @@ export default async function CategoryPage({ params }) {
       <div className="bg-white pt-6">
         <AllProductsSummary order={["categories", "fabrics", "blogs"]} />
       </div>
+      <ReviewsShowcase />
     </div>
   );
 }

@@ -16,13 +16,13 @@ import { Star } from "lucide-react";
 import { Avatar } from "@heroui/avatar";
 
 import Header from "../custom-ui/header";
-
 import { Card } from "@/components/ui/card";
+
 const reviews = [
   {
     id: 1,
     name: "Emily Carter",
-    date: "2025-03-14",
+    date: "March 14, 2025",
     rating: 5,
     title: "Premium Quality Fabrics",
     content:
@@ -32,7 +32,7 @@ const reviews = [
   {
     id: 2,
     name: "James Patel",
-    date: "2025-07-22",
+    date: "July 22, 2025",
     rating: 5,
     title: "Outstanding Customization",
     content:
@@ -42,7 +42,7 @@ const reviews = [
   {
     id: 3,
     name: "Sophia Martinez",
-    date: "2025-01-30",
+    date: "Jan 30, 2025",
     rating: 5,
     title: "Excellent Service",
     content:
@@ -52,7 +52,7 @@ const reviews = [
   {
     id: 4,
     name: "Daniel Kim",
-    date: "2025-09-18",
+    date: "Sep 18, 2025",
     rating: 5,
     title: "Perfect for Branding",
     content:
@@ -62,7 +62,7 @@ const reviews = [
   {
     id: 5,
     name: "Hannah Wilson",
-    date: "2025-05-05",
+    date: "May 05, 2025",
     rating: 5,
     title: "Highly Recommended",
     content:
@@ -72,7 +72,7 @@ const reviews = [
   {
     id: 6,
     name: "Omar Sheikh",
-    date: "2025-11-27",
+    date: "Nov 27, 2025",
     rating: 5,
     title: "Reliable & Creative",
     content:
@@ -83,7 +83,7 @@ const reviews = [
 
 export default function ReviewsShowcase() {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <Header
         highlightedTitle="Brands Worldwide"
         subtitle="See what our partners say about our premium apparel, custom printing, and commitment to quality."
@@ -92,66 +92,78 @@ export default function ReviewsShowcase() {
 
       <Swiper
         autoplay={{
-          delay: 4000,
+          delay: 3000, // Faster auto-scroll
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        centeredSlides={false}
-        className="pb-6"
+        centeredSlides={true} // Centers active slide on mobile
+        breakpoints={{
+          640: {
+            centeredSlides: false, // Standard flow on desktop
+          },
+        }}
+        className="pb-10 pt-4 !px-4 sm:!px-0" // Added padding handling
         freeMode={{
           enabled: true,
           sticky: false,
-          momentumRatio: 0.25,
-          momentumVelocityRatio: 0.25,
+          momentumRatio: 0.5, // Increased for faster sliding feel
+          momentumVelocityRatio: 0.5,
         }}
         grabCursor={true}
         loop={true}
         modules={[FreeMode, Mousewheel, Autoplay, EffectCoverflow]}
         mousewheel={{
           forceToAxis: true,
-          sensitivity: 0.5,
+          sensitivity: 1, // Increased sensitivity
           releaseOnEdges: true,
-          thresholdDelta: 70,
         }}
         slidesPerView="auto"
-        spaceBetween={24}
-        speed={800}
+        spaceBetween={20}
+        speed={600} // Snappier transition speed
       >
         {reviews.map((review) => (
-          <SwiperSlide key={review.id} className="!w-80 min-w-xl py-6">
-            <Card className="w-full p-6  h-64 shadow-none rounded-2xl group animate-fade-in border-none bg-white ">
-              <div className="flex justify-between items-start ">
-                {/* <div className="flex gap-1">
+          // Mobile: w-[90vw] for full width feel. Desktop: fixed width
+          <SwiperSlide key={review.id} className="!w-[90vw] sm:!w-96">
+            <Card className="h-full min-h-[320px] p-6 rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:border-orange-100 flex flex-col justify-between">
+              {/* Top Section: Rating & Title */}
+              <div>
+                <div className="flex gap-1 mb-3">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-6 h-6 fill-yellow-400 text-yellow-400  "
-                      style={{ animationDelay: `${i * 100}ms` }}
+                      className="w-4 h-4 fill-orange-500 text-orange-500"
                     />
                   ))}
-                </div> */}
-                {/* <Badge containerStyles=" -mt-4 w-[64px] h-[64px]" /> */}
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+                  {review.title}
+                </h3>
+
+                <p className="text-gray-600 text-[15px] leading-relaxed">
+                  "{review.content}"
+                </p>
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-900 -mt-4  group-hover:text-orange-500 transition-colors duration-300">
-                {review.title}
-              </h3>
-
-              <p className="text-gray-600 text-md leading-relaxed   group-hover:text-gray-700 transition-colors duration-300">
-                {review.content}
-              </p>
-              <div className="flex items-center gap-3 mt-auto">
+              {/* Bottom Section: Avatar & Info */}
+              <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-50">
                 <Avatar
                   name={review.name}
+                  className="w-10 h-10 border border-gray-200"
                   src={`https://xsgames.co/randomusers/assets/avatars/${
                     review.id % 2 === 0 ? "male" : "female"
                   }/${Math.floor(review.id / 2)}.jpg`}
                 />
-                <div className="transition-transform duration-300 group-hover:translate-x-1">
-                  <p className="font-medium text-gray-900 text-sm">
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">
                     {review.name}
                   </p>
-                  <p className="text-gray-500 text-xs">{review.date}</p>
+                  <p className="text-gray-400 text-xs flex items-center gap-1">
+                    {review.date} •{" "}
+                    <span className="text-green-600 font-medium">
+                      Verified Client
+                    </span>
+                  </p>
                 </div>
               </div>
             </Card>

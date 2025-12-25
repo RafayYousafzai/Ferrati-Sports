@@ -39,6 +39,8 @@ import {
   DollarSign,
   Zap,
 } from "lucide-react";
+import { Handshake, Trophy } from "lucide-react";
+
 import FerratiAccordion from "@/components/layout/accordian";
 
 export default function OurProcess() {
@@ -144,9 +146,67 @@ export default function OurProcess() {
     },
   ];
 
+  const values = [
+    {
+      title: "Think Big",
+      description:
+        "Quality isn't just a buzzword; it's our baseline. From the first thread to the final print, we enforce strict quality control to ensure every garment represents your brand flawlessly.",
+      icon: Shirt,
+    },
+    {
+      title: "Own It",
+      description:
+        "We take full ownership of the supply chain. No excuses, no delays. We act as your internal production team, solving problems before they ever reach your dashboard.",
+      icon: Handshake,
+    },
+    {
+      title: "Win Together",
+      description:
+        "Your growth is our growth. We don't just supply clothes; we provide the infrastructure for you to scale. When your brand succeeds in the market, we succeed as your partner.",
+      icon: Trophy,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20 ">
       <div className="max-w-7xl mx-auto">
+        <section className="w-full py-20 ">
+          <div className="max-w-7xl mx-auto">
+            <Header
+              title="What we believe, and  "
+              highlightedTitle="live by."
+              subtitle=" We are more than just a manufacturer. We are partners committed
+                to elevating your brand through premium manufacturing,
+                transparency, and unwavering reliability."
+            />
+
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {values.map((value, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-10 rounded-xl  flex flex-col items-center text-center group border border-transparent "
+                >
+                  {/* Icon Container */}
+                  <div className="mb-6 p-4 rounded-full bg-orange-50 group-hover:bg-orange-500 transition-colors duration-300">
+                    <value.icon className="w-8 h-8 text-orange-500 group-hover:text-white transition-colors duration-300" />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-5xl font-bold text-gray-900 mb-4">
+                    {value.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed text-md">
+                    "{value.description}"
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Header
           title="Our Manufacturing "
           highlightedTitle="Process."
@@ -164,7 +224,7 @@ export default function OurProcess() {
                 key={index}
                 className="relative overflow-hidden group transition-all duration-300   shadow-none border-none bg-white rounded-2xl"
               >
-                <CardHeader className="pb-4">
+                <CardHeader className="">
                   <div className="flex items-center gap-4 mb-2">
                     <div className="relative top-5">
                       <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
@@ -177,14 +237,14 @@ export default function OurProcess() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg font-semibold text-black">
+                      <CardTitle className="text-xl font-bold text-black">
                         {step.title}
                       </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-black mb-4 leading-relaxed">
+                  <CardDescription className="text-gray-700 font-semibold mb-4 leading-relaxed">
                     {step.description}
                   </CardDescription>
                   <div className="space-y-2">
@@ -194,7 +254,9 @@ export default function OurProcess() {
                         className="flex items-center gap-2"
                       >
                         <CheckCircle className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                        <span className="text-sm text-black">{feature}</span>
+                        <span className="text-sm text-black text-gray-700 font-semibold">
+                          {feature}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -238,11 +300,13 @@ export default function OurProcess() {
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-black mb-1">
+                  <div className="">
+                    <h2 className="text-lg text-black font-bold mb-1">
                       {item.title}
-                    </h3>
-                    <p className="text-sm text-black">{item.description}</p>
+                    </h2>
+                    <p className="text-sm text-gray-700 font-semibold">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               );
@@ -254,19 +318,27 @@ export default function OurProcess() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 mb-8">
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">2019</div>
-            <div className="text-sm text-black">Established</div>
+            <div className="text-sm font-extrabold text-gray-700">
+              Established
+            </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">4000</div>
-            <div className="text-sm text-black">Sq Meter Factory</div>
+            <div className="text-sm font-extrabold text-gray-700">
+              Sq Meter Factory
+            </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">15+</div>
-            <div className="text-sm text-black">Fabric Types</div>
+            <div className="text-sm font-extrabold text-gray-700">
+              Fabric Types
+            </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">25</div>
-            <div className="text-sm text-black">Min Order Qty</div>
+            <div className="text-sm font-extrabold text-gray-700">
+              Min Order Qty
+            </div>
           </div>
         </div>
       </div>{" "}

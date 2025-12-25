@@ -83,7 +83,10 @@ export async function getCategories(limit: number | null = null) {
 -------------------- */
 export const getCachedServices = cache(async (limit: number | null = 3) => {
   const supabase = await getSupabase();
-  let query = supabase.from("services").select("*");
+  let query = supabase
+    .from("services")
+    .select("*")
+    .order("id", { ascending: true });
 
   if (limit) query = query.limit(limit);
   const { data } = await query;

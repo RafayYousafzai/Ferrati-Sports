@@ -320,6 +320,17 @@ const Footer = async () => {
               </li>
             </ul>
           </div>
+          {/* Payment Method */}
+          <div className="space-y-6 md:col-span-2">
+            <h3 className="text-xl font-bold text-white mb-6 relative">
+              Payment Method
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-white rounded-full" />
+            </h3>
+            <ul className="space-y-4">
+              <li className="text-gray-300 text-base">PayPal</li>
+              <li className="text-gray-300 text-base">Bank Transfer</li>
+            </ul>
+          </div>
         </div>
       </div>
 
