@@ -13,66 +13,65 @@ import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import Image from "next/image";
 import EditableText from "@/components/editable-text";
 
-export default function FerratiAccordion({ calculator = true }) {
+export default function FerratiAccordion({ calculator = true, contentMap }) {
   const faqs = [
-
     {
       id: "custom-bulk",
-      title: <EditableText id="faq_custom_bulk_title" defaultValue="Can you handle custom designs and bulk orders?" />,
+      title: <EditableText id="faq_custom_bulk_title" defaultValue="Can you handle custom designs and bulk orders?" initialContent={contentMap?.["faq_custom_bulk_title"]} />,
       icon: <Package size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_custom_bulk_body" defaultValue="Yes, Ferrati Impex specializes in custom manufacturing and can fulfill bulk orders with precision and timely delivery." multiline={true} />
+          <EditableText id="faq_custom_bulk_body" defaultValue="Yes, Ferrati Impex specializes in custom manufacturing and can fulfill bulk orders with precision and timely delivery." multiline={true} initialContent={contentMap?.["faq_custom_bulk_body"]} />
         </div>
       ),
     },
     {
       id: "lead-time",
-      title: <EditableText id="faq_lead_time_title" defaultValue="What is your typical lead time for production?" />,
+      title: <EditableText id="faq_lead_time_title" defaultValue="What is your typical lead time for production?" initialContent={contentMap?.["faq_lead_time_title"]} />,
       icon: <Timer size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_lead_time_body" defaultValue="Lead times vary depending on order size and specifications but typically range from 2 to 4 weeks. We always strive to meet client deadlines efficiently." multiline={true} />
+          <EditableText id="faq_lead_time_body" defaultValue="Lead times vary depending on order size and specifications but typically range from 2 to 4 weeks. We always strive to meet client deadlines efficiently." multiline={true} initialContent={contentMap?.["faq_lead_time_body"]} />
         </div>
       ),
     },
     {
       id: "sustainable",
-      title: <EditableText id="faq_sustainable_title" defaultValue="Are your manufacturing practices sustainable?" />,
+      title: <EditableText id="faq_sustainable_title" defaultValue="Are your manufacturing practices sustainable?" initialContent={contentMap?.["faq_sustainable_title"]} />,
       icon: <Leaf size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_sustainable_body" defaultValue="Absolutely. We source a significant portion of our materials from sustainable suppliers and work with certified factories following ethical labor practices." multiline={true} />
+          <EditableText id="faq_sustainable_body" defaultValue="Absolutely. We source a significant portion of our materials from sustainable suppliers and work with certified factories following ethical labor practices." multiline={true} initialContent={contentMap?.["faq_sustainable_body"]} />
         </div>
       ),
     },
     {
       id: "certifications",
-      title: <EditableText id="faq_certifications_title" defaultValue="Do you offer motorbike gear with safety certifications?" />,
+      title: <EditableText id="faq_certifications_title" defaultValue="Do you offer motorbike gear with safety certifications?" initialContent={contentMap?.["faq_certifications_title"]} />,
       icon: <ShieldCheck size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_certifications_body" defaultValue="Yes, our motorbike garments are manufactured to meet industry safety standards to provide reliable protection for riders." multiline={true} />
+          <EditableText id="faq_certifications_body" defaultValue="Yes, our motorbike garments are manufactured to meet industry safety standards to provide reliable protection for riders." multiline={true} initialContent={contentMap?.["faq_certifications_body"]} />
         </div>
       ),
     },
     {
       id: "products",
-      title: <EditableText id="faq_products_title" defaultValue="What types of products does Ferrati Impex manufacture?" />,
+      title: <EditableText id="faq_products_title" defaultValue="What types of products does Ferrati Impex manufacture?" initialContent={contentMap?.["faq_products_title"]} />,
       icon: <HelpCircle size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_products_body" defaultValue="We manufacture high‑quality sportswear, casual wear, activewear, and motorbike garments tailored to meet diverse customer needs." multiline={true} />
+          <EditableText id="faq_products_body" defaultValue="We manufacture high‑quality sportswear, casual wear, activewear, and motorbike garments tailored to meet diverse customer needs." multiline={true} initialContent={contentMap?.["faq_products_body"]} />
         </div>
       ),
     },
     {
       id: "order",
-      title: <EditableText id="faq_order_title" defaultValue="How can I place an order or request a quote?" />,
+      title: <EditableText id="faq_order_title" defaultValue="How can I place an order or request a quote?" initialContent={contentMap?.["faq_order_title"]} />,
       icon: <Mail size={18} aria-hidden />,
       body: (
         <div className="text-sm sm:text-base text-foreground/80">
-          <EditableText id="faq_order_body" defaultValue="You can contact our sales team via email info@ferratiimpex.com or submit an inquiry on our website." multiline={true} />
+          <EditableText id="faq_order_body" defaultValue="You can contact our sales team via email info@ferratiimpex.com or submit an inquiry on our website." multiline={true} initialContent={contentMap?.["faq_order_body"]} />
         </div>
       ),
     },

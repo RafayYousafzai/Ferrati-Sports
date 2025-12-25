@@ -14,6 +14,8 @@ interface EditableTextProps {
   as?: React.ElementType;
 }
 
+import { usePathname } from "next/navigation";
+
 export default function EditableText({
   id,
   defaultValue,
@@ -29,6 +31,7 @@ export default function EditableText({
   const { isAdmin } = useAdmin();
   const supabase = createClient();
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const pathname = usePathname();
 
   // Fetch content on mount ONLY if initialContent is not provided
   useEffect(() => {
@@ -68,6 +71,16 @@ export default function EditableText({
         .upsert({ key: id, value: content, updated_at: new Date().toISOString() });
 
       if (error) throw error;
+
+      // Trigger revalidation
+      await fetch("/api/revalidate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ path: pathname }),
+      });
+
       setIsEditing(false);
     } catch (error) {
       console.error("Error saving content:", error);

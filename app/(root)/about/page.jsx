@@ -43,10 +43,17 @@ import { Handshake, Trophy } from "lucide-react";
 
 import FerratiAccordion from "@/components/layout/accordian";
 import EditableText from "@/components/editable-text";
+import { createStaticClient } from "@/lib/supabase/static";
 
+export default async function OurProcess() {
+  const supabase = createStaticClient();
+  const { data: contentBlocks } = await supabase.from("content_blocks").select("*");
 
+  const getContent = (key, defaultText) => {
+    const block = contentBlocks?.find(b => b.key === key);
+    return block ? block.value : defaultText;
+  };
 
-export default function OurProcess() {
   const processSteps = [
     {
       icon: MessageSquare,
@@ -200,6 +207,13 @@ export default function OurProcess() {
     },
   ];
 
+  // Prepare simple content map for Accordion which cannot easily access full array due to structure difference
+  // Actually easier to just pass the raw data array to Accordion
+  const contentMap = contentBlocks?.reduce((acc, block) => {
+    acc[block.key] = block.value;
+    return acc;
+  }, {}) || {};
+
   return (
     <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20 ">
       <div className="max-w-7xl mx-auto">
@@ -210,18 +224,21 @@ export default function OurProcess() {
                 <EditableText
                   id="about_hero_title"
                   defaultValue="What we believe, and  "
+                  initialContent={getContent("about_hero_title", "What we believe, and  ")}
                 />
               }
               highlightedTitle={
                 <EditableText
                   id="about_hero_highlight"
                   defaultValue="live by."
+                  initialContent={getContent("about_hero_highlight", "live by.")}
                 />
               }
               subtitle={
                 <EditableText
                   id="about_hero_subtitle"
                   defaultValue=" We are more than just a manufacturer. We are partners committed to elevating your brand through premium manufacturing, transparency, and unwavering reliability."
+                  initialContent={getContent("about_hero_subtitle", " We are more than just a manufacturer. We are partners committed to elevating your brand through premium manufacturing, transparency, and unwavering reliability.")}
                 />
               }
             />
@@ -243,6 +260,7 @@ export default function OurProcess() {
                     <EditableText
                       id={value.id_title}
                       defaultValue={value.title}
+                      initialContent={getContent(value.id_title, value.title)}
                     />
                   </h3>
 
@@ -251,6 +269,7 @@ export default function OurProcess() {
                     "<EditableText
                       id={value.id_desc}
                       defaultValue={value.description}
+                      initialContent={getContent(value.id_desc, value.description)}
                     />"
                   </p>
                 </div>
@@ -264,18 +283,21 @@ export default function OurProcess() {
             <EditableText
               id="process_section_title"
               defaultValue="Our Manufacturing "
+              initialContent={getContent("process_section_title", "Our Manufacturing ")}
             />
           }
           highlightedTitle={
             <EditableText
               id="process_section_highlight"
               defaultValue="Process."
+              initialContent={getContent("process_section_highlight", "Process.")}
             />
           }
           subtitle={
             <EditableText
               id="process_section_subtitle"
               defaultValue="   From concept to delivery - discover how we transform your ideas into high-quality custom apparel with our streamlined 6-step process, backed by years of expertise and state-of-the-art facilities."
+              initialContent={getContent("process_section_subtitle", "   From concept to delivery - discover how we transform your ideas into high-quality custom apparel with our streamlined 6-step process, backed by years of expertise and state-of-the-art facilities.")}
             />
           }
         />
@@ -306,6 +328,7 @@ export default function OurProcess() {
                         <EditableText
                           id={step.id_title}
                           defaultValue={step.title}
+                          initialContent={getContent(step.id_title, step.title)}
                         />
                       </CardTitle>
                     </div>
@@ -316,6 +339,7 @@ export default function OurProcess() {
                     <EditableText
                       id={step.id_desc}
                       defaultValue={step.description}
+                      initialContent={getContent(step.id_desc, step.description)}
                     />
                   </CardDescription>
                   <div className="space-y-2">
@@ -329,6 +353,7 @@ export default function OurProcess() {
                           <EditableText
                             id={feature.id}
                             defaultValue={feature.text}
+                            initialContent={getContent(feature.id, feature.text)}
                           />
                         </span>
                       </div>
@@ -348,11 +373,13 @@ export default function OurProcess() {
               <EditableText
                 id="why_choose_title"
                 defaultValue="Why Choose "
+                initialContent={getContent("why_choose_title", "Why Choose ")}
               />
               <span className="text-orange-500">
                 <EditableText
                   id="why_choose_highlight"
                   defaultValue="Ferrati?"
+                  initialContent={getContent("why_choose_highlight", "Ferrati?")}
                 />
               </span>
             </h2>
@@ -360,6 +387,7 @@ export default function OurProcess() {
               <EditableText
                 id="why_choose_subtitle"
                 defaultValue="We stand out as the best apparel manufacturer with our commitment to quality, innovation, and customer satisfaction."
+                initialContent={getContent("why_choose_subtitle", "We stand out as the best apparel manufacturer with our commitment to quality, innovation, and customer satisfaction.")}
               />
             </p>
           </div>
@@ -390,12 +418,14 @@ export default function OurProcess() {
                       <EditableText
                         id={item.id_title}
                         defaultValue={item.title}
+                        initialContent={getContent(item.id_title, item.title)}
                       />
                     </h2>
                     <p className="text-sm text-gray-700 font-semibold">
                       <EditableText
                         id={item.id_desc}
                         defaultValue={item.description}
+                        initialContent={getContent(item.id_desc, item.description)}
                       />
                     </p>
                   </div>
@@ -409,39 +439,39 @@ export default function OurProcess() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 mb-8">
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_1_val" defaultValue="2019" />
+              <EditableText id="stat_1_val" defaultValue="2019" initialContent={getContent("stat_1_val", "2019")} />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_1_label" defaultValue="Established" />
+              <EditableText id="stat_1_label" defaultValue="Established" initialContent={getContent("stat_1_label", "Established")} />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_2_val" defaultValue="4000" />
+              <EditableText id="stat_2_val" defaultValue="4000" initialContent={getContent("stat_2_val", "4000")} />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_2_label" defaultValue="Sq Meter Factory" />
+              <EditableText id="stat_2_label" defaultValue="Sq Meter Factory" initialContent={getContent("stat_2_label", "Sq Meter Factory")} />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_3_val" defaultValue="15+" />
+              <EditableText id="stat_3_val" defaultValue="15+" initialContent={getContent("stat_3_val", "15+")} />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_3_label" defaultValue="Fabric Types" />
+              <EditableText id="stat_3_label" defaultValue="Fabric Types" initialContent={getContent("stat_3_label", "Fabric Types")} />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_4_val" defaultValue="25" />
+              <EditableText id="stat_4_val" defaultValue="25" initialContent={getContent("stat_4_val", "25")} />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_4_label" defaultValue="Min Order Qty" />
+              <EditableText id="stat_4_label" defaultValue="Min Order Qty" initialContent={getContent("stat_4_label", "Min Order Qty")} />
             </div>
           </div>
         </div>
       </div>{" "}
-      <FerratiAccordion calculator={false} />
+      <FerratiAccordion calculator={false} contentMap={contentMap} />
     </div>
   );
 }
