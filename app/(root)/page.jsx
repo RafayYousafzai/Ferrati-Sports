@@ -141,8 +141,8 @@ export default async function Home() {
         description={[
           "Easily estimate your project cost in just a few clicks. Our calculator helps you plan your budget, compare options, and get clarity before you start.",
         ]}
-        headline={"Get an instant estimate for your project."}
-        href={"/calculate-price"}
+        headline={"Get an Instant Estimate For Your Project."}
+        href={"/request-quote"}
         image={"/assets/photo-calculator.webp"}
         reversed={true}
         variant={"orange"}

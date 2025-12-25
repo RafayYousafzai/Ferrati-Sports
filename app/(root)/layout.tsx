@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { ArrowRightCircle } from "lucide-react";
+import { ArrowRight, ArrowRightCircle } from "lucide-react";
 import Link from "next/link";
 
 import Footer from "@/components/layout/footer";
@@ -23,13 +23,13 @@ export default function RootLayout({
       <Appbar />
       <main className="min-h-screen">{children}</main>
 
-      <Link href="/request-quote">
-        <div className="h-[30vh] bg-white flex items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
-          <h1 className="text-black text-3xl md:text-5xl font-bold ml-[3%]  transition-colors duration-300 text-left">
-            Ready to Start Your First Free Sample?{" "}
-            <span className="text-orange-600">Let’s Talk!</span>{" "}
+      <Link href="/contact">
+        <div className="h-[30vh] bg-white flex justify-center items-center cursor-pointer hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-50 transition-all duration-300 group ">
+          <h1 className="text-black text-4xl md:text-6xl font-bold transition-colors duration-300 text-center flex items-center">
+            Ready to Start Your First Sample?{" "}
+            <span className="text-orange-600 ml-2">Let’s Talk!</span>
           </h1>
-          <ArrowRightCircle className="ml-4 pt-1 w-12 h-12 text-orange-500 group-hover:text-orange-600 group-hover:translate-x-2 transition-all duration-300" />
+          <ArrowRight className="ml-4 w-12 h-12 text-orange-500 group-hover:text-orange-600 group-hover:translate-x-2 transition-all duration-300" />
         </div>
       </Link>
       <Footer />

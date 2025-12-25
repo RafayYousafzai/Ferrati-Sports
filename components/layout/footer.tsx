@@ -143,9 +143,9 @@ const Footer = async () => {
                 <div className="absolute -bottom-2 left-0 w-12 h-1 bg-white rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-base">
-                Premium fabric printing and customization services. We bring
-                your designs to life with quality, precision, and unmatched
-                craftsmanship. Your vision, our expertise.
+                Premium Apparel Manufacturing and customization services. We
+                bring your designs to life with quality, precision, and
+                unmatched craftsmanship. Your vision, our expertise.
               </p>
             </div>
 

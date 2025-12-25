@@ -63,7 +63,10 @@ export default function ProductDetails({
               >
                 {headline}
               </h2>
-              <Separator bg={"accent"} className={"ml-0"} />
+              <Separator
+                bg={!variant === "orange" ? "accent" : "white"}
+                className={"ml-0"}
+              />
 
               {/* <div
                 className={`w-16 h-1 mb-8 ${
