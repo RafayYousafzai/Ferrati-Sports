@@ -34,6 +34,7 @@ export default function RequestQuote() {
   const [saving, setSaving] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [formKey, setFormKey] = useState(0);
 
   const handleContinue = () => {
     // Basic validation for name and email
@@ -79,6 +80,7 @@ export default function RequestQuote() {
         setDescription("");
         setAddProducts(true); // Reset the switch
         setSubmitted(false);
+        setFormKey((prev) => prev + 1);
         // Note: You might want to clear the cart here as well
         // clearCart();
       }, 3000);
@@ -125,6 +127,7 @@ export default function RequestQuote() {
 
         {/* Using the new reusable form component */}
         <QuoteContactForm
+          key={formKey}
           description={description}
           email={email}
           hideBtn={true}

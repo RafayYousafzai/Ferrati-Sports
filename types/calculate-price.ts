@@ -24,6 +24,7 @@ export type Product = {
   created_at: string;
   updated_at: string;
   categories: Category | null;
+  fabric_ids?: string[] | null;
 };
 
 export type Category = {

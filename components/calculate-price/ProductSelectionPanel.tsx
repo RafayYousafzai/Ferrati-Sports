@@ -57,12 +57,11 @@ export function ProductSelectionPanel({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const onMakeNewQuote = () => setView("cart");
 
-  console.log(cart);
-
   const product = filteredProducts.find((p) => p.id === selectedProduct);
-  const availableFabrics = fabrics.filter((fabric) =>
-    product?.fabric_ids?.includes(fabric.id)
-  );
+  const availableFabrics =
+    product?.fabric_ids && product.fabric_ids.length > 0
+      ? fabrics.filter((fabric) => product.fabric_ids!.includes(fabric.id))
+      : fabrics;
 
   return (
     <Card className="w-full p-4 shadow-none border-none">
@@ -378,7 +377,7 @@ export function ProductSelectionPanel({
           </TableHeader>
           <TableBody emptyContent={"No rows to display."}>
             {cart.map((item) => (
-              <TableRow key={item.product.id}>
+              <TableRow key={`${item.product.id}-${item.fabric.id}`}>
                 <TableCell>
                   <div className="flex items-center gap-3">
                     {item.product.image_url ? (
@@ -433,8 +432,12 @@ export function ProductSelectionPanel({
                       isIconOnly
                       size="sm"
                       variant="light"
-                      onClick={() =>
-                        updateQuantity(item.product.id, item.quantity - 10)
+                      onPress={() =>
+                        updateQuantity(
+                          item.product.id,
+                          item.fabric.id,
+                          item.quantity - 10,
+                        )
                       }
                     >
                       <Minus className="h-4 w-4" />
@@ -448,15 +451,23 @@ export function ProductSelectionPanel({
                       onChange={(e) => {
                         const newQty = parseInt(e.target.value);
 
-                        updateQuantity(item.product.id, Math.max(0, newQty));
+                        updateQuantity(
+                          item.product.id,
+                          item.fabric.id,
+                          Math.max(0, newQty),
+                        );
                       }}
                     />
                     <Button
                       isIconOnly
                       size="sm"
                       variant="light"
-                      onClick={() =>
-                        updateQuantity(item.product.id, item.quantity + 10)
+                      onPress={() =>
+                        updateQuantity(
+                          item.product.id,
+                          item.fabric.id,
+                          item.quantity + 10,
+                        )
                       }
                     >
                       <Plus className="h-4 w-4" />

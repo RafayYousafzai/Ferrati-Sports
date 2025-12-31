@@ -145,13 +145,26 @@ export default function EditableText({
         {content}
       </Component>
       {isAdmin && (
-        <button
-          onClick={() => setIsEditing(true)}
-          className="absolute -top-3 -right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-blue-500 text-white rounded-full shadow-lg z-10"
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsEditing(true);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsEditing(true);
+            }
+          }}
+          className="absolute -top-3 -right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-blue-500 text-white rounded-full shadow-lg z-10 cursor-pointer"
           title="Edit"
         >
           <Pencil className="w-3 h-3" />
-        </button>
+        </div>
       )}
     </span>
   );

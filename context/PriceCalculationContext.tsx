@@ -46,28 +46,29 @@ interface Ferrati {
 // Create context with default empty values
 const PriceCalculationContext = createContext<Ferrati>({
   categories: [],
+  fabrics: [],
   products: [],
   filteredProducts: [],
   selectedCategory: "",
-  setSelectedCategory: () => {},
+  setSelectedCategory: () => { },
   selectedFabric: "",
-  setSelectedFabric: () => {},
+  setSelectedFabric: () => { },
   selectedProduct: "",
-  setSelectedProduct: () => {},
+  setSelectedProduct: () => { },
   quantity: 50,
-  handleQuantityChange: () => {},
+  handleQuantityChange: () => { },
   searchTerm: "",
-  setSearchTerm: () => {},
-  addToCart: () => {},
+  setSearchTerm: () => { },
+  addToCart: () => { },
   cart: [],
-  updateQuantity: () => {},
-  removeFromCart: () => {},
-  clearCart: () => {},
+  updateQuantity: () => { },
+  removeFromCart: () => { },
+  clearCart: () => { },
   getTotalPrice: () => 0,
   getTotalItems: () => 0,
   loading: true,
   view: "selection",
-  setView: () => {},
+  setView: () => { },
 });
 
 // Create provider
@@ -77,7 +78,7 @@ export const PriceCalculationProvider = ({
   children: ReactNode;
 }) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [fabrics, setFabrics] = useState<Category[]>([]);
+  const [fabrics, setFabrics] = useState<Fabric[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -104,7 +105,7 @@ export const PriceCalculationProvider = ({
     return data || [];
   }
 
-  async function getFabrics(): Promise<Category[]> {
+  async function getFabrics(): Promise<Fabric[]> {
     const { data, error } = await supabase
       .from("fabrics")
       .select("*")
@@ -205,7 +206,7 @@ export const PriceCalculationProvider = ({
       setCart(
         cart.map((item) =>
           item.product.id === selectedProduct &&
-          item.fabric.id === selectedFabric
+            item.fabric.id === selectedFabric
             ? { ...item, quantity: item.quantity + quantity }
             : item,
         ),
@@ -225,27 +226,30 @@ export const PriceCalculationProvider = ({
     fabricId: string,
     newQuantity: number,
   ) => {
-    if (newQuantity < 50) {
-      removeFromCart(productId, fabricId);
+    // console.log("Updating quantity:", productId, fabricId, newQuantity);
 
+    if (newQuantity < 1) {
+      removeFromCart(productId, fabricId);
       return;
     }
 
-    setCart(
-      cart.map((item) =>
-        item.product.id === productId && item.fabric.id === fabricId
-          ? { ...item, quantity: newQuantity }
-          : item,
-      ),
+    setCart((prevCart) =>
+      prevCart.map((item) => {
+        if (item.product.id === productId && item.fabric.id === fabricId) {
+          // console.log("Found item to update", item);
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      })
     );
   };
 
   const removeFromCart = (productId: string, fabricId: string) => {
-    setCart(
-      cart.filter(
+    setCart((prevCart) =>
+      prevCart.filter(
         (item) =>
-          !(item.product.id === productId && item.fabric.id === fabricId),
-      ),
+          !(item.product.id === productId && item.fabric.id === fabricId)
+      )
     );
   };
 

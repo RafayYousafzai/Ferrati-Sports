@@ -174,7 +174,7 @@ export default function AdminQuotesPage() {
     try {
       const { error } = await supabase
         .from("requested_quotes")
-        .update({ status, updated_at: new Date().toISOString() })
+        .update({ status })
         .eq("id", quoteId);
 
       if (error) throw error;
@@ -373,9 +373,9 @@ export default function AdminQuotesPage() {
                           <Calendar className="h-3 w-3" />
                           {q.created_at
                             ? format(
-                                new Date(q.created_at),
-                                "MMM dd, yyyy HH:mm",
-                              )
+                              new Date(q.created_at),
+                              "MMM dd, yyyy HH:mm",
+                            )
                             : "—"}
                         </p>
                       </div>

@@ -64,13 +64,13 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
         <FaServicestack className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
-    {
-      label: "Process Steps",
-      href: "/admin/manage-process-steps",
-      icon: (
-        <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
-    },
+    // {
+    //   label: "Process Steps",
+    //   href: "/admin/manage-process-steps",
+    //   icon: (
+    //     <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    //   ),
+    // },
     {
       label: "Request Quotes",
       href: "/admin/manage-quote-requests",
@@ -86,13 +86,13 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
         <Contact className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
-    {
-      label: "Why Choose Us",
-      href: "/admin/manage-why-choose-us",
-      icon: (
-        <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
-    },
+    // {
+    //   label: "Why Choose Us",
+    //   href: "/admin/manage-why-choose-us",
+    //   icon: (
+    //     <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+    //   ),
+    // },
     {
       label: "Logout",
       href: "#",
