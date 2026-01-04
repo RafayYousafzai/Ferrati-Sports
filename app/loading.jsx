@@ -30,26 +30,21 @@ export default function Loading() {
         {/* Loading text with animation */}
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-pulse">
-            Ferrati Sports
+            We make. You win.
           </h2>
           {/* Progress bar */}
-          <div className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          {/* <div className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-orange-500 to-orange-600 dark:from-blue-500 dark:to-purple-500 animate-progress" />
-          </div>
+          </div> */}
           {/* Animated dots */}
-          <div className="flex items-center justify-center gap-2">
+          {/* <div className="flex items-center justify-center gap-2">
             <div className="flex gap-1">
               <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce" />
               <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce delay-100" />
               <span className="w-2 h-2 bg-orange-500 dark:bg-blue-500 rounded-full animate-bounce delay-200" />
             </div>
-          </div>
+          </div> */}
         </div>
-
-        {/* Floating elements */}
-        {/* <div className="absolute top-20 left-20 w-3 h-3 bg-orange-500 dark:bg-blue-500 rounded-full animate-float" />
-        <div className="absolute bottom-20 right-20 w-2 h-2 bg-purple-500 rounded-full animate-float delay-300" />
-        <div className="absolute top-40 right-40 w-2 h-2 bg-orange-400 dark:bg-blue-400 rounded-full animate-float delay-500" /> */}
       </div>
 
       {/* Custom animations */}

@@ -194,7 +194,7 @@ export default function ClientNavbar({
                 <Image
                   alt="Ferrati Sports Logo"
                   className="object-contain w-auto h-[4rem]"
-                  src="/logo-text.png"
+                  src="/wide-logo.png"
                 />
               </div>
             </Link>
