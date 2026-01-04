@@ -187,7 +187,7 @@ export default function RequestQuote() {
         {/* Main action button at the bottom of the page */}
         <div className="text-center">
           <Button
-            className="bg-orange-500 text-white px-12 rounded-full"
+            className="bg-orange-500 text-white px-12 rounded-full w-full sm:w-auto"
             color="warning"
             isDisabled={!email || !name || (addProducts && cart.length === 0)}
             radius="lg"

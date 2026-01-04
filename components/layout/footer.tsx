@@ -10,6 +10,7 @@ import {
   Zap,
   Facebook,
 } from "lucide-react";
+import Image from "next/image";
 
 import { TwitterIcon } from "../icons";
 
@@ -327,8 +328,15 @@ const Footer = async () => {
               <div className="absolute -bottom-2 left-0 w-12 h-1 bg-white rounded-full" />
             </h3>
             <ul className="space-y-4">
-              <li className="text-gray-300 text-base">PayPal</li>
-              <li className="text-gray-300 text-base">Bank Transfer</li>
+              <li className="text-gray-300 text-base">
+                <Image
+                  alt="Payment Method"
+                  className="h-5 w-auto"
+                  height={30}
+                  src="/assets/paypal-icon.svg"
+                  width={50}
+                />
+              </li>
             </ul>
           </div>
         </div>
@@ -342,9 +350,6 @@ const Footer = async () => {
               <p className="text-sm">
                 &copy; {new Date().getFullYear()} Ferrati Sports. All rights
                 reserved.
-              </p>
-              <p className="text-xs mt-1">
-                Crafted with ❤️ for premium fabric printing solutions
               </p>
             </div>
 

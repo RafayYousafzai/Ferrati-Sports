@@ -115,7 +115,7 @@ const PictureThisSection = () => {
                 It is not definitely because you are not working hard enough.
               </li>
             </ul>
-            <div className="text-base sm:text-l space-y-2 w-full mx-3 text-balance text-black">
+            <div className="text-lg sm:text-l space-y-2 w-full mx-3 text-balance text-black">
               <p className="tracking-wider">
                 It is because you are missing key parts of the{" "}
                 <span className="font-bold">manufacturing puzzle</span>. Success

@@ -6,18 +6,18 @@ export default function WhyFerrati() {
   // B2B & International Manufacturing specific selling points
   const benefits = [
     "Factory-Direct Wholesale Pricing",
-    "Fast International Air & Sea Shipping",
+    "Weekly Production Updates",
     "Low MOQ for Custom Orders",
     "Free 3D Mockups & Design Support",
     "Premium Performance Fabrics",
-    "No Hidden Import/Export Fees",
+    "Replacement Policy For Defects",
   ];
 
   return (
     <section className="w-full py-6 px-6 bg-white rounded-xl">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          Why Ferrati Sports?
+          Why <span className="text-orange-500">Ferrati Sports?</span>
         </h2>
 
         {/* 2-Column Grid for Points */}
@@ -26,14 +26,14 @@ export default function WhyFerrati() {
             <div key={index} className="flex items-center gap-3">
               {/* Custom Bullet Point */}
               <div className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
-              <p className="text-gray-800 font-medium text-lg">{point}</p>
+              <p className="text-black font-medium text-[21px]">{point}</p>
             </div>
           ))}
         </div>
 
         {/* Trust/Review Footer */}
-        <div className="flex flex-wrap items-center gap-2 text-lg font-medium text-gray-900 border-t border-gray-200/60 pt-6">
-          <span>Trusted by 500+ global brands</span>
+        <div className="flex flex-wrap items-center gap-2 text-lg font-medium text-black border-t border-gray-200/60 pt-6">
+          <span>Trusted by 200+ global brands</span>
           <span className="text-2xl">🤝</span>
           <span>love us!</span>
 

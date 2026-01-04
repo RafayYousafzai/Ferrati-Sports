@@ -47,10 +47,12 @@ import { createStaticClient } from "@/lib/supabase/static";
 
 export default async function OurProcess() {
   const supabase = createStaticClient();
-  const { data: contentBlocks } = await supabase.from("content_blocks").select("*");
+  const { data: contentBlocks } = await supabase
+    .from("content_blocks")
+    .select("*");
 
   const getContent = (key, defaultText) => {
-    const block = contentBlocks?.find(b => b.key === key);
+    const block = contentBlocks?.find((b) => b.key === key);
     return block ? block.value : defaultText;
   };
 
@@ -137,31 +139,31 @@ export default async function OurProcess() {
 
   const whyChooseUs = [
     {
-      icon: DollarSign,
-      title: "Competitive Pricing",
+      icon: CheckCircle,
+      title: "QC checkpoints",
       id_title: "why_pricing_title",
-      description: "Best rates in the market",
+      description: "Defects are caught early instead of after delivery.",
       id_desc: "why_pricing_desc",
     },
     {
-      icon: Clock,
-      title: "Fast Turnaround",
+      icon: Zap,
+      title: "Faster sampling",
       id_title: "why_turnaround_title",
-      description: "Quick delivery times",
+      description: "Quick approvals with reliable fits.",
       id_desc: "why_turnaround_desc",
     },
     {
       icon: Users,
       title: "Low MOQ",
       id_title: "why_moq_title",
-      description: "Minimum 25 pieces per design",
+      description: "Minimum 50 pieces per design",
       id_desc: "why_moq_desc",
     },
     {
       icon: Award,
-      title: "Quality Guarantee",
+      title: "Fabric testing & shrinkage",
       id_title: "why_quality_title",
-      description: "Highest quality standards",
+      description: "Get actual performance they supposed to be.",
       id_desc: "why_quality_desc",
     },
     {
@@ -172,10 +174,10 @@ export default async function OurProcess() {
       id_desc: "why_global_desc",
     },
     {
-      icon: Zap,
-      title: "Innovation",
+      icon: Factory,
+      title: "Designed systems",
       id_title: "why_innovation_title",
-      description: "Latest technology & methods",
+      description: "To Reduce errors",
       id_desc: "why_innovation_desc",
     },
   ];
@@ -209,36 +211,51 @@ export default async function OurProcess() {
 
   // Prepare simple content map for Accordion which cannot easily access full array due to structure difference
   // Actually easier to just pass the raw data array to Accordion
-  const contentMap = contentBlocks?.reduce((acc, block) => {
-    acc[block.key] = block.value;
-    return acc;
-  }, {}) || {};
+  const contentMap =
+    contentBlocks?.reduce((acc, block) => {
+      acc[block.key] = block.value;
+      return acc;
+    }, {}) || {};
 
   return (
     <div className="min-h-screen bg-slate-50 pb-12 px-4 pt-20 ">
       <div className="max-w-7xl mx-auto">
         <section className="w-full py-20 ">
           <div className="max-w-7xl mx-auto">
+            <div className="flex justify-center -mb-16">
+              <span className="px-8 py-2  rounded-full text-orange-500  font-bold text-lg uppercase tracking-wider">
+                VALUES
+              </span>
+            </div>
             <Header
               title={
                 <EditableText
                   id="about_hero_title"
                   defaultValue="What we believe, and  "
-                  initialContent={getContent("about_hero_title", "What we believe, and  ")}
+                  initialContent={getContent(
+                    "about_hero_title",
+                    "What we believe, and  "
+                  )}
                 />
               }
               highlightedTitle={
                 <EditableText
                   id="about_hero_highlight"
                   defaultValue="live by."
-                  initialContent={getContent("about_hero_highlight", "live by.")}
+                  initialContent={getContent(
+                    "about_hero_highlight",
+                    "live by."
+                  )}
                 />
               }
               subtitle={
                 <EditableText
                   id="about_hero_subtitle"
                   defaultValue=" We are more than just a manufacturer. We are partners committed to elevating your brand through premium manufacturing, transparency, and unwavering reliability."
-                  initialContent={getContent("about_hero_subtitle", " We are more than just a manufacturer. We are partners committed to elevating your brand through premium manufacturing, transparency, and unwavering reliability.")}
+                  initialContent={getContent(
+                    "about_hero_subtitle",
+                    " We are more than just a manufacturer. We are partners committed to elevating your brand through premium manufacturing, transparency, and unwavering reliability."
+                  )}
                 />
               }
             />
@@ -251,12 +268,25 @@ export default async function OurProcess() {
                   className="bg-white p-10 rounded-xl  flex flex-col items-center text-center group border border-transparent "
                 >
                   {/* Icon Container */}
-                  <div className="mb-6 p-4 rounded-full bg-orange-50 group-hover:bg-orange-500 transition-colors duration-300">
-                    <value.icon className="w-8 h-8 text-orange-500 group-hover:text-white transition-colors duration-300" />
+
+                  <div className="flex-shrink-0">
+                    <div className="relative">
+                      <div className="absolute -top-1 -left-1 w-10 h-10 bg-orange-500 rounded-sm  " />
+                      <div className="mb-6">
+                        <div className="relative inline-block">
+                          <div className="relative bg-white rounded-3xl p-3">
+                            <value.icon
+                              className="w-10 h-10 text-black"
+                              strokeWidth={2}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-5xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-5xl font-bold text-black mb-4">
                     <EditableText
                       id={value.id_title}
                       defaultValue={value.title}
@@ -265,12 +295,15 @@ export default async function OurProcess() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-md">
-                    "<EditableText
+                  <p className="text-black leading-relaxed text-md text-center text-balance">
+                    <EditableText
                       id={value.id_desc}
                       defaultValue={value.description}
-                      initialContent={getContent(value.id_desc, value.description)}
-                    />"
+                      initialContent={getContent(
+                        value.id_desc,
+                        value.description
+                      )}
+                    />
                   </p>
                 </div>
               ))}
@@ -283,21 +316,30 @@ export default async function OurProcess() {
             <EditableText
               id="process_section_title"
               defaultValue="Our Manufacturing "
-              initialContent={getContent("process_section_title", "Our Manufacturing ")}
+              initialContent={getContent(
+                "process_section_title",
+                "Our Manufacturing "
+              )}
             />
           }
           highlightedTitle={
             <EditableText
               id="process_section_highlight"
               defaultValue="Process."
-              initialContent={getContent("process_section_highlight", "Process.")}
+              initialContent={getContent(
+                "process_section_highlight",
+                "Process."
+              )}
             />
           }
           subtitle={
             <EditableText
               id="process_section_subtitle"
               defaultValue="   From concept to delivery - discover how we transform your ideas into high-quality custom apparel with our streamlined 6-step process, backed by years of expertise and state-of-the-art facilities."
-              initialContent={getContent("process_section_subtitle", "   From concept to delivery - discover how we transform your ideas into high-quality custom apparel with our streamlined 6-step process, backed by years of expertise and state-of-the-art facilities.")}
+              initialContent={getContent(
+                "process_section_subtitle",
+                "   From concept to delivery - discover how we transform your ideas into high-quality custom apparel with our streamlined 6-step process, backed by years of expertise and state-of-the-art facilities."
+              )}
             />
           }
         />
@@ -318,7 +360,7 @@ export default async function OurProcess() {
                       <div className="mb-6">
                         <div className="relative inline-block">
                           <div className="relative bg-white rounded-3xl p-3">
-                            <IconComponent className="w-6 h-6 text-orange-500" />
+                            <IconComponent className="w-6 h-6 text-black" />
                           </div>
                         </div>
                       </div>
@@ -339,7 +381,10 @@ export default async function OurProcess() {
                     <EditableText
                       id={step.id_desc}
                       defaultValue={step.description}
-                      initialContent={getContent(step.id_desc, step.description)}
+                      initialContent={getContent(
+                        step.id_desc,
+                        step.description
+                      )}
                     />
                   </CardDescription>
                   <div className="space-y-2">
@@ -353,7 +398,10 @@ export default async function OurProcess() {
                           <EditableText
                             id={feature.id}
                             defaultValue={feature.text}
-                            initialContent={getContent(feature.id, feature.text)}
+                            initialContent={getContent(
+                              feature.id,
+                              feature.text
+                            )}
                           />
                         </span>
                       </div>
@@ -375,19 +423,25 @@ export default async function OurProcess() {
                 defaultValue="Why Choose "
                 initialContent={getContent("why_choose_title", "Why Choose ")}
               />
-              <span className="text-orange-500">
+              <span className="text-orange-500 ml-3">
                 <EditableText
                   id="why_choose_highlight"
                   defaultValue="Ferrati?"
-                  initialContent={getContent("why_choose_highlight", "Ferrati?")}
+                  initialContent={getContent(
+                    "why_choose_highlight",
+                    "Ferrati?"
+                  )}
                 />
               </span>
             </h2>
-            <p className="text-black text-xl max-w-2xl mx-auto">
+            <p className="text-black text-xl max-w-5xl mx-auto">
               <EditableText
                 id="why_choose_subtitle"
                 defaultValue="We stand out as the best apparel manufacturer with our commitment to quality, innovation, and customer satisfaction."
-                initialContent={getContent("why_choose_subtitle", "We stand out as the best apparel manufacturer with our commitment to quality, innovation, and customer satisfaction.")}
+                initialContent={getContent(
+                  "why_choose_subtitle",
+                  "We stand out as the best apparel manufacturer with our commitment to quality, innovation, and customer satisfaction."
+                )}
               />
             </p>
           </div>
@@ -400,15 +454,12 @@ export default async function OurProcess() {
                   key={index}
                   className="flex items-start gap-4 p-4 rounded-none hover:bg-gray-50 transition-colors"
                 >
-                  {/* <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-none flex items-center justify-center">
-                    <IconComponent className="w-5 h-5 text-orange-500" />
-                  </div> */}
                   <div className="relative">
                     <div className="absolute -top-1 -left-1 w-8 h-8 bg-orange-500 rounded-sm  " />
                     <div className="mb-6">
                       <div className="relative inline-block">
                         <div className="relative bg-white rounded-3xl p-3">
-                          <IconComponent className="w-6 h-6 text-orange-500" />
+                          <IconComponent className="w-6 h-6 text-black" />
                         </div>
                       </div>
                     </div>
@@ -425,7 +476,10 @@ export default async function OurProcess() {
                       <EditableText
                         id={item.id_desc}
                         defaultValue={item.description}
-                        initialContent={getContent(item.id_desc, item.description)}
+                        initialContent={getContent(
+                          item.id_desc,
+                          item.description
+                        )}
                       />
                     </p>
                   </div>
@@ -439,34 +493,66 @@ export default async function OurProcess() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 mb-8">
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_1_val" defaultValue="2019" initialContent={getContent("stat_1_val", "2019")} />
+              <EditableText
+                id="stat_1_val"
+                defaultValue="2019"
+                initialContent={getContent("stat_1_val", "2019")}
+              />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_1_label" defaultValue="Established" initialContent={getContent("stat_1_label", "Established")} />
+              <EditableText
+                id="stat_1_label"
+                defaultValue="Established"
+                initialContent={getContent("stat_1_label", "Established")}
+              />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_2_val" defaultValue="4000" initialContent={getContent("stat_2_val", "4000")} />
+              <EditableText
+                id="stat_2_val"
+                defaultValue="4000"
+                initialContent={getContent("stat_2_val", "4000")}
+              />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_2_label" defaultValue="Sq Meter Factory" initialContent={getContent("stat_2_label", "Sq Meter Factory")} />
+              <EditableText
+                id="stat_2_label"
+                defaultValue="Sq Meter Factory"
+                initialContent={getContent("stat_2_label", "Sq Meter Factory")}
+              />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_3_val" defaultValue="15+" initialContent={getContent("stat_3_val", "15+")} />
+              <EditableText
+                id="stat_3_val"
+                defaultValue="15+"
+                initialContent={getContent("stat_3_val", "15+")}
+              />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_3_label" defaultValue="Fabric Types" initialContent={getContent("stat_3_label", "Fabric Types")} />
+              <EditableText
+                id="stat_3_label"
+                defaultValue="Fabric Types"
+                initialContent={getContent("stat_3_label", "Fabric Types")}
+              />
             </div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-500 mb-2">
-              <EditableText id="stat_4_val" defaultValue="25" initialContent={getContent("stat_4_val", "25")} />
+              <EditableText
+                id="stat_4_val"
+                defaultValue="25"
+                initialContent={getContent("stat_4_val", "25")}
+              />
             </div>
             <div className="text-sm font-extrabold text-gray-700">
-              <EditableText id="stat_4_label" defaultValue="Min Order Qty" initialContent={getContent("stat_4_label", "Min Order Qty")} />
+              <EditableText
+                id="stat_4_label"
+                defaultValue="Min Order Qty"
+                initialContent={getContent("stat_4_label", "Min Order Qty")}
+              />
             </div>
           </div>
         </div>

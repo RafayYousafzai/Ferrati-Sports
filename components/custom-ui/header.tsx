@@ -57,7 +57,7 @@ export default function Header({
       </h2>
 
       <Separator bg={theme === "dark" ? "white" : "accent"} />
-
+      <br />
       <p
         className={`
           text-lg md:text-xl leading-relaxed ${subtitleColor}

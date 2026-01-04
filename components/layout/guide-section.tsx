@@ -70,7 +70,7 @@ export default function GuideSection({
             <EditableText
               id="guide_title_2"
               defaultValue="Ferrati Sports."
-              className="text-orange-600"
+              className="text-orange-500"
               initialContent={contentMap["guide_title_2"]}
               as="span"
             />

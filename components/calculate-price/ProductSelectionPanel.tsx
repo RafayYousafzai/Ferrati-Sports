@@ -229,71 +229,6 @@ export function ProductSelectionPanel({
                         ))}
                       </Select>
                     </div>
-                    {/* Fabric Selection */}
-                    <div className="w-full my-2">
-                      <label
-                        className="text-sm font-semibold text-gray-700"
-                        htmlFor="fabric-select"
-                      >
-                        Fabric
-                      </label>
-                      <Select
-                        id="fabric-select"
-                        isDisabled={!selectedProduct}
-                        placeholder="Select a fabric"
-                        radius="full"
-                        renderValue={(items) => {
-                          return items.map((item) => {
-                            const fabric = fabrics.find(
-                              (fab) => fab.id === item.key
-                            );
-
-                            return (
-                              <div
-                                key={item.key}
-                                className="flex items-center gap-2"
-                              >
-                                {fabric?.image_url && (
-                                  <Image
-                                    alt={fabric.title}
-                                    className="rounded-full object-cover"
-                                    height={32}
-                                    src={fabric.image_url || "/placeholder.svg"}
-                                    width={32}
-                                  />
-                                )}
-                                <span>{fabric?.title}</span>
-                              </div>
-                            );
-                          });
-                        }}
-                        selectedKeys={selectedFabric ? [selectedFabric] : []}
-                        size="lg"
-                        variant="flat"
-                        onSelectionChange={(keys) => {
-                          const selected = Array.from(keys)[0] as string;
-
-                          setSelectedFabric(selected || "");
-                        }}
-                      >
-                        {availableFabrics.map((fabric) => (
-                          <SelectItem key={fabric.id} textValue={fabric.title}>
-                            <div className="flex items-center gap-2">
-                              {fabric.image_url && (
-                                <Image
-                                  alt={fabric.title}
-                                  className="rounded-full object-cover"
-                                  height={42}
-                                  src={fabric.image_url || "/placeholder.svg"}
-                                  width={42}
-                                />
-                              )}
-                              <span>{fabric.title}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </Select>
-                    </div>
 
                     {/* Quantity Input */}
                     <div className="w-full my-2">
@@ -304,13 +239,13 @@ export function ProductSelectionPanel({
                         Quantity
                       </label>
                       <Input
-                        color={quantity < 0 ? "danger" : "default"}
+                        color={quantity < 1 ? "danger" : "default"}
                         description={`Current quantity: ${quantity} items`}
                         errorMessage={
-                          quantity < 0 ? "Minimum quantity is 0" : ""
+                          quantity < 1 ? "Minimum quantity is 1" : ""
                         }
                         id="quantity-input"
-                        min={0}
+                        min={1}
                         placeholder="Enter quantity"
                         radius="full"
                         size="lg"
@@ -336,7 +271,7 @@ export function ProductSelectionPanel({
                   </Button>
                   <Button
                     className="bg-orange-500 text-white"
-                    isDisabled={!selectedProduct || quantity < 0}
+                    isDisabled={!selectedProduct || quantity < 1}
                     radius="full"
                     startContent={<Plus className="h-5 w-5 " />}
                     onPress={() => {
@@ -371,7 +306,6 @@ export function ProductSelectionPanel({
         <Table aria-label="Cart items" radius="lg">
           <TableHeader>
             <TableColumn>PRODUCT</TableColumn>
-            <TableColumn>Fabrics</TableColumn>
             <TableColumn align="center">QUANTITY</TableColumn>
             <TableColumn align="center">ACTIONS</TableColumn>
           </TableHeader>
@@ -403,30 +337,6 @@ export function ProductSelectionPanel({
                   </div>
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-3">
-                    {item.fabric.image_url ? (
-                      <Image
-                        alt={item.fabric.title}
-                        className="rounded object-cover"
-                        height={48}
-                        src={item.fabric.image_url || "/placeholder.svg"}
-                        width={48}
-                      />
-                    ) : (
-                      <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
-                        <ShoppingCart className="h-5 w-5 text-gray-400" />
-                      </div>
-                    )}
-                    <div>
-                      <div className="font-semibold">{item.fabric.title}</div>
-
-                      <Chip className="mt-1" color="secondary" size="sm">
-                        Premium
-                      </Chip>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell>
                   <div className="flex items-center justify-center gap-2">
                     <Button
                       isIconOnly
@@ -436,7 +346,7 @@ export function ProductSelectionPanel({
                         updateQuantity(
                           item.product.id,
                           item.fabric.id,
-                          item.quantity - 10,
+                          item.quantity - 10
                         )
                       }
                     >
@@ -454,7 +364,7 @@ export function ProductSelectionPanel({
                         updateQuantity(
                           item.product.id,
                           item.fabric.id,
-                          Math.max(0, newQty),
+                          Math.max(0, newQty)
                         );
                       }}
                     />
@@ -466,7 +376,7 @@ export function ProductSelectionPanel({
                         updateQuantity(
                           item.product.id,
                           item.fabric.id,
-                          item.quantity + 10,
+                          item.quantity + 10
                         )
                       }
                     >

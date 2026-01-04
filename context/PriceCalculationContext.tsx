@@ -32,7 +32,7 @@ interface Ferrati {
   updateQuantity: (
     productId: string,
     fabricId: string,
-    newQuantity: number,
+    newQuantity: number
   ) => void;
   removeFromCart: (productId: string, fabricId: string) => void;
   clearCart: () => void;
@@ -50,25 +50,25 @@ const PriceCalculationContext = createContext<Ferrati>({
   products: [],
   filteredProducts: [],
   selectedCategory: "",
-  setSelectedCategory: () => { },
+  setSelectedCategory: () => {},
   selectedFabric: "",
-  setSelectedFabric: () => { },
+  setSelectedFabric: () => {},
   selectedProduct: "",
-  setSelectedProduct: () => { },
+  setSelectedProduct: () => {},
   quantity: 50,
-  handleQuantityChange: () => { },
+  handleQuantityChange: () => {},
   searchTerm: "",
-  setSearchTerm: () => { },
-  addToCart: () => { },
+  setSearchTerm: () => {},
+  addToCart: () => {},
   cart: [],
-  updateQuantity: () => { },
-  removeFromCart: () => { },
-  clearCart: () => { },
+  updateQuantity: () => {},
+  removeFromCart: () => {},
+  clearCart: () => {},
   getTotalPrice: () => 0,
   getTotalItems: () => 0,
   loading: true,
   view: "selection",
-  setView: () => { },
+  setView: () => {},
 });
 
 // Create provider
@@ -123,7 +123,7 @@ export const PriceCalculationProvider = ({
         `
         *,
         categories:category_id (*)
-      `,
+      `
       )
       .order("title");
 
@@ -160,7 +160,7 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory,
+        (product) => product.category_id === selectedCategory
       );
 
       setFilteredProducts(filtered);
@@ -173,13 +173,13 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase()),
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory,
+        (product) => product.category_id === selectedCategory
       );
 
       setFilteredProducts(filtered);
@@ -189,27 +189,36 @@ export const PriceCalculationProvider = ({
   }, [searchTerm, products, selectedCategory]);
 
   const addToCart = () => {
-    if (!selectedProduct || !selectedFabric || quantity < 50) return;
+    if (!selectedProduct || quantity < 1) return;
 
     const product = products.find((p) => p.id === selectedProduct);
-    const fabric = fabrics.find((f) => f.id === selectedFabric);
+    if (!product) return;
 
-    if (!product || !fabric) return;
+    // Use selected fabric or default to first available fabric
+    let fabricId = selectedFabric;
+    if (!fabricId) {
+      const availableFabrics =
+        product.fabric_ids && product.fabric_ids.length > 0
+          ? fabrics.filter((f) => product.fabric_ids!.includes(f.id))
+          : fabrics;
+      fabricId = availableFabrics[0]?.id || fabrics[0]?.id || "";
+    }
+
+    const fabric = fabrics.find((f) => f.id === fabricId);
+    if (!fabric) return;
 
     const existingItem = cart.find(
       (item) =>
-        item.product.id === selectedProduct &&
-        item.fabric.id === selectedFabric,
+        item.product.id === selectedProduct && item.fabric.id === fabricId
     );
 
     if (existingItem) {
       setCart(
         cart.map((item) =>
-          item.product.id === selectedProduct &&
-            item.fabric.id === selectedFabric
+          item.product.id === selectedProduct && item.fabric.id === fabricId
             ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        ),
+            : item
+        )
       );
     } else {
       setCart([...cart, { product, quantity, fabric }]);
@@ -218,13 +227,13 @@ export const PriceCalculationProvider = ({
     // Reset form
     setSelectedProduct("");
     setSelectedFabric("");
-    setQuantity(50);
+    setQuantity(1);
   };
 
   const updateQuantity = (
     productId: string,
     fabricId: string,
-    newQuantity: number,
+    newQuantity: number
   ) => {
     // console.log("Updating quantity:", productId, fabricId, newQuantity);
 
@@ -271,9 +280,9 @@ export const PriceCalculationProvider = ({
   };
 
   const handleQuantityChange = (value: string) => {
-    const numValue = parseInt(value) || 50;
+    const numValue = parseInt(value) || 1;
 
-    setQuantity(Math.max(50, numValue));
+    setQuantity(Math.max(1, numValue));
   };
 
   return (

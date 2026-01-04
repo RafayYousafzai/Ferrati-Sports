@@ -24,16 +24,15 @@ const Portfolio = ({ contentMap = {} }) => {
       <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full py-12 lg:py-0">
           {/* Left side - Text */}
-          <div className="flex flex-col gap-6 items-start text-left order-2 lg:order-1 animate-fade-in-up">
+          <div className="relative flex flex-col gap-6 items-start text-left order-2 lg:order-1 animate-fade-in-up">
             <div className="relative">
-              <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
-                Custom Apparel Manufacturing{" "}
+              <h1 className="italic sm:text-4xl lg:text-4xl md:text-3xl xl:text-[44px] font-bold leading-tight text-gray-900 dark:text-white">
+                Custom Apparel Manufacturing{"-"}
                 <span className="text-orange-500">Made Easy.</span>
                 <EditableText
                   id="hero_title_2"
-                  // defaultValue="in 30 Days."
                   initialContent={contentMap["hero_title_2"]}
-                  className="bg-gradient-to-r from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r  from-orange-500 to-orange-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent"
                   as="span"
                 />
               </h1>
@@ -61,23 +60,23 @@ const Portfolio = ({ contentMap = {} }) => {
               </Link>
             </div>
 
-            <div className="mt-8 w-full">
+            <div className="fixed -bottom-20 left-0 bg-white">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-1 sm:gap-2 w-full">
-                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
-                  <span className="truncate">200+ Brands Served</span>
+                <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <span className="">200+ Brands Served</span>
                 </div>
-                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
-                  <span className="truncate">100+ Fabrics</span>
+                <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <span className="">100+ Fabrics</span>
                 </div>
-                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
-                  <span className="truncate">50 Unit Min Order</span>
+                <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <span className="">Replacement Policy</span>
                 </div>
-                <div className="flex items-center min-w-0 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 flex-shrink-0" />
-                  <span className="truncate">50+ Order</span>
+                <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <span className="">50+ Order</span>
                 </div>
               </div>
             </div>
