@@ -3,7 +3,18 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Building2, Zap, DollarSign, Leaf, Headphones } from "lucide-react";
+import {
+  Building2,
+  Zap,
+  DollarSign,
+  Leaf,
+  Headphones,
+  Camera,
+  ClipboardCheck,
+  Ruler,
+  Microscope,
+  ShieldCheck,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@heroui/button";
@@ -11,34 +22,34 @@ import EditableText from "@/components/editable-text";
 
 const features = [
   {
-    icon: Building2,
-    title: "In-house manufacturing facility",
-    description: "Complete control over quality and production",
+    icon: Camera,
+    title: "Weekly production updates, photos, videos, and reports",
+    description: "You always see what’s happening, no surprises later.",
   },
   {
-    icon: Zap,
-    title: "Fast, flexible production",
-    description: "30-day delivery with low MOQ from 50 units",
+    icon: ClipboardCheck,
+    title: "QC checkpoints at every stage",
+    description: "Defects are caught early instead of after delivery.",
   },
   {
-    icon: DollarSign,
-    title: "Transparent pricing",
-    description: "No hidden costs or surprise charges",
+    icon: Ruler,
+    title: "Faster sampling and pattern accuracy",
+    description: "You get approvals quicker with reliable fits.",
   },
   {
-    icon: Leaf,
-    title: "Ethical and sustainable",
-    description: "Responsible manufacturing practices",
+    icon: Microscope,
+    title: "Fabric testing and shrinkage checks",
+    description: "Materials perform the way they’re supposed to.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Replacement policy for defects",
+    description: "If something isn’t right, it gets corrected.",
   },
   {
     icon: Headphones,
-    title: "Expert design support",
-    description: "Guidance from concept to final product",
-  },
-  {
-    icon: DollarSign,
-    title: "Global shipping",
-    description: "Reliable delivery to your doorstep worldwide",
+    title: "After-sales support",
+    description: "We stay with you after delivery not just until shipment.",
   },
 ];
 

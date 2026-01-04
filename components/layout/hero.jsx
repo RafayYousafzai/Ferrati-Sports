@@ -4,7 +4,7 @@ import React from "react";
 import BrandMarquee from "./BrandMarquee";
 import Link from "next/link";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, CheckCircle } from "lucide-react";
 import EditableText from "@/components/editable-text";
 
 const Portfolio = ({ contentMap = {} }) => {
@@ -60,22 +60,26 @@ const Portfolio = ({ contentMap = {} }) => {
               </Link>
             </div>
 
-            <div className="fixed -bottom-20 left-0 bg-white">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-1 sm:gap-2 w-full">
+            <div className="fixed -bottom-20 left-0 ">
+              <div className="flex flex-wrap gap-1 sm:gap-2 w-full">
                 <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <CheckCircle className="w-4 h-4 mr-1 text-orange-500 flex-shrink-0" />
+
                   <span className="">200+ Brands Served</span>
                 </div>
                 <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <CheckCircle className="w-4 h-4 mr-1 ml-1 text-orange-500 flex-shrink-0" />
+
                   <span className="">100+ Fabrics</span>
                 </div>
                 <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <CheckCircle className="w-4 h-4 mr-1 ml-1 text-orange-500 flex-shrink-0" />
+
                   <span className="">Replacement Policy</span>
                 </div>
                 <div className="flex items-center text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  <Check className="bg-orange-500 rounded-full text-white p-1 mr-2 w-5 h-5 " />
+                  <CheckCircle className="w-4 h-4 mr-1 ml-1 text-orange-500 flex-shrink-0" />
+
                   <span className="">50+ Order</span>
                 </div>
               </div>

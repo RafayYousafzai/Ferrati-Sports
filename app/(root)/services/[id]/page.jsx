@@ -1,8 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import ProductDetails from "@/components/layout/product-details";
 import AllProductsSummary from "@/components/layout/all-products-summary";
-import { Button } from "@heroui/button";
-import Link from "next/link";
+import WhyFerrati from "@/components/layout/why-ferrati";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 
 export default async function Page({ params }) {
@@ -31,6 +30,11 @@ export default async function Page({ params }) {
         variant="white"
         showButton={false}
         bgColor="bg-slate-50"
+        rightChildren={
+          <div className="mt-10">
+            <WhyFerrati />
+          </div>
+        }
       >
         <div className="bg-white  shadow-2xl rounded-2xl p-8">
           <QuoteContactForm />

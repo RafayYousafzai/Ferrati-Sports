@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import FerratiAccordion from "@/components/layout/accordian";
+import WhyFerrati from "@/components/layout/why-ferrati";
 
 export async function generateMetadata({ params }) {
   const { id: categorySlug } = await params;
@@ -82,6 +83,11 @@ export default async function CategoryPage({ params }) {
         headline={category.title}
         image={category.image_url}
         variant="light"
+        rightChildren={
+          <div className="mt-10">
+            <WhyFerrati />
+          </div>
+        }
       >
         <div className="bg-white  shadow-2xl rounded-2xl p-8">
           <QuoteContactForm />

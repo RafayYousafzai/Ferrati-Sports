@@ -6,7 +6,6 @@ import AllProductsSummary from "@/components/layout/all-products-summary";
 import { Button } from "@heroui/button";
 import { SiTrustpilot } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
-import Link from "next/link";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
 import ReviewsShowcase from "@/components/layout/reviews-showcase";
 import WhyFerrati from "@/components/layout/why-ferrati";

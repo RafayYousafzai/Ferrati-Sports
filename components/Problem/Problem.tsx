@@ -14,12 +14,14 @@ import {
   Headphones,
   Zap,
   Truck,
-  TruckOff,
+  AlertOctagon,
+  TruckElectric,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+
 import EditableText from "@/components/editable-text";
 
 const Problem = ({
@@ -34,125 +36,123 @@ const Problem = ({
   const problemItems = [
     {
       id: "1",
-      icon: TrendingDown,
-      title: "Slow trend adoption",
-      description:
-        "Slow to follow new trends, which means you lose buyers to faster competitors.",
+      icon: AlertOctagon,
+      title: "Stitching opens after a few washes",
+      description: "Stitching opens after a few washes",
     },
+
     {
       id: "2",
-      icon: PackageX,
-      title: "Overproduction waste",
+      icon: Truck,
+      title: "Delayed deliveries with zero updates",
       description:
-        "Making more stock than needed, leaving you with waste and money loss.",
+        "Deliveries arrive late, and you discover problems when it's too late.",
     },
     {
       id: "3",
-      icon: AlertTriangle,
-      title: "Weak quality control",
+      icon: TrendingDown,
+      title: "Inconsistent stitching & poor fabric quality",
       description:
-        "Weak checks on quality, causing damaged or faulty products to reach customers.",
+        "Defects lead to returns, refunds, and lost trust with customers.",
     },
     {
       id: "4",
-      icon: Clock,
-      title: "Poor support response",
+      icon: AlertTriangle,
+      title: "Wrong colors & weak trims",
       description:
-        "Support teams that don't respond quickly, leaving you stuck and delayed.",
+        "Zippers fail, colors mismatch, logos fade and products feel unreliable.",
     },
     {
       id: "5",
       icon: Archive,
-      title: "Outdated processes",
+      title: "Outdated systems that slow your growth",
       description:
-        "Old ways of working that keep your brand behind while others move forward.",
+        "Manual processes and poor coordination slow decisions and your growth.",
     },
     {
       id: "6",
-      icon: PackageX,
-      title: "Unreliable delivery",
+      icon: TrendingDown,
+      title: "Confusing pricing & hidden charges",
       description:
-        "Missed or late shipments disrupt your launch plans and disappoint customers.",
+        "Unexpected fees appear suddenly and shrink already tight profit margins.",
     },
   ];
 
-  // Hardcoded solution items with icons
   const solutionItems = [
     {
       id: "1",
-      icon: TrendingUp,
-      title: "Rapid trend adaptation",
+      icon: TruckElectric,
+      title: "Factories take on more than they can handle",
       description:
-        "Fast response to trends so your products reach the market on time.",
+        "They get overloaded and your production starts slipping through the cracks.",
     },
     {
       id: "2",
-      icon: ShieldCheck,
-      title: "Smart order management",
+      icon: BadgeCheck,
+      title: "B grade fabrics replace the original specs",
       description:
-        "Smarter order control that avoids waste and protects your money.",
+        "You think you approved one thing and something else shows up.",
     },
     {
       id: "3",
-      icon: BadgeCheck,
-      title: "Strict quality control",
+      icon: ShieldCheck,
+      title: "No real SOPs just “how we’ve always done it”",
       description:
-        "Careful quality checks at every stage to stop defects before they happen.",
+        "When processes aren’t written, mistakes repeat themselves again and again.",
     },
     {
       id: "4",
       icon: Headphones,
-      title: "Responsive support",
+      title: "Unskilled people handle critical steps",
       description:
-        "A support team that is always ready with quick and clear answers.",
+        "The parts that matter most don’t always get expert attention.",
     },
     {
       id: "5",
-      icon: Zap,
-      title: "Modern systems",
+      icon: AlertTriangle,
+      title: "No true final inspection, only packing",
       description:
-        "Modern systems and fresh ideas that prepare your brand for the future.",
+        "Issues are discovered after delivery, when it’s already too late.",
     },
     {
       id: "6",
-      icon: Truck,
-      title: "Reliable delivery",
-      description:
-        "On-time shipments ensure your launches go as planned and customers stay happy.",
+      icon: Zap,
+      title: "Stitching is rushed just to clear capacity",
+      description: "Speed wins over care, and quality slips.",
     },
   ];
 
   return (
     <section ref={ref} className="py-20 overflow-hidden">
       <div className="flex justify-center">
-        <span className="px-8 py-2 rounded-full text-orange-500  font-bold text-lg uppercase tracking-wider">
-          FERRATI
+        <span className="px-8 py-2  rounded-full text-orange-500  font-bold text-lg uppercase tracking-wider">
+          VALUES
         </span>
       </div>
       <div className="container mx-auto max-w-4xl text-balance mb-16">
         <h2 className="text-5xl capitalize font-bold text-center text-black mb-6">
           <EditableText
+            as="span"
             id="problem_main_title_1"
             // defaultValue="You design. We make."
             initialContent={contentMap["problem_main_title_1"]}
-            as="span"
           />{" "}
           <EditableText
+            as="span"
+            initialContent={contentMap["problem_main_title_2"]}
             id="problem_main_title_2"
             // defaultValue="You win."
             className="text-orange-500"
-            initialContent={contentMap["problem_main_title_2"]}
-            as="span"
           />
         </h2>
         <div className="w-32 rounded-2xl h-1 bg-orange-500 mx-auto mb-10 mt-2" />
         <EditableText
+          multiline
+          as="p"
+          className="text-md sm:text-xl text-center text-black leading-relaxed"
           id="problem_main_desc"
           // defaultValue="We're client partners first, committed to paving the way for growth. We're focused on helping brands disrupt their industry through digital marketing. We're also big on a work life balance. We've built a team of fun, driven, and motivated specialists who are encouraged to live our company values."
           initialContent={contentMap["problem_main_desc"]}
-          multiline
-          className="text-md sm:text-xl text-center text-black leading-relaxed"
-          as="p"
         />
       </div>
       <div className="container mx-auto px-4 max-w-7xl">
@@ -167,25 +167,25 @@ const Problem = ({
           >
             <h2 className="text-5xl font-bold text-black mb-4">
               <EditableText
-                id="problem_pain_title_1"
-                defaultValue="What You Have Been"
-                initialContent={contentMap["problem_pain_title_1"]}
                 as="span"
+                defaultValue="What You Have Been"
+                id="problem_pain_title_1"
+                initialContent={contentMap["problem_pain_title_1"]}
               />{" "}
               <EditableText
-                id="problem_struggle_title_2"
-                defaultValue="Struggling With."
-                className="text-orange-500"
                 as="span"
+                className="text-orange-500"
+                defaultValue="Struggling With."
+                id="problem_struggle_title_2"
               />
             </h2>
             <EditableText
-              id="problem_pain_desc"
-              defaultValue="Slow trend adoption, overproduction, and weak quality control lead to losses and customer issues while poor support and outdated processes keep your brand lagging behind faster competitors."
-              initialContent={contentMap["problem_pain_desc"]}
               multiline
-              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
               as="p"
+              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+              defaultValue="Slow trend adoption, overproduction, and weak quality control lead to losses and customer issues while poor support and outdated processes keep your brand lagging behind faster competitors."
+              id="problem_pain_desc"
+              initialContent={contentMap["problem_pain_desc"]}
             />
           </motion.div>
 
@@ -225,22 +225,22 @@ const Problem = ({
                     <div>
                       <h6 className="font-bold text-sm -mt-2 text-black mb-1">
                         <EditableText
-                          id={`problem_item_${item.id}_title`}
+                          as="span"
                           defaultValue={item.title}
+                          id={`problem_item_${item.id}_title`}
                           initialContent={
                             contentMap[`problem_item_${item.id}_title`]
                           }
-                          as="span"
                         />
                       </h6>
                       <EditableText
-                        id={`problem_item_${item.id}_desc`}
+                        as="p"
+                        className="text-sm text-black"
                         defaultValue={item.description}
+                        id={`problem_item_${item.id}_desc`}
                         initialContent={
                           contentMap[`problem_item_${item.id}_desc`]
                         }
-                        className="text-sm text-black"
-                        as="p"
                       />
                     </div>
                   </motion.div>
@@ -332,8 +332,8 @@ const Problem = ({
 
         {/* Solutions Section */}
         <div
-          style={{ marginTop: "80px" }}
           className="bg-white py-16 px-10 lg:px-10 rounded-3xl shadow-xl"
+          style={{ marginTop: "80px" }}
         >
           {/* Header */}
           <motion.div
@@ -344,31 +344,31 @@ const Problem = ({
           >
             <h2 className="text-5xl  font-bold text-black mb-4">
               <EditableText
-                id="problem_solution_title_1"
+                as="span"
                 defaultValue="How"
+                id="problem_solution_title_1"
                 initialContent={contentMap["problem_solution_title_1"]}
-                as="span"
               />{" "}
               <EditableText
-                id="problem_solution_title_2"
-                defaultValue="Ferrati Empowers"
+                as="span"
                 className="text-orange-500"
-                as="span"
+                defaultValue="Ferrati Empowers"
+                id="problem_solution_title_2"
               />{" "}
               <EditableText
-                id="problem_solution_title_3"
-                defaultValue="You With."
-                initialContent={contentMap["problem_solution_title_3"]}
                 as="span"
+                defaultValue="You With."
+                id="problem_solution_title_3"
+                initialContent={contentMap["problem_solution_title_3"]}
               />
             </h2>
             <EditableText
-              id="problem_solution_desc"
-              defaultValue="Quick trend adaptation, smart order management, and strict quality control cut waste and defects while responsive support and modern systems keep your brand ahead and future-ready."
-              initialContent={contentMap["problem_solution_desc"]}
               multiline
-              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
               as="p"
+              className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+              defaultValue="Quick trend adaptation, smart order management, and strict quality control cut waste and defects while responsive support and modern systems keep your brand ahead and future-ready."
+              id="problem_solution_desc"
+              initialContent={contentMap["problem_solution_desc"]}
             />
           </motion.div>
 
@@ -460,22 +460,22 @@ const Problem = ({
                     <div>
                       <h6 className="font-bold text-sm -mt-2 text-black mb-1">
                         <EditableText
-                          id={`solution_item_${item.id}_title`}
+                          as="span"
                           defaultValue={item.title}
+                          id={`solution_item_${item.id}_title`}
                           initialContent={
                             contentMap[`solution_item_${item.id}_title`]
                           }
-                          as="span"
                         />
                       </h6>
                       <EditableText
-                        id={`solution_item_${item.id}_desc`}
+                        as="p"
+                        className="text-sm text-black"
                         defaultValue={item.description}
+                        id={`solution_item_${item.id}_desc`}
                         initialContent={
                           contentMap[`solution_item_${item.id}_desc`]
                         }
-                        className="text-sm text-black"
-                        as="p"
                       />
                     </div>
                   </motion.div>
@@ -492,12 +492,13 @@ const Problem = ({
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <p className="text-lg text-black mb-6">
-              We{" "}
-              <span className="text-orange-500 font-semibold">
-                deliver solutions
-              </span>{" "}
-              that transform your manufacturing challenges into competitive
-              advantages.
+              <EditableText
+                id="cta_description_1"
+                defaultValue="We deliver solutions  that transform your manufacturing challenges into competitive
+              advantages."
+                initialContent={contentMap["cta_description_1"]}
+                as="span"
+              />
             </p>
             <Link href="/request-quote">
               <Button

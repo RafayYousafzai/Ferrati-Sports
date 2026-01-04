@@ -1,9 +1,8 @@
-import Header from "@/components/custom-ui/header";
-import Card from "@/components/custom-ui/card";
 import ProductDetails from "@/components/layout/product-details";
 import { createClient } from "@/lib/supabase/server";
 import AllProductsSummary from "@/components/layout/all-products-summary";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import WhyFerrati from "@/components/layout/why-ferrati";
 
 // Main page component
 export default async function FabricPage({ params }) {
@@ -38,6 +37,11 @@ export default async function FabricPage({ params }) {
         image={fabric.image_url}
         variant="white"
         bgColor="bg-slate-50"
+        rightChildren={
+          <div className="mt-10">
+            <WhyFerrati />
+          </div>
+        }
       >
         {" "}
         <div className="bg-white  shadow-2xl rounded-2xl p-8">
