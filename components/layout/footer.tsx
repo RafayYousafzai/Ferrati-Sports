@@ -367,7 +367,7 @@ const Footer = async () => {
                 </Link>
                 <Link
                   className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 group"
-                  href="mailto:info@ferratisports.com"
+                  href="https://www.facebook.com/Ferratisports/"
                 >
                   <Facebook className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </Link>

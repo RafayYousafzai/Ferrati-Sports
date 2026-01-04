@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@heroui/button";
 import { Input, Textarea } from "@heroui/input";
 import { addToast } from "@heroui/toast";
+// Moved to top for cleaner imports
 
 import { submitContactForm } from "./actions";
 
@@ -23,6 +24,14 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleWhatsAppClick = () => {
+    const base = "https://wa.me/447757726151";
+
+    const url = `${base}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,7 +58,6 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
           title: result.success,
           color: "success",
         });
-        // Reset form on success
         setForm({
           email: "",
           phone: "+92",
@@ -123,14 +131,13 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
       </div>
       <Textarea
         fullWidth
-        className=""
         label="Description"
         placeholder="Enter your description"
         value={form.interest}
         onChange={(e) => handleChange("interest", e.target.value)}
       />
 
-      <div className="pt-6">
+      <div className="pt-6 flex flex-col md:flex-row items-center gap-4">
         <Button
           className="w-full md:w-auto bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-base font-semibold"
           isLoading={isPending}
@@ -139,7 +146,20 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
         >
           Send Message
         </Button>
+
+        <span className="text-md text-gray-500 hidden md:inline">or</span>
+
+        {/* Fixed: Moved logic to onClick, removed <a> wrapper, added w-full for mobile */}
+        <Button
+          className="w-full md:w-auto bg-[#00db40] text-white"
+          size="lg"
+          type="button"
+          onClick={handleWhatsAppClick}
+        >
+          <span>Talk on WhatsApp</span>
+        </Button>
       </div>
+
       <div className="text-xs text-gray-400 max-w-2xl">
         <p>
           By submitting this form, you consent to receive marketing
