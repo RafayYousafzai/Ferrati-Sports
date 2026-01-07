@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import FerratiAccordion from "@/components/layout/accordian";
 import RightManufacturer from "@/components/layout/right-manufacturer";
+import BrandMarquee from "@/components/layout/BrandMarquee";
 
 export const metadata = {
   title: "Ferrati Sports - Premium Custom Clothing & Sportswear Manufacturing",
@@ -89,6 +90,9 @@ export default async function Home() {
     <>
       {/* 🎯 HERO SECTION - Hook them immediately with value proposition */}
       <Hero contentMap={contentMap} />
+      <div className="w-full">
+        <BrandMarquee />
+      </div>
 
       {/* 😣 PROBLEM SECTION - Agitate their pain points & show understanding */}
       <Problem contentMap={contentMap} />
