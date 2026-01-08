@@ -162,7 +162,7 @@ function ItemsGrid({ items, basePath }: { items: Item[]; basePath: string }) {
   console.log(basePath);
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto p-6">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mx-auto">
       {items?.map((item) => (
         <Card
           key={item.id}
@@ -222,7 +222,7 @@ export default async function AllProductsSummary({
   );
 
   return (
-    <div>
+    <div className="container mx-auto px-4 max-w-7xl mb-20">
       {results.map((section) =>
         section ? (
           <Suspense key={section.key} fallback={<GridSkeleton />}>

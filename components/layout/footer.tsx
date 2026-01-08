@@ -331,11 +331,22 @@ const Footer = async () => {
               <li className="text-gray-300 text-base">
                 <Image
                   alt="Payment Method"
-                  className="h-5 w-auto"
-                  height={30}
+                  className="h-8 w-auto"
+                  height={60}
                   src="/assets/paypal-icon.svg"
-                  width={50}
+                  width={100}
                 />
+              </li>{" "}
+              <li className="text-gray-300 text-base ">
+                <div className="bg-white px-4 max-w-xs rounded-md inline-block">
+                  <Image
+                    alt="Payment Method"
+                    className="h-10 w-auto"
+                    height={60}
+                    src="/assets/BankTransfer.jpg"
+                    width={100}
+                  />
+                </div>
               </li>
             </ul>
           </div>

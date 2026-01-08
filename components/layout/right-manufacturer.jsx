@@ -42,7 +42,7 @@ const scenarios = [
 const RightManufacturer = ({ contentMap = {} }) => {
   return (
     <div className="pb-6 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 max-w-7xl mb-20">
         {/* <Header
           title="Real Reason Your Brand is still behind  "
           highlightedTitle=""

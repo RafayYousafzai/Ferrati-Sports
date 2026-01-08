@@ -8,7 +8,7 @@ import Header from "../custom-ui/header";
 const CategoriesCarousal = ({ categories }: { categories: any }) => {
   return (
     <div className="pb-10 md:-mt-16 ">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 max-w-7xl mb-20">
         {/* Header */}
         <Header
           badge="Explore"
