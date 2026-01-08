@@ -19,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@heroui/button";
 import EditableText from "@/components/editable-text";
+import EditableImage from "@/components/editable-image";
 
 const features = [
   {
@@ -170,12 +171,20 @@ export default function GuideSection({
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                <Image
-                  alt="Ferrati Sports Manufacturing"
-                  className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
-                  height={600}
-                  src="/assets/hero.webp"
-                  width={800}
+                <EditableImage
+                  id="guide_main_image"
+                  defaultValue="/assets/hero.webp"
+                  initialContent={contentMap["guide_main_image"]}
+                  className="w-full h-full"
+                  renderImage={(src) => (
+                    <Image
+                      alt="Ferrati Sports Manufacturing"
+                      className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
+                      height={600}
+                      src={src}
+                      width={800}
+                    />
+                  )}
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-orange-500/20 to-transparent mix-blend-overlay" />
               </motion.div>

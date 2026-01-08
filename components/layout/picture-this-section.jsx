@@ -4,6 +4,7 @@ import Header from "@/components/custom-ui/header";
 import Link from "next/link";
 import { Button } from "@heroui/button";
 import Separator from "../separator";
+import EditableImage from "@/components/editable-image";
 
 const scenarios = [
   {
@@ -41,7 +42,7 @@ const scenarios = [
   },
 ];
 
-const PictureThisSection = () => {
+const PictureThisSection = ({ contentMap = {} }) => {
   return (
     <div className="pb-16 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,10 +74,18 @@ const PictureThisSection = () => {
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${scenario.gradient} opacity-0  `}
                 />
-                <img
-                  src={scenario.image}
-                  alt={scenario.title}
-                  className="w-full h-full aspect-square object-cover "
+                <EditableImage
+                  id={`picture_this_image_${index + 1}`}
+                  defaultValue={scenario.image}
+                  initialContent={contentMap[`picture_this_image_${index + 1}`]}
+                  className="w-full h-full"
+                  renderImage={(src) => (
+                    <img
+                      src={src}
+                      alt={`Scenario ${index + 1}`}
+                      className="w-full h-full aspect-square object-cover"
+                    />
+                  )}
                 />
               </div>
 

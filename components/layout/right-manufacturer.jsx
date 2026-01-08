@@ -1,5 +1,6 @@
 "use client";
 import Separator from "../separator";
+import EditableImage from "@/components/editable-image";
 
 const scenarios = [
   {
@@ -38,7 +39,7 @@ const scenarios = [
   },
 ];
 
-const RightManufacturer = () => {
+const RightManufacturer = ({ contentMap = {} }) => {
   return (
     <div className="pb-6 sm:pb-20 lg:pb-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,10 +71,18 @@ const RightManufacturer = () => {
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${scenario.gradient} opacity-0  `}
                 />
-                <img
-                  src={scenario.image}
-                  alt={scenario.title}
-                  className="w-full h-full aspect-square object-cover "
+                <EditableImage
+                  id={`right_manufacturer_image_${index + 1}`}
+                  defaultValue={scenario.image}
+                  initialContent={contentMap[`right_manufacturer_image_${index + 1}`]}
+                  className="w-full h-full"
+                  renderImage={(src) => (
+                    <img
+                      src={src}
+                      alt={`Right Manufacturer Scenario ${index + 1}`}
+                      className="w-full h-full aspect-square object-cover"
+                    />
+                  )}
                 />
               </div>
 

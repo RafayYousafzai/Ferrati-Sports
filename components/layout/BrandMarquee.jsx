@@ -34,7 +34,7 @@ const BrandMarquee = () => {
   ];
 
   return (
-    <div className="w-full py-10 overflow-hidden bg-transparent">
+    <div className="w-full py-10 overflow-hidden bg-white">
       {/* <div className="container mx-auto px-6 mb-8">
         <div className="text-center">
           <h3 className="text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.3em]">

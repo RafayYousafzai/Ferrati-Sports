@@ -118,13 +118,13 @@ export default async function Home() {
         </div>
       </Suspense>
       {/* 🎨 PICTURE THIS SECTION - Visual storytelling of transformation */}
-      <PictureThisSection />
+      <PictureThisSection contentMap={contentMap} />
 
       {/* <UrgencySection /> */}
 
       {/* 📦 PRODUCTS OVERVIEW - Detailed offerings showcase */}
       <AllProductsSummary order={["services"]} />
-      <RightManufacturer />
+      <RightManufacturer contentMap={contentMap} />
 
       {/* ⭐ SOCIAL PROOF - Validate with reviews EARLY in the journey */}
       <Suspense

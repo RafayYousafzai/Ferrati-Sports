@@ -30,7 +30,7 @@ export default function Loading() {
         {/* Loading text with animation */}
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-pulse">
-            We make. You win.
+            We Make. You Win.
           </h2>
           {/* Progress bar */}
           {/* <div className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">

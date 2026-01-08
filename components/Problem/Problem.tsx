@@ -23,6 +23,7 @@ import { useRef } from "react";
 import Image from "next/image";
 
 import EditableText from "@/components/editable-text";
+import EditableImage from "@/components/editable-image";
 
 const Problem = ({
   contentMap = {},
@@ -267,12 +268,20 @@ const Problem = ({
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                  <Image
-                    alt="Manufacturing Problems"
-                    className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
-                    height={600}
-                    src="https://images.unsplash.com/photo-1758611971935-331135af686d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632"
-                    width={800}
+                  <EditableImage
+                    id="problem_issues_image"
+                    defaultValue="https://images.unsplash.com/photo-1758611971935-331135af686d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632"
+                    initialContent={contentMap["problem_issues_image"]}
+                    className="w-full h-full"
+                    renderImage={(src) => (
+                      <Image
+                        alt="Manufacturing Problems"
+                        className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
+                        height={600}
+                        src={src}
+                        width={800}
+                      />
+                    )}
                   />
                 </motion.div>
               </div>
@@ -393,12 +402,20 @@ const Problem = ({
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                  <Image
-                    alt="Ferrati Solutions"
-                    className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
-                    height={600}
-                    src="https://plus.unsplash.com/premium_photo-1664475666724-8dff6a3cf38d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
-                    width={800}
+                  <EditableImage
+                    id="problem_solutions_image"
+                    defaultValue="https://plus.unsplash.com/premium_photo-1664475666724-8dff6a3cf38d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                    initialContent={contentMap["problem_solutions_image"]}
+                    className="w-full h-full"
+                    renderImage={(src) => (
+                      <Image
+                        alt="Ferrati Solutions"
+                        className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
+                        height={600}
+                        src={src}
+                        width={800}
+                      />
+                    )}
                   />
                 </motion.div>
               </div>

@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Check, CheckCircle } from "lucide-react";
 import EditableText from "@/components/editable-text";
+import EditableImage from "@/components/editable-image";
 
 const Portfolio = ({ contentMap = {} }) => {
   return (
@@ -75,13 +77,21 @@ const Portfolio = ({ contentMap = {} }) => {
           {/* Right side - Image */}
           <div className="flex order-1 lg:order-2 w-full justify-center lg:justify-end animate-fade-in-up delay-200">
             <div className="relative w-full max-w-[500px] lg:max-w-[600px]">
-              <Image
-                src="https://cdn.dribbble.com/userupload/45265328/file/55fd13997376b63a889231bcf7ff9fb0.webp?resize=1504x1128&vertical=center"
-                alt="Custom Sportswear"
-                width={1504}
-                height={1128}
-                priority
-                className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
+              <EditableImage
+                id="hero_image"
+                defaultValue="https://cdn.dribbble.com/userupload/45265328/file/55fd13997376b63a889231bcf7ff9fb0.webp?resize=1504x1128&vertical=center"
+                initialContent={contentMap["hero_image"]}
+                className="w-full"
+                renderImage={(src) => (
+                  <Image
+                    src={src}
+                    alt="Custom Sportswear"
+                    width={1504}
+                    height={1128}
+                    priority
+                    className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
+                  />
+                )}
               />
             </div>
           </div>
