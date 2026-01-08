@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAdmin } from "@/hooks/use-admin";
 import { Pencil, Save, X, Loader2, Upload } from "lucide-react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 
 interface EditableImageProps {
@@ -165,78 +166,90 @@ export default function EditableImage({
             )}
 
             {/* Edit Modal */}
-            {isEditing && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-md space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                            Update Image Source
-                        </h3>
+            {isEditing &&
+                typeof document !== "undefined" &&
+                createPortal(
+                    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-md space-y-4 max-h-[90vh] overflow-y-auto">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                Update Image Source
+                            </h3>
 
-                        <div className="space-y-4">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Upload Image
-                                </label>
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
-                                    className="hidden"
-                                    accept="image/*"
-                                />
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Upload Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        ref={fileInputRef}
+                                        onChange={handleFileChange}
+                                        className="hidden"
+                                        accept="image/*"
+                                    />
+                                    <button
+                                        onClick={() => fileInputRef.current?.click()}
+                                        disabled={isSaving}
+                                        className="w-full p-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 hover:text-blue-500 hover:border-blue-500 transition-colors flex items-center justify-center gap-2"
+                                    >
+                                        {isSaving ? (
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                            <Upload className="w-4 h-4" />
+                                        )}
+                                        {isSaving ? "Uploading..." : "Click to upload new image"}
+                                    </button>
+                                    <div className="text-center text-xs text-gray-400">OR</div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        Image URL
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={tempContent}
+                                        onChange={(e) => setTempContent(e.target.value)}
+                                        className="w-full p-2 border rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                                        placeholder="https://..."
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Preview */}
+                            <div className="aspect-video relative rounded-md overflow-hidden bg-gray-100 dark:bg-gray-900 flex items-center justify-center border">
+                                {tempContent ? (
+                                    <img
+                                        src={tempContent}
+                                        alt="Preview"
+                                        className="w-full h-full object-contain"
+                                    />
+                                ) : (
+                                    <span className="text-gray-400">No image</span>
+                                )}
+                            </div>
+
+                            <div className="flex justify-end gap-2 pt-2">
                                 <button
-                                    onClick={() => fileInputRef.current?.click()}
-                                    disabled={isSaving}
-                                    className="w-full p-2 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 hover:text-blue-500 hover:border-blue-500 transition-colors flex items-center justify-center gap-2"
+                                    onClick={handleCancel}
+                                    className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                                 >
-                                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                                    {isSaving ? "Uploading..." : "Click to upload new image"}
+                                    Cancel
                                 </button>
-                                <div className="text-center text-xs text-gray-400">OR</div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Image URL
-                                </label>
-                                <input
-                                    type="text"
-                                    value={tempContent}
-                                    onChange={(e) => setTempContent(e.target.value)}
-                                    className="w-full p-2 border rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
-                                    placeholder="https://..."
-                                />
+                                <button
+                                    onClick={handleSave}
+                                    disabled={isSaving}
+                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
+                                >
+                                    {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
+                                    Save Changes
+                                </button>
                             </div>
                         </div>
-
-                        {/* Preview */}
-                        <div className="aspect-video relative rounded-md overflow-hidden bg-gray-100 dark:bg-gray-900 flex items-center justify-center border">
-                            {tempContent ? (
-                                <img src={tempContent} alt="Preview" className="w-full h-full object-contain" />
-                            ) : (
-                                <span className="text-gray-400">No image</span>
-                            )}
-                        </div>
-
-                        <div className="flex justify-end gap-2 pt-2">
-                            <button
-                                onClick={handleCancel}
-                                className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleSave}
-                                disabled={isSaving}
-                                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2"
-                            >
-                                {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Save Changes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+                    </div>,
+                    document.body
+                )}
         </div>
     );
 }
+
