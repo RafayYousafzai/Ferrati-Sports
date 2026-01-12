@@ -26,14 +26,6 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleWhatsAppClick = () => {
-    const base = "https://wa.me/447757726151";
-
-    const url = `${base}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -145,18 +137,6 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
           type="submit"
         >
           Send Message
-        </Button>
-
-        <span className="text-md text-gray-500 hidden md:inline">or</span>
-
-        {/* Fixed: Moved logic to onClick, removed <a> wrapper, added w-full for mobile */}
-        <Button
-          className="w-full md:w-auto bg-[#00db40] text-white"
-          size="lg"
-          type="button"
-          onClick={handleWhatsAppClick}
-        >
-          <span>Talk on WhatsApp</span>
         </Button>
       </div>
 
