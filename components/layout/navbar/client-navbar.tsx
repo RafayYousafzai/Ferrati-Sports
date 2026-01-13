@@ -88,9 +88,30 @@ export default function ClientNavbar({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { hidden } = useNavbarScroll();
 
+  // Sort categories to move Casual Wear after Sports Wear
+  const sortedCategories = [...categories].sort((a, b) => {
+    const aTitle = a.title.toLowerCase();
+    const bTitle = b.title.toLowerCase();
+
+    // Define custom order
+    const order: Record<string, number> = {
+      "motorbike gear": 0,
+      "active wear": 1,
+      "sports wear": 2,
+      "casual wear": 3,
+      accessories: 4,
+      gloves: 5,
+    };
+
+    const aOrder = order[aTitle] ?? 999;
+    const bOrder = order[bTitle] ?? 999;
+
+    return aOrder - bOrder;
+  });
+
   // Convert categories to navigation items with their products
   const categoryNavItems: NavItem[] = [
-    ...categories.map((category) => {
+    ...sortedCategories.map((category) => {
       // Get products for this category
       const categoryProducts = products
         .filter((product) => product.category_id === category.id)
@@ -190,11 +211,11 @@ export default function ClientNavbar({
         <NavbarContent>
           <NavbarBrand>
             <Link href="/">
-              <div className="relative xl:flex w-auto h-[4rem]">
+              <div className="relative flex w-auto h-[10rem] mt-2 -ml-6 sm:ml-0">
                 <Image
                   alt="Ferrati Sports Logo"
-                  className="object-contain w-auto h-[4rem]"
-                  src="/wide-logo.png"
+                  className="object-contain w-auto h-full"
+                  src="/wide-logo.svg"
                 />
               </div>
             </Link>
@@ -236,11 +257,7 @@ export default function ClientNavbar({
               </Link>
             </NavbarItem>
           ))}
-          {/* <Link href={"/request-quote"}>
-            <button className="rounded-full uppercase border-2 border-white hover:border-orange-500 tracking-wider cursor-pointer bg-transparent text-white hover:bg-orange-500 hover:text-white font-semibold px-4 py-2 -mr-2 transition-all duration-300">
-              Calculator
-            </button>
-          </Link> */}
+
           <Link href={"request-quote"}>
             <button className="rounded-full font-bold uppercase border-2 border-orange-500 bg-orange-500  tracking-widest  cursor-pointer  text-white px-4 py-2 -mr-2 transition-all duration-300">
               Start Today!{" "}
@@ -248,9 +265,9 @@ export default function ClientNavbar({
           </Link>
         </NavbarContent>
 
-        <NavbarMenu className="bg-black/80 py-4 -mt-1">
+        <NavbarMenu className="bg-black/80 pt-16 pb-4">
           {navigationConfig.mobileNav.map((item: any, index: number) => (
-            <NavbarMenuItem key={`${item.title}-${index}`}>
+            <NavbarMenuItem key={`${item.title}-${index}`} className="mb-2">
               {item.items && item.items.length > 0 ? (
                 <MobileAccordion
                   title={item.title}
@@ -260,7 +277,7 @@ export default function ClientNavbar({
                 />
               ) : (
                 <Link
-                  className="w-full text-white hover:text-slate-200 py-2 text-2xl"
+                  className="w-full text-white hover:text-slate-200 py-3 text-2xl"
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                 >

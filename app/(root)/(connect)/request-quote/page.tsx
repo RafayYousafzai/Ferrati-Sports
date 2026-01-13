@@ -21,6 +21,7 @@ import Header from "@/components/custom-ui/header";
 import { usePriceCalculation } from "@/context/PriceCalculationContext";
 import { createClient } from "@/lib/supabase/client";
 import QuoteContactForm from "@/components/layout/QuoteContactForm";
+import { sendPushoverNotification } from "@/lib/pushover";
 
 // --- Main Page Component ---
 export default function RequestQuote() {
@@ -59,11 +60,28 @@ export default function RequestQuote() {
         email,
         name,
         phone,
-        description, // Added description to the submission
-        cart_items: addProducts ? cart : [], // Only add cart items if switch is on
+        description,
+        cart_items: addProducts ? cart : [],
         total_price: 0,
       },
     ]);
+
+    // Send Pushover notification
+    if (!error) {
+      await sendPushoverNotification({
+        type: "quote",
+        name,
+        email,
+        phone,
+        description,
+        cartItems: addProducts
+          ? cart.map((item) => ({
+              title: item.product.title,
+              quantity: item.quantity,
+            }))
+          : undefined,
+      });
+    }
 
     setSaving(false);
     if (error) {
@@ -72,17 +90,14 @@ export default function RequestQuote() {
     } else {
       onClose();
       setSubmitted(true);
-      // Reset form state after successful submission
       setTimeout(() => {
         setEmail("");
         setName("");
         setPhone("");
         setDescription("");
-        setAddProducts(true); // Reset the switch
+        setAddProducts(true);
         setSubmitted(false);
         setFormKey((prev) => prev + 1);
-        // Note: You might want to clear the cart here as well
-        // clearCart();
       }, 3000);
     }
   };

@@ -163,7 +163,7 @@ export default function AdminQuotesPage() {
         (q.name || "").toLowerCase().includes(s) ||
         (q.email || "").toLowerCase().includes(s) ||
         q.items.some((it) =>
-          (it.product?.title || "").toLowerCase().includes(s),
+          (it.product?.title || "").toLowerCase().includes(s)
         )
       );
     });
@@ -243,7 +243,7 @@ export default function AdminQuotesPage() {
             quantity: it.quantity,
             price: it.price,
             line_total: it.line_total,
-          })),
+          }))
         ),
       ]);
     }
@@ -360,6 +360,10 @@ export default function AdminQuotesPage() {
                         <p className="text-sm text-gray-600 flex items-center gap-2">
                           <Mail className="h-3 w-3" />
                           {q.email ?? "—"}
+                        </p>{" "}
+                        <br />
+                        <p className="text-sm text-gray-600 flex items-center gap-2">
+                          {q.description ?? "—"}
                         </p>
                         {q.phone && (
                           <p className="text-sm text-gray-600 flex items-center gap-2">
@@ -373,9 +377,9 @@ export default function AdminQuotesPage() {
                           <Calendar className="h-3 w-3" />
                           {q.created_at
                             ? format(
-                              new Date(q.created_at),
-                              "MMM dd, yyyy HH:mm",
-                            )
+                                new Date(q.created_at),
+                                "MMM dd, yyyy HH:mm"
+                              )
                             : "—"}
                         </p>
                       </div>

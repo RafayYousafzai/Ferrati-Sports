@@ -22,20 +22,22 @@ const Portfolio = ({ contentMap = {} }) => {
       />
 
       {/* Main Content */}
-      <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow flex flex-col justify-center">
+      <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow flex flex-col justify-center mt-16 sm:mt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left side - Text */}
-          <div className="relative flex flex-col justify-center order-2 lg:order-1 animate-fade-in-up z-20 items-center sm:items-start text-center sm:text-left">
-            <h1 className="italic text-4xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-none text-gray-900 dark:text-white tracking-tight mt-0">
-              Custom Apparel Manufacturing
-              <span className="text-orange-500 block mb-2">Made Easy.</span>
+          <div className="relative flex flex-col justify-center order-1 lg:order-1 animate-fade-in-up z-20 items-center lg:items-start sm:text-center text-center text-balance lg:text-left">
+            <h1 className="text-4xl sm:text-xl md:text-4xl lg:text-4xl xl:text-5xl sm:font-bold font-semibold leading-15 text-gray-900 dark:text-white tracking-tight mt-0 ">
+              Helping apparel brands build reliable, high-quality products
+              <span className="text-orange-500 block mb-2 font-semibold">
+                without production headaches.
+              </span>
             </h1>
 
             <EditableText
               id="hero_description"
               initialContent={contentMap["hero_description"]}
               multiline
-              className="text-gray-600 dark:text-gray-300 text-sm sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium mx-auto sm:mx-0"
+              className="text-gray-800 dark:text-gray-300 text-sm sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium mx-auto sm:mx-0"
               as="p"
             />
 
@@ -51,31 +53,32 @@ const Portfolio = ({ contentMap = {} }) => {
                 </button>
               </Link>
             </div>
+          </div>
 
-            <div className="pt-4">
-              <div className="grid grid-cols-2 sm:flex sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 w-full justify-items-center sm:justify-items-start">
-                <div className="flex items-center justify-center sm:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
-                  <span>200+ Brands Served</span>
-                </div>
-                <div className="flex items-center justify-center sm:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
-                  <span>100+ Fabrics</span>
-                </div>
-                <div className="flex items-center justify-center sm:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
-                  <span>Replacement Policy</span>
-                </div>
-                <div className="flex items-center justify-center sm:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
-                  <span>50+ Order</span>
-                </div>
+          {/* Points section - appears before image on mobile, below on desktop */}
+          <div className="order-2 lg:order-3 lg:col-span-2 md:hidden ">
+            <div className="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 w-full">
+              <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+                <span>200+ Brands Served</span>
+              </div>
+              <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+                <span>100+ Fabrics Choice</span>
+              </div>
+              <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+                <span>Free Replacement Policy</span>
+              </div>
+              <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+                <span>50 Min Order Qty ‎ ‎ ‎ </span>
               </div>
             </div>
           </div>
 
           {/* Right side - Image */}
-          <div className="flex order-1 lg:order-2 w-full justify-center lg:justify-end animate-fade-in-up delay-200">
+          <div className="flex order-3 lg:order-2 w-full justify-center lg:justify-end animate-fade-in-up delay-200">
             <div className="relative w-full max-w-[500px] lg:max-w-[600px]">
               <EditableImage
                 id="hero_image"
@@ -96,9 +99,27 @@ const Portfolio = ({ contentMap = {} }) => {
             </div>
           </div>
         </div>
+        <div className="order-2 lg:order-3 lg:col-span-2 mt-20 hidden md:block ">
+          <div className="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 w-full">
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+              <span>200+ Brands Served</span>
+            </div>
+            <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+              <span>100+ Fabrics Choice</span>
+            </div>
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+              <span>Free Replacement Policy</span>
+            </div>
+            <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+              <span>50 Min Order Qty</span>
+            </div>
+          </div>
+        </div>
       </div>
-
-
 
       <style jsx>{`
         @keyframes fade-in-up {

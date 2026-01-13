@@ -433,10 +433,10 @@ const Problem = ({
                   </div>
                   <div>
                     <div className="text-xl font-bold text-orange-500 pr-2">
-                      Solutions
+                      Nobody Tell
                     </div>
                     <div className="text-xs text-black font-medium">
-                      We Provide
+                      This Part
                     </div>
                   </div>
                 </div>

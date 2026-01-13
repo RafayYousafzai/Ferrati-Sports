@@ -3,8 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
-import { sendEmail } from "@/lib/email";
-import ContactFormEmail from "@/emails/ContactFormEmail";
+import { sendPushoverNotification } from "@/lib/pushover";
 
 export interface ContactFormData {
   email: string;
@@ -41,27 +40,17 @@ export async function submitContactForm(formData: FormData) {
 
   if (error) {
     console.error("Contact form submission error:", error);
-
     return { error: "Failed to send message. Please try again." };
   }
 
-  // Send email notification
-  const emailResult = await sendEmail({
-    to: process.env.CONTACT_EMAIL || "admin@ferratisports.com",
-    subject: `New Contact Form Submission from ${data.firstName} ${data.lastName}`,
-    react: ContactFormEmail({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phone: data.phone,
-      interest: data.interest,
-    }),
+  // Send Pushover notification
+  await sendPushoverNotification({
+    type: "contact",
+    name: `${data.firstName} ${data.lastName}`.trim(),
+    email: data.email,
+    phone: data.phone,
+    description: data.interest,
   });
-
-  if (emailResult.error) {
-    console.error("Failed to send email notification:", emailResult.error);
-    // Don't return error to user since form was saved successfully
-  }
 
   // Revalidate the page to show fresh state
   revalidatePath("/contact");

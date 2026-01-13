@@ -26,7 +26,7 @@ export default function MobileAccordion({
   return (
     <div className="w-full">
       <div
-        className="flex justify-between items-center w-full text-white py-2 text-2xl"
+        className="flex justify-between items-center w-full text-white text-2xl"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Link
