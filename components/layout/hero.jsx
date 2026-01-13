@@ -21,14 +21,17 @@ const Portfolio = ({ contentMap = {} }) => {
         }}
       />
 
+      {/* Top spacer for desktop centering */}
+      <div className="hidden lg:block flex-1" />
+
       {/* Main Content */}
-      <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow flex flex-col justify-center mt-16 sm:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow lg:flex-grow-0 flex flex-col justify-center mt-16 sm:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Left side - Text */}
           <div className="relative flex flex-col justify-center order-1 lg:order-1 animate-fade-in-up z-20 items-center lg:items-start sm:text-center text-center text-balance lg:text-left">
-            <h1 className="text-4xl sm:text-xl md:text-4xl lg:text-4xl xl:text-5xl sm:font-bold font-semibold leading-15 text-gray-900 dark:text-white tracking-tight mt-0 ">
+            <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-[40px] xl:text-5xl sm:font-bold font-semibold leading-tight text-gray-900 dark:text-white tracking-tight mt-0 ">
               Helping apparel brands build reliable, high-quality products
-              <span className="text-orange-500 block mb-2 font-semibold">
+              <span className="text-orange-500 block mb-5 mt-2 font-semibold">
                 without production headaches.
               </span>
             </h1>
@@ -37,11 +40,11 @@ const Portfolio = ({ contentMap = {} }) => {
               id="hero_description"
               initialContent={contentMap["hero_description"]}
               multiline
-              className="text-gray-800 dark:text-gray-300 text-sm sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium mx-auto sm:mx-0"
+              className="text-gray-800 dark:text-gray-300 text-sm sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium mx-auto sm:mx-0 mb-8"
               as="p"
             />
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-4">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-0">
               <Link href="/request-quote" passHref>
                 <button className="w-full sm:w-auto px-6 py-3 lg:px-6 lg:py-3 xl:px-8 xl:py-4 bg-orange-500 dark:bg-orange-500 text-white hover:bg-orange-700 dark:hover:bg-orange-600 rounded-full uppercase font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 tracking-wider text-xs sm:text-sm xl:text-base whitespace-nowrap">
                   Request Free Quote
@@ -56,7 +59,7 @@ const Portfolio = ({ contentMap = {} }) => {
           </div>
 
           {/* Points section - appears before image on mobile, below on desktop */}
-          <div className="order-2 lg:order-3 lg:col-span-2 md:hidden ">
+          <div className="order-2 lg:order-3 lg:col-span-2 my-6 md:hidden ">
             <div className="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 w-full">
               <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
@@ -99,7 +102,7 @@ const Portfolio = ({ contentMap = {} }) => {
             </div>
           </div>
         </div>
-        <div className="order-2 lg:order-3 lg:col-span-2 mt-20 hidden md:block ">
+        <div className="order-2 lg:order-3 lg:col-span-2 mt-10 hidden md:block lg:hidden">
           <div className="grid grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-4 w-full">
             <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
               <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
@@ -115,6 +118,30 @@ const Portfolio = ({ contentMap = {} }) => {
             </div>
             <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
               <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
+              <span>50 Min Order Qty</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom spacer with points for desktop */}
+      <div className="hidden lg:flex flex-1 w-full items-center justify-center relative z-10">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-row items-center justify-between gap-4 w-full">
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-5 h-5 mr-2 text-orange-500 flex-shrink-0" />
+              <span>200+ Brands Served</span>
+            </div>
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-5 h-5 mr-2 text-orange-500 flex-shrink-0" />
+              <span>100+ Fabrics Choice</span>
+            </div>
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-5 h-5 mr-2 text-orange-500 flex-shrink-0" />
+              <span>Free Replacement Policy</span>
+            </div>
+            <div className="flex items-center justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+              <CheckCircle className="w-5 h-5 mr-2 text-orange-500 flex-shrink-0" />
               <span>50 Min Order Qty</span>
             </div>
           </div>
