@@ -1,10 +1,10 @@
-import { ChevronRight, Calendar, CheckCircle, Rocket } from "lucide-react";
-
-import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight, CheckCircle, Rocket } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/button";
-import EditableText from "@/components/editable-text";
 import { IconBulb } from "@tabler/icons-react";
+
+import EditableText from "@/components/editable-text";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Process({
   contentMap = {},
@@ -57,19 +57,19 @@ export default function Process({
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mt-8 mb-6">
                 <EditableText
-                  id="process_title"
-                  defaultValue="Your Path to Hustle-Free Manufacturing"
-                  initialContent={contentMap["process_title"]}
                   as="span"
+                  defaultValue="Your Path to Hustle-Free Manufacturing"
+                  id="process_title"
+                  initialContent={contentMap["process_title"]}
                 />
               </h2>
               <EditableText
-                id="process_description"
-                defaultValue="From concept to delivery, we've streamlined the entire process into three simple steps."
-                initialContent={contentMap["process_description"]}
                 multiline
-                className="text-xl text-white/90 max-w-3xl mx-auto"
                 as="p"
+                className="text-xl text-white/90 max-w-3xl mx-auto"
+                defaultValue="From concept to delivery, we've streamlined the entire process into three simple steps."
+                id="process_description"
+                initialContent={contentMap["process_description"]}
               />
             </div>
 

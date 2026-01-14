@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
+
+import { createClient } from "@/lib/supabase/client";
 
 export function useAdmin() {
   const [user, setUser] = useState<User | null>(null);
@@ -15,6 +16,7 @@ export function useAdmin() {
         const {
           data: { user },
         } = await supabase.auth.getUser();
+
         setUser(user);
         // For now, any authenticated user is considered an admin.
         setIsAdmin(!!user);
@@ -32,7 +34,7 @@ export function useAdmin() {
         setUser(session?.user ?? null);
         setIsAdmin(!!session?.user);
         setLoading(false);
-      }
+      },
     );
 
     return () => {

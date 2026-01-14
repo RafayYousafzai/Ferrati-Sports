@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { ArrowRight, ArrowRightCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import Footer from "@/components/layout/footer";
@@ -9,7 +9,7 @@ import ScrollProgress from "@/components/layout/scroll-progress";
 // 🔹 Lazy load below-the-fold sections
 const NewsletterSection = dynamic(
   () => import("@/components/layout/newsletter/newsletter-section"),
-  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> }
+  { loading: () => <div className="h-32 animate-pulse bg-gray-200 rounded" /> },
 );
 
 export default function RootLayout({

@@ -4,11 +4,8 @@ import { Button } from "@heroui/button";
 import Link from "next/link";
 import {
   TrendingDown,
-  PackageX,
   AlertTriangle,
-  Clock,
   Archive,
-  TrendingUp,
   ShieldCheck,
   BadgeCheck,
   Headphones,
@@ -269,10 +266,10 @@ const Problem = ({
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                   <EditableImage
-                    id="problem_issues_image"
-                    defaultValue="https://images.unsplash.com/photo-1758611971935-331135af686d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632"
-                    initialContent={contentMap["problem_issues_image"]}
                     className="w-full h-full"
+                    defaultValue="https://images.unsplash.com/photo-1758611971935-331135af686d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1632"
+                    id="problem_issues_image"
+                    initialContent={contentMap["problem_issues_image"]}
                     renderImage={(src) => (
                       <Image
                         alt="Manufacturing Problems"
@@ -403,10 +400,10 @@ const Problem = ({
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                   <EditableImage
-                    id="problem_solutions_image"
-                    defaultValue="https://plus.unsplash.com/premium_photo-1664475666724-8dff6a3cf38d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
-                    initialContent={contentMap["problem_solutions_image"]}
                     className="w-full h-full"
+                    defaultValue="https://plus.unsplash.com/premium_photo-1664475666724-8dff6a3cf38d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                    id="problem_solutions_image"
+                    initialContent={contentMap["problem_solutions_image"]}
                     renderImage={(src) => (
                       <Image
                         alt="Ferrati Solutions"
@@ -510,11 +507,11 @@ const Problem = ({
           >
             <p className="text-lg text-black mb-6">
               <EditableText
-                id="cta_description_1"
+                as="span"
                 defaultValue="We deliver solutions  that transform your manufacturing challenges into competitive
               advantages."
+                id="cta_description_1"
                 initialContent={contentMap["cta_description_1"]}
-                as="span"
               />
             </p>
             <Link href="/request-quote">

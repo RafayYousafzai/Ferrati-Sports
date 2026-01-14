@@ -21,7 +21,7 @@ interface QuoteContactFormProps {
     fullName: string,
     email: string,
     phone: string,
-    description: string
+    description: string,
   ) => Promise<void>;
 }
 

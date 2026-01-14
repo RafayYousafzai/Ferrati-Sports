@@ -270,9 +270,9 @@ export default function ClientNavbar({
             <NavbarMenuItem key={`${item.title}-${index}`} className="mb-2">
               {item.items && item.items.length > 0 ? (
                 <MobileAccordion
-                  title={item.title}
                   href={item.href}
                   items={item.items}
+                  title={item.title}
                   onLinkClick={() => setIsMenuOpen(false)}
                 />
               ) : (
@@ -337,7 +337,7 @@ function MenuContent({ item }: { item: NavGroup }) {
                 <HoveredLink key={navItem.href} href={navItem.href}>
                   {navItem.title}
                 </HoveredLink>
-              )
+              ),
             )}
           </div>
         )}

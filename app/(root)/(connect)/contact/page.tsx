@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import ContactForm from "./ContactForm";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Contact Us - Ferrati Sports | Get In Touch for Custom Clothing",

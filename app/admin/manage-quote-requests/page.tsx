@@ -163,7 +163,7 @@ export default function AdminQuotesPage() {
         (q.name || "").toLowerCase().includes(s) ||
         (q.email || "").toLowerCase().includes(s) ||
         q.items.some((it) =>
-          (it.product?.title || "").toLowerCase().includes(s)
+          (it.product?.title || "").toLowerCase().includes(s),
         )
       );
     });
@@ -243,7 +243,7 @@ export default function AdminQuotesPage() {
             quantity: it.quantity,
             price: it.price,
             line_total: it.line_total,
-          }))
+          })),
         ),
       ]);
     }
@@ -378,7 +378,7 @@ export default function AdminQuotesPage() {
                           {q.created_at
                             ? format(
                                 new Date(q.created_at),
-                                "MMM dd, yyyy HH:mm"
+                                "MMM dd, yyyy HH:mm",
                               )
                             : "—"}
                         </p>

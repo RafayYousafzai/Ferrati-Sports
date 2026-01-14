@@ -28,7 +28,7 @@ const buildMessage = (lines: (string | undefined)[]) =>
   lines.filter((line) => Boolean(line && line.trim())).join("\n");
 
 export async function sendPushoverNotification(
-  data: NotificationData
+  data: NotificationData,
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const pushoverToken = "aw3v32bxuzqjbad7gu6ypv7scenw6q";
@@ -36,6 +36,7 @@ export async function sendPushoverNotification(
 
     if (!pushoverToken || !pushoverUser) {
       console.warn("Pushover credentials not configured");
+
       return { success: false, error: "Pushover not configured" };
     }
 
@@ -61,7 +62,7 @@ export async function sendPushoverNotification(
           ? [
               "Products:",
               ...data.cartItems.map(
-                (item) => `• ${item.title} (Qty: ${item.quantity})`
+                (item) => `• ${item.title} (Qty: ${item.quantity})`,
               ),
             ].join("\n")
           : undefined;
@@ -100,6 +101,7 @@ export async function sendPushoverNotification(
 
     // Build form data properly
     const formData = new URLSearchParams();
+
     formData.append("token", payload.token);
     formData.append("user", payload.user);
     formData.append("title", payload.title);
@@ -118,7 +120,9 @@ export async function sendPushoverNotification(
 
     if (!response.ok) {
       const errorData = await response.json();
+
       console.error("Pushover error:", errorData);
+
       return {
         success: false,
         error: errorData.errors?.join(", ") || "Failed to send notification",
@@ -126,11 +130,13 @@ export async function sendPushoverNotification(
     }
 
     const result = await response.json();
+
     console.log("Pushover notification sent:", result);
 
     return { success: true };
   } catch (error) {
     console.error("Error sending Pushover notification:", error);
+
     return {
       success: false,
       error:

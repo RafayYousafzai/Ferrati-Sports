@@ -16,6 +16,7 @@ import { Star } from "lucide-react";
 import { Avatar } from "@heroui/avatar";
 
 import Header from "../custom-ui/header";
+
 import { Card } from "@/components/ui/card";
 
 const reviews = [
@@ -96,12 +97,12 @@ export default function ReviewsShowcase() {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        centeredSlides={true} // Centers active slide on mobile
         breakpoints={{
           640: {
             centeredSlides: false, // Standard flow on desktop
           },
         }}
+        centeredSlides={true} // Centers active slide on mobile
         className="pb-10 pt-4 !px-4 sm:!px-0" // Added padding handling
         freeMode={{
           enabled: true,
@@ -148,8 +149,8 @@ export default function ReviewsShowcase() {
               {/* Bottom Section: Avatar & Info */}
               <div className="flex items-center gap-3 mt-6 pt-4 border-t border-gray-50">
                 <Avatar
-                  name={review.name}
                   className="w-10 h-10 border border-gray-200"
+                  name={review.name}
                   src={`https://xsgames.co/randomusers/assets/avatars/${
                     review.id % 2 === 0 ? "male" : "female"
                   }/${Math.floor(review.id / 2)}.jpg`}

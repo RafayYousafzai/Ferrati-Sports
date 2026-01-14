@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { Pencil, Save, X, Loader2 } from "lucide-react";
+
 import { createClient } from "@/lib/supabase/client";
 import { useAdmin } from "@/hooks/use-admin";
-import { Pencil, Save, X, Loader2 } from "lucide-react";
 
 interface EditableTextProps {
   id: string;
@@ -37,6 +38,7 @@ export default function EditableText({
   useEffect(() => {
     if (initialContent) {
       setIsLoading(false);
+
       return;
     }
 
@@ -66,9 +68,11 @@ export default function EditableText({
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const { error } = await supabase
-        .from("content_blocks")
-        .upsert({ key: id, value: content, updated_at: new Date().toISOString() });
+      const { error } = await supabase.from("content_blocks").upsert({
+        key: id,
+        value: content,
+        updated_at: new Date().toISOString(),
+      });
 
       if (error) throw error;
 
@@ -95,7 +99,11 @@ export default function EditableText({
   };
 
   if (isLoading) {
-    return <Component className={`${className} opacity-50`}>{defaultValue}</Component>;
+    return (
+      <Component className={`${className} opacity-50`}>
+        {defaultValue}
+      </Component>
+    );
   }
 
   if (isEditing) {
@@ -104,33 +112,37 @@ export default function EditableText({
         {multiline ? (
           <textarea
             ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
             className={`w-full p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${className}`}
             rows={4}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
         ) : (
           <input
             ref={inputRef as React.RefObject<HTMLInputElement>}
+            className={`w-full p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${className}`}
             type="text"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className={`w-full p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${className}`}
           />
         )}
         <span className="absolute top-0 right-0 transform translate-x-full pl-2 flex gap-1 z-50">
           <button
-            onClick={handleSave}
-            disabled={isSaving}
             className="p-1 bg-green-500 text-white rounded hover:bg-green-600"
+            disabled={isSaving}
             title="Save"
+            onClick={handleSave}
           >
-            {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+            {isSaving ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Save className="w-4 h-4" />
+            )}
           </button>
           <button
-            onClick={handleCancel}
             className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
             title="Cancel"
+            onClick={handleCancel}
           >
             <X className="w-4 h-4" />
           </button>
@@ -141,13 +153,13 @@ export default function EditableText({
 
   return (
     <span className="relative group inline-block">
-      <Component className={className}>
-        {content}
-      </Component>
+      <Component className={className}>{content}</Component>
       {isAdmin && (
         <div
+          className="absolute -top-3 -right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-blue-500 text-white rounded-full shadow-lg z-10 cursor-pointer"
           role="button"
           tabIndex={0}
+          title="Edit"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -160,8 +172,6 @@ export default function EditableText({
               setIsEditing(true);
             }
           }}
-          className="absolute -top-3 -right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1 bg-blue-500 text-white rounded-full shadow-lg z-10 cursor-pointer"
-          title="Edit"
         >
           <Pencil className="w-3 h-3" />
         </div>

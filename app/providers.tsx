@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ToastProvider } from "@heroui/toast";
 import NextTopLoader from "nextjs-toploader";
-
 import { usePathname } from "next/navigation";
+
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 export interface ProvidersProps {
   children: React.ReactNode;

@@ -32,7 +32,7 @@ interface Ferrati {
   updateQuantity: (
     productId: string,
     fabricId: string,
-    newQuantity: number
+    newQuantity: number,
   ) => void;
   removeFromCart: (productId: string, fabricId: string) => void;
   clearCart: () => void;
@@ -123,7 +123,7 @@ export const PriceCalculationProvider = ({
         `
         *,
         categories:category_id (*)
-      `
+      `,
       )
       .order("title");
 
@@ -160,7 +160,7 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -173,13 +173,13 @@ export const PriceCalculationProvider = ({
   useEffect(() => {
     if (searchTerm) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
       setFilteredProducts(filtered);
     } else if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category_id === selectedCategory
+        (product) => product.category_id === selectedCategory,
       );
 
       setFilteredProducts(filtered);
@@ -192,24 +192,28 @@ export const PriceCalculationProvider = ({
     if (!selectedProduct || quantity < 1) return;
 
     const product = products.find((p) => p.id === selectedProduct);
+
     if (!product) return;
 
     // Use selected fabric or default to first available fabric
     let fabricId = selectedFabric;
+
     if (!fabricId) {
       const availableFabrics =
         product.fabric_ids && product.fabric_ids.length > 0
           ? fabrics.filter((f) => product.fabric_ids!.includes(f.id))
           : fabrics;
+
       fabricId = availableFabrics[0]?.id || fabrics[0]?.id || "";
     }
 
     const fabric = fabrics.find((f) => f.id === fabricId);
+
     if (!fabric) return;
 
     const existingItem = cart.find(
       (item) =>
-        item.product.id === selectedProduct && item.fabric.id === fabricId
+        item.product.id === selectedProduct && item.fabric.id === fabricId,
     );
 
     if (existingItem) {
@@ -217,8 +221,8 @@ export const PriceCalculationProvider = ({
         cart.map((item) =>
           item.product.id === selectedProduct && item.fabric.id === fabricId
             ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
+            : item,
+        ),
       );
     } else {
       setCart([...cart, { product, quantity, fabric }]);
@@ -233,12 +237,13 @@ export const PriceCalculationProvider = ({
   const updateQuantity = (
     productId: string,
     fabricId: string,
-    newQuantity: number
+    newQuantity: number,
   ) => {
     // console.log("Updating quantity:", productId, fabricId, newQuantity);
 
     if (newQuantity < 1) {
       removeFromCart(productId, fabricId);
+
       return;
     }
 
@@ -248,8 +253,9 @@ export const PriceCalculationProvider = ({
           // console.log("Found item to update", item);
           return { ...item, quantity: newQuantity };
         }
+
         return item;
-      })
+      }),
     );
   };
 
@@ -257,8 +263,8 @@ export const PriceCalculationProvider = ({
     setCart((prevCart) =>
       prevCart.filter(
         (item) =>
-          !(item.product.id === productId && item.fabric.id === fabricId)
-      )
+          !(item.product.id === productId && item.fabric.id === fabricId),
+      ),
     );
   };
 

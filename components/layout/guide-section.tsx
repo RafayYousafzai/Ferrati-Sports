@@ -5,9 +5,6 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   Building2,
-  Zap,
-  DollarSign,
-  Leaf,
   Headphones,
   Camera,
   ClipboardCheck,
@@ -18,6 +15,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@heroui/button";
+
 import EditableText from "@/components/editable-text";
 import EditableImage from "@/components/editable-image";
 
@@ -74,26 +72,26 @@ export default function GuideSection({
         >
           <h2 className="text-5xl  font-bold text-black mb-4">
             <EditableText
-              id="guide_title_1"
-              defaultValue="We Get It. That's Why We Built"
-              initialContent={contentMap["guide_title_1"]}
               as="span"
+              defaultValue="We Get It. That's Why We Built"
+              id="guide_title_1"
+              initialContent={contentMap["guide_title_1"]}
             />{" "}
             <EditableText
-              id="guide_title_2"
-              defaultValue="Ferrati Sports."
-              className="text-orange-500"
-              initialContent={contentMap["guide_title_2"]}
               as="span"
+              className="text-orange-500"
+              defaultValue="Ferrati Sports."
+              id="guide_title_2"
+              initialContent={contentMap["guide_title_2"]}
             />
           </h2>
           <EditableText
-            id="guide_description"
-            defaultValue="We've helped over 200 apparel brands across the UK, USA, and Europe bring their sportswear collections to life on time and on budget."
-            initialContent={contentMap["guide_description"]}
             multiline
-            className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
             as="p"
+            className="text-lg text-balance text-black max-w-4xl mx-auto leading-relaxed"
+            defaultValue="We've helped over 200 apparel brands across the UK, USA, and Europe bring their sportswear collections to life on time and on budget."
+            id="guide_description"
+            initialContent={contentMap["guide_description"]}
           />
         </motion.div>
 
@@ -131,20 +129,20 @@ export default function GuideSection({
                   <div>
                     <h6 className="font-bold text-sm -mt-2 text-black mb-1">
                       <EditableText
-                        id={`guide_feature_${index}_title`}
+                        as="span"
                         defaultValue={feature.title}
+                        id={`guide_feature_${index}_title`}
                         initialContent={
                           contentMap[`guide_feature_${index}_title`]
                         }
-                        as="span"
                       />
                     </h6>
                     <EditableText
-                      id={`guide_feature_${index}_desc`}
-                      defaultValue={feature.description}
-                      initialContent={contentMap[`guide_feature_${index}_desc`]}
-                      className="text-sm  text-black"
                       as="p"
+                      className="text-sm  text-black"
+                      defaultValue={feature.description}
+                      id={`guide_feature_${index}_desc`}
+                      initialContent={contentMap[`guide_feature_${index}_desc`]}
                     />
                   </div>
                 </motion.div>
@@ -172,10 +170,10 @@ export default function GuideSection({
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 <EditableImage
-                  id="guide_main_image"
-                  defaultValue="/assets/hero.webp"
-                  initialContent={contentMap["guide_main_image"]}
                   className="w-full h-full"
+                  defaultValue="/assets/hero.webp"
+                  id="guide_main_image"
+                  initialContent={contentMap["guide_main_image"]}
                   renderImage={(src) => (
                     <Image
                       alt="Ferrati Sports Manufacturing"

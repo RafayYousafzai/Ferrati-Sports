@@ -40,6 +40,7 @@ export async function submitContactForm(formData: FormData) {
 
   if (error) {
     console.error("Contact form submission error:", error);
+
     return { error: "Failed to send message. Please try again." };
   }
 

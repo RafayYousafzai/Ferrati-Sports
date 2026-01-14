@@ -98,8 +98,8 @@ export default function ProductDetails({
                         ? "text-orange-500 bg-white"
                         : "bg-orange-500 text-white"
                     }`}
-                    size="lg"
                     radius="full"
+                    size="lg"
                     variant="solid"
                   >
                     {buttonText}

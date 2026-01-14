@@ -30,8 +30,8 @@ export default function MobileAccordion({
         onClick={() => setIsOpen(!isOpen)}
       >
         <Link
-          href={href}
           className="hover:text-slate-200"
+          href={href}
           onClick={onLinkClick}
         >
           {title}
@@ -49,8 +49,8 @@ export default function MobileAccordion({
           {items.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
               className="w-full text-white hover:text-slate-200 py-1 text-xl"
+              href={item.href}
               onClick={onLinkClick}
             >
               {item.title}

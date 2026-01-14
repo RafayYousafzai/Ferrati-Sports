@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
 
     if (path) {
       revalidatePath(path);
+
       return NextResponse.json({ revalidated: true, now: Date.now() });
     }
 
@@ -16,6 +17,9 @@ export async function POST(request: NextRequest) {
       message: "Missing path to revalidate",
     });
   } catch (err) {
-    return NextResponse.json({ revalidated: false, message: "Error revalidating" }, { status: 500 });
+    return NextResponse.json(
+      { revalidated: false, message: "Error revalidating" },
+      { status: 500 },
+    );
   }
 }
