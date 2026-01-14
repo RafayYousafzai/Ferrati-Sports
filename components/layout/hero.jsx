@@ -26,10 +26,10 @@ const Portfolio = ({ contentMap = {} }) => {
 
       {/* Main Content */}
       <div className="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-8 flex-grow lg:flex-grow-0 flex flex-col justify-center mt-16 sm:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-16">
           {/* Left side - Text */}
           <div className="relative flex flex-col justify-center order-1 lg:order-1 animate-fade-in-up z-20 items-center lg:items-start sm:text-center text-center text-balance lg:text-left">
-            <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-[40px] xl:text-5xl sm:font-bold font-semibold leading-tight text-gray-900 dark:text-white tracking-tight mt-0 ">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl sm:font-bold font-semibold leading-[1.1] text-gray-900 dark:text-white tracking-tight mt-0 ">
               Helping apparel brands build reliable, high-quality products
               <span className="text-orange-500 block mb-5 mt-2 font-semibold">
                 without production headaches.
@@ -40,7 +40,7 @@ const Portfolio = ({ contentMap = {} }) => {
               id="hero_description"
               initialContent={contentMap["hero_description"]}
               multiline
-              className="text-gray-800 dark:text-gray-300 text-sm sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium mx-auto sm:mx-0 mb-8"
+              className="text-gray-800 dark:text-gray-300 text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-medium mx-auto sm:mx-0 mb-8"
               as="p"
             />
 
@@ -75,14 +75,14 @@ const Portfolio = ({ contentMap = {} }) => {
               </div>
               <div className="flex items-center justify-end lg:justify-start text-xs font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-orange-500 flex-shrink-0" />
-                <span>50 Min Order Qty ‎ ‎ ‎ </span>
+                <span>50 Min Order Qty</span>
               </div>
             </div>
           </div>
 
           {/* Right side - Image */}
           <div className="flex order-3 lg:order-2 w-full justify-center lg:justify-end animate-fade-in-up delay-200">
-            <div className="relative w-full max-w-[500px] lg:max-w-[600px]">
+            <div className="relative w-full max-w-[400px] lg:max-w-[480px] xl:max-w-[600px]">
               <EditableImage
                 id="hero_image"
                 defaultValue="https://cdn.dribbble.com/userupload/45265328/file/55fd13997376b63a889231bcf7ff9fb0.webp?resize=1504x1128&vertical=center"

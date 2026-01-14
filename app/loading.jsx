@@ -30,7 +30,7 @@ export default function Loading() {
         {/* Loading text with animation */}
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-black dark:text-white animate-pulse">
-            We Make. You Win.
+            We Make. <span className="text-orange-500">You Win.</span>
           </h2>
           {/* Progress bar */}
           {/* <div className="w-64 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">

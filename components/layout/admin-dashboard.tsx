@@ -122,14 +122,14 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
             <SidebarLink
               className="fixed bottom-4"
               link={{
-                label: "Manu Arora",
+                label: "Ferrati Sports",
                 href: "#",
                 icon: (
                   <Image
                     alt="Avatar"
                     className="h-7 w-7 shrink-0 rounded-full"
                     height={50}
-                    src="https://assets.aceternity.com/manu.png"
+                    src="/logo.png"
                     width={50}
                   />
                 ),
