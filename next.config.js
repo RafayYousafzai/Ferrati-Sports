@@ -28,10 +28,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets.aceternity.com",
       },
-      {
-        protocol: "https",
-        hostname: "apxliioxqwlepmejxziq.supabase.co",
-      },
+
       {
         protocol: "https",
         hostname: "cdn.dribbble.com",
@@ -39,6 +36,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "plus.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "mqjcpvobvafjqpjwaogh.supabase.co",
       },
     ],
   },
