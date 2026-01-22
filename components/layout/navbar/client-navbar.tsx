@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 import {
   Navbar,
   NavbarBrand,
@@ -200,7 +201,21 @@ export default function ClientNavbar({
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300">
+      <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-gray-200 transition-transform duration-300">
+      {/* Google Analytics */}
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-4GWZD06LTK"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4GWZD06LTK');
+        `}
+      </Script>
       <Navbar
         className="transition-all duration-300 bg-black/90 h-[10vh]"
         disableAnimation={true}
