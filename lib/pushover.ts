@@ -106,14 +106,22 @@ export async function sendPushoverNotification(
     // Build form data properly
     const formData = new URLSearchParams();
 
-    console.log("📋 Before FormData append - title:", title, "message:", message);
+    console.log(
+      "📋 Before FormData append - title:",
+      title,
+      "message:",
+      message,
+    );
 
     formData.append("token", payload.token);
     formData.append("user", payload.user);
     formData.append("title", payload.title);
     formData.append("message", payload.message);
-    
-    console.log("📋 After FormData append - formData string:", formData.toString());
+
+    console.log(
+      "📋 After FormData append - formData string:",
+      formData.toString(),
+    );
     formData.append("priority", String(payload.priority));
     formData.append("sound", payload.sound || "pushover");
     formData.append("html", String(payload.html));
