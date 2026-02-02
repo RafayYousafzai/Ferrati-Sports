@@ -91,21 +91,29 @@ export async function sendPushoverNotification(
     };
 
     // Debug logging
-    console.log("Sending Pushover notification with payload:", {
+    console.log("🔍 Sending Pushover notification with payload:", {
       token: pushoverToken,
       user: pushoverUser,
-      title,
+      title: title,
+      titleType: typeof title,
+      message: message,
+      messageType: typeof message,
       messageLength: message.length,
       priority: payload.priority,
+      data: data,
     });
 
     // Build form data properly
     const formData = new URLSearchParams();
 
+    console.log("📋 Before FormData append - title:", title, "message:", message);
+
     formData.append("token", payload.token);
     formData.append("user", payload.user);
     formData.append("title", payload.title);
     formData.append("message", payload.message);
+    
+    console.log("📋 After FormData append - formData string:", formData.toString());
     formData.append("priority", String(payload.priority));
     formData.append("sound", payload.sound || "pushover");
     formData.append("html", String(payload.html));
